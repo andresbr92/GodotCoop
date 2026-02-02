@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="PackedScene" uid="uid://7xptblalmgdh" path="res://UI/multiplayerMenu.tscn" id="1_opr77"]
-[ext_resource type="PackedScene" uid="uid://dq05gsoxhb16t" path="res://player/player.tscn" id="2_yor6k"]
+[ext_resource type="Script" uid="uid://bwy08k24j21sw" path="res://scripts/multiplayer/multiplayer_spawner.gd" id="3_a2xgj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -33,7 +33,6 @@ environment = SubResource("Environment_5lc62")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Structures" unique_id=411736819]
 use_collision = true
-collision_layer = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Structures/CSGCombiner3D" unique_id=1034143528]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -7)
@@ -109,8 +108,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
 size = Vector3(100, 0.5, 100)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1881117426]
-transform = Transform3D(1, 0, 0, 0, 0.6500584, 0.75988436, 0, -0.75988436, 0.6500584, 0, 37.666824, 57.05179)
-
-[node name="Player" parent="." unique_id=21488461 instance=ExtResource("2_yor6k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.515856, 0)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1710082285]
+unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("uid://dq05gsoxhb16t")
+spawn_path = NodePath("..")
+script = ExtResource("3_a2xgj")

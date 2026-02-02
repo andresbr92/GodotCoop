@@ -1,0 +1,9 @@
+[gd_resource type="InventoryDatabase" format=3 uid="uid://c0p23mhpamp3n"]
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_ktx2b"]
+max_stack = 10
+name = "Wood"
+description = "This is a peace of wood"
+
+[resource]
+items = Array[ItemDefinition]([SubResource("ItemDefinition_ktx2b")])

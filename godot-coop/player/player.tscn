@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://dq05gsoxhb16t"]
 
 [ext_resource type="Script" uid="uid://c0hcc4ni671nu" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="PackedScene" uid="uid://dvrounbw6t4j0" path="res://player/spring_arm_pivot.tscn" id="2_rkbax"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("MeshInstance3D:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -15,14 +24,20 @@ material = SubResource("StandardMaterial3D_rkbax")
 [node name="Player" type="CharacterBody3D" unique_id=21488461]
 script = ExtResource("1_oul6g")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2040872857]
+replication_config = SubResource("SceneReplicationConfig_oul6g")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1573151737]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=684829808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_oul6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=2000119739]
-transform = Transform3D(0.6105391, 0, 0, 0, 0.2600448, 0, 0, 0, 0.6388302, 0, 0.5, -0.37)
+transform = Transform3D(0.6105391, 0, 0, 0, 0.2600448, 0, 0, 0, 0.6388302, 0, 0.5, -0.34065545)
 mesh = SubResource("BoxMesh_g1dw6")
+
+[node name="SpringArmPivot" parent="." unique_id=1943155115 instance=ExtResource("2_rkbax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.472875, 0)
