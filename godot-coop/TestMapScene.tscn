@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="PackedScene" uid="uid://7xptblalmgdh" path="res://UI/multiplayerMenu.tscn" id="1_opr77"]
+[ext_resource type="PackedScene" uid="uid://pjbph7067g6e" path="res://addons/inventory-system-demos/fps/dropped_items/rock.tscn" id="3_2q2ht"]
 [ext_resource type="Script" uid="uid://bwy08k24j21sw" path="res://scripts/multiplayer/multiplayer_spawner.gd" id="3_a2xgj"]
+[ext_resource type="PackedScene" uid="uid://deuxh5d2qjr6i" path="res://addons/inventory-system-demos/fps/dropped_items/helmet_labor.tscn" id="4_ahbcn"]
+[ext_resource type="PackedScene" uid="uid://cpsfowho6jqi0" path="res://addons/inventory-system-demos/fps/dropped_items/cooked_meat.tscn" id="5_227gq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -113,3 +116,12 @@ unique_name_in_owner = true
 _spawnable_scenes = PackedStringArray("uid://dq05gsoxhb16t")
 spawn_path = NodePath("..")
 script = ExtResource("3_a2xgj")
+
+[node name="Rock" parent="." unique_id=317286423 instance=ExtResource("3_2q2ht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.381659, 0.154406, 2.9703064)
+
+[node name="HelmetLabor" parent="." unique_id=1970726 instance=ExtResource("4_ahbcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3452973, 0.154406, 3.744072)
+
+[node name="CookedMeat" parent="." unique_id=309751216 instance=ExtResource("5_227gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6595488, -3.8146973e-06, 7.485546)

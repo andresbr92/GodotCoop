@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dq05gsoxhb16t"]
 
 [ext_resource type="Script" uid="uid://c0hcc4ni671nu" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="PackedScene" uid="uid://dvrounbw6t4j0" path="res://player/spring_arm_pivot.tscn" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://n64v8r565gx0" path="res://player/camera_spring_arm.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://ng7b5tn0vurj" path="res://player/camera_follow.gd" id="2_g1dw6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
 properties/0/path = NodePath(".:position")
@@ -21,6 +22,8 @@ albedo_color = Color(0.43072253, 0.19710286, 0.4505208, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_g1dw6"]
 material = SubResource("StandardMaterial3D_rkbax")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_g1dw6"]
+
 [node name="Player" type="CharacterBody3D" unique_id=21488461]
 script = ExtResource("1_oul6g")
 
@@ -39,5 +42,18 @@ mesh = SubResource("CapsuleMesh_oul6g")
 transform = Transform3D(0.6105391, 0, 0, 0, 0.2600448, 0, 0, 0, 0.6388302, 0, 0.5, -0.34065545)
 mesh = SubResource("BoxMesh_g1dw6")
 
-[node name="SpringArmPivot" parent="." unique_id=1943155115 instance=ExtResource("2_rkbax")]
+[node name="SpringArmPivot" type="Node3D" parent="." unique_id=1943155115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.472875, 0)
+script = ExtResource("1_rkbax")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot" unique_id=1634919308]
+shape = SubResource("SphereShape3D_g1dw6")
+spring_length = 3.0
+
+[node name="CameraPositionTarget" type="Node3D" parent="SpringArmPivot/SpringArm3D" unique_id=1727233228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93879414, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SpringArmPivot" unique_id=1636851354 node_paths=PackedStringArray("target_node")]
+script = ExtResource("2_g1dw6")
+target_node = NodePath("../SpringArm3D/CameraPositionTarget")
+camera_x_offset = 1.0
