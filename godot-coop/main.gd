@@ -26,6 +26,16 @@ func host_game() -> void:
 	await get_tree().create_timer(1).timeout
 	make_scene_objects_to_network()
 
+func connect_to_ip(ip):
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(ip, 4242)
+	multiplayer.set_multiplayer_peer(peer)
+	$"UI/Connect Panel".visible = false
+	var items = $Level/Items
+	for i in items.get_child_count():
+		var item = items.get_child(i) as DroppedItem3D
+		item.queue_free()
+
 func create_player(client_id) -> void:
 	connected_peer_ids.append(client_id)
 	var player = player_scene.instantiate()
@@ -37,28 +47,43 @@ func create_player(client_id) -> void:
 		#$"UI/Inventory System UI".setup(player.get_node("CharacterInventorySystem"))
 
 func make_scene_objects_to_network() -> void:
-	pass
-	#var items = $Level/Items
-	#var spawner = get_node("DroppedItemSpawner")
-	#for i in items.get_child_count():
-		#var item_dropped = items.get_child(i) as DroppedItem3D
-		#var item_id : String = item_dropped.item_id
-		#var definition = database.get_item(item_id)
-		#var position = item_dropped.position
-		#var rotation = item_dropped.rotation
-		#var amount = item_dropped.amount
-		#item_dropped.queue_free()
-		#var dropped_item_path = definition.properties["dropped_item"]
-		#var _obj = spawner.spawn([position, rotation, dropped_item_path, amount])
+	var items = $Level/Items
+	var spawner = get_node("DroppedItemSpawner")
+	for i in items.get_child_count():
+		var item_dropped = items.get_child(i) as DroppedItem3D
+		var item_id : String = item_dropped.item_id
+		var definition = database.get_item(item_id)
+		var position = item_dropped.position
+		var rotation = item_dropped.rotation
+		var amount = item_dropped.amount
+		item_dropped.queue_free()
+		var dropped_item_path = definition.properties["dropped_item"]
+		var _obj = spawner.spawn([position, rotation, dropped_item_path, amount])
 
 func _player_connected(new_peer_id : int):
-	pass
-
+	if multiplayer.is_server():
+		add_newly_connected_player_character.rpc(new_peer_id)
+		add_previously_connected_player_characters.rpc_id(new_peer_id, connected_peer_ids)
+		create_player(new_peer_id)
 
 
 func _player_disconnected(peer_id : int):
-	pass
+	var pos = connected_peer_ids.find(peer_id)
+	if pos > 0 and pos < connected_peer_ids.size():
+		connected_peer_ids.remove_at(pos)
+		var player = players[pos]
+		players.remove_at(pos)
+		player.queue_free()
 
+@rpc
+func add_newly_connected_player_character(new_peer_id):
+	create_player(new_peer_id)
+
+
+@rpc
+func add_previously_connected_player_characters(peer_ids):
+	for peer_id in peer_ids:
+		create_player(peer_id)
 
 
 func _on_host_button_button_down() -> void:
@@ -67,4 +92,4 @@ func _on_host_button_button_down() -> void:
 
 
 func _on_connect_button_button_down() -> void:
-	pass # Replace with function body.
+	connect_to_ip("localhost")
