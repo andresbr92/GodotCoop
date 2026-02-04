@@ -7,6 +7,7 @@ var is_strafing = false
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var character_inventory_system: CoopCharacterInventorySystem = $CoopCharacterInventorySystem
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())

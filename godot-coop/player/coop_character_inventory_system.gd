@@ -7,6 +7,14 @@ class_name CoopCharacterInventorySystem
 const Interactor = preload("res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd")
 
 
+@export_group("🗃️ Inventory Nodes")
+@export_node_path var main_inventory_path := NodePath("InventoryHandler/Inventory")
+@onready var main_inventory : GridInventory = get_node(main_inventory_path)
+@export_node_path var drop_parent_path := NodePath("../..");
+@onready var drop_parent : Node = get_node(drop_parent_path)
+@export_node_path var drop_parent_position_path := NodePath("..");
+@onready var drop_parent_position : Node = get_node(drop_parent_position_path)
+
 
 
 @export_node_path var interactor_path := NodePath("Interactor")
@@ -57,7 +65,28 @@ func _input(event : InputEvent) -> void:
 
 func inventory_inputs() -> void:
 	pass
-	
+
+func pick_to_inventory(node : Node):
+	if main_inventory == null:
+		return
+
+	if node == null:
+		return
+
+	if !node.get("is_pickable"):
+		return
+
+	var item_id = node.item_id
+	var item_properties = node.item_properties
+	var amount = node.amount
+
+	if main_inventory.add(item_id, amount, item_properties, true) == 0:
+		node.queue_free();
+		return
+
+	printerr("pick_to_inventory return false");
+
+
 	
 	
 	

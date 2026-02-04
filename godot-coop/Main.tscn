@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cla33c2qqx78a"]
 
-[ext_resource type="PackedScene" uid="uid://7xptblalmgdh" path="res://UI/multiplayerMenu.tscn" id="1_opr77"]
-[ext_resource type="PackedScene" uid="uid://pjbph7067g6e" path="res://addons/inventory-system-demos/fps/dropped_items/rock.tscn" id="3_2q2ht"]
-[ext_resource type="Script" uid="uid://bwy08k24j21sw" path="res://scripts/multiplayer/multiplayer_spawner.gd" id="3_a2xgj"]
-[ext_resource type="PackedScene" uid="uid://deuxh5d2qjr6i" path="res://addons/inventory-system-demos/fps/dropped_items/helmet_labor.tscn" id="4_ahbcn"]
-[ext_resource type="PackedScene" uid="uid://cpsfowho6jqi0" path="res://addons/inventory-system-demos/fps/dropped_items/cooked_meat.tscn" id="5_227gq"]
+[ext_resource type="Script" uid="uid://bdxm36g6tmkyd" path="res://main.gd" id="1_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dq05gsoxhb16t" path="res://player/player.tscn" id="2_fos0i"]
+[ext_resource type="Script" uid="uid://bwy08k24j21sw" path="res://scripts/multiplayer/multiplayer_spawner.gd" id="2_r0du0"]
+[ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="4_cm0pq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,9 +18,9 @@ sky = SubResource("Sky_d8mrn")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="TestMap" type="Node3D" unique_id=800502238]
-
-[node name="MultiplayerMenu" parent="." unique_id=612719727 instance=ExtResource("1_opr77")]
+[node name="Main" type="Node" unique_id=1964116347]
+script = ExtResource("1_cm0pq")
+player = ExtResource("2_fos0i")
 
 [node name="Environment" type="Node3D" parent="." unique_id=818538303]
 
@@ -115,13 +114,38 @@ size = Vector3(100, 0.5, 100)
 unique_name_in_owner = true
 _spawnable_scenes = PackedStringArray("uid://dq05gsoxhb16t")
 spawn_path = NodePath("..")
-script = ExtResource("3_a2xgj")
+script = ExtResource("2_r0du0")
 
-[node name="Rock" parent="." unique_id=317286423 instance=ExtResource("3_2q2ht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.381659, 0.154406, 2.9703064)
+[node name="UI" type="CanvasLayer" parent="." unique_id=781518386]
 
-[node name="HelmetLabor" parent="." unique_id=1970726 instance=ExtResource("4_ahbcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3452973, 0.154406, 3.744072)
+[node name="Labels" parent="UI" unique_id=640308738 instance=ExtResource("4_cm0pq")]
 
-[node name="CookedMeat" parent="." unique_id=309751216 instance=ExtResource("5_227gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6595488, -3.8146973e-06, 7.485546)
+[node name="Connect Panel" type="ColorRect" parent="UI" unique_id=283157288]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.490196, 0.388235, 0.34902, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Connect Panel" unique_id=1702308855]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HostButton" type="Button" parent="UI/Connect Panel/VBoxContainer" unique_id=82680289]
+layout_mode = 2
+text = "HOST"
+
+[node name="ConnectButton" type="Button" parent="UI/Connect Panel/VBoxContainer" unique_id=973618211]
+layout_mode = 2
+text = "CONNECT TO LOCALHOST"

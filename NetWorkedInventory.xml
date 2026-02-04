@@ -1,0 +1,1045 @@
+This file is a merged representation of a subset of the codebase, containing specifically included files, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd
+godot-coop/addons/inventory-system-demos/mp/lag_test.gd
+godot-coop/addons/inventory-system-demos/mp/mp_demo.gd
+godot-coop/addons/inventory-system-demos/mp/mp_player.gd
+godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd
+godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd
+godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd
+godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd
+godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd
+godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd
+godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd
+godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd
+godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd
+godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd
+godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd
+godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd">
+class_name DropItemSpawner
+extends MultiplayerSpawner
+
+## Class that customizes the way the spawner generates objects on the network,
+## placing information on the [PackedScene] of the dropped item, position and rotation.
+
+@export var database : InventoryDatabase
+
+func _init():
+	spawn_function = _spawn_custom
+
+
+func _spawn_custom(data : Array):
+	if data.size() != 5 and data.size() != 4:
+		print("data size error!")
+		return null
+	if typeof(data[0]) != TYPE_VECTOR3 or typeof(data[1]) != TYPE_VECTOR3 or typeof(data[2]) != TYPE_STRING:
+		print("data incompatible!")
+		return null
+
+	var obj = load(data[2]).instantiate()
+	obj.position = data[0]
+	obj.rotation = data[1]
+	var item_id : String = obj.item_id
+	if data.size() > 3 and typeof(data[3]) == TYPE_INT:
+		obj.amount = data[3]
+	if data.size() > 4  and typeof(data[4]) == TYPE_DICTIONARY:
+		obj.item_properties = data[4]
+	obj.item_id = item_id
+	return obj
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/lag_test.gd">
+extends Node
+class_name LagTest
+
+@export var actived := false
+
+func _process(_delta: float) -> void:
+	if not actived:
+		return
+	if multiplayer.is_server():
+		for i in 50000000:
+			var _a := 2 + 2
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/mp_demo.gd">
+extends FPSDemo
+class_name MPDemo
+
+@export var player_scene : PackedScene
+
+var connected_peer_ids : Array
+var players : Array
+var peer : ENetMultiplayerPeer
+
+func _ready():
+	multiplayer.peer_connected.connect(_player_connected)
+	multiplayer.peer_disconnected.connect(_player_disconnected)
+
+
+func _process(_delta: float) -> void:
+	pass
+
+
+func create_player(peer_id : int):
+	connected_peer_ids.append(peer_id)
+	var player = player_scene.instantiate()
+	player.name = str(peer_id)
+	players.append(player)
+	player.position = Vector3(0,2,0)
+	add_child(player)
+	if multiplayer.get_unique_id() == peer_id:
+		$"UI/Inventory System UI".setup(player.get_node("CharacterInventorySystem"))
+
+
+@rpc
+func add_newly_connected_player_character(new_peer_id):
+	create_player(new_peer_id)
+
+
+@rpc
+func add_previously_connected_player_characters(peer_ids):
+	for peer_id in peer_ids:
+		create_player(peer_id)
+
+
+func host_game():
+	peer = ENetMultiplayerPeer.new()
+	peer.create_server(4242)
+	multiplayer.set_multiplayer_peer(peer)
+	create_player(multiplayer.get_unique_id())
+	$"UI/Connect Panel".visible = false
+	await get_tree().create_timer(1).timeout
+	make_scene_objects_to_network()
+
+
+func make_scene_objects_to_network():
+	var items = $Level/Items
+	var spawner = get_node("DroppedItemSpawner")
+	for i in items.get_child_count():
+		var item_dropped = items.get_child(i) as DroppedItem3D
+		var item_id : String = item_dropped.item_id
+		var definition = database.get_item(item_id)
+		var position = item_dropped.position
+		var rotation = item_dropped.rotation
+		var amount = item_dropped.amount
+		item_dropped.queue_free()
+		var dropped_item_path = definition.properties["dropped_item"]
+		var _obj = spawner.spawn([position, rotation, dropped_item_path, amount])
+
+
+func connect_to_ip(ip):
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(ip, 4242)
+	multiplayer.set_multiplayer_peer(peer)
+	$"UI/Connect Panel".visible = false
+	var items = $Level/Items
+	for i in items.get_child_count():
+		var item = items.get_child(i) as DroppedItem3D
+		item.queue_free()
+
+
+func _player_connected(new_peer_id : int):
+	if multiplayer.is_server():
+		add_newly_connected_player_character.rpc(new_peer_id)
+		add_previously_connected_player_characters.rpc_id(new_peer_id, connected_peer_ids)
+		create_player(new_peer_id)
+
+
+func _player_disconnected(peer_id : int):
+	var pos = connected_peer_ids.find(peer_id)
+	if pos > 0 and pos < connected_peer_ids.size():
+		connected_peer_ids.remove_at(pos)
+		var player = players[pos]
+		players.remove_at(pos)
+		player.queue_free()
+
+
+func _on_host_button_button_down():
+	host_game()
+
+
+func _on_connect_button_button_down():
+	connect_to_ip("localhost")
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/mp_player.gd">
+extends Player
+class_name MPPlayer
+
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+	$CharacterInventorySystem/Inventory/SyncInventory.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentInventory/SyncInventory.set_multiplayer_authority(1)
+	%SyncHotbar.set_multiplayer_authority(1)
+	$CharacterInventorySystem/CraftStation/SyncCraftStation.set_multiplayer_authority(1)
+	$Dropper.set_multiplayer_authority(1)
+
+
+func _ready():
+	super._ready()
+	if is_multiplayer_authority():
+		$Camera3D.make_current()
+	else:
+		$Camera3D.clear_current()
+	$Camera3D/HandItem.visible = is_multiplayer_authority()
+	$Camera3D/ThirdPersonHandItem.visible = not is_multiplayer_authority()
+	if is_multiplayer_authority():
+		$Mesh.visible = false
+
+
+func _physics_process(delta):
+	if is_multiplayer_authority():
+		super._physics_process(delta)
+
+
+func _input(event: InputEvent) -> void:
+	if is_multiplayer_authority():
+		super._input(event)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd">
+extends BoxInventory
+class_name NetworkedBoxInventory
+
+func interact(character : Node, _action_index : int = 0):
+	if multiplayer.is_server():
+		interact_rpc(character.get_path(), _action_index)
+	else:
+		interact_rpc.rpc_id(1, character.get_path(), _action_index)
+
+@rpc("any_peer")
+func interact_rpc(character_path : NodePath, _action_index : int = 0):
+	super.interact(get_node(character_path), _action_index)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd">
+extends Campfire
+class_name NetworkedCampfire
+
+func _ready():
+	super._ready()
+	changed_burning_state.connect(_changed_burning_state)
+	multiplayer.peer_connected.connect(_on_connected)
+
+
+func check():
+	if not multiplayer.is_server():
+		return
+	super.check()
+
+
+func _on_connected(_id : int):
+	_changed_burning_state(is_burning)
+
+
+func _changed_burning_state(is_burning_now : bool):
+	if not multiplayer.is_server():
+		return
+	_changed_burning_state_rpc.rpc(is_burning_now)
+
+
+@rpc
+func _changed_burning_state_rpc(is_burning_now : bool):
+	if multiplayer.is_server():
+		return
+	self.is_burning = is_burning_now
+
+
+@warning_ignore("shadowed_variable_base_class")
+func interact(character : Node, _action_index : int = 0):
+	if multiplayer.is_server():
+		interact_rpc(character.get_path(), _action_index)
+	else:
+		interact_rpc.rpc_id(1, character.get_path(), _action_index)
+
+@rpc("any_peer")
+func interact_rpc(character_path : NodePath, _action_index : int = 0):
+	super.interact(get_node(character_path), _action_index)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd">
+@tool
+class_name NetworkedCharacterInventorySystem
+extends "../character/character_inventory_system.gd"
+
+
+func _ready():
+	if Engine.is_editor_hint():
+		return
+	if is_multiplayer_authority():
+		# Setup for enabled/disabled mouse 🖱️😀
+		opened_inventory.connect(_update_opened_inventories)
+		closed_inventory.connect(_update_opened_inventories)
+		opened_station.connect(_update_opened_stations)
+		closed_station.connect(_update_opened_stations)
+		_update_opened_inventories(main_inventory)
+	else:
+		picked.connect(_on_picked)
+	hotbar.active_slot(0)
+	hotbar.active_slot(1)
+
+
+func _on_picked(obj : Node):
+	picked_rpc.rpc(obj.get_path())
+
+
+func _input(event : InputEvent):
+	if Engine.is_editor_hint():
+		return
+	if check_inputs and is_multiplayer_authority():
+		hot_bar_inputs(event)
+		inventory_inputs()
+
+
+func open_main_inventory():
+	if multiplayer.is_server():
+		super.open_main_inventory()
+	else:
+		open_main_inventory_rpc.rpc_id(1)
+
+
+func open_inventory(inventory : Inventory):
+	if multiplayer.is_server():
+		super.open_inventory(inventory)
+	else:
+		open_inventory_rpc.rpc_id(1, inventory.get_path())
+
+
+func add_open_inventory(inventory : Inventory):
+	if multiplayer.is_server():
+		add_open_inventory_rpc.rpc(inventory.get_path())
+	super.add_open_inventory(inventory)
+
+
+func remove_open_inventory(inventory : Inventory):
+	if multiplayer.is_server():
+		remove_open_inventory_rpc.rpc(inventory.get_path())
+	super.remove_open_inventory(inventory)
+
+
+func close_inventories():
+	if multiplayer.is_server():
+		super.close_inventories()
+	else:
+		close_inventories_rpc.rpc_id(1)
+
+
+func pick_to_inventory(node : Node):
+	if multiplayer.is_server():
+		super.pick_to_inventory(node)
+	else:
+		pick_to_inventory_rpc.rpc_id(1, node.get_path())
+
+
+func transfer_to(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, destination_pos: Vector2i, amount: int, is_rotated: bool):
+	if multiplayer.is_server():
+		super.transfer_to(inventory, origin_pos, destination, destination_pos, amount, is_rotated)
+	else:
+		transfer_to_rpc.rpc_id(1, inventory.get_path(), origin_pos, destination.get_path(), destination_pos, amount, is_rotated)
+
+
+func rotate(stack: ItemStack, inventory: Inventory):
+	if multiplayer.is_server():
+		super.rotate(stack, inventory)
+	else:
+		var stack_index = inventory.stacks.find(stack)
+		if stack_index != -1:
+			rotate_rpc.rpc_id(1, stack_index, inventory.get_path())
+
+
+func split(inventory : Inventory, stack_index : int, amount : int):
+	if multiplayer.is_server():
+		super.split(inventory, stack_index, amount)
+	else:
+		split_rpc.rpc_id(1, inventory.get_path(), stack_index, amount)
+
+
+func sort(inventory : Inventory):
+	if multiplayer.is_server():
+		super.sort(inventory)
+	else:
+		sort_rpc.rpc_id(1, inventory.get_path())
+
+
+func drop(stack: ItemStack, inventory: Inventory):
+	if multiplayer.is_server():
+		super.drop(stack, inventory)
+	else:
+		var stack_index = inventory.stacks.find(stack)
+		if stack_index != -1:
+			drop_rpc.rpc_id(1, stack_index, inventory.get_path())
+
+
+func equip(stack: ItemStack, inventory: Inventory, slot_index: int):
+	if multiplayer.is_server():
+		super.equip(stack, inventory, slot_index)
+	else:
+		var stack_index = inventory.stacks.find(stack)
+		if stack_index != -1:
+			equip_rpc.rpc_id(1, stack_index, inventory.get_path(), slot_index)
+
+
+func hotbar_change_selection(index : int):
+	if multiplayer.is_server():
+		super.hotbar_change_selection(index)
+	else:
+		hotbar_change_selection_rpc.rpc_id(1, index)
+
+
+func hotbar_previous_item():
+	if multiplayer.is_server():
+		super.hotbar_previous_item()
+	else:
+		hotbar_previous_item_rpc.rpc_id(1)
+
+
+func hotbar_next_item():
+	if multiplayer.is_server():
+		super.hotbar_next_item()
+	else:
+		hotbar_next_item_rpc.rpc_id(1)
+
+
+func open_main_craft_station():
+	if multiplayer.is_server():
+		super.open_main_craft_station()
+	else:
+		open_main_craft_station_rpc.rpc_id(1)
+
+
+func close_craft_stations():
+	if multiplayer.is_server():
+		super.close_craft_stations()
+	else:
+		close_stations_rpc.rpc_id(1)
+
+
+func craft(craft_station : CraftStation, recipe_index : int):
+	if multiplayer.is_server():
+		craft_rpc(craft_station.get_path(), recipe_index)
+	else:
+		craft_rpc.rpc(craft_station.get_path(), recipe_index)
+
+
+func open_station(craft_station : CraftStation):
+	if multiplayer.is_server():
+		open_station_rpc(get_path_to(craft_station))
+	else:
+		open_station_rpc.rpc(get_path_to(craft_station))
+
+
+func add_open_station(craft_station : CraftStation):
+	if multiplayer.is_server():
+		add_open_station_rpc.rpc(craft_station.get_path())
+	super.add_open_station(craft_station)
+
+
+func remove_open_station(craft_station : CraftStation):
+	if multiplayer.is_server():
+		remove_open_station_rpc.rpc(craft_station.get_path())
+	super.remove_open_station(craft_station)
+
+
+@rpc("any_peer")
+func picked_rpc(obj_path : NodePath):
+	var obj = get_node(obj_path)
+	picked.emit(obj)
+
+
+@rpc("any_peer")
+func open_main_inventory_rpc():
+	super.open_main_inventory()
+
+
+@rpc
+func open_inventory_rpc(inventory_path : NodePath):
+	var inventory = get_node(inventory_path)
+	super.open_inventory(inventory)
+
+
+@rpc("any_peer")
+func add_open_inventory_rpc(inventory_path : NodePath):
+	var inventory = get_node(inventory_path)
+	super.add_open_inventory(inventory)
+
+
+@rpc("any_peer")
+func remove_open_inventory_rpc(inventory_path : NodePath):
+	var inventory = get_node(inventory_path)
+	super.remove_open_inventory(inventory)
+
+
+@rpc("any_peer")
+func add_open_station_rpc(station_path : NodePath):
+	var station = get_node(station_path)
+	super.add_open_station(station)
+
+
+@rpc("any_peer")
+func remove_open_station_rpc(station_path : NodePath):
+	var station = get_node(station_path)
+	super.remove_open_station(station)
+
+
+@rpc
+func close_inventories_rpc():
+	if multiplayer.is_server():
+		super.close_inventories()
+
+
+@rpc
+func pick_to_inventory_rpc(node_path: NodePath):
+	super.pick_to_inventory(get_node(node_path))
+
+
+@rpc
+func transfer_to_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination_path: NodePath, destination_pos: Vector2i, amount: int, is_rotated: bool):
+	var inv = get_node(inventory_path)
+	var dest_inv = get_node(destination_path)
+	if inv == null or dest_inv == null:
+		return
+	super.transfer_to(inv, origin_pos, dest_inv, destination_pos, amount, is_rotated)
+
+
+@rpc
+func split_rpc(inventory_path: NodePath, stack_index: int, amount: int):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	super.split(inv, stack_index, amount)
+
+
+@rpc
+func rotate_rpc(stack_index: int, inventory_path: NodePath):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	var stack = inv.stacks[stack_index]
+	super.rotate(stack, inv)
+
+
+@rpc
+func sort_rpc(inventory_path: NodePath):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	super.sort(inv)
+
+
+@rpc
+func drop_rpc(stack_index: int, inventory_path: NodePath):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	var stack = inv.stacks[stack_index]
+	super.drop(stack, inv)
+
+
+@rpc
+func equip_rpc(stack_index: int, inventory_path: NodePath, slot_index: int):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	var stack = inv.stacks[stack_index]
+	super.equip(stack, inv, slot_index)
+
+
+@rpc
+func hotbar_change_selection_rpc(selection_index: int):
+	if not multiplayer.is_server():
+		return
+	super.hotbar_change_selection(selection_index)
+
+
+@rpc
+func hotbar_previous_item_rpc():
+	if not multiplayer.is_server():
+		return
+	super.hotbar_previous_item()
+
+
+@rpc
+func hotbar_next_item_rpc():
+	if not multiplayer.is_server():
+		return
+	super.hotbar_next_item()
+
+@rpc
+func open_main_craft_station_rpc():
+	super.open_main_craft_station()
+
+
+@rpc
+func open_station_rpc(craft_station_path : NodePath):
+	var station = get_node(craft_station_path)
+	super.open_station(station)
+
+
+@rpc
+func close_stations_rpc():
+	if multiplayer.is_server():
+		super.close_craft_stations()
+
+
+@rpc
+func craft_rpc(craft_station_path : NodePath, recipe_index : int):
+	var station = get_node(craft_station_path)
+	station.craft(recipe_index)
+
+
+func _physics_process(_delta : float):
+	if Engine.is_editor_hint():
+		return
+	if not can_interact:
+		return
+	if multiplayer.multiplayer_peer != null and is_multiplayer_authority():
+		interactor.try_interact()
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd">
+extends Dropper
+
+
+@export_node_path var drop_item_spawner_path := NodePath("../../DroppedItemSpawner")
+@onready var drop_item_spawner = get_node(drop_item_spawner_path)
+
+
+func _ready():
+	if is_multiplayer_authority():
+		super._ready()
+
+
+func _on_request_drop_obj(dropped_item : String, _item_id : String, amount : int, properties : Dictionary):
+	if(drop_item_spawner == null):
+		printerr("Spawner is null!")
+		return
+	var packed_scene : PackedScene = load(dropped_item)
+	var data : Array
+	data.append(global_position)
+	data.append(global_rotation)
+	data.append(packed_scene.resource_path)
+	data.append(amount)
+	data.append(properties)
+	var obj = drop_item_spawner.spawn(data)
+	dropped.emit(obj)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd">
+extends "../character/object_placer.gd"
+class_name NetworkedObjectPlacer
+
+
+@export_node_path var spawner_path : NodePath = NodePath("../../../../PlaceableItemSpawner")
+@onready var spawner : PlaceableItemSpawner = get_node(spawner_path)
+
+
+func place_item(item_id : String, position : Vector3, rotation : Vector3):
+	if item_id.is_empty():
+		return
+	if not multiplayer.is_server():
+		place_item_rpc.rpc_id(1, item_id, position, rotation)
+	else:
+		place_item_rpc(item_id, position, rotation)
+	return
+
+
+@rpc("any_peer")
+func place_item_rpc(item_id : String, position : Vector3, rotation : Vector3):
+	if not multiplayer.is_server():
+		return
+	super.place_item(item_id, position, rotation)
+
+
+func _instantiate_object(dropped_item : PackedScene, position : Vector3, rotation : Vector3):
+	var obj = spawner.spawn([position, rotation, dropped_item.resource_path])
+#	dropped.emit(obj)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd">
+extends Shelf
+class_name NetworkedShelf
+
+
+func interact(character : Node, action_index : int = 0):
+	if not multiplayer.is_server():
+		interact_rpc.rpc_id(1, character.get_path(), action_index, slot_index)
+	else:
+		interact_rpc(character.get_path(), action_index, slot_index)
+
+@rpc("any_peer")
+@warning_ignore("shadowed_variable_base_class")
+func interact_rpc(character_node_path : NodePath, action_index : int, slot_index):
+	if not multiplayer.is_server():
+		return
+	var node = get_node(character_node_path)
+	if node == null:
+		return
+	super.interact_with_slot(node, action_index, slot_index)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd">
+class_name NetworkedUseItemsExample3D
+extends UseItemsExample3D
+
+
+func use_item_selected_in_hotbar():
+	if not multiplayer.is_server():
+		use_item_selected_in_hotbar_rpc.rpc_id(1)
+	else:
+		use_item_selected_in_hotbar_rpc()
+
+
+@rpc
+func use_item_selected_in_hotbar_rpc():
+	if not multiplayer.is_server():
+		return
+	super.use_item_selected_in_hotbar()
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd">
+extends Workbench
+
+
+@warning_ignore("shadowed_variable_base_class")
+func interact(character : Node, _action_index : int = 0):
+	if multiplayer.is_server():
+		interact_rpc(character.get_path(), _action_index)
+	else:
+		interact_rpc.rpc_id(1, character.get_path(), _action_index)
+
+@rpc("any_peer")
+func interact_rpc(character_path : NodePath, _action_index : int = 0):
+	super.interact(get_node(character_path), _action_index)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd">
+class_name PlaceableItemSpawner
+extends MultiplayerSpawner
+
+## Class that customizes the way the spawner generates objects on the network,
+## placing information on the [PackedScene] of the dropped item, position and rotation.
+
+func _init():
+	spawn_function = _spawn_custom
+
+
+func _spawn_custom(data : Array):
+	if data.size() != 3:
+		print("data size error!")
+		return null
+	if typeof(data[0]) != TYPE_VECTOR3 or typeof(data[1]) != TYPE_VECTOR3 or typeof(data[2]) != TYPE_STRING:
+		print("data incompatible!")
+		return null
+
+	var obj = load(data[2]).instantiate()
+	obj.position = data[0]
+	obj.rotation = data[1]
+	return obj
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd">
+extends Node
+class_name SyncCraftStation
+
+@export var craft_station : CraftStation
+@export var sync_input_inventories : bool
+var craftings_data : Array
+
+
+func _ready() -> void:
+	craft_station.can_finish_craftings = is_multiplayer_authority()
+	multiplayer.peer_connected.connect(_on_connected)
+	craft_station.crafting_added.connect(_on_crafting_added)
+	craft_station.crafting_removed.connect(_on_crafting_removed)
+	if sync_input_inventories:
+		craft_station.input_inventory_added.connect(_on_input_inventory_added)
+		craft_station.input_inventory_removed.connect(_on_input_inventory_removed)
+
+
+func _on_connected(peer_id : int):
+	craft_station.can_finish_craftings = is_multiplayer_authority()
+	if not multiplayer.is_server():
+		return
+	_update_craftings_rpc.rpc_id(peer_id, craftings_data)
+
+
+func _on_crafting_added(crafting_index : int):
+	if not multiplayer.is_server():
+		return
+	var crafting = craft_station.craftings[crafting_index]
+	crafting_added_rpc.rpc(crafting.recipe_index)
+	craftings_data.append(crafting.serialize())
+
+
+
+func _on_crafting_removed(crafting_index : int):
+	if not multiplayer.is_server():
+		return
+	crafting_removed_rpc.rpc(crafting_index)
+	craftings_data.remove_at(crafting_index)
+
+
+func _on_input_inventory_added(inventory_path : NodePath):
+	if not multiplayer.is_server():
+		return
+	input_inventory_added_rpc.rpc(inventory_path)
+
+
+func _on_input_inventory_removed(inventory_path : NodePath):
+	if not multiplayer.is_server():
+		return
+	input_inventory_removed_rpc.rpc(inventory_path)
+
+
+@rpc
+func crafting_added_rpc(recipe_index : int):
+	if multiplayer.is_server():
+		return
+	var recipe = craft_station.database.recipes[recipe_index]
+	craft_station.add_crafting(recipe_index, recipe)
+
+@rpc
+func crafting_removed_rpc(crafting_index : int):
+	if multiplayer.is_server():
+		return
+	craft_station.remove_crafting(crafting_index)
+
+@rpc
+@warning_ignore("shadowed_variable")
+func _update_craftings_rpc(craftings_data : Array):
+	craft_station.can_finish_craftings = is_multiplayer_authority()
+	for data in craftings_data:
+		var crafting = Crafting.new()
+		crafting.deserialize(data)
+		craft_station.craftings.append(crafting)
+
+@rpc
+func input_inventory_added_rpc(inventory_path : NodePath):
+	craft_station.add_input_inventory(craft_station.get_node(inventory_path))
+
+@rpc
+func input_inventory_removed_rpc(inventory_path : NodePath):
+	craft_station.remove_input_inventory(craft_station.get_node(inventory_path))
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd">
+class_name SyncGridInventory
+extends Node
+
+#@export var sync_item_added_signal := true
+#@export var sync_item_removed_signal := true
+@export var sync_when_content_update_only := false
+
+@export var inventory : GridInventory
+
+## Networked version of inventory where server sends rpcs to client for
+## slot update, add and remove signals
+##
+## Why not use [MultiplayerSyncronizer]?
+## The idea of using rpc signals only when changed saves a lot of bandwidth,
+## but at the cost of being sure which signals will be called, ie calling
+## slot[i] = new Dictionary is not replicated across the network.
+## Also keep in mind that signals need to be handled if switching to a use of
+## MultiplayerSyncronizer
+##
+## Note: Slot categories are not synced
+
+func _ready():
+	if Engine.is_editor_hint():
+		return
+	multiplayer.peer_connected.connect(_on_connected)
+	if(inventory != null):
+		setup()
+
+
+func setup():
+	if sync_when_content_update_only:
+		inventory.contents_changed.connect(_on_contents_changed)
+	else:
+		inventory.stack_added.connect(_on_stack_added)
+		inventory.updated_stack.connect(_on_updated_stack)
+		inventory.stack_removed.connect(_on_stack_removed)
+
+
+
+func _on_contents_changed():
+	if not multiplayer.is_server():
+		return
+	var inv_data = inventory.serialize()
+	_update_inventory_rpc.rpc(inv_data)
+
+
+func _on_connected(id):
+	if not multiplayer.is_server():
+		return
+	var inv_data = inventory.serialize()
+	_update_inventory_rpc.rpc_id(id, inv_data)
+
+
+func _on_stack_added(stack_index : int):
+	if not multiplayer.is_server():
+		return
+
+	var item_id = inventory.stacks[stack_index].item_id
+	var amount = inventory.stacks[stack_index].amount
+	var properties = inventory.stacks[stack_index].properties
+	var position = inventory.stack_positions[stack_index]
+	var rotation = inventory.stack_rotations[stack_index]
+	_stack_added_rpc.rpc(stack_index, item_id, amount, properties, position, rotation)
+
+
+func _on_updated_stack(stack_index : int):
+	if not multiplayer.is_server():
+		return
+	_updated_slot_rpc.rpc(stack_index, inventory.stacks[stack_index].serialize())
+
+
+func _on_stack_removed(stack_index : int):
+	if not multiplayer.is_server():
+		return
+
+	_stack_removed_rpc.rpc(stack_index)
+
+
+@rpc
+func _update_inventory_rpc(inv_data : Dictionary):
+	if not multiplayer.is_server():
+		inventory.deserialize(inv_data)
+		inventory.contents_changed.emit()
+
+
+@rpc
+func _stack_added_rpc(_stack_index: int, item_id: String, amount: int, properties: Dictionary, position: Vector2i, rotation: bool):
+	if multiplayer.is_server():
+		return
+	inventory.add_at_position(position, item_id, amount, properties, rotation)
+
+
+@rpc
+func _updated_slot_rpc(stack_index : int, slot_data : Array):
+	if multiplayer.is_server():
+		return
+	var stack : ItemStack = inventory.stacks[stack_index]
+	stack.deserialize(slot_data)
+	inventory.updated_stack.emit(stack_index)
+
+@rpc
+func _stack_removed_rpc(stack_index : int):
+	if multiplayer.is_server():
+		return
+	inventory.remove_stack(stack_index)
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd">
+extends Node
+class_name	SyncHotbar
+
+@export var hotbar : Hotbar
+
+func _ready() -> void:
+	multiplayer.peer_connected.connect(_on_connected)
+	hotbar.equipped.connect(_on_equipped_stack_changed)
+	hotbar.unequipped.connect(_on_unequipped_stack_changed)
+	hotbar.on_change_selection.connect(_on_change_selection)
+
+
+
+func _on_equipped_stack_changed(slot_index: int):
+	if not multiplayer.is_server():
+		return
+	var stack = hotbar.get_stack_on_slot(slot_index)
+	var stack_index = hotbar.get_inventory().stacks.find(stack)
+	equipped_stack_changed_rpc.rpc(stack_index, slot_index)
+
+
+func _on_unequipped_stack_changed(slot_index: int):
+	if not multiplayer.is_server():
+		return
+	unequipped_stack_changed_rpc.rpc(slot_index)
+
+
+func _on_connected(peer_id : int):
+	if not multiplayer.is_server():
+		return
+	change_selection_rpc.rpc_id(peer_id, hotbar.selection_index)
+	for i in hotbar.max_slots:
+		var stack = hotbar.get_stack_on_slot(i)
+		if stack == null:
+			continue
+		var stack_index = hotbar.get_inventory().stacks.find(stack)
+		equipped_stack_changed_rpc.rpc_id(peer_id,stack_index, i)
+
+
+func _on_change_selection(selection_index : int):
+	if not multiplayer.is_server():
+		return
+	change_selection_rpc.rpc(selection_index)
+
+
+@rpc
+func equipped_stack_changed_rpc(stack_index : int, slot_index: int):
+	var stack: ItemStack = null
+	if stack_index >= 0 and stack_index < hotbar.get_inventory().stacks.size():
+		stack = hotbar.get_inventory().stacks[stack_index]
+	hotbar.equip(stack, slot_index)
+
+
+@rpc
+func unequipped_stack_changed_rpc(slot_index: int):
+	hotbar.unequip(slot_index)
+
+
+@rpc
+func change_selection_rpc(selection_index: int):
+	hotbar.selection_index = selection_index
+</file>
+
+</files>

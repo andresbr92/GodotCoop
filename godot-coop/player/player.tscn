@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c0hcc4ni671nu" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://n64v8r565gx0" path="res://player/camera_spring_arm.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://ng7b5tn0vurj" path="res://player/camera_follow.gd" id="2_g1dw6"]
-[ext_resource type="InventoryDatabase" uid="uid://c0p23mhpamp3n" path="res://inventory/database.tres" id="4_qjkh3"]
+[ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="4_g6k8r"]
 [ext_resource type="Script" uid="uid://o3fvlj8vgiut" path="res://player/coop_character_inventory_system.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://dj3cs68xqlw3v" path="res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd" id="6_boad6"]
 
@@ -66,18 +66,19 @@ target_position = Vector3(0, 0, -5)
 collision_mask = 16
 
 [node name="CoopCharacterInventorySystem" type="NodeInventories" parent="." unique_id=1661452635 node_paths=PackedStringArray("raycast", "camera_3d")]
-database = ExtResource("4_qjkh3")
+database = ExtResource("4_g6k8r")
 script = ExtResource("5_qjkh3")
-interactor_path = null
+main_inventory_path = NodePath("Inventory")
 raycast = NodePath("../SpringArmPivot/Camera3D/RayCast3D")
 camera_3d = NodePath("../SpringArmPivot/Camera3D")
 
-[node name="Inventory" type="Inventory" parent="CoopCharacterInventorySystem" unique_id=1141004753]
-database = ExtResource("4_qjkh3")
+[node name="Inventory" type="GridInventory" parent="CoopCharacterInventorySystem" unique_id=2013158010]
+database = ExtResource("4_g6k8r")
 
 [node name="Interactor" type="NodeInventories" parent="CoopCharacterInventorySystem" unique_id=224607873 node_paths=PackedStringArray("raycast", "camera")]
-database = ExtResource("4_qjkh3")
+database = ExtResource("4_g6k8r")
 script = ExtResource("6_boad6")
+node_base_to_interactions = NodePath("../..")
 raycast = NodePath("../../SpringArmPivot/Camera3D/RayCast3D")
 camera = NodePath("../../SpringArmPivot/Camera3D")
 
