@@ -10,6 +10,8 @@ var is_strafing = false
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return

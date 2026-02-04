@@ -17,8 +17,8 @@ func connect_client() -> void:
 	peer.create_client(IP_ADDRESS, PORT)
 	multiplayer.multiplayer_peer = peer
 	
-func on_peer_connected(client_id : int) -> void:
+func on_peer_connected(_client_id : int) -> void:
 	print("client conected")
 
-func on_peer_disconnected(client_id : int) -> void:
+func on_peer_disconnected(_client_id : int) -> void:
 	print("client disconnected")

@@ -27,10 +27,6 @@ material = SubResource("StandardMaterial3D_rkbax")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g1dw6"]
 
-[sub_resource type="GDScript" id="GDScript_g6k8r"]
-script/source = "extends RayCast3D
-"
-
 [node name="Player" type="CharacterBody3D" unique_id=21488461]
 script = ExtResource("1_oul6g")
 
@@ -50,12 +46,12 @@ transform = Transform3D(0.6105391, 0, 0, 0, 0.2600448, 0, 0, 0, 0.6388302, 0, 0.
 mesh = SubResource("BoxMesh_g1dw6")
 
 [node name="SpringArmPivot" type="Node3D" parent="." unique_id=1943155115]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.472875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8683447, 0)
 script = ExtResource("1_rkbax")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot" unique_id=1634919308]
 shape = SubResource("SphereShape3D_g1dw6")
-spring_length = 3.0
+spring_length = 2.02
 
 [node name="CameraPositionTarget" type="Node3D" parent="SpringArmPivot/SpringArm3D" unique_id=1727233228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93879414, 0, 0)
@@ -66,11 +62,15 @@ target_node = NodePath("../SpringArm3D/CameraPositionTarget")
 camera_x_offset = 1.0
 
 [node name="RayCast3D" type="RayCast3D" parent="SpringArmPivot/Camera3D" unique_id=1926112210]
-script = SubResource("GDScript_g6k8r")
+target_position = Vector3(0, 0, -5)
+collision_mask = 16
 
-[node name="CoopCharacterInventorySystem" type="NodeInventories" parent="." unique_id=1661452635]
+[node name="CoopCharacterInventorySystem" type="NodeInventories" parent="." unique_id=1661452635 node_paths=PackedStringArray("raycast", "camera_3d")]
 database = ExtResource("4_qjkh3")
 script = ExtResource("5_qjkh3")
+interactor_path = null
+raycast = NodePath("../SpringArmPivot/Camera3D/RayCast3D")
+camera_3d = NodePath("../SpringArmPivot/Camera3D")
 
 [node name="Inventory" type="Inventory" parent="CoopCharacterInventorySystem" unique_id=1141004753]
 database = ExtResource("4_qjkh3")
@@ -80,3 +80,25 @@ database = ExtResource("4_qjkh3")
 script = ExtResource("6_boad6")
 raycast = NodePath("../../SpringArmPivot/Camera3D/RayCast3D")
 camera = NodePath("../../SpringArmPivot/Camera3D")
+
+[node name="HUD" type="Control" parent="." unique_id=1097952654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CrossHair" type="CenterContainer" parent="HUD" unique_id=758380147]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD/CrossHair" unique_id=827713922]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 2
+mouse_filter = 1
