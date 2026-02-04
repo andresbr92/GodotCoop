@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://c0hcc4ni671nu" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://n64v8r565gx0" path="res://player/camera_spring_arm.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://ng7b5tn0vurj" path="res://player/camera_follow.gd" id="2_g1dw6"]
+[ext_resource type="InventoryDatabase" uid="uid://c0p23mhpamp3n" path="res://inventory/database.tres" id="4_qjkh3"]
+[ext_resource type="Script" uid="uid://o3fvlj8vgiut" path="res://player/coop_character_inventory_system.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://dj3cs68xqlw3v" path="res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd" id="6_boad6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
 properties/0/path = NodePath(".:position")
@@ -23,6 +26,10 @@ albedo_color = Color(0.43072253, 0.19710286, 0.4505208, 1)
 material = SubResource("StandardMaterial3D_rkbax")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g1dw6"]
+
+[sub_resource type="GDScript" id="GDScript_g6k8r"]
+script/source = "extends RayCast3D
+"
 
 [node name="Player" type="CharacterBody3D" unique_id=21488461]
 script = ExtResource("1_oul6g")
@@ -57,3 +64,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93879414, 0, 0)
 script = ExtResource("2_g1dw6")
 target_node = NodePath("../SpringArm3D/CameraPositionTarget")
 camera_x_offset = 1.0
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArmPivot/Camera3D" unique_id=1926112210]
+script = SubResource("GDScript_g6k8r")
+
+[node name="CoopCharacterInventorySystem" type="NodeInventories" parent="." unique_id=1661452635]
+database = ExtResource("4_qjkh3")
+script = ExtResource("5_qjkh3")
+
+[node name="Inventory" type="Inventory" parent="CoopCharacterInventorySystem" unique_id=1141004753]
+database = ExtResource("4_qjkh3")
+
+[node name="Interactor" type="NodeInventories" parent="CoopCharacterInventorySystem" unique_id=224607873 node_paths=PackedStringArray("raycast", "camera")]
+database = ExtResource("4_qjkh3")
+script = ExtResource("6_boad6")
+raycast = NodePath("../../SpringArmPivot/Camera3D/RayCast3D")
+camera = NodePath("../../SpringArmPivot/Camera3D")
