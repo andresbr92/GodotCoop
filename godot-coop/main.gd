@@ -43,8 +43,10 @@ func create_player(client_id) -> void:
 	players.append(player)
 	player.position = Vector3(0,2,0)
 	add_child(player)
-	#if multiplayer.get_unique_id() == peer_id:
-		#$"UI/Inventory System UI".setup(player.get_node("CharacterInventorySystem"))
+	if multiplayer.get_unique_id() == client_id:
+		$"UI/CoopInventorySystemUI".setup(player.get_node("CoopCharacterInventorySystem"))
+
+
 
 func make_scene_objects_to_network() -> void:
 	var items = $Level/Items

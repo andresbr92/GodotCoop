@@ -68,7 +68,6 @@ collision_mask = 16
 [node name="CoopCharacterInventorySystem" type="NodeInventories" parent="." unique_id=1661452635 node_paths=PackedStringArray("raycast", "camera_3d")]
 database = ExtResource("4_g6k8r")
 script = ExtResource("5_qjkh3")
-main_inventory_path = NodePath("Inventory")
 raycast = NodePath("../SpringArmPivot/Camera3D/RayCast3D")
 camera_3d = NodePath("../SpringArmPivot/Camera3D")
 

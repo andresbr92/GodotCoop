@@ -8,6 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://bjfvmoveogy0m" path="res://addons/inventory-system-demos/fps/dropped_items/stone_axe.tscn" id="6_trn2v"]
 [ext_resource type="PackedScene" uid="uid://bmal6s1al7rbe" path="res://addons/inventory-system-demos/fps/dropped_items/wood.tscn" id="7_03owx"]
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="7_wkp8b"]
+[ext_resource type="Script" uid="uid://cbfejjgdeyy6b" path="res://player/coop_character_inventory_system_ui.gd" id="9_03owx"]
+[ext_resource type="Script" uid="uid://d0wo2gh3a0u7j" path="res://addons/inventory-system-demos/ui/grid/grid_inventory_panel.gd" id="10_fpfj3"]
+[ext_resource type="Texture2D" uid="uid://dacqxpvwnm8x2" path="res://addons/inventory-system/icons/inventory_handler.svg" id="11_sc1dx"]
+[ext_resource type="Texture2D" uid="uid://dsewxlrqmqe30" path="res://addons/inventory-system/icons/crafter.svg" id="12_kjvhd"]
+[ext_resource type="Script" uid="uid://ctu3vfl53whl3" path="res://addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd" id="13_5tuhn"]
+[ext_resource type="PackedScene" uid="uid://cxevor61mdhtc" path="res://addons/inventory-system-demos/ui/grid/grid_slot_ui.tscn" id="14_2gh4u"]
+[ext_resource type="PackedScene" uid="uid://ch1ixmsfcaf5c" path="res://addons/inventory-system-demos/ui/grid/grid_item_stack_ui.tscn" id="15_devvj"]
+[ext_resource type="StyleBox" uid="uid://da318y6qn0f4e" path="res://addons/inventory-system-demos/grid_example/grid_item_stack_selection_style_box.tres" id="16_3b0ty"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -165,6 +173,103 @@ metadata/_custom_type_script = "uid://owlc7hwlygbt"
 
 [node name="Labels" parent="UI" unique_id=640308738 instance=ExtResource("4_cm0pq")]
 mouse_filter = 2
+
+[node name="CoopInventorySystemUI" type="Control" parent="UI" unique_id=578563618]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_03owx")
+metadata/_custom_type_script = "uid://cbfejjgdeyy6b"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CoopInventorySystemUI" unique_id=433127980]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -174.0
+offset_right = 466.0
+offset_bottom = 174.0
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CoopInventorySystemUI/MarginContainer" unique_id=1998106643]
+layout_mode = 2
+
+[node name="GridInventoryPanel" type="PanelContainer" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer" unique_id=934342129 node_paths=PackedStringArray("grid_inventory_ui", "title_label")]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(406, 288)
+layout_mode = 2
+script = ExtResource("10_fpfj3")
+grid_inventory_ui = NodePath("VBoxContainer/MarginContainer/GridInventoryUI")
+title_label = NodePath("VBoxContainer/Panel/Title/HBoxContainer/TitleLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel" unique_id=1870169477]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer" unique_id=1536813431]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Title" type="MarginContainer" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer/Panel" unique_id=84226687]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer/Panel/Title" unique_id=2018625954]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer/Panel/Title/HBoxContainer" unique_id=688450941]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.207843, 0.831373, 0.956863, 1)
+text = "Inventory"
+
+[node name="SortButton" type="Button" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer/Panel/Title/HBoxContainer" unique_id=891530733]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Sort Inventory"
+icon = ExtResource("11_sc1dx")
+
+[node name="CloseButton" type="Button" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer/Panel/Title/HBoxContainer" unique_id=244424516]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Close Inventory"
+icon = ExtResource("12_kjvhd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer" unique_id=2056102990]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="GridInventoryUI" type="Control" parent="UI/CoopInventorySystemUI/MarginContainer/HBoxContainer/GridInventoryPanel/VBoxContainer/MarginContainer" unique_id=2063810275]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("13_5tuhn")
+grid_slot_ui_scene = ExtResource("14_2gh4u")
+grid_item_stack_ui_scene = ExtResource("15_devvj")
+grid_slot_size = Vector2(48, 48)
+item_spacing = 2
+selection_style = ExtResource("16_3b0ty")
 
 [node name="Connect Panel" type="ColorRect" parent="UI" unique_id=283157288]
 anchors_preset = 15

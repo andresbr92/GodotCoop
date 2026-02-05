@@ -3,20 +3,17 @@
 extends NodeInventories
 class_name CoopCharacterInventorySystem
 
-
+#region Signals
+signal opened_inventory(inventory : Inventory)
+#endregion
 const Interactor = preload("res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd")
 
+var opened_inventories : Array[Inventory]
 
 @export_group("🗃️ Inventory Nodes")
-@export_node_path var main_inventory_path := NodePath("InventoryHandler/Inventory")
-@onready var main_inventory : GridInventory = get_node(main_inventory_path)
-@export_node_path var drop_parent_path := NodePath("../..");
-@onready var drop_parent : Node = get_node(drop_parent_path)
-@export_node_path var drop_parent_position_path := NodePath("..");
-@onready var drop_parent_position : Node = get_node(drop_parent_position_path)
 
-
-
+@onready var main_inventory: GridInventory = $Inventory
+@onready var drop_parent: CharacterBody3D = $".."
 @export_node_path var interactor_path := NodePath("Interactor")
 @onready var interactor : Interactor = get_node(interactor_path)
 
@@ -56,7 +53,7 @@ func _physics_process(_delta : float):
 
 
 
-func _input(event : InputEvent) -> void:
+func _input(_event : InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	if check_inputs:
@@ -64,7 +61,17 @@ func _input(event : InputEvent) -> void:
 
 
 func inventory_inputs() -> void:
-	pass
+	if Input.is_action_just_released(toggle_inventory_input):
+		# Check if any inventory or craft statis is already open
+		if not is_any_station_or_inventory_opened():
+			open_main_inventory()
+			pass
+
+func open_main_inventory():
+	open_inventory(main_inventory)
+
+func is_any_station_or_inventory_opened() -> bool:
+	return is_open_any_station() or is_open_main_inventory()
 
 func pick_to_inventory(node : Node):
 	if main_inventory == null:
@@ -87,8 +94,38 @@ func pick_to_inventory(node : Node):
 	printerr("pick_to_inventory return false");
 
 
+#region Open Inventories
+
+func is_open_inventory(inventory : Inventory):
+	return opened_inventories.find(inventory) != -1
+
+
+func open_inventory(inventory: Inventory) -> void:
+	if is_open_inventory(inventory):
+		return
+	add_open_inventory(inventory)
+
+
+func add_open_inventory(inventory: Inventory) -> void:
+	opened_inventories.append(inventory)
+	opened_inventory.emit(inventory)
+	if not is_open_main_inventory():
+		#inventory.request_drop_obj.connect(_on_request_drop_obj)
+		open_main_inventory()
+
+
+func is_open_main_inventory():
+	return is_open_inventory(main_inventory)
+#endregion
 	
-	
+#region Open Craft Stations
+func is_open_station(_station : CraftStation):
+	# TODO: Add craft station logic
+	return false
+func is_open_any_station() -> bool:
+	return false
+	#return !opened_stations.is_empty()
+#endregion
 	
 	
 	
