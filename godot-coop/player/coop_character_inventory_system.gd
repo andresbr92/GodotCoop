@@ -114,6 +114,12 @@ func add_open_inventory(inventory: Inventory) -> void:
 		open_main_inventory()
 
 
+func _check_inputs():
+	if is_any_station_or_inventory_opened():
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func is_open_main_inventory():
 	return is_open_inventory(main_inventory)
 #endregion
