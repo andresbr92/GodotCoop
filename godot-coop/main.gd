@@ -44,7 +44,7 @@ func create_player(client_id) -> void:
 	player.position = Vector3(0,2,0)
 	add_child(player)
 	if multiplayer.get_unique_id() == client_id:
-		$"UI/CoopInventorySystemUI".setup(player.get_node("CoopCharacterInventorySystem"))
+		$"UI/InventorySystemUI".setup(player.get_node("CharacterInventorySystem"))
 
 
 
@@ -88,10 +88,12 @@ func add_previously_connected_player_characters(peer_ids):
 		create_player(peer_id)
 
 
-func _on_host_button_button_down() -> void:
+
+func _on_host_button_button_up() -> void:
 	host_game()
 	pass # Replace with function body.
 
 
-func _on_connect_button_button_down() -> void:
+func _on_connect_button_button_up() -> void:
 	connect_to_ip("localhost")
+	pass # Replace with function body.

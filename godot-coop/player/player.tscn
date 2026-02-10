@@ -3,9 +3,14 @@
 [ext_resource type="Script" uid="uid://c0hcc4ni671nu" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://n64v8r565gx0" path="res://player/camera_spring_arm.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://ng7b5tn0vurj" path="res://player/camera_follow.gd" id="2_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://cw4rwxc3dyovc" path="res://addons/inventory-system-demos/character/character_inventory_system.tscn" id="4_2ieo8"]
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="4_g6k8r"]
-[ext_resource type="Script" uid="uid://o3fvlj8vgiut" path="res://player/coop_character_inventory_system.gd" id="5_qjkh3"]
-[ext_resource type="Script" uid="uid://dj3cs68xqlw3v" path="res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd" id="6_boad6"]
+[ext_resource type="Script" uid="uid://ce3jelrqjrcl3" path="res://addons/inventory-system-demos/mp/networked_character_inventory_system.gd" id="6_ebec5"]
+[ext_resource type="Script" uid="uid://gngi6ncgkswy" path="res://addons/inventory-system-demos/character/openable.gd" id="7_yllr7"]
+[ext_resource type="Script" uid="uid://dlemxn6c687mt" path="res://addons/inventory-system-demos/mp/sync_grid_inventory.gd" id="8_kb6p2"]
+[ext_resource type="Script" uid="uid://bldichxbdfybi" path="res://addons/inventory-system-demos/mp/sync_craft_station.gd" id="9_wodsf"]
+[ext_resource type="Script" uid="uid://coxx33tl8y1wc" path="res://addons/inventory-system-demos/mp/networked_object_placer.gd" id="10_32hag"]
+[ext_resource type="Script" uid="uid://dimv4yn7jk4o4" path="res://addons/inventory-system-demos/mp/sync_hotbar.gd" id="11_tqiix"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
 properties/0/path = NodePath(".:position")
@@ -29,6 +34,30 @@ material = SubResource("StandardMaterial3D_rkbax")
 
 [node name="Player" type="CharacterBody3D" unique_id=21488461]
 script = ExtResource("1_oul6g")
+
+[node name="HUD" type="Control" parent="." unique_id=1097952654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CrossHair" type="CenterContainer" parent="HUD" unique_id=758380147]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD/CrossHair" unique_id=827713922]
+custom_minimum_size = Vector2(6, 6)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2040872857]
 replication_config = SubResource("SceneReplicationConfig_oul6g")
@@ -65,40 +94,53 @@ camera_x_offset = 1.0
 target_position = Vector3(0, 0, -5)
 collision_mask = 16
 
-[node name="CoopCharacterInventorySystem" type="NodeInventories" parent="." unique_id=1661452635 node_paths=PackedStringArray("raycast", "camera_3d")]
+[node name="CharacterInventorySystem" parent="." unique_id=420464514 node_paths=PackedStringArray("raycast", "camera_3d") instance=ExtResource("4_2ieo8")]
 database = ExtResource("4_g6k8r")
-script = ExtResource("5_qjkh3")
+script = ExtResource("6_ebec5")
 raycast = NodePath("../SpringArmPivot/Camera3D/RayCast3D")
 camera_3d = NodePath("../SpringArmPivot/Camera3D")
 
-[node name="Inventory" type="GridInventory" parent="CoopCharacterInventorySystem" unique_id=2013158010]
+[node name="Inventory" parent="CharacterInventorySystem" index="0"]
+size = Vector2i(8, 5)
 database = ExtResource("4_g6k8r")
 
-[node name="Interactor" type="NodeInventories" parent="CoopCharacterInventorySystem" unique_id=224607873 node_paths=PackedStringArray("raycast", "camera")]
+[node name="Openable" type="Node" parent="CharacterInventorySystem/Inventory" index="0" unique_id=1377190637]
+script = ExtResource("7_yllr7")
+
+[node name="SyncInventory" type="Node" parent="CharacterInventorySystem/Inventory" index="1" unique_id=793749100 node_paths=PackedStringArray("inventory")]
+script = ExtResource("8_kb6p2")
+inventory = NodePath("..")
+
+[node name="EquipmentInventory" parent="CharacterInventorySystem" index="1"]
 database = ExtResource("4_g6k8r")
-script = ExtResource("6_boad6")
+
+[node name="SyncInventory" type="Node" parent="CharacterInventorySystem/EquipmentInventory" index="0" unique_id=1306714330 node_paths=PackedStringArray("inventory")]
+script = ExtResource("8_kb6p2")
+inventory = NodePath("..")
+
+[node name="SyncCraftStation" type="Node" parent="CharacterInventorySystem/CraftStation" index="0" unique_id=2045633152 node_paths=PackedStringArray("craft_station")]
+script = ExtResource("9_wodsf")
+craft_station = NodePath("..")
+
+[node name="Interactor" parent="CharacterInventorySystem" index="3" node_paths=PackedStringArray("raycast", "camera")]
+database = ExtResource("4_g6k8r")
 node_base_to_interactions = NodePath("../..")
 raycast = NodePath("../../SpringArmPivot/Camera3D/RayCast3D")
 camera = NodePath("../../SpringArmPivot/Camera3D")
 
-[node name="HUD" type="Control" parent="." unique_id=1097952654]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
+[node name="ObjectPlacer" parent="CharacterInventorySystem/Interactor" index="0"]
+database = ExtResource("4_g6k8r")
+script = ExtResource("10_32hag")
+spawner_path = NodePath("../../../../PlaceableItemSpawner")
 
-[node name="CrossHair" type="CenterContainer" parent="HUD" unique_id=758380147]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Hotbar" parent="CharacterInventorySystem" index="4"]
+max_slots = 8
+selection_index = 0
+auto_equip_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="HUD/CrossHair" unique_id=827713922]
-custom_minimum_size = Vector2(2, 2)
-layout_mode = 2
-mouse_filter = 1
+[node name="SyncHotbar" type="Node" parent="CharacterInventorySystem/Hotbar" index="0" unique_id=3300721 node_paths=PackedStringArray("hotbar")]
+unique_name_in_owner = true
+script = ExtResource("11_tqiix")
+hotbar = NodePath("..")
+
+[editable path="CharacterInventorySystem"]
