@@ -10,6 +10,7 @@
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="7_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="9_wkp8b"]
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="10_20pc6"]
+[ext_resource type="PackedScene" uid="uid://d0yn6ggf683h1" path="res://items/cauldron.tscn" id="11_20pc6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -77,6 +78,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.808957, 0.05, 8.912882)
 
 [node name="Wood7" parent="Level/Items" unique_id=384306329 instance=ExtResource("7_03owx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.808957, 0.05, 7.761835)
+
+[node name="Cauldron" parent="Level/Items" unique_id=309637969 instance=ExtResource("11_20pc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05049038, 0.49902296, 7.059991)
 
 [node name="Structures" type="Node3D" parent="." unique_id=1433449841]
 
@@ -167,10 +171,8 @@ metadata/_custom_type_script = "uid://owlc7hwlygbt"
 
 [node name="Labels" parent="UI" unique_id=2079847158 instance=ExtResource("4_cm0pq")]
 visible = false
-mouse_filter = 2
 
 [node name="InventorySystemUI" parent="UI" unique_id=1814528407 instance=ExtResource("9_wkp8b")]
-mouse_filter = 2
 
 [node name="InteractorUI" parent="UI/InventorySystemUI" index="0"]
 input_icons = ExtResource("10_20pc6")

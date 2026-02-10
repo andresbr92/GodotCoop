@@ -10,10 +10,11 @@ func _ready() -> void:
 	else: set_process(false)
 	
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		rotation.y -= event.relative.x * mouse_sensivity
-		rotation.y = wrapf(rotation.y, 0.0, TAU)
-		
-		rotation.x -= event.relative.y * mouse_sensivity
-		rotation.x = clamp(rotation.x, deg_to_rad(-90), deg_to_rad(30))
+func _input(event: InputEvent) -> void:
+	if is_multiplayer_authority():
+		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			rotation.y -= event.relative.x * mouse_sensivity
+			rotation.y = wrapf(rotation.y, 0.0, TAU)
+			
+			rotation.x -= event.relative.y * mouse_sensivity
+			rotation.x = clamp(rotation.x, deg_to_rad(-90), deg_to_rad(30))

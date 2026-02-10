@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d0yn6ggf683h1"]
+
+[ext_resource type="PackedScene" uid="uid://bu50ku0vxmpwt" path="res://addons/inventory-system-demos/fps/dropped_items/dropped_item.tscn" id="1_j4t7h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdkpx"]
+size = Vector3(0.75, 0.86279297, 0.8510742)
+
+[node name="Cauldron" unique_id=309637969 instance=ExtResource("1_j4t7h")]
+item_id = "cauldron"
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06274414, 0.05053711)
+shape = SubResource("BoxShape3D_fdkpx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual" index="0" unique_id=1390964117]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visual/MeshInstance3D" index="0" unique_id=1476468949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10253906, 0)
+height = 0.79296875

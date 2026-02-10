@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://wfcb6icswom6" path="res://addons/inventory-system-demos/assets/kenney_food-kit/Previews/meatRaw.png" id="13_obguy"]
 [ext_resource type="Texture2D" uid="uid://ctt1gph1bjta0" path="res://addons/inventory-system-demos/assets/kenney_food-kit/Previews/meatCooked.png" id="14_ncapu"]
 [ext_resource type="Texture2D" uid="uid://c6rpas6jwthqy" path="res://addons/inventory-system-demos/assets/icons/helmet_labor.png" id="15_fmqqk"]
+[ext_resource type="Texture2D" uid="uid://c6sat1og447xr" path="res://icon.svg" id="16_dqypk"]
 
 [sub_resource type="ItemCategory" id="ItemCategory_w8bei"]
 id = "burnables"
@@ -53,6 +54,7 @@ max_stack = 16
 name = "Wood"
 icon = ExtResource("1_wk1an")
 weight = 1.0
+size = Vector2i(2, 2)
 properties = {
 "dropped_item": "res://addons/inventory-system-demos/fps/dropped_items/wood.tscn",
 "fuel": 8.0,
@@ -203,6 +205,16 @@ properties = {
 categories = Array[ItemCategory]([SubResource("ItemCategory_epmnv")])
 description = "Helmet Labor: Protective gear for the head, increases safety during work."
 
+[sub_resource type="ItemDefinition" id="ItemDefinition_6ctep"]
+id = "cauldron"
+max_stack = 1
+name = "Cauldron"
+icon = ExtResource("16_dqypk")
+size = Vector2i(4, 4)
+properties = {
+"dropped_item": "res://items/cauldron.tscn"
+}
+
 [sub_resource type="LootItem" id="LootItem_6ctep"]
 item_id = "stone_axe"
 weight = 0.4
@@ -332,7 +344,7 @@ station = SubResource("CraftStationType_fnhd3")
 ingredients = Array[ItemStack]([SubResource("ItemStack_76odw")])
 
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep")])
 recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv")])
