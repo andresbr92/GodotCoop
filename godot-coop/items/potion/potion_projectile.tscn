@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b5lajvpkqtskq"]
+
+[ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/potion/potion_projectile.gd" id="1_dc3wc"]
+[ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/potion/projectile_base.tscn" id="1_y8ns1"]
+[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="2_ai2c4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6tas4"]
+height = 1.0087891
+radius = 0.31054688
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y8ns1"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tas4"]
+albedo_color = Color(0.022216797, 0.9479167, 0.06560898, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_675ga"]
+material = SubResource("StandardMaterial3D_6tas4")
+size = Vector3(0.11, 0.1, 0.1)
+
+[node name="PotionProjectile" unique_id=1392492332 instance=ExtResource("1_y8ns1")]
+script = ExtResource("1_dc3wc")
+
+[node name="PhysicsShape" parent="." index="0" unique_id=283471477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4350586, 0)
+shape = SubResource("CylinderShape3D_6tas4")
+
+[node name="bottle2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1161776949 instance=ExtResource("2_ai2c4")]
+
+[node name="ExplosionArea" parent="." index="2" unique_id=1918654380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44488338, 0)
+
+[node name="Timer" type="Timer" parent="." index="3" unique_id=1507177601]
+wait_time = 0.217
+one_shot = true
+autostart = true
+
+[node name="PotionParticles" type="GPUParticles3D" parent="." index="4" unique_id=1969825883]
+emitting = false
+amount = 40
+explosiveness = 1.0
+randomness = 0.31
+process_material = SubResource("ParticleProcessMaterial_y8ns1")
+draw_pass_1 = SubResource("BoxMesh_675ga")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

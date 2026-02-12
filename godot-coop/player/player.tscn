@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://coxx33tl8y1wc" path="res://addons/inventory-system-demos/mp/networked_object_placer.gd" id="10_32hag"]
 [ext_resource type="Script" uid="uid://dimv4yn7jk4o4" path="res://addons/inventory-system-demos/mp/sync_hotbar.gd" id="11_tqiix"]
 [ext_resource type="Script" uid="uid://chpxhifwptoga" path="res://addons/inventory-system-demos/character/hand_item_holder_3d.gd" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://dw4ok8wsnioy1" path="res://player/item_thrower.gd" id="13_yllr7"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
 properties/0/path = NodePath(".:position")
@@ -153,5 +154,12 @@ auto_equip_mode = 2
 unique_name_in_owner = true
 script = ExtResource("11_tqiix")
 hotbar = NodePath("..")
+
+[node name="ItemThrower" type="Node3D" parent="." unique_id=386433890 node_paths=PackedStringArray("hotbar", "hand", "camera")]
+script = ExtResource("13_yllr7")
+hotbar = NodePath("../CharacterInventorySystem/Hotbar")
+hand = NodePath("../MeshInstance3D/HandItem/DefaultHandItem")
+camera = NodePath("../SpringArmPivot/Camera3D")
+metadata/_custom_type_script = "uid://dw4ok8wsnioy1"
 
 [editable path="CharacterInventorySystem"]

@@ -224,9 +224,10 @@ max_stack = 1
 name = "Potion"
 icon = ExtResource("17_4cjml")
 properties = {
-"dropped_item": "res://items/potion.tscn",
+"dropped_item": "res://items/potion/potion.tscn",
 "hand_item": "res://addons/assets/bottle.glb",
-"throwable": ""
+"potion_stats": "res://items/potion/FirePotionStats.tres",
+"throwable": "res://items/potion/potion_projectile.tscn"
 }
 
 [sub_resource type="LootItem" id="LootItem_6ctep"]

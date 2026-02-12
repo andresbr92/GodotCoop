@@ -10,11 +10,12 @@
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="7_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://cpsfowho6jqi0" path="res://addons/inventory-system-demos/fps/dropped_items/cooked_meat.tscn" id="8_j4qnp"]
 [ext_resource type="Script" uid="uid://bn7s6bo56ow2w" path="res://addons/inventory-system-demos/mp/placeable_item_spawner.gd" id="9_5vvyt"]
-[ext_resource type="PackedScene" uid="uid://x5igqejgwllh" path="res://items/potion.tscn" id="9_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://x5igqejgwllh" path="res://items/potion/potion.tscn" id="9_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://items/mp_cauldron.tscn" id="9_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="9_wkp8b"]
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="10_20pc6"]
 [ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="13_c6i3y"]
+[ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://scripts/multiplayer/projectile_spawner.gd" id="16_fpfj3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -83,11 +84,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.808957, 0.05, 8.912882)
 [node name="Wood7" parent="Level/Items" unique_id=384306329 instance=ExtResource("7_03owx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.808957, 0.05, 7.761835)
 
-[node name="Potion" parent="Level/Items" unique_id=309637969 instance=ExtResource("9_c2ibq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3643539, 0, 5.394349)
-
 [node name="CookedMeat" parent="Level/Items" unique_id=2047587813 instance=ExtResource("8_j4qnp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2992153, 0, 7.0511904)
+
+[node name="Potion" parent="Level/Items" unique_id=309637969 instance=ExtResource("9_c2ibq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0230904, 0, 3.2022848)
+
+[node name="Potion2" parent="Level/Items" unique_id=712237226 instance=ExtResource("9_c2ibq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.041317, 0, 4.575384)
 
 [node name="Structures" type="Node3D" parent="." unique_id=1433449841]
 
@@ -168,6 +172,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
 collision_layer = 17
 size = Vector3(100, 0.5, 100)
+
+[node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1963443158 groups=["ProjectileSpawner"]]
+spawn_path = NodePath("..")
+script = ExtResource("16_fpfj3")
+metadata/_custom_type_script = "uid://dbmmhdgkw6fu0"
 
 [node name="DroppedItemSpawner" type="MultiplayerSpawner" parent="." unique_id=1181738734]
 spawn_path = NodePath("..")

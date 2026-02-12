@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://caxny4ehonhre"]
+
+[ext_resource type="Script" uid="uid://h3fxka2ykobe" path="res://items/projectile_base.gd" id="1_8qb7e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pmu5y"]
+
+[node name="ProjectileBase" type="RigidBody3D" unique_id=1392492332]
+collision_layer = 4
+script = ExtResource("1_8qb7e")
+
+[node name="PhysicsShape" type="CollisionShape3D" parent="." unique_id=283471477]
+
+[node name="Visuals" type="Node3D" parent="." unique_id=579098310]
+
+[node name="ExplosionArea" type="Area3D" parent="." unique_id=1918654380]
+
+[node name="ExplosionShape" type="CollisionShape3D" parent="ExplosionArea" unique_id=1592878891]
+shape = SubResource("SphereShape3D_pmu5y")
