@@ -1,0 +1,13 @@
+{
+  "bundles": {
+    "fps-891": {
+      "name": "fps",
+      "created": "2026-02-12T16:15:13.890Z",
+      "lastUsed": "2026-02-12T16:15:13.890Z",
+      "tags": [],
+      "files": [
+        "godot-coop/addons/inventory-system-demos/fps"
+      ]
+    }
+  }
+}

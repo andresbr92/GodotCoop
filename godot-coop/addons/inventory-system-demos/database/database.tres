@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ctt1gph1bjta0" path="res://addons/inventory-system-demos/assets/kenney_food-kit/Previews/meatCooked.png" id="14_ncapu"]
 [ext_resource type="Texture2D" uid="uid://c6rpas6jwthqy" path="res://addons/inventory-system-demos/assets/icons/helmet_labor.png" id="15_fmqqk"]
 [ext_resource type="Texture2D" uid="uid://c6sat1og447xr" path="res://icon.svg" id="16_dqypk"]
+[ext_resource type="Texture2D" uid="uid://cqfq2artfnl08" path="res://addons/assets/bottle.png" id="17_4cjml"]
 
 [sub_resource type="ItemCategory" id="ItemCategory_w8bei"]
 id = "burnables"
@@ -210,9 +211,22 @@ id = "cauldron"
 max_stack = 1
 name = "Cauldron"
 icon = ExtResource("16_dqypk")
-size = Vector2i(4, 4)
+weight = 6.0
 properties = {
-"dropped_item": "res://items/cauldron.tscn"
+"dropped_item": "res://items/cauldron.tscn",
+"hand_item": "res://items/cauldron.tscn",
+"placeable": "res://items/cauldron.tscn"
+}
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_dqypk"]
+id = "potion"
+max_stack = 1
+name = "Potion"
+icon = ExtResource("17_4cjml")
+properties = {
+"dropped_item": "res://items/potion.tscn",
+"hand_item": "res://addons/assets/bottle.glb",
+"throwable": ""
 }
 
 [sub_resource type="LootItem" id="LootItem_6ctep"]
@@ -343,9 +357,31 @@ time_to_craft = 8.0
 station = SubResource("CraftStationType_fnhd3")
 ingredients = Array[ItemStack]([SubResource("ItemStack_76odw")])
 
+[sub_resource type="ItemStack" id="ItemStack_utrd5"]
+item_id = "wood"
+amount = 2
+
+[sub_resource type="ItemStack" id="ItemStack_4fkxu"]
+item_id = "cooked_meat"
+amount = 1
+
+[sub_resource type="ItemStack" id="ItemStack_4cjml"]
+item_id = "potion"
+amount = 1
+
+[sub_resource type="CraftStationType" id="CraftStationType_4cjml"]
+id = "cauldron"
+name = "Cauldron"
+
+[sub_resource type="Recipe" id="Recipe_4cjml"]
+products = Array[ItemStack]([SubResource("ItemStack_4cjml")])
+time_to_craft = 2.2
+station = SubResource("CraftStationType_4cjml")
+ingredients = Array[ItemStack]([SubResource("ItemStack_utrd5"), SubResource("ItemStack_4fkxu")])
+
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep")])
-recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y")])
-stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk")])
+recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y"), SubResource("Recipe_4cjml")])
+stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv")])
 loots = Array[Loot]([SubResource("Loot_6ctep")])

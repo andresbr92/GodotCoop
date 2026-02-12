@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ddmkgthhtdk16"]
+
+[ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="1_q48dw"]
+[ext_resource type="Script" uid="uid://cjo1h0cihqhp1" path="res://addons/inventory-system-demos/mp/networked_workbench.gd" id="2_7ac0w"]
+[ext_resource type="Script" uid="uid://bldichxbdfybi" path="res://addons/inventory-system-demos/mp/sync_craft_station.gd" id="3_m8nug"]
+[ext_resource type="PackedScene" uid="uid://iyy7dntbofpv" path="res://items/cauldron_mesh.tscn" id="3_wwv5u"]
+[ext_resource type="Script" uid="uid://dlemxn6c687mt" path="res://addons/inventory-system-demos/mp/sync_grid_inventory.gd" id="4_v6y7o"]
+[ext_resource type="Script" uid="uid://dl8kl1msejot2" path="res://addons/inventory-system-demos/character/networked_openable.gd" id="5_1vr0a"]
+[ext_resource type="Script" uid="uid://bkxu1ymravf51" path="res://addons/inventory-system-demos/mp/networked_dropper.gd" id="6_3oe0m"]
+
+[node name="Workbench" unique_id=1038903432 instance=ExtResource("1_q48dw")]
+script = ExtResource("2_7ac0w")
+
+[node name="MeshInstance3D" parent="." index="0" unique_id=1359430339 instance=ExtResource("3_wwv5u")]
+transform = Transform3D(1.223041, 0, 0, 0, 1.1834186, 0, 0, 0, 1.2420578, 0, 0.6187542, 0)
+
+[node name="CraftStation" parent="." index="3"]
+type_id = "cauldron"
+
+[node name="SyncCraftStation" type="Node" parent="." index="5" unique_id=2013995268 node_paths=PackedStringArray("craft_station")]
+script = ExtResource("3_m8nug")
+craft_station = NodePath("../CraftStation")
+sync_input_inventories = true
+
+[node name="SyncInventory" type="Node" parent="." index="6" unique_id=349735346 node_paths=PackedStringArray("inventory")]
+script = ExtResource("4_v6y7o")
+inventory = NodePath("../InputInventory")
+
+[node name="Openable" parent="." index="7"]
+script = ExtResource("5_1vr0a")
+
+[node name="Dropper" parent="." index="8"]
+script = ExtResource("6_3oe0m")
+drop_item_spawner_path = NodePath("../../DroppedItemSpawner")

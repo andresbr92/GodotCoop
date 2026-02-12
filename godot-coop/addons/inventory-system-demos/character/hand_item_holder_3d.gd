@@ -3,14 +3,10 @@ extends Node3D
 
 const Interactor = preload("../interaction_system/inventory_interactor.gd")
 
-@export_node_path("Node3D") var default_hand_item_object_path = NodePath("DefaultHandItem")
-@export_node_path("Hotbar") var hotbar_path = NodePath("../../CharacterInventorySystem/Hotbar")
 
-@onready var default_hand_item_object := get_node(default_hand_item_object_path)
-@onready var hotbar : Hotbar = get_node(hotbar_path)
-
-@export_node_path var interactor_path = NodePath("../../CharacterInventorySystem/Interactor")
-@onready var interactor : Interactor = get_node(interactor_path)
+@onready var hotbar: Hotbar = $"../../CharacterInventorySystem/Hotbar"
+@onready var interactor: NodeInventories = $"../../CharacterInventorySystem/Interactor"
+@onready var default_hand_item_object: MeshInstance3D = $DefaultHandItem
 
 var last_item : ItemDefinition = null
 var objects_per_id : Dictionary
