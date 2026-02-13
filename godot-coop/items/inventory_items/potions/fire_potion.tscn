@@ -6,8 +6,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_fdkpx"]
 size = Vector3(0.37457275, 0.89123535, 0.36706543)
 
-[node name="Potion" unique_id=309637969 instance=ExtResource("1_c4fup")]
-item_id = "potion"
+[node name="FirePotion" unique_id=309637969 instance=ExtResource("1_c4fup")]
+item_id = "fire_potion"
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033569336, 0.4524213, -0.0040893555)

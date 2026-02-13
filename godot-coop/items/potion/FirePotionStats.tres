@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ThrowableData" format=3 uid="uid://ct4s2o2boagpb"]
-
-[ext_resource type="PackedScene" uid="uid://b5lajvpkqtskq" path="res://items/potion/potion_projectile.tscn" id="1_7crc1"]
-[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/throwable_data.gd" id="1_8wd0h"]
-
-[resource]
-script = ExtResource("1_8wd0h")
-projectile_scene = ExtResource("1_7crc1")
-metadata/_custom_type_script = "uid://wok753vjriib"

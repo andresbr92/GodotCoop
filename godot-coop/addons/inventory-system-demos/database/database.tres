@@ -213,21 +213,20 @@ name = "Cauldron"
 icon = ExtResource("16_dqypk")
 weight = 6.0
 properties = {
-"dropped_item": "res://items/cauldron.tscn",
-"hand_item": "res://items/cauldron.tscn",
-"placeable": "res://items/cauldron.tscn"
+"dropped_item": "res://interactables/stations/cauldron_mesh.tscn",
+"hand_item": "res://interactables/stations/cauldron_mesh.tscn",
+"placeable": "res://interactables/stations/cauldron.tscn"
 }
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_dqypk"]
-id = "potion"
+id = "fire_potion"
 max_stack = 1
-name = "Potion"
+name = "Fire Potion"
 icon = ExtResource("17_4cjml")
 properties = {
-"dropped_item": "res://items/potion/potion.tscn",
+"dropped_item": "res://items/inventory_items/potions/fire_potion.tscn",
 "hand_item": "res://addons/assets/bottle.glb",
-"potion_stats": "res://items/potion/FirePotionStats.tres",
-"throwable": "res://items/potion/potion_projectile.tscn"
+"throwable_data": "res://items/definitions/potion/FirePotionStats.tres"
 }
 
 [sub_resource type="LootItem" id="LootItem_6ctep"]

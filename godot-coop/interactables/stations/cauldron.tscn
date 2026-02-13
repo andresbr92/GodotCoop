@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0yn6ggf683h1"]
 
 [ext_resource type="PackedScene" uid="uid://bu50ku0vxmpwt" path="res://addons/inventory-system-demos/fps/dropped_items/dropped_item.tscn" id="1_j4t7h"]
-[ext_resource type="PackedScene" uid="uid://iyy7dntbofpv" path="res://items/cauldron_mesh.tscn" id="2_l8eqq"]
+[ext_resource type="PackedScene" uid="uid://iyy7dntbofpv" path="res://interactables/stations/cauldron_mesh.tscn" id="2_l8eqq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fdkpx"]
 size = Vector3(0.75, 0.86279297, 0.8510742)

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="1_q48dw"]
 [ext_resource type="Script" uid="uid://cjo1h0cihqhp1" path="res://addons/inventory-system-demos/mp/networked_workbench.gd" id="2_7ac0w"]
 [ext_resource type="Script" uid="uid://bldichxbdfybi" path="res://addons/inventory-system-demos/mp/sync_craft_station.gd" id="3_m8nug"]
-[ext_resource type="PackedScene" uid="uid://iyy7dntbofpv" path="res://items/cauldron_mesh.tscn" id="3_wwv5u"]
+[ext_resource type="PackedScene" uid="uid://iyy7dntbofpv" path="res://interactables/stations/cauldron_mesh.tscn" id="3_wwv5u"]
 [ext_resource type="Script" uid="uid://dlemxn6c687mt" path="res://addons/inventory-system-demos/mp/sync_grid_inventory.gd" id="4_v6y7o"]
 [ext_resource type="Script" uid="uid://dl8kl1msejot2" path="res://addons/inventory-system-demos/character/networked_openable.gd" id="5_1vr0a"]
 [ext_resource type="Script" uid="uid://bkxu1ymravf51" path="res://addons/inventory-system-demos/mp/networked_dropper.gd" id="6_3oe0m"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvrounbw6t4j0"]
 
-[ext_resource type="Script" uid="uid://n64v8r565gx0" path="res://player/camera_spring_arm.gd" id="1_8ecf0"]
-[ext_resource type="Script" uid="uid://ng7b5tn0vurj" path="res://player/camera_follow.gd" id="2_hiq5w"]
+[ext_resource type="Script" uid="uid://n64v8r565gx0" path="res://characters/player/components/camera_spring_arm.gd" id="1_8ecf0"]
+[ext_resource type="Script" uid="uid://ng7b5tn0vurj" path="res://characters/player/components/camera_follow.gd" id="2_hiq5w"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g1dw6"]
 

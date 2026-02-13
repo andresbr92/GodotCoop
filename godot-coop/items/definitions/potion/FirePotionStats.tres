@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ThrowableData" format=3 uid="uid://ct4s2o2boagpb"]
+
+[ext_resource type="PackedScene" uid="uid://b5lajvpkqtskq" path="res://items/world_models/potions/fire_potion_rigidbody.tscn" id="1_7q3qh"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/throwable_data.gd" id="1_wmb64"]
+
+[resource]
+script = ExtResource("1_wmb64")
+projectile_scene = ExtResource("1_7q3qh")
+metadata/_custom_type_script = "uid://wok753vjriib"

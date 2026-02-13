@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://cla33c2qqx78a"]
 
-[ext_resource type="Script" uid="uid://bdxm36g6tmkyd" path="res://main.gd" id="1_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://dq05gsoxhb16t" path="res://player/player.tscn" id="2_fos0i"]
-[ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="4_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://pjbph7067g6e" path="res://addons/inventory-system-demos/fps/dropped_items/rock.tscn" id="5_lgr22"]
-[ext_resource type="Script" uid="uid://owlc7hwlygbt" path="res://addons/inventory-system-demos/mp/dropped_item_spawner.gd" id="6_03owx"]
-[ext_resource type="PackedScene" uid="uid://bjfvmoveogy0m" path="res://addons/inventory-system-demos/fps/dropped_items/stone_axe.tscn" id="6_trn2v"]
-[ext_resource type="PackedScene" uid="uid://bmal6s1al7rbe" path="res://addons/inventory-system-demos/fps/dropped_items/wood.tscn" id="7_03owx"]
-[ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="7_wkp8b"]
-[ext_resource type="PackedScene" uid="uid://cpsfowho6jqi0" path="res://addons/inventory-system-demos/fps/dropped_items/cooked_meat.tscn" id="8_j4qnp"]
-[ext_resource type="Script" uid="uid://bn7s6bo56ow2w" path="res://addons/inventory-system-demos/mp/placeable_item_spawner.gd" id="9_5vvyt"]
-[ext_resource type="PackedScene" uid="uid://x5igqejgwllh" path="res://items/potion/potion.tscn" id="9_c2ibq"]
-[ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://items/mp_cauldron.tscn" id="9_fpfj3"]
-[ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="9_wkp8b"]
-[ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="10_20pc6"]
-[ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="13_c6i3y"]
-[ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://scripts/multiplayer/projectile_spawner.gd" id="16_fpfj3"]
+[ext_resource type="Script" uid="uid://bdxm36g6tmkyd" path="res://levels/maps/main.gd" id="1_ypdrr"]
+[ext_resource type="PackedScene" uid="uid://dq05gsoxhb16t" path="res://characters/player/player.tscn" id="2_mg6k3"]
+[ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="3_bivqv"]
+[ext_resource type="PackedScene" uid="uid://pjbph7067g6e" path="res://addons/inventory-system-demos/fps/dropped_items/rock.tscn" id="4_3w03t"]
+[ext_resource type="PackedScene" uid="uid://bjfvmoveogy0m" path="res://addons/inventory-system-demos/fps/dropped_items/stone_axe.tscn" id="5_hxqi7"]
+[ext_resource type="PackedScene" uid="uid://bmal6s1al7rbe" path="res://addons/inventory-system-demos/fps/dropped_items/wood.tscn" id="6_0okpl"]
+[ext_resource type="PackedScene" uid="uid://cpsfowho6jqi0" path="res://addons/inventory-system-demos/fps/dropped_items/cooked_meat.tscn" id="7_6xxi0"]
+[ext_resource type="PackedScene" uid="uid://x5igqejgwllh" path="res://items/inventory_items/potions/fire_potion.tscn" id="8_ypdrr"]
+[ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://systems/projectile_spawner.gd" id="9_r7gtk"]
+[ext_resource type="Script" uid="uid://owlc7hwlygbt" path="res://addons/inventory-system-demos/mp/dropped_item_spawner.gd" id="10_clxfl"]
+[ext_resource type="Script" uid="uid://bn7s6bo56ow2w" path="res://addons/inventory-system-demos/mp/placeable_item_spawner.gd" id="11_au11x"]
+[ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="12_8ca51"]
+[ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="13_vptr5"]
+[ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
+[ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="15_nxb8c"]
+[ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://interactables/stations/mp_cauldron.tscn" id="16_3b04x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -31,9 +31,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Main" type="Node" unique_id=1964116347]
-script = ExtResource("1_cm0pq")
-player_scene = ExtResource("2_fos0i")
-database = ExtResource("7_wkp8b")
+script = ExtResource("1_ypdrr")
+player_scene = ExtResource("2_mg6k3")
+database = ExtResource("3_bivqv")
 
 [node name="Environment" type="Node3D" parent="." unique_id=818538303]
 
@@ -48,50 +48,46 @@ environment = SubResource("Environment_5lc62")
 
 [node name="Items" type="Node3D" parent="Level" unique_id=1716750582]
 
-[node name="Rock" parent="Level/Items" unique_id=2120016230 instance=ExtResource("5_lgr22")]
+[node name="Rock" parent="Level/Items" unique_id=2120016230 instance=ExtResource("4_3w03t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1397533, 0.154406, 4.0290365)
 
-[node name="Rock2" parent="Level/Items" unique_id=1446076844 instance=ExtResource("5_lgr22")]
+[node name="Rock2" parent="Level/Items" unique_id=1446076844 instance=ExtResource("4_3w03t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.696598, 0.154406, 4.0290365)
 
-[node name="Rock3" parent="Level/Items" unique_id=2003451741 instance=ExtResource("5_lgr22")]
+[node name="Rock3" parent="Level/Items" unique_id=2003451741 instance=ExtResource("4_3w03t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.696598, 0.154406, 5.829918)
 
-[node name="Rock4" parent="Level/Items" unique_id=1205729219 instance=ExtResource("5_lgr22")]
+[node name="Rock4" parent="Level/Items" unique_id=1205729219 instance=ExtResource("4_3w03t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2026014, 0.154406, 5.829918)
 
-[node name="StoneAxe" parent="Level/Items" unique_id=246487142 instance=ExtResource("6_trn2v")]
+[node name="StoneAxe" parent="Level/Items" unique_id=246487142 instance=ExtResource("5_hxqi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.100421, 0, 5.9225407)
 
-[node name="Wood" parent="Level/Items" unique_id=1950570839 instance=ExtResource("7_03owx")]
+[node name="Wood" parent="Level/Items" unique_id=1950570839 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4310193, 0.05, 7.860209)
 
-[node name="Wood2" parent="Level/Items" unique_id=1033856441 instance=ExtResource("7_03owx")]
+[node name="Wood2" parent="Level/Items" unique_id=1033856441 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8910847, 0.05, 7.860209)
 
-[node name="Wood3" parent="Level/Items" unique_id=1490830861 instance=ExtResource("7_03owx")]
+[node name="Wood3" parent="Level/Items" unique_id=1490830861 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8910847, 0.05, 8.912882)
 
-[node name="Wood4" parent="Level/Items" unique_id=353614461 instance=ExtResource("7_03owx")]
+[node name="Wood4" parent="Level/Items" unique_id=353614461 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2310896, 0.05, 8.912882)
 
-[node name="Wood5" parent="Level/Items" unique_id=200685349 instance=ExtResource("7_03owx")]
+[node name="Wood5" parent="Level/Items" unique_id=200685349 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5397606, 0.05, 8.912882)
 
-[node name="Wood6" parent="Level/Items" unique_id=128370817 instance=ExtResource("7_03owx")]
+[node name="Wood6" parent="Level/Items" unique_id=128370817 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.808957, 0.05, 8.912882)
 
-[node name="Wood7" parent="Level/Items" unique_id=384306329 instance=ExtResource("7_03owx")]
+[node name="Wood7" parent="Level/Items" unique_id=384306329 instance=ExtResource("6_0okpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.808957, 0.05, 7.761835)
 
-[node name="CookedMeat" parent="Level/Items" unique_id=2047587813 instance=ExtResource("8_j4qnp")]
+[node name="CookedMeat" parent="Level/Items" unique_id=2047587813 instance=ExtResource("7_6xxi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2992153, 0, 7.0511904)
 
-[node name="Potion" parent="Level/Items" unique_id=309637969 instance=ExtResource("9_c2ibq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0230904, 0, 3.2022848)
-
-[node name="Potion2" parent="Level/Items" unique_id=712237226 instance=ExtResource("9_c2ibq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.041317, 0, 4.575384)
+[node name="Potion" parent="Level/Items" unique_id=309637969 instance=ExtResource("8_ypdrr")]
 
 [node name="Structures" type="Node3D" parent="." unique_id=1433449841]
 
@@ -175,27 +171,27 @@ size = Vector3(100, 0.5, 100)
 
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1963443158 groups=["ProjectileSpawner"]]
 spawn_path = NodePath("..")
-script = ExtResource("16_fpfj3")
+script = ExtResource("9_r7gtk")
 metadata/_custom_type_script = "uid://dbmmhdgkw6fu0"
 
 [node name="DroppedItemSpawner" type="MultiplayerSpawner" parent="." unique_id=1181738734]
 spawn_path = NodePath("..")
-script = ExtResource("6_03owx")
-database = ExtResource("7_wkp8b")
+script = ExtResource("10_clxfl")
+database = ExtResource("3_bivqv")
 metadata/_custom_type_script = "uid://owlc7hwlygbt"
 
 [node name="PlaceableItemSpawner" type="MultiplayerSpawner" parent="." unique_id=371031839]
 spawn_path = NodePath("..")
-script = ExtResource("9_5vvyt")
+script = ExtResource("11_au11x")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=27087763]
 
-[node name="Labels" parent="UI" unique_id=2079847158 instance=ExtResource("4_cm0pq")]
+[node name="Labels" parent="UI" unique_id=2079847158 instance=ExtResource("12_8ca51")]
 
-[node name="InventorySystemUI" parent="UI" unique_id=1814528407 instance=ExtResource("9_wkp8b")]
+[node name="InventorySystemUI" parent="UI" unique_id=1814528407 instance=ExtResource("13_vptr5")]
 
 [node name="InteractorUI" parent="UI/InventorySystemUI" index="0"]
-input_icons = ExtResource("10_20pc6")
+input_icons = ExtResource("14_pj6ab")
 
 [node name="StackPopupMenu" parent="UI/InventorySystemUI" index="6"]
 size = Vector2i(32, 8)
@@ -230,10 +226,10 @@ text = "HOST"
 layout_mode = 2
 text = "CONNECT TO LOCALHOST"
 
-[node name="Workbench" parent="." unique_id=2133570632 instance=ExtResource("13_c6i3y")]
+[node name="Workbench" parent="." unique_id=2133570632 instance=ExtResource("15_nxb8c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16787791, 0, 5.925412)
 
-[node name="Workbench2" parent="." unique_id=1038903432 instance=ExtResource("9_fpfj3")]
+[node name="Workbench2" parent="." unique_id=1038903432 instance=ExtResource("16_3b04x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18316221, 0, 10.427185)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]

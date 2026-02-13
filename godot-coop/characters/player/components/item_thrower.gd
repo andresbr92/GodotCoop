@@ -23,33 +23,38 @@ func  check_and_throw() -> void:
 	if stack == null:
 		return
 	var item_id = stack.item_id
-	var definition = hotbar.database.get_item(item_id)
-	if definition == null:
+	var item_def = hotbar.database.get_item(item_id)
+	if item_def == null:
 		return
-	if definition.properties.has("throwable"):
-		var scene_path : String = definition.properties["throwable"]
-		var potion_stats_path = definition.properties["potion_stats"]
-		
-		var spawn_pos = hand.global_position
-		var direction = -camera.global_transform.basis.z
-		var velocity = direction * throw_force
-		var stack_index = hotbar.selection_index
-		
-		if multiplayer.is_server():
-			throw_potion_rpc(stack_index, spawn_pos, camera.global_rotation, velocity, scene_path, potion_stats_path)
-		else:
-			throw_potion_rpc.rpc_id(1, stack_index, spawn_pos, camera.global_rotation, velocity, scene_path, potion_stats_path)
+	if not item_def.properties.has("throwable_data"): 
+		return
+
+	var stats = item_def.properties["throwable_data"]
+	if stats == null: return
+
+
+	var spawn_pos = hand.global_position
+	var direction = -camera.global_transform.basis.z
+	var velocity = direction * throw_force
+	var stack_index = hotbar.selection_index
+	
+	if multiplayer.is_server():
+		throw_potion_rpc(stack_index, spawn_pos, camera.global_rotation, velocity, stats)
+		pass
+	else:
+		throw_potion_rpc.rpc_id(1, stack_index, spawn_pos, camera.global_rotation, velocity, stats)
+		pass
 			
 		
 @rpc("any_peer", "call_local", "reliable")
-func throw_potion_rpc(stack_index: int, pos: Vector3, rot: Vector3, vel: Vector3, scene_path: String, potion_path: String) -> void:
+func throw_potion_rpc(stack_index: int, pos: Vector3, rot: Vector3, vel: Vector3, path_to_tres : String) -> void:
 	if not multiplayer.is_server():
 		return
 	var inventory = hotbar.get_inventory()
 	if stack_index >= inventory.stacks.size(): return
 	
 	if projectile_spawner:
-		projectile_spawner.spawn([pos, rot, vel, scene_path, potion_path])
+		projectile_spawner.spawn([pos, rot, vel, path_to_tres ])
 	else:
 		print("No item spawner")
 	var item_id = inventory.stacks[stack_index].item_id

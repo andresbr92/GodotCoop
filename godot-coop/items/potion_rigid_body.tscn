@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bsld7t57xk43j"]
+[gd_scene format=3 uid="uid://cvbhejdaalapu"]
 
-[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="1_w4yf8"]
+[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="1_48ph0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vg66u"]
 radius = 0.24121094
@@ -12,4 +12,4 @@ height = 0.986084
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44006348, 0)
 shape = SubResource("CapsuleShape3D_vg66u")
 
-[node name="bottle2" parent="." unique_id=1161776949 instance=ExtResource("1_w4yf8")]
+[node name="bottle2" parent="." unique_id=1161776949 instance=ExtResource("1_48ph0")]

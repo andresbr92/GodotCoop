@@ -28,9 +28,12 @@ window/size/viewport_height=1080
 
 folder_colors={
 "res://addons/inventory-system-demos/mp/": "yellow",
-"res://items/potion/": "purple",
-"res://player/": "blue",
-"res://scripts/": "green"
+"res://characters/": "blue",
+"res://characters/player/": "blue",
+"res://interactables/": "purple",
+"res://items/": "green",
+"res://levels/": "yellow",
+"res://systems/": "red"
 }
 
 [input]
