@@ -38,22 +38,18 @@ func _physics_process(delta: float) -> void:
 	
 	# Rotamos el vector de dirección según la cámara
 	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
+	if is_strafing:
+		mesh_instance_3d.global_rotation.y = camera.global_rotation.y
 	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		
 		# --- AQUÍ ESTÁ LA LÓGICA DE ROTACIÓN ---
-		if !is_strafing:
-				
-			# 1. Calculamos el ángulo hacia donde queremos mirar (atan2 devuelve el ángulo en radianes)
-			var target_rotation = atan2(direction.x, direction.z) + PI
-			
-			# 2. Rotamos el MESH suavemente hacia ese ángulo
-			# Usamos lerp_angle para que busque el camino más corto (evita giros de 360 grados raros)
+		var target_rotation = atan2(direction.x, direction.z) + PI
+		if not is_strafing:
 			mesh_instance_3d.rotation.y = lerp_angle(mesh_instance_3d.rotation.y, target_rotation, delta * ROTATION_SPEED)
-		else :
-			mesh_instance_3d.global_rotation.y = camera.global_rotation.y
+
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
