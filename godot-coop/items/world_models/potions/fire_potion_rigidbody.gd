@@ -15,6 +15,11 @@ func explode() -> void:
 	if shape:
 		shape.radius = radius
 	potion_emite_particles.rpc()
+	
+	var bodies = $ExplosionArea.get_overlapping_bodies()
+	for body in bodies:
+		if body:
+			print(body.name)
 
 
 

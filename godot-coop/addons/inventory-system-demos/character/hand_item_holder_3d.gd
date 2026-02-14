@@ -4,8 +4,8 @@ extends Node3D
 const Interactor = preload("../interaction_system/inventory_interactor.gd")
 
 
-@onready var hotbar: Hotbar = $"../../CharacterInventorySystem/Hotbar"
-@onready var interactor: NodeInventories = $"../../CharacterInventorySystem/Interactor"
+@onready var hotbar: Hotbar = $"../CharacterInventorySystem/Hotbar"
+@onready var interactor: NodeInventories = $"../CharacterInventorySystem/Interactor"
 @onready var default_hand_item_object: MeshInstance3D = $DefaultHandItem
 
 var last_item : ItemDefinition = null

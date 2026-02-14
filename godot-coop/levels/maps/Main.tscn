@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="Script" uid="uid://bdxm36g6tmkyd" path="res://levels/maps/main.gd" id="1_ypdrr"]
-[ext_resource type="PackedScene" uid="uid://dq05gsoxhb16t" path="res://characters/player/player.tscn" id="2_mg6k3"]
+[ext_resource type="PackedScene" uid="uid://b8nosybut0sfr" path="res://characters/player/player.tscn" id="2_mg6k3"]
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="3_bivqv"]
 [ext_resource type="PackedScene" uid="uid://pjbph7067g6e" path="res://addons/inventory-system-demos/fps/dropped_items/rock.tscn" id="4_3w03t"]
 [ext_resource type="PackedScene" uid="uid://bjfvmoveogy0m" path="res://addons/inventory-system-demos/fps/dropped_items/stone_axe.tscn" id="5_hxqi7"]

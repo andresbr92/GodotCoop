@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bkoflorth6kly"]
 
 [ext_resource type="Script" uid="uid://cnx8xlxnq11u1" path="res://characters/character_base.gd" id="1_1mj81"]
+[ext_resource type="Script" uid="uid://qb2rqs0vp12x" path="res://characters/player/components/attribute_set.gd" id="2_gepiv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gepiv"]
 
@@ -15,6 +16,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="CharacterBase" type="CharacterBody3D" unique_id=385850437]
+collision_layer = 17
 script = ExtResource("1_1mj81")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=48801629]
@@ -25,6 +27,15 @@ shape = SubResource("CapsuleShape3D_gepiv")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_13xd6")
 
+[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance3D" unique_id=1745422267]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.00031760352, 0.36187744, -0.33904696)
+size = Vector3(0.5, 0.2, 0.705)
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=684341116]
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_aea6v")
+
+[node name="AttributeSet" type="Node" parent="." unique_id=453168896]
+unique_name_in_owner = true
+script = ExtResource("2_gepiv")
+metadata/_custom_type_script = "uid://qb2rqs0vp12x"
