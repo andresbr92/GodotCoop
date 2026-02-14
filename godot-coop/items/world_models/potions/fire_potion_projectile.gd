@@ -19,6 +19,7 @@ func explode() -> void:
 	var targets = area_effect.get_overlapping_areas()
 	for target in targets:
 		var parent_target = target.get_parent()
+		print(parent_target.name)
 		if parent_target.has_method("take_damage"):
 			parent_target.take_damage(data.effect_value)
 		

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cmfrl55ed4jfp"]
+
+[ext_resource type="PackedScene" uid="uid://bkoflorth6kly" path="res://characters/character_base.tscn" id="1_2v448"]
+[ext_resource type="Script" uid="uid://cm3yxqodvoiby" path="res://characters/npcs/human_dummy/human_npc.gd" id="2_rwpfh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwpfh"]
+albedo_color = Color(0.390625, 0, 0, 1)
+
+[node name="HumanNPC" unique_id=385850437 instance=ExtResource("1_2v448")]
+script = ExtResource("2_rwpfh")
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=1547036043]
+surface_material_override/0 = SubResource("StandardMaterial3D_rwpfh")

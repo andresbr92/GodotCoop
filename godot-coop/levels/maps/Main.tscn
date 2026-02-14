@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
 [ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="15_nxb8c"]
 [ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://interactables/stations/mp_cauldron.tscn" id="16_3b04x"]
+[ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -250,6 +251,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16787791, 0, 5.925412)
 
 [node name="Workbench2" parent="." unique_id=1038903432 instance=ExtResource("16_3b04x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18316221, 0, 10.427185)
+
+[node name="HumanNPC" parent="." unique_id=385850437 instance=ExtResource("18_bivqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]
