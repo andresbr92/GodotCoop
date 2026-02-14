@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b1ng1s404fe0f"]
+
+[ext_resource type="PackedScene" uid="uid://ch7h41kro0242" path="res://interactables/harvest_nodes/lootable_base.tscn" id="1_wb0qg"]
+[ext_resource type="Script" uid="uid://brpft224p47ja" path="res://interactables/harvest_nodes/loot_box.gd" id="2_t3grj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wb0qg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t3grj"]
+
+[node name="LootBox" unique_id=175722843 instance=ExtResource("1_wb0qg")]
+script = ExtResource("2_t3grj")
+
+[node name="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(87848438) index="0" unique_id=857532252]
+mesh = SubResource("BoxMesh_wb0qg")
+
+[node name="StaticBody3D" parent="." index="1" unique_id=67656421]
+collision_layer = 255
+collision_mask = 3
+
+[node name="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1457289346]
+shape = SubResource("BoxShape3D_t3grj")

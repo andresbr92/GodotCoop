@@ -77,7 +77,7 @@ camera_x_offset = 1.0
 
 [node name="RayCast3D" type="RayCast3D" parent="SpringArmPivot/Camera3D" index="0" unique_id=229150489]
 target_position = Vector3(0, 0, -5)
-collision_mask = 16
+collision_mask = 48
 
 [node name="CharacterInventorySystem" parent="." index="6" unique_id=1160351266 node_paths=PackedStringArray("raycast", "camera_3d") instance=ExtResource("5_lcfw7")]
 database = ExtResource("6_b0vde")

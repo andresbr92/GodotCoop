@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://interactables/stations/mp_cauldron.tscn" id="16_3b04x"]
 [ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
 [ext_resource type="PackedScene" uid="uid://ppoth6laefj7" path="res://items/inventory_items/potions/heal_potion.tscn" id="19_3w03t"]
+[ext_resource type="PackedScene" uid="uid://b1ng1s404fe0f" path="res://interactables/harvest_nodes/loot_box.tscn" id="20_hxqi7"]
+[ext_resource type="PackedScene" uid="uid://cn6sy338tb7m4" path="res://addons/inventory-system-demos/fps/box_inventory.tscn" id="21_0okpl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -264,6 +266,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18316221, 0, 10.427185)
 
 [node name="HumanNPC" parent="." unique_id=385850437 instance=ExtResource("18_bivqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
+
+[node name="LootBox" parent="." unique_id=175722843 instance=ExtResource("20_hxqi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2743587, 0.5, 5.1529284)
+
+[node name="Box Inventory" parent="." unique_id=298051672 instance=ExtResource("21_0okpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9331956, 0.5710495, 3.8413723)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]

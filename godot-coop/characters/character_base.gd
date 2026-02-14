@@ -8,6 +8,6 @@ extends CharacterBody3D
 
 
 
-func receive_effect(data: ThrowableData) -> void:
+func receive_gameplay_effects(effects: Array[GameplayEffect]) -> void:
 	if attribute_set:
-		attribute_set.apply_effect(data)
+		attribute_set.apply_gameplay_effects(effects)

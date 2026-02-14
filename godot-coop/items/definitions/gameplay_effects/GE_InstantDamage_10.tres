@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GameplayEffect" format=3 uid="uid://b2iwle8ecvp74"]
+
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_sx2wj"]
+
+[resource]
+script = ExtResource("1_sx2wj")
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"

@@ -36,9 +36,9 @@ func apply_area_effects() -> void:
 		shape.radius = radius
 
 
-func apply_specific_effect(target: Node) -> void:
-	if target.has_method("receive_effect"):
-		target.receive_effect(data)
+func _apply_specific_effect(target: Node) -> void:
+	if target.has_method("receive_gameplay_effects"):
+		target.receive_gameplay_effects(data.effects)
 
 
 func _on_timer_timeout() -> void:
@@ -57,10 +57,10 @@ func _on_area_effect_area_entered(area: Area3D) -> void:
 	var target = area.get_parent()
 	if target in hit_targets:
 		return
-	if not target.has_method("receive_effect"): return
+	if not target.has_method("receive_gameplay_effects"): return
 	hit_targets.append(target)
 	
-	apply_specific_effect(target)
+	_apply_specific_effect(target)
 
 func on_effect_finished() -> void:
 	area_effect.monitoring = false

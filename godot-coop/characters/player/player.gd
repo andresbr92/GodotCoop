@@ -1,6 +1,6 @@
 extends CharacterBase
 
-const SPEED = 5.0
+
 const JUMP_VELOCITY = 4.5
 const ROTATION_SPEED = 10.0 # Velocidad de giro del personaje
 var is_strafing = false
@@ -42,8 +42,8 @@ func _physics_process(delta: float) -> void:
 		mesh_instance_3d.global_rotation.y = camera.global_rotation.y
 	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * attribute_set.speed
+		velocity.z = direction.z * attribute_set.speed
 		
 		# --- AQUÍ ESTÁ LA LÓGICA DE ROTACIÓN ---
 		var target_rotation = atan2(direction.x, direction.z) + PI
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 		
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, attribute_set.speed)
+		velocity.z = move_toward(velocity.z, 0, attribute_set.speed)
 
 	move_and_slide()
