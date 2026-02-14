@@ -8,5 +8,6 @@ extends CharacterBody3D
 
 
 
-func take_damage(in_damage: int) -> void:
-	attribute_set.take_damage(in_damage)
+func receive_effect(data: ThrowableData) -> void:
+	if attribute_set:
+		attribute_set.apply_effect(data)

@@ -28,6 +28,16 @@ replication_config = SubResource("SceneReplicationConfig_2rc06")
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 16
+monitoring = false
+monitorable = false
 
 [node name="ExplosionShape" type="CollisionShape3D" parent="AreaEffect" unique_id=1592878891]
 shape = SubResource("SphereShape3D_pmu5y")
+
+[node name="ImpactParticles" type="GPUParticles3D" parent="." unique_id=426355514]
+unique_name_in_owner = true
+emitting = false
+one_shot = true
+
+[node name="ImpactSound" type="AudioStreamPlayer3D" parent="." unique_id=90279983]
+unique_name_in_owner = true

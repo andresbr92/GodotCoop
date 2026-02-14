@@ -8,6 +8,8 @@ var thrower_id: int = 0
 
 @onready var visuals: Node3D = $Visuals
 @onready var area_effect: Area3D = %AreaEffect
+@onready var impact_sound: AudioStreamPlayer3D = %ImpactSound
+@onready var impact_particles: GPUParticles3D = %ImpactParticles
 
 
 func _ready() -> void:

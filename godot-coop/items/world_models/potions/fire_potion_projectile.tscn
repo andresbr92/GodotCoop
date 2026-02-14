@@ -3,26 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/projectile_base.tscn" id="1_kolm0"]
 [ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/world_models/potions/fire_potion_projectile.gd" id="2_orcsd"]
 [ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="3_r0t06"]
+[ext_resource type="AudioStream" uid="uid://cs7mypovngs1j" path="res://addons/assets/Sounds/Potions/potion_break.wav" id="4_orcsd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dfkfh"]
 radius = 0.2109375
 height = 1.0002441
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y8ns1"]
-direction = Vector3(0, 0, 0)
-spread = 180.0
-initial_velocity_min = 2.0
-initial_velocity_max = 20.0
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tas4"]
-albedo_color = Color(0.022216797, 0.9479167, 0.06560898, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_675ga"]
-material = SubResource("StandardMaterial3D_6tas4")
-size = Vector3(0.11, 0.1, 0.1)
-
 [node name="PotionProjectile" unique_id=1392492332 instance=ExtResource("1_kolm0")]
+continuous_cd = true
 script = ExtResource("2_orcsd")
 
 [node name="PhysicsShape" parent="." index="1" unique_id=283471477]
@@ -36,15 +24,11 @@ wait_time = 0.217
 one_shot = true
 autostart = true
 
-[node name="PotionParticles" type="GPUParticles3D" parent="." index="4" unique_id=1969825883]
-emitting = false
-amount = 40
-explosiveness = 1.0
-randomness = 0.31
-process_material = SubResource("ParticleProcessMaterial_y8ns1")
-draw_pass_1 = SubResource("BoxMesh_675ga")
-
-[node name="AreaEffect" parent="." index="5" unique_id=1918654380]
+[node name="AreaEffect" parent="." index="4" unique_id=1918654380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44488338, 0)
 
+[node name="ImpactSound" parent="." index="6" unique_id=90279983]
+stream = ExtResource("4_orcsd")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="AreaEffect" to="." method="_on_area_effect_area_entered"]

@@ -1,37 +1,83 @@
 extends ProjectileBase
 
 class_name PotionProjectile
-@onready var potion_particles: GPUParticles3D = $PotionParticles
-var is_potion_exploded = false
+var has_exploded: bool = false
+var hit_targets: Array = []
 
 func on_inpact(body: Node) -> void:
+	if has_exploded:
+		return
 	if multiplayer.is_server():
-		explode()
+		trigger_explosion_sequence()
 	
 
-func explode() -> void:
+func trigger_explosion_sequence() -> void:
+	has_exploded = true
+	freeze = true
+	area_effect.monitoring = true
+	
+	### GAME LOGIC
+	apply_area_effects()
+	
+	### VFX/SFX
+	play_impact_effects.rpc()
+	
+	get_tree().create_timer(data.area_effect_duration).timeout.connect(on_effect_finished)
+	
+
+		
+		
+
+func apply_area_effects() -> void:
+
 	var radius = data.blast_radius
 	var shape = $AreaEffect/ExplosionShape.shape as SphereShape3D
 	if shape:
 		shape.radius = radius
-	potion_emite_particles.rpc()
 
-	var targets = area_effect.get_overlapping_areas()
-	for target in targets:
-		var parent_target = target.get_parent()
-		print(parent_target.name)
-		if parent_target.has_method("take_damage"):
-			parent_target.take_damage(data.effect_value)
-		
-		
 
-		
-
+func apply_specific_effect(target: Node) -> void:
+	if target.has_method("receive_effect"):
+		target.receive_effect(data)
 
 
 func _on_timer_timeout() -> void:
 	contact_monitor = true
 
 @rpc("authority", "call_local", "reliable")
-func potion_emite_particles() -> void:
-	potion_particles.emitting = true
+func play_impact_effects() -> void:
+	visuals.visible = false
+	$PhysicsShape.disabled = true
+	impact_particles.emitting = true
+	impact_sound.play()
+
+
+func _on_area_effect_area_entered(area: Area3D) -> void:
+	if not multiplayer.is_server(): return
+	var target = area.get_parent()
+	if target in hit_targets:
+		return
+	if not target.has_method("receive_effect"): return
+	hit_targets.append(target)
+	
+	apply_specific_effect(target)
+
+func on_effect_finished() -> void:
+	area_effect.monitoring = false
+	queue_free()
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

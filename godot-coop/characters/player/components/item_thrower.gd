@@ -13,7 +13,6 @@ func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
 		if event.is_action_pressed("throw"):
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-				print("lanzar potion")
 				check_and_throw()
 	else:
 		set_process(false)
