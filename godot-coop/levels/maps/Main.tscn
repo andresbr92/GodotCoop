@@ -108,6 +108,15 @@ transform = Transform3D(0.9999992, -0.00042692822, 0.0011581425, 0.00042813784, 
 [node name="Potion6" parent="Level/Items" unique_id=1388534198 instance=ExtResource("8_ypdrr")]
 transform = Transform3D(0.9999992, -0.00042692822, 0.0011581425, 0.00042813784, 0.9999994, -0.0010267431, -0.0011576959, 0.0010272467, 0.9999988, -4.488042, 0, 3.7063942)
 
+[node name="HealPotion" parent="Level/Items" unique_id=651601356 instance=ExtResource("19_3w03t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6344013, 4.7683716e-07, 2.9860444)
+
+[node name="HealPotion2" parent="Level/Items" unique_id=1324642526 instance=ExtResource("19_3w03t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.457982, 4.7683716e-07, 2.9860444)
+
+[node name="HealPotion3" parent="Level/Items" unique_id=1340588436 instance=ExtResource("19_3w03t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7936996, 4.7683716e-07, 2.9860444)
+
 [node name="Structures" type="Node3D" parent="." unique_id=1433449841]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Structures" unique_id=411736819]
@@ -255,15 +264,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18316221, 0, 10.427185)
 
 [node name="HumanNPC" parent="." unique_id=385850437 instance=ExtResource("18_bivqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
-
-[node name="HealPotion" parent="." unique_id=651601356 instance=ExtResource("19_3w03t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6344013, 4.7683716e-07, 2.9860444)
-
-[node name="HealPotion2" parent="." unique_id=1324642526 instance=ExtResource("19_3w03t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.457982, 4.7683716e-07, 2.9860444)
-
-[node name="HealPotion3" parent="." unique_id=1340588436 instance=ExtResource("19_3w03t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7936996, 4.7683716e-07, 2.9860444)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]
