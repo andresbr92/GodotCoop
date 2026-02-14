@@ -14,8 +14,13 @@ func explode() -> void:
 	var shape = $ExplosionArea/ExplosionShape.shape as SphereShape3D
 	if shape:
 		shape.radius = radius
-	potion_particles.emitting = true
+	potion_emite_particles.rpc()
+
 
 
 func _on_timer_timeout() -> void:
 	contact_monitor = true
+
+@rpc("authority", "call_local", "unreliable")
+func potion_emite_particles() -> void:
+	potion_particles.emitting = true

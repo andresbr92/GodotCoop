@@ -4,6 +4,14 @@
 [ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/world_models/potions/fire_potion_rigidbody.gd" id="2_4hjb6"]
 [ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="3_gp8ny"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dfkfh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6tas4"]
 height = 1.0087891
 radius = 0.31054688
@@ -25,21 +33,24 @@ size = Vector3(0.11, 0.1, 0.1)
 [node name="PotionProjectile" unique_id=1392492332 instance=ExtResource("1_7otad")]
 script = ExtResource("2_4hjb6")
 
-[node name="PhysicsShape" parent="." index="0" unique_id=283471477]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0" unique_id=1786674064]
+replication_config = SubResource("SceneReplicationConfig_dfkfh")
+
+[node name="PhysicsShape" parent="." index="1" unique_id=283471477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4350586, 0)
 shape = SubResource("CylinderShape3D_6tas4")
 
 [node name="bottle2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1161776949 instance=ExtResource("3_gp8ny")]
 
-[node name="ExplosionArea" parent="." index="2" unique_id=1918654380]
+[node name="ExplosionArea" parent="." index="3" unique_id=1918654380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44488338, 0)
 
-[node name="Timer" type="Timer" parent="." index="3" unique_id=1507177601]
+[node name="Timer" type="Timer" parent="." index="4" unique_id=1507177601]
 wait_time = 0.217
 one_shot = true
 autostart = true
 
-[node name="PotionParticles" type="GPUParticles3D" parent="." index="4" unique_id=1969825883]
+[node name="PotionParticles" type="GPUParticles3D" parent="." index="5" unique_id=1969825883]
 emitting = false
 amount = 40
 explosiveness = 1.0
