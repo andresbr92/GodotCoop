@@ -10,19 +10,20 @@ func on_inpact(body: Node) -> void:
 	
 
 func explode() -> void:
-	if not is_potion_exploded:
-		var radius = data.blast_radius
-		var shape = $AreaEffect/ExplosionShape.shape as SphereShape3D
-		if shape:
-			shape.radius = radius
-		potion_emite_particles.rpc()
+	var radius = data.blast_radius
+	var shape = $AreaEffect/ExplosionShape.shape as SphereShape3D
+	if shape:
+		shape.radius = radius
+	potion_emite_particles.rpc()
 
-		var bodies = area_effect.get_overlapping_areas()
-		for body in bodies:
-			var character : CharacterBase = body.get_parent()
-			if character:
-				character.attribute_set.tage_damage(data.effect_value)
-	is_potion_exploded = true
+	var targets = area_effect.get_overlapping_areas()
+	for target in targets:
+		var parent_target = target.get_parent()
+		if parent_target.has_method("take_damage"):
+			parent_target.take_damage(data.effect_value)
+		
+		
+
 		
 
 

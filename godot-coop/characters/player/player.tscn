@@ -15,13 +15,25 @@
 [ext_resource type="Script" uid="uid://dw4ok8wsnioy1" path="res://characters/player/components/item_thrower.gd" id="13_qp1es"]
 [ext_resource type="Script" uid="uid://chpxhifwptoga" path="res://addons/inventory-system-demos/character/hand_item_holder_3d.gd" id="14_icpky"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_eus45"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_58jvb"]
 size = Vector3(0.125, 0.125, 0.125)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_eus45"]
+
 [node name="Player" unique_id=385850437 instance=ExtResource("1_6rrl0")]
 script = ExtResource("2_6rrl0")
+
+[node name="ThirdPersonHandItem" type="Node3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="1" unique_id=1843986240 node_paths=PackedStringArray("hotbar", "interactor", "default_hand_item_object")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.3727371, -0.03408885, -0.5769679)
+script = ExtResource("14_icpky")
+hotbar = NodePath("../../CharacterInventorySystem/Hotbar")
+interactor = NodePath("../../CharacterInventorySystem/Interactor")
+default_hand_item_object = NodePath("DefaultHandItem")
+
+[node name="DefaultHandItem" type="MeshInstance3D" parent="MeshInstance3D/ThirdPersonHandItem" index="0" unique_id=2107963658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103376, 0, 0.154242)
+visible = false
+mesh = SubResource("BoxMesh_58jvb")
 
 [node name="HUD" type="Control" parent="." index="4" unique_id=1651431043]
 layout_mode = 3
@@ -118,16 +130,7 @@ hotbar = NodePath("..")
 [node name="ItemThrower" type="Node3D" parent="." index="7" unique_id=985626527 node_paths=PackedStringArray("hotbar", "hand", "camera")]
 script = ExtResource("13_qp1es")
 hotbar = NodePath("../CharacterInventorySystem/Hotbar")
-hand = NodePath("../ThirdPersonHandItem/DefaultHandItem")
+hand = NodePath("../MeshInstance3D/ThirdPersonHandItem/DefaultHandItem")
 camera = NodePath("../SpringArmPivot/Camera3D")
-
-[node name="ThirdPersonHandItem" type="Node3D" parent="." index="8" unique_id=1843986240]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.464388, 0.96591115, -0.76413)
-visible = false
-script = ExtResource("14_icpky")
-
-[node name="DefaultHandItem" type="MeshInstance3D" parent="ThirdPersonHandItem" index="0" unique_id=2107963658]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103376, 0, 0.154242)
-mesh = SubResource("BoxMesh_58jvb")
 
 [editable path="CharacterInventorySystem"]
