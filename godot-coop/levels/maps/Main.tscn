@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="15_nxb8c"]
 [ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://interactables/stations/mp_cauldron.tscn" id="16_3b04x"]
 [ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
+[ext_resource type="PackedScene" uid="uid://ppoth6laefj7" path="res://items/inventory_items/potions/heal_potion.tscn" id="19_3w03t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -254,6 +255,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18316221, 0, 10.427185)
 
 [node name="HumanNPC" parent="." unique_id=385850437 instance=ExtResource("18_bivqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
+
+[node name="HealPotion" parent="." unique_id=651601356 instance=ExtResource("19_3w03t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6344013, 4.7683716e-07, 2.9860444)
+
+[node name="HealPotion2" parent="." unique_id=1324642526 instance=ExtResource("19_3w03t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.457982, 4.7683716e-07, 2.9860444)
+
+[node name="HealPotion3" parent="." unique_id=1340588436 instance=ExtResource("19_3w03t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7936996, 4.7683716e-07, 2.9860444)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]
