@@ -26,11 +26,11 @@ properties/1/replication_mode = 1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkbax"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqopd"]
 albedo_color = Color(0.43072253, 0.19710286, 0.4505208, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g1dw6"]
-material = SubResource("StandardMaterial3D_rkbax")
+material = SubResource("StandardMaterial3D_gqopd")
 
 [sub_resource type="BoxMesh" id="BoxMesh_yllr7"]
 size = Vector3(0.125, 0.125, 0.125)

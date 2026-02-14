@@ -21,6 +21,6 @@ func explode() -> void:
 func _on_timer_timeout() -> void:
 	contact_monitor = true
 
-@rpc("authority", "call_local", "unreliable")
+@rpc("authority", "call_local", "reliable")
 func potion_emite_particles() -> void:
 	potion_particles.emitting = true
