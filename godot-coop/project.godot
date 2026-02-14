@@ -184,6 +184,15 @@ throw={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="World"
+3d_render/layer_2="PlayerBody"
+3d_render/layer_3="EnemyBody"
+3d_render/layer_4="Projectile"
+3d_render/layer_5="Hitbox"
+3d_render/layer_6="Interactable"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 
-func apply_damage(amount: int) -> void:
+func tage_damage(amount: int) -> void:
 	if not multiplayer.is_server():
 		return
 	self.health -= amount

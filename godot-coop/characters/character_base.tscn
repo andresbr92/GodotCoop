@@ -15,8 +15,11 @@ properties/1/path = NodePath("MeshInstance3D:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_13xd6"]
+
 [node name="CharacterBase" type="CharacterBody3D" unique_id=385850437]
-collision_layer = 17
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_1mj81")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=48801629]
@@ -39,3 +42,11 @@ replication_config = SubResource("SceneReplicationConfig_aea6v")
 unique_name_in_owner = true
 script = ExtResource("2_gepiv")
 metadata/_custom_type_script = "uid://qb2rqs0vp12x"
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1610593320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=297805765]
+shape = SubResource("CapsuleShape3D_13xd6")

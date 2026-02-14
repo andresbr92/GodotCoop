@@ -7,7 +7,8 @@ var data: ThrowableData
 var thrower_id: int = 0
 
 @onready var visuals: Node3D = $Visuals
-@onready var explosion_area: Area3D = $ExplosionArea
+@onready var area_effect: Area3D = %AreaEffect
+
 
 func _ready() -> void:
 	contact_monitor = false
