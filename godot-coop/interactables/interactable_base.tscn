@@ -8,6 +8,7 @@ script = ExtResource("2_skjcs")
 metadata/_custom_type_script = "uid://dttp27rk0lwvx"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_skjcs"]
+size = Vector3(1, 1, 1.0092163)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_skjcs"]
 

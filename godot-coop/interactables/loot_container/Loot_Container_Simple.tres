@@ -1,0 +1,7 @@
+[gd_resource type="InventoryConstraint" script_class="SearchConstraint" format=3 uid="uid://cfpvpmwhm8eun"]
+
+[ext_resource type="Script" uid="uid://dgoapqa7x25sm" path="res://interactables/loot_container/search_constraint.gd" id="1_3omvv"]
+
+[resource]
+script = ExtResource("1_3omvv")
+metadata/_custom_type_script = "uid://dgoapqa7x25sm"

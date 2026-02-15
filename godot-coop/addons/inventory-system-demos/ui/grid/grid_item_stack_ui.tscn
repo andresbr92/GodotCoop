@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch1ixmsfcaf5c"]
+[gd_scene format=3 uid="uid://ch1ixmsfcaf5c"]
 
 [ext_resource type="Script" uid="uid://2wlbtf3n6pc5" path="res://addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd" id="1_xrm8g"]
 [ext_resource type="StyleBox" uid="uid://da318y6qn0f4e" path="res://addons/inventory-system-demos/grid_example/grid_item_stack_selection_style_box.tres" id="2_jll5p"]
+[ext_resource type="Texture2D" uid="uid://c6sat1og447xr" path="res://icon.svg" id="3_1seio"]
 [ext_resource type="Texture2D" uid="uid://bp4k6gmkgd0n8" path="res://addons/inventory-system-demos/assets/icons/stone_axe.png" id="3_k3aua"]
 [ext_resource type="AudioStream" uid="uid://df1ibxkrver3m" path="res://addons/inventory-system-demos/assets/kenney_rpgaudio/Audio/metalClick.ogg" id="4_x61r8"]
 [ext_resource type="AudioStream" uid="uid://djoihrfwojghx" path="res://addons/inventory-system-demos/assets/kenney_rpgaudio/Audio/bookOpen.ogg" id="5_4rhxs"]
@@ -18,15 +19,16 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="GridItemStackUI" type="Panel"]
+[node name="GridItemStackUI" type="Panel" unique_id=170323993]
 offset_right = 80.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_p43b5")
 script = ExtResource("1_xrm8g")
 stack_style = SubResource("StyleBoxFlat_p43b5")
 hover_stack_style = ExtResource("2_jll5p")
+unknown_icon = ExtResource("3_1seio")
 
-[node name="TextureBG" type="Panel" parent="."]
+[node name="TextureBG" type="Panel" parent="." unique_id=782578157]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2040077088]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +49,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ItemIcon" type="TextureRect" parent="MarginContainer"]
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer" unique_id=1030849334]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -55,7 +57,7 @@ texture = ExtResource("3_k3aua")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="StackSizeLabel" type="Label" parent="."]
+[node name="StackSizeLabel" type="Label" parent="." unique_id=2066816540]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,8 +68,8 @@ grow_vertical = 2
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1652890837]
 stream = ExtResource("4_x61r8")
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1894612198]
 stream = ExtResource("5_4rhxs")

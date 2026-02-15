@@ -55,7 +55,6 @@ max_stack = 16
 name = "Wood"
 icon = ExtResource("1_wk1an")
 weight = 1.0
-size = Vector2i(2, 2)
 properties = {
 "dropped_item": "res://addons/inventory-system-demos/fps/dropped_items/wood.tscn",
 "fuel": 8.0,
@@ -78,7 +77,7 @@ description = "Stone: Common resource for crafting tools and building structures
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_hpt3t"]
 id = "grass"
-max_stack = 16
+max_stack = 1
 name = "Grass"
 icon = ExtResource("7_64idt")
 weight = 0.1
@@ -126,7 +125,7 @@ description = "Stone Pickaxe: Tool for mining rocks and ores. Essential for reso
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_eupl1"]
 id = "lashing"
-max_stack = 16
+max_stack = 1
 name = "Lashing"
 icon = ExtResource("10_gmco0")
 weight = 0.2
@@ -268,16 +267,17 @@ name = "Tools"
 
 [sub_resource type="LootItem" id="LootItem_4fkxu"]
 item_id = "wood"
-max_amount = 10
+weight = 0.5
 
 [sub_resource type="LootItem" id="LootItem_he2jw"]
-item_id = "raw_meat"
-weight = 0.3
+item_id = "grass"
 
 [sub_resource type="Loot" id="Loot_4cjml"]
 items = Array[LootItem]([SubResource("LootItem_4fkxu"), SubResource("LootItem_he2jw")])
 id = "bush"
 name = "Bush"
+min_rolls = 3
+max_rolls = 3
 
 [sub_resource type="ItemStack" id="ItemStack_dbkim"]
 item_id = "wood"

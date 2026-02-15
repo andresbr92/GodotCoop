@@ -17,8 +17,7 @@
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
 [ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
 [ext_resource type="PackedScene" uid="uid://ppoth6laefj7" path="res://items/inventory_items/potions/heal_potion.tscn" id="19_3w03t"]
-[ext_resource type="Script" uid="uid://x4n351wcbd3e" path="res://interactables/harvest_nodes/harvestable_data.gd" id="19_hxqi7"]
-[ext_resource type="PackedScene" uid="uid://cn6sy338tb7m4" path="res://addons/inventory-system-demos/fps/box_inventory.tscn" id="21_0okpl"]
+[ext_resource type="PackedScene" uid="uid://b2847opptwu7x" path="res://interactables/loot_container/loot_container.tscn" id="19_hxqi7"]
 [ext_resource type="PackedScene" uid="uid://br8sd7qy15mun" path="res://interactables/harvest_nodes/harvestable.tscn" id="21_6xxi0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
@@ -33,12 +32,6 @@ background_mode = 2
 sky = SubResource("Sky_d8mrn")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="Resource" id="Resource_0okpl"]
-script = ExtResource("19_hxqi7")
-harvest_duration = 1.0
-loot_table_id = "bush"
-metadata/_custom_type_script = "uid://x4n351wcbd3e"
 
 [node name="Main" type="Node" unique_id=1964116347]
 script = ExtResource("1_ypdrr")
@@ -267,27 +260,16 @@ text = "CONNECT TO LOCALHOST"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
 
 [node name="Harvestable" parent="." unique_id=1634607651 instance=ExtResource("21_6xxi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 2.6773605)
-data = SubResource("Resource_0okpl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7625704, 0.5000005, 4.388818)
 
-[node name="Harvestable2" parent="." unique_id=844644205 instance=ExtResource("21_6xxi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 5.548606)
-data = SubResource("Resource_0okpl")
+[node name="LootContainer" parent="." unique_id=1489507830 instance=ExtResource("19_hxqi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6012278, 0.5, 7.8081636)
 
-[node name="Harvestable3" parent="." unique_id=2005426951 instance=ExtResource("21_6xxi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 7.931365)
-data = SubResource("Resource_0okpl")
+[node name="LootContainer2" parent="." unique_id=1675055399 instance=ExtResource("19_hxqi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6012278, 0.5, 10.268247)
 
-[node name="Harvestable4" parent="." unique_id=1317397516 instance=ExtResource("21_6xxi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 10.023835)
-data = SubResource("Resource_0okpl")
-
-[node name="Harvestable5" parent="." unique_id=251893331 instance=ExtResource("21_6xxi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 11.814156)
-data = SubResource("Resource_0okpl")
-
-[node name="Box Inventory" parent="." unique_id=298051672 instance=ExtResource("21_0okpl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.693041, 0.57105, 4.3815317)
+[node name="LootContainer3" parent="." unique_id=1155768572 instance=ExtResource("19_hxqi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6012278, 0.5, 5.3363824)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]

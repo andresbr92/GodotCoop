@@ -1,7 +1,7 @@
 {
   "bundles": {
     "fps-891": {
-      "name": "fps",
+      "name": "GodotCoop",
       "created": "2026-02-12T16:15:13.890Z",
       "lastUsed": "2026-02-14T21:40:13.432Z",
       "tags": [],
@@ -56,6 +56,12 @@
         "godot-coop/items/definitions/gameplay_effects/GE_HealOverTime.tres",
         "godot-coop/items/projectile_base.gd",
         "godot-coop/items/world_models/potions/fire_potion_projectile.gd",
+        "godot-coop/interactables/interactable_base.gd",
+        "godot-coop/interactables/harvest_nodes/harvestable.gd",
+        "godot-coop/interactables/harvest_nodes/harvestable_data.gd",
+        "godot-coop/interactables/loot_container/loot_container.gd",
+        "godot-coop/interactables/loot_container/loot_container_data.gd",
+        "godot-coop/interactables/loot_container/search_constraint.gd",
         "godot-coop/levels/maps/main.gd",
         "godot-coop/systems/multiplayer_spawner.gd",
         "godot-coop/systems/network_manager.gd",
@@ -63,9 +69,9 @@
       ]
     },
     "fps-ui-892": {
-      "name": "fps + ui",
+      "name": "GodotCoop + ui",
       "created": "2026-02-12T16:30:00.000Z",
-      "lastUsed": "2026-02-12T17:00:00.000Z",
+      "lastUsed": "2026-02-15T16:53:50.217Z",
       "tags": [],
       "files": [
         "godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd",
