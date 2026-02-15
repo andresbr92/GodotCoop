@@ -15,12 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="12_8ca51"]
 [ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="13_vptr5"]
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
-[ext_resource type="PackedScene" uid="uid://bvjagvllelgcf" path="res://addons/inventory-system-demos/fps/workbench.tscn" id="15_nxb8c"]
-[ext_resource type="PackedScene" uid="uid://ddmkgthhtdk16" path="res://interactables/stations/mp_cauldron.tscn" id="16_3b04x"]
 [ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
 [ext_resource type="PackedScene" uid="uid://ppoth6laefj7" path="res://items/inventory_items/potions/heal_potion.tscn" id="19_3w03t"]
-[ext_resource type="PackedScene" uid="uid://b1ng1s404fe0f" path="res://interactables/harvest_nodes/loot_box.tscn" id="20_hxqi7"]
+[ext_resource type="Script" uid="uid://x4n351wcbd3e" path="res://interactables/harvest_nodes/harvestable_data.gd" id="19_hxqi7"]
 [ext_resource type="PackedScene" uid="uid://cn6sy338tb7m4" path="res://addons/inventory-system-demos/fps/box_inventory.tscn" id="21_0okpl"]
+[ext_resource type="PackedScene" uid="uid://br8sd7qy15mun" path="res://interactables/harvest_nodes/harvestable.tscn" id="21_6xxi0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -34,6 +33,12 @@ background_mode = 2
 sky = SubResource("Sky_d8mrn")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_0okpl"]
+script = ExtResource("19_hxqi7")
+harvest_duration = 1.0
+loot_table_id = "bush"
+metadata/_custom_type_script = "uid://x4n351wcbd3e"
 
 [node name="Main" type="Node" unique_id=1964116347]
 script = ExtResource("1_ypdrr")
@@ -258,20 +263,31 @@ text = "HOST"
 layout_mode = 2
 text = "CONNECT TO LOCALHOST"
 
-[node name="Workbench" parent="." unique_id=2133570632 instance=ExtResource("15_nxb8c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16787791, 0, 5.925412)
-
-[node name="Workbench2" parent="." unique_id=1038903432 instance=ExtResource("16_3b04x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18316221, 0, 10.427185)
-
 [node name="HumanNPC" parent="." unique_id=385850437 instance=ExtResource("18_bivqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
 
-[node name="LootBox" parent="." unique_id=175722843 instance=ExtResource("20_hxqi7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2743587, 0.5, 5.1529284)
+[node name="Harvestable" parent="." unique_id=1634607651 instance=ExtResource("21_6xxi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 2.6773605)
+data = SubResource("Resource_0okpl")
+
+[node name="Harvestable2" parent="." unique_id=844644205 instance=ExtResource("21_6xxi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 5.548606)
+data = SubResource("Resource_0okpl")
+
+[node name="Harvestable3" parent="." unique_id=2005426951 instance=ExtResource("21_6xxi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 7.931365)
+data = SubResource("Resource_0okpl")
+
+[node name="Harvestable4" parent="." unique_id=1317397516 instance=ExtResource("21_6xxi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 10.023835)
+data = SubResource("Resource_0okpl")
+
+[node name="Harvestable5" parent="." unique_id=251893331 instance=ExtResource("21_6xxi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0686483, -9.536743e-07, 11.814156)
+data = SubResource("Resource_0okpl")
 
 [node name="Box Inventory" parent="." unique_id=298051672 instance=ExtResource("21_0okpl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9331956, 0.5710495, 3.8413723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.693041, 0.57105, 4.3815317)
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]

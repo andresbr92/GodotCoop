@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://br8sd7qy15mun"]
+
+[ext_resource type="PackedScene" uid="uid://byqan6j5p4xtk" path="res://interactables/interactable_base.tscn" id="1_df2wp"]
+[ext_resource type="Script" uid="uid://dghutx6ntsnle" path="res://interactables/harvest_nodes/harvestable.gd" id="2_68goa"]
+[ext_resource type="Resource" uid="uid://qqgc7cclfej" path="res://interactables/harvest_nodes/Harvest_Bush_Simple.tres" id="3_2pwgf"]
+[ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="3_3edoc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2pwgf"]
+
+[node name="Harvestable" unique_id=1634607651 instance=ExtResource("1_df2wp")]
+script = ExtResource("2_68goa")
+data = ExtResource("3_2pwgf")
+
+[node name="LootGenerator" type="LootGenerator" parent="." index="2" unique_id=1672414277]
+loot_id = "bush"
+database = ExtResource("3_3edoc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=382112071]
+mesh = SubResource("BoxMesh_2pwgf")

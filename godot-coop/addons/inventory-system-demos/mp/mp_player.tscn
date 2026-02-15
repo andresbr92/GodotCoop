@@ -55,13 +55,19 @@ mesh = SubResource("BoxMesh_biea6")
 root_path = NodePath("../Mesh")
 replication_config = SubResource("SceneReplicationConfig_bfpca")
 
-[node name="HandItem" parent="Camera3D" parent_id_path=PackedInt32Array(639012902) index="1" unique_id=1909167435]
+[node name="HandItem" parent="Camera3D" parent_id_path=PackedInt32Array(639012902) index="1" unique_id=1909167435 node_paths=PackedStringArray("hotbar", "interactor", "default_hand_item_object")]
 visible = false
+hotbar = NodePath("../../CharacterInventorySystem/Hotbar")
+interactor = NodePath("../../CharacterInventorySystem/Interactor")
+default_hand_item_object = NodePath("DefaultHandItem")
 
-[node name="ThirdPersonHandItem" type="Node3D" parent="Camera3D" parent_id_path=PackedInt32Array(639012902) index="2" unique_id=1857850609]
+[node name="ThirdPersonHandItem" type="Node3D" parent="Camera3D" parent_id_path=PackedInt32Array(639012902) index="2" unique_id=1857850609 node_paths=PackedStringArray("hotbar", "interactor", "default_hand_item_object")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.464388, -0.32354, -0.76413)
 visible = false
 script = ExtResource("3_g726w")
+hotbar = NodePath("../../CharacterInventorySystem/Hotbar")
+interactor = NodePath("../../CharacterInventorySystem/Interactor")
+default_hand_item_object = NodePath("DefaultHandItem")
 
 [node name="DefaultHandItem" type="MeshInstance3D" parent="Camera3D/ThirdPersonHandItem" index="0" unique_id=461764084]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103376, 0, 0.154242)

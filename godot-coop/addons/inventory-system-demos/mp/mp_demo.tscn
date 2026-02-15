@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bn7s6bo56ow2w" path="res://addons/inventory-system-demos/mp/placeable_item_spawner.gd" id="12_tyg5k"]
 [ext_resource type="Script" uid="uid://cxs7ysksierga" path="res://addons/inventory-system-demos/mp/lag_test.gd" id="15_7tjb2"]
 [ext_resource type="PackedScene" uid="uid://b7kev3be161jq" path="res://addons/inventory-system-demos/mp/mp_workbench.tscn" id="16_qnjnu"]
+[ext_resource type="PackedScene" uid="uid://bwsuu1bxuwtha" path="res://addons/inventory-system-demos/fps/loot_box_inventory.tscn" id="17_2a7rl"]
 [ext_resource type="PackedScene" uid="uid://ccgrlrqx2vvqf" path="res://addons/inventory-system-demos/mp/mp_campfire.tscn" id="17_qo5oj"]
 
 [node name="MPDemo" type="Node" unique_id=1376509987]
@@ -31,20 +32,20 @@ script = ExtResource("10_efc1k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 script = ExtResource("10_4488h")
 
-[node name="Inventory" parent="Box Inventory" index="0"]
+[node name="Inventory" parent="Box Inventory" index="0" unique_id=3494954]
 inventory_name = "Dynamic Inventory"
 
-[node name="Openable" parent="Box Inventory" index="7"]
+[node name="Openable" parent="Box Inventory" index="7" unique_id=77315851]
 script = ExtResource("10_kjp1o")
 
 [node name="Box Inventory2" parent="." unique_id=185107535 instance=ExtResource("9_y0513")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.65824, 0.5, -4)
 script = ExtResource("10_4488h")
 
-[node name="Inventory" parent="Box Inventory2" index="0"]
+[node name="Inventory" parent="Box Inventory2" index="0" unique_id=3494954]
 inventory_name = "Static Inventory"
 
-[node name="Openable" parent="Box Inventory2" index="7"]
+[node name="Openable" parent="Box Inventory2" index="7" unique_id=77315851]
 script = ExtResource("10_kjp1o")
 
 [node name="Workbench" parent="." unique_id=1800000452 instance=ExtResource("16_qnjnu")]
@@ -106,6 +107,9 @@ text = "HOST"
 [node name="ConnectButton" type="Button" parent="UI/Connect Panel/VBoxContainer" unique_id=610232087]
 layout_mode = 2
 text = "CONNECT TO LOCALHOST"
+
+[node name="Loot Box Inventory" parent="." unique_id=1158662431 instance=ExtResource("17_2a7rl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95100856, 0.57105, -0.29944897)
 
 [connection signal="button_down" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_down"]
 [connection signal="button_down" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_down"]

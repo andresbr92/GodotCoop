@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://byqan6j5p4xtk"]
+
+[ext_resource type="Script" uid="uid://cr66fpjmjg4ae" path="res://interactables/interactable_base.gd" id="1_fde5w"]
+[ext_resource type="Script" uid="uid://dttp27rk0lwvx" path="res://addons/inventory-system-demos/interaction_system/interact_action.gd" id="2_skjcs"]
+
+[sub_resource type="Resource" id="Resource_rjoue"]
+script = ExtResource("2_skjcs")
+metadata/_custom_type_script = "uid://dttp27rk0lwvx"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_skjcs"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_skjcs"]
+
+[node name="InteractableBase" type="StaticBody3D" unique_id=1634607651]
+collision_layer = 32
+script = ExtResource("1_fde5w")
+default_action = SubResource("Resource_rjoue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1404329005]
+shape = SubResource("BoxShape3D_skjcs")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1295334179]
+replication_config = SubResource("SceneReplicationConfig_skjcs")

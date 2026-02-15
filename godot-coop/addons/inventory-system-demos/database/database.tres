@@ -260,12 +260,24 @@ max_amount = 12
 
 [sub_resource type="LootItem" id="LootItem_utrd5"]
 item_id = "helmet_labor"
-weight = 0.01
 
 [sub_resource type="Loot" id="Loot_6ctep"]
 items = Array[LootItem]([SubResource("LootItem_6ctep"), SubResource("LootItem_dqypk"), SubResource("LootItem_4cjml"), SubResource("LootItem_utrd5")])
 id = "tools"
 name = "Tools"
+
+[sub_resource type="LootItem" id="LootItem_4fkxu"]
+item_id = "wood"
+max_amount = 10
+
+[sub_resource type="LootItem" id="LootItem_he2jw"]
+item_id = "raw_meat"
+weight = 0.3
+
+[sub_resource type="Loot" id="Loot_4cjml"]
+items = Array[LootItem]([SubResource("LootItem_4fkxu"), SubResource("LootItem_he2jw")])
+id = "bush"
+name = "Bush"
 
 [sub_resource type="ItemStack" id="ItemStack_dbkim"]
 item_id = "wood"
@@ -396,4 +408,4 @@ items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource(
 recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y"), SubResource("Recipe_4cjml"), SubResource("Recipe_utrd5")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv")])
-loots = Array[Loot]([SubResource("Loot_6ctep")])
+loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml")])

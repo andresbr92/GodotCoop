@@ -4,6 +4,7 @@ class_name LootBoxInventory
 @onready var loot_generator: LootGenerator = $LootGenerator
 
 func _on_open():
+	print("generate loot")
 	loot_generator.generate_loot()
 	super._on_open()
 

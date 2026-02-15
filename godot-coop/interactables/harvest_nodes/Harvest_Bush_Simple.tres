@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HarvestableData" format=3 uid="uid://qqgc7cclfej"]
+
+[ext_resource type="Script" uid="uid://x4n351wcbd3e" path="res://interactables/harvest_nodes/harvestable_data.gd" id="1_vrsnh"]
+
+[resource]
+script = ExtResource("1_vrsnh")
+loot_table_id = "bush"
+metadata/_custom_type_script = "uid://x4n351wcbd3e"
