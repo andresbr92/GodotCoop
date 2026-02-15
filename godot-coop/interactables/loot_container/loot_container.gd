@@ -14,6 +14,7 @@ extends InteractableBase
 # --- ESTADO ---
 var is_opened: bool = false
 var searching_process_active: bool = false
+const MAX_INTERACT_DISTANCE_SQR = 3.0 * 3.0
 
 func _ready():
 	interaction_text = "Search"
@@ -23,23 +24,62 @@ func _ready():
 		loot_generator.loot_id = data.loot_table_id
 		# Apuntamos el generador a NUESTRO PROPIO inventario
 		loot_generator.target_inventory_path = inventory.get_path()
-
+func _process(_delta):
+	if not multiplayer.is_server(): return
+	
+	if current_interactor == null:
+		set_process(false)
+		return
+		
+	# Si se aleja demasiado -> Cancelamos a la fuerza
+	if global_position.distance_squared_to(current_interactor.global_position) > MAX_INTERACT_DISTANCE_SQR:
+		# Forzamos cierre de UI en el cliente (opcional, pero recomendado)
+		var char_sys = current_interactor.get_node_or_null("CharacterInventorySystem")
+		if char_sys:
+			char_sys.close_inventories() # Esto disparará la señal closed_inventory
+		
+		cancel_interaction()
 # Sobrescribimos la interacción base
 func _on_interacted(character: Node):
-	# 1. ABRIR (Generar Loot si es la primera vez)
+	# Lógica anterior de abrir inventario...
 	if not is_opened:
 		_first_time_generation()
 		is_opened = true
 	
-	# 2. ABRIR UI DEL JUGADOR
-	# Llamamos al sistema del personaje para que abra este inventario
 	var char_sys = character.get_node_or_null("CharacterInventorySystem")
 	if char_sys:
 		char_sys.open_inventory(inventory)
+		
+		# CONEXIÓN: Escuchar si el jugador cierra el inventario voluntariamente
+		# Conectamos con flag CONNECT_ONE_SHOT para que se desconecte sola al dispararse
+		if not char_sys.closed_inventory.is_connected(_on_player_closed_inventory):
+			char_sys.closed_inventory.connect(_on_player_closed_inventory)
 	
-	# 3. INICIAR PROCESO DE BÚSQUEDA (Secuencial)
-	if data.auto_search_on_open and not searching_process_active:
+	# Activar chequeo de distancia
+	set_process(true)
+	
+	# Iniciar búsqueda
+	if data.auto_search_on_open:
 		_start_revealing_sequence()
+
+func _on_player_closed_inventory(closed_inv: Inventory):
+	# Verificamos que cerró ESTE inventario (por si tiene varios abiertos)
+	if closed_inv == inventory:
+		cancel_interaction()
+
+func _on_interaction_canceled():
+	# PARAR EL PROCESO DE REVELADO
+	searching_process_active = false
+	reveal_timer.stop()
+	set_process(false) # Dejar de chequear distancia
+	
+	# Desconectar señal por seguridad (si no fue one_shot o si cancelamos por distancia)
+	if current_interactor:
+		var char_sys = current_interactor.get_node_or_null("CharacterInventorySystem")
+		if char_sys and char_sys.closed_inventory.is_connected(_on_player_closed_inventory):
+			char_sys.closed_inventory.disconnect(_on_player_closed_inventory)
+	
+	print("Búsqueda detenida. Items restantes permanecen ocultos.")
 
 func _first_time_generation():
 	if not multiplayer.is_server(): return

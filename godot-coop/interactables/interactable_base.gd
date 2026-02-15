@@ -8,6 +8,7 @@ extends StaticBody3D
 
 
 @export var default_action: InteractAction 
+var current_interactor: Node = null
 
 
 var is_being_used: bool = false 
@@ -61,6 +62,21 @@ func _request_interact_rpc(character_path: NodePath) -> void:
 	if character:
 		_server_interact(character)
 
-func _server_interact(character: Node) -> void:
-	# Aquí podríamos validar distancia, obstáculos, etc.
+func _server_interact(character: Node):
+	if current_interactor != null and current_interactor != character:
+		print("Objeto ocupado por otro jugador")
+		return
+
+	current_interactor = character
 	_on_interacted(character)
+
+
+func cancel_interaction():
+	if current_interactor == null: return
+	
+	print("Interacción cancelada con ", current_interactor.name)
+	_on_interaction_canceled() # Hook virtual para los hijos
+	current_interactor = null
+
+func _on_interaction_canceled():
+	pass
