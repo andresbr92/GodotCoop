@@ -1,6 +1,7 @@
 @tool
 class_name NetworkedCharacterInventorySystem
 extends "../character/character_inventory_system.gd"
+@onready var equipment_manager: EquipmentManager = $EquipmentManager
 
 
 func _ready():
@@ -34,6 +35,9 @@ func _input(event : InputEvent):
 func open_main_inventory():
 	if multiplayer.is_server():
 		super.open_main_inventory()
+		for inventory in equipment_manager.get_children():
+			if inventory is GridInventory:
+				open_inventory(inventory)
 	else:
 		open_main_inventory_rpc.rpc_id(1)
 
@@ -60,6 +64,7 @@ func remove_open_inventory(inventory : Inventory):
 func close_inventories():
 	if multiplayer.is_server():
 		super.close_inventories()
+		
 	else:
 		close_inventories_rpc.rpc_id(1)
 

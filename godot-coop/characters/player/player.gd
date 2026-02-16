@@ -17,6 +17,8 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/CraftStation/SyncCraftStation.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
+	#var Fireball = GameplayAbility.new()
+	#attribute_set.grant_ability(Fireball, "ability.primary")
 	pass
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -56,3 +58,24 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, attribute_set.speed)
 
 	move_and_slide()
+func _input(event: InputEvent) -> void:
+	# Only the local player controls input
+	if not is_multiplayer_authority(): return
+	
+	# --- ABILITY INPUT MAPPING ---
+	
+	# Primary Attack (Left Click)
+	if event.is_action_pressed("attack_primary"): # Or "throw" if you kept that name
+		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_PRIMARY)
+		
+	if event.is_action_released("attack_primary"):
+		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_PRIMARY)
+
+	# Secondary Attack (Right Click - Aiming/Alt Fire)
+	if event.is_action_pressed("attack_secondary"):
+		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
+		
+	if event.is_action_released("attack_secondary"):
+		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
+		
+	# You can add more mappings here (Reload, Jump, Ultimate...)

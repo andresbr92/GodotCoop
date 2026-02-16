@@ -1,0 +1,7 @@
+[gd_resource type="InventoryConstraint" script_class="EquipmentSlotConstraint" format=3 uid="uid://cuqhlopt0ts3u"]
+
+[ext_resource type="Script" uid="uid://dl88cmaxmlmgw" path="res://systems/inventory/equipment_slot_constraint.gd" id="1_yqtat"]
+
+[resource]
+script = ExtResource("1_yqtat")
+metadata/_custom_type_script = "uid://dl88cmaxmlmgw"

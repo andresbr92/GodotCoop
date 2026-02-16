@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://cp7thq3r3r78c"]
+
+[ext_resource type="Script" uid="uid://chlfotutlp83j" path="res://items/definitions/ability_grant.gd" id="1_w4q8u"]
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="2_ipmoc"]
+[ext_resource type="Script" uid="uid://161nty25m7wj" path="res://items/definitions/gameplay_ability.gd" id="2_vrswu"]
+[ext_resource type="Script" uid="uid://gk4v8hjc16d6" path="res://items/definitions/equipment_data.gd" id="3_vrswu"]
+[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="5_vrswu"]
+
+[sub_resource type="Resource" id="Resource_rvr1j"]
+script = ExtResource("2_vrswu")
+metadata/_custom_type_script = "uid://161nty25m7wj"
+
+[sub_resource type="Resource" id="Resource_8u10g"]
+script = ExtResource("1_w4q8u")
+ability = SubResource("Resource_rvr1j")
+metadata/_custom_type_script = "uid://chlfotutlp83j"
+
+[sub_resource type="Resource" id="Resource_b7yqr"]
+script = ExtResource("2_ipmoc")
+target_attribute = "health"
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"
+
+[resource]
+script = ExtResource("3_vrswu")
+visual_scene = ExtResource("5_vrswu")
+bone_name = "Head"
+passive_effects = Array[ExtResource("2_ipmoc")]([SubResource("Resource_b7yqr")])
+granted_abilities = Array[ExtResource("1_w4q8u")]([SubResource("Resource_8u10g")])
+metadata/_custom_type_script = "uid://gk4v8hjc16d6"

@@ -4,6 +4,12 @@ extends Node
 signal health_changed(new_value, max_value)
 signal died()
 
+# --- INPUT TAGS CONSTANTS ---
+const INPUT_PRIMARY = "ability.primary"
+const INPUT_SECONDARY = "ability.secondary"
+const INPUT_RELOAD = "ability.reload"
+const INPUT_JUMP = "ability.jump"
+
 # ATRIBUTOS VÁLIDOS (Fuente de verdad)
 const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana"]
 
@@ -30,20 +36,44 @@ var speed: float:
 	get:
 		return get_total_stat("speed")
 
+#region Internal GAS classes
+
 
 # GESTIÓN DE MODIFICADORES TEMPORALES
 class ActiveEffect:
+	var handle: EffectSpecHandle
 	var source_effect: GameplayEffect
 	var time_left: float
 	var tick_timer: float
 	
-	func _init(effect: GameplayEffect):
+	func _init(p_handle: EffectSpecHandle, effect: GameplayEffect):
+		handle = p_handle
 		source_effect = effect
 		time_left = effect.duration
 		tick_timer = 0.0
 
+# --- INTERNAL CLASS FOR GRANTED ABILITIES ---
+class AbilitySpec:
+	var handle: AbilitySpecHandle
+	var ability: GameplayAbility # The resource definition
+	var input_tag: String # The input slot (e.g., "ability.primary")
+	var is_active: bool = false
+	
+	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String):
+		handle = p_handle
+		ability = p_ability
+		input_tag = p_input
+
+#endregion
+
+
+
+var active_effect_registry: Dictionary = {}
 var active_modifiers: Dictionary = {}
 var active_periodic_effects: Array[ActiveEffect] = []
+var granted_abilities: Dictionary = {}
+
+
 
 func _ready() -> void:
 	for attr in VALID_ATTRIBUTES:
@@ -59,23 +89,147 @@ func _process(delta: float) -> void:
 
 # --- 1. LÓGICA DE APLICACIÓN ---
 
-func apply_gameplay_effects(effects: Array[GameplayEffect]) -> void:
-	if not multiplayer.is_server(): return
+#region Effect Functions
+
+func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
+	if not multiplayer.is_server(): return []
+	
+	var created_handles: Array[EffectSpecHandle] = []
 	
 	for effect in effects:
 		match effect.mode:
 			GameplayEffect.ApplicationMode.INSTANT:
-				print("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "' on ", effect.target_attribute)
+				# Instant effects don't need handles as they don't persist
+				print("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "'")
 				_apply_instant_change(effect)
 				
 			GameplayEffect.ApplicationMode.PERIODIC:
-				print("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' (Duration: ", effect.duration, "s, Tick: ", effect.tick_rate, "s)")
-				active_periodic_effects.append(ActiveEffect.new(effect))
+				var handle = _create_active_effect(effect)
+				print("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
+				active_periodic_effects.append(active_effect_registry[handle])
+				created_handles.append(handle)
 				
-			GameplayEffect.ApplicationMode.DURATION:
-				print("[AttributeSet] Added DURATION modifier to '", effect.target_attribute, "': '", effect.effect_name, "' (Duration: ", effect.duration, "s)")
-				active_modifiers[effect.target_attribute].append(ActiveEffect.new(effect))
+			GameplayEffect.ApplicationMode.DURATION: # (And INFINITE/PASSIVE in the future)
+				var handle = _create_active_effect(effect)
+				print("[AttributeSet] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
+				active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
 				_on_modifier_changed(effect.target_attribute)
+				created_handles.append(handle)
+	
+	return created_handles
+
+func remove_effect(handle: EffectSpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	
+	if not active_effect_registry.has(handle):
+		print("[AttributeSet] Warning: Check to remove effect ", handle, " failed. Not found.")
+		return
+	
+	var active_effect = active_effect_registry[handle]
+	var source_data = active_effect.source_effect
+	
+	print("[AttributeSet] Removing effect manually: ", handle)
+	
+	# 1. Clean up from logic lists
+	match source_data.mode:
+		GameplayEffect.ApplicationMode.PERIODIC:
+			active_periodic_effects.erase(active_effect)
+			
+		GameplayEffect.ApplicationMode.DURATION:
+			var attr_name = source_data.target_attribute
+			if active_modifiers.has(attr_name):
+				active_modifiers[attr_name].erase(active_effect)
+				_on_modifier_changed(attr_name) # Recalculate stats immediately
+	
+	# 2. Remove from central registry
+	active_effect_registry.erase(handle)
+
+#endregion
+
+
+#region Ability Functions
+func grant_ability(ability_res: GameplayAbility, input_tag: String = "") -> AbilitySpecHandle:
+	if not multiplayer.is_server(): return null
+	if ability_res == null: return null
+	
+	# 1. Generate the unique ID (Receipt)
+	var handle = AbilitySpecHandle.new(ability_res.ability_name)
+	
+	# 2. Create the runtime specification (Instance data)
+	var spec = AbilitySpec.new(handle, ability_res, input_tag)
+	
+	# 3. Store in the registry
+	granted_abilities[handle] = spec
+	
+	print("[AttributeSet] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
+	
+	return handle
+
+func clear_ability(handle: AbilitySpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	
+	if not granted_abilities.has(handle):
+		print("[AttributeSet] Warning: Check to clear ability ", handle, " failed. Not found.")
+		return
+		
+	var spec = granted_abilities[handle]
+	
+	# Force end if running
+	if spec.is_active:
+		# We pass 'get_parent()' assuming AttributeSet is child of CharacterBase
+		spec.ability.end_ability(get_parent(), handle)
+	
+	granted_abilities.erase(handle)
+	print("[AttributeSet] Cleared Ability: ", handle)
+
+
+
+# RPC called by the client when a button is pressed
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_pressed(input_tag: String) -> void:
+	# Security check: Ensure logic runs only on server
+	if not multiplayer.is_server(): return
+	
+	# Find abilities bound to this input tag
+	for handle in granted_abilities:
+		var spec: AbilitySpec = granted_abilities[handle]
+		
+		if spec.input_tag == input_tag:
+			# Found a matching ability!
+			# We assume 'get_parent()' is the CharacterBase (the Actor)
+			var actor = get_parent()
+			
+			print("[AttributeSet] Input '", input_tag, "' triggered ability: ", spec.ability.ability_name)
+			
+			spec.is_active = true
+			spec.ability.activate(actor, handle)
+
+# RPC called by the client when a button is released
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_released(input_tag: String) -> void:
+	if not multiplayer.is_server(): return
+	
+	for handle in granted_abilities:
+		var spec: AbilitySpec = granted_abilities[handle]
+		
+		if spec.input_tag == input_tag:
+			# Notify the ability that input was released (useful for charged attacks, bows, etc)
+			var actor = get_parent()
+			spec.ability.input_released(actor, handle)
+			# Note: We don't set is_active = false here automatically. 
+			# The ability should decide when to end itself callind end_ability().
+
+
+#endregion
+
+
+
+# Helper to create the ActiveEffect and register it
+func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
+	var handle = EffectSpecHandle.new(effect.effect_name)
+	var active = ActiveEffect.new(handle, effect)
+	active_effect_registry[handle] = active
+	return handle
 
 # --- 2. CÁLCULO DE STATS TOTALES ---
 
@@ -124,11 +278,11 @@ func _process_periodic_effects(delta: float) -> void:
 		
 		if active.tick_timer >= active.source_effect.tick_rate:
 			active.tick_timer = 0.0
-			print("[AttributeSet] TICK! Periodic effect '", active.source_effect.effect_name, "' applied.")
 			_apply_instant_change(active.source_effect)
 			
 		if active.time_left <= 0:
-			print("[AttributeSet] Periodic effect '", active.source_effect.effect_name, "' EXPIRED.")
+			# Cleanup
+			active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
 			active_periodic_effects.remove_at(i)
 
 func _process_duration_modifiers(delta: float) -> void:
@@ -139,7 +293,8 @@ func _process_duration_modifiers(delta: float) -> void:
 			var active = modifiers_list[i]
 			active.time_left -= delta
 			if active.time_left <= 0:
-				print("[AttributeSet] DURATION modifier '", active.source_effect.effect_name, "' EXPIRED on '", attr, "'.")
+				# Cleanup
+				active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
 				modifiers_list.remove_at(i)
 				changed = true
 		
