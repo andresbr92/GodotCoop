@@ -44,6 +44,9 @@ mesh = SubResource("BoxMesh_58jvb")
 [node name="FakeSkeleton" type="Node3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="2" unique_id=1032185415]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.1280191e-09, 0.94798553, -0.012903035)
 
+[node name="HandMarker" type="Marker3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="3" unique_id=1928405143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7257591, 0.23627758, -0.3571083)
+
 [node name="HUD" type="Control" parent="." index="4" unique_id=1651431043]
 layout_mode = 3
 anchors_preset = 15

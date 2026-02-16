@@ -224,7 +224,7 @@ name = "Fire Potion"
 icon = ExtResource("17_4cjml")
 properties = {
 "dropped_item": "res://items/inventory_items/potions/fire_potion.tscn",
-"equipment_data": "res://items/test.tres",
+"equipment_data": "res://items/definitions/equipment/EqData_FirePotion.tres",
 "hand_item": "res://addons/assets/bottle.glb",
 "throwable_data": "res://items/definitions/potion/FirePotionStats.tres"
 }
