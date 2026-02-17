@@ -85,6 +85,11 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_released("attack_secondary"):
 		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
+	if event.is_action_pressed("aim"): # O el nombre que tengas en InputMap
+		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
+		
+	if event.is_action_released("aim"):
+		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
 		
 	# You can add more mappings here (Reload, Jump, Ultimate...)
 

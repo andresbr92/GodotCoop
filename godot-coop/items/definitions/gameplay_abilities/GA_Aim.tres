@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameplayAbility" format=3 uid="uid://cg6y81fasxwob"]
+
+[ext_resource type="Script" uid="uid://161nty25m7wj" path="res://items/definitions/gameplay_ability.gd" id="1_8pi5w"]
+
+[resource]
+script = ExtResource("1_8pi5w")
+ability_name = "Aiming"
+metadata/_custom_type_script = "uid://161nty25m7wj"

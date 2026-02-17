@@ -4,6 +4,11 @@ extends Node
 signal health_changed(new_value, max_value)
 signal died()
 
+@export_group("Innate Abilities")
+# Lista de habilidades con las que nace el personaje.
+# Usamos AbilityGrant para saber qué Input Tag asignarles.
+@export var default_abilities: Array[AbilityGrant] 
+
 # --- INPUT TAGS CONSTANTS ---
 const INPUT_PRIMARY = "ability.primary"
 const INPUT_SECONDARY = "ability.secondary"
@@ -80,6 +85,10 @@ func _ready() -> void:
 		active_modifiers[attr] = []
 	health = base_max_health
 	print("[AttributeSet] Initialized. Starting Health: ", health)
+	if multiplayer.is_server():
+		for grant in default_abilities:
+			if grant.ability:
+				grant_ability(grant.ability, grant.input_tag)
 
 func _process(delta: float) -> void:
 	if not multiplayer.is_server(): return
