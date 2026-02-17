@@ -6,6 +6,7 @@ class_name GA_ThrowProjectile
 @export var throwable_data: ThrowableData 
 
 func activate(actor: Node, handle: AbilitySpecHandle) -> void:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
 	# 1. Obtener referencias del Actor (Player)
 	# Asumimos que el actor tiene las propiedades expuestas o buscamos los nodos
 	var camera: Camera3D = actor.get_node("SpringArmPivot/Camera3D") # Ajusta la ruta si cambió

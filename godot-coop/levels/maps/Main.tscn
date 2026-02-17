@@ -15,8 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="12_8ca51"]
 [ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="13_vptr5"]
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
+[ext_resource type="Script" uid="uid://ctu3vfl53whl3" path="res://addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd" id="17_hxqi7"]
+[ext_resource type="PackedScene" uid="uid://cxevor61mdhtc" path="res://addons/inventory-system-demos/ui/grid/grid_slot_ui.tscn" id="18_0okpl"]
 [ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
 [ext_resource type="PackedScene" uid="uid://ppoth6laefj7" path="res://items/inventory_items/potions/heal_potion.tscn" id="19_3w03t"]
+[ext_resource type="PackedScene" uid="uid://ch1ixmsfcaf5c" path="res://addons/inventory-system-demos/ui/grid/grid_item_stack_ui.tscn" id="19_6xxi0"]
 [ext_resource type="PackedScene" uid="uid://b2847opptwu7x" path="res://interactables/loot_container/loot_container.tscn" id="19_hxqi7"]
 [ext_resource type="PackedScene" uid="uid://br8sd7qy15mun" path="res://interactables/harvest_nodes/harvestable.tscn" id="21_6xxi0"]
 
@@ -222,6 +225,42 @@ script = ExtResource("11_au11x")
 
 [node name="InteractorUI" parent="UI/InventorySystemUI" index="0"]
 input_icons = ExtResource("14_pj6ab")
+
+[node name="EquipmentContainer" type="VBoxContainer" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" index="1" unique_id=829956861]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=1543602113]
+layout_mode = 2
+text = "Equipment"
+
+[node name="HeadSlot" type="Control" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=1229114681]
+visible = false
+layout_mode = 2
+script = ExtResource("17_hxqi7")
+grid_slot_ui_scene = ExtResource("18_0okpl")
+grid_item_stack_ui_scene = ExtResource("19_6xxi0")
+grid_slot_size = Vector2(64, 64)
+metadata/_custom_type_script = "uid://ctu3vfl53whl3"
+
+[node name="ChestSlot" type="Control" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=408165349]
+visible = false
+layout_mode = 2
+script = ExtResource("17_hxqi7")
+grid_slot_ui_scene = ExtResource("18_0okpl")
+grid_item_stack_ui_scene = ExtResource("19_6xxi0")
+grid_slot_size = Vector2(64, 64)
+metadata/_custom_type_script = "uid://ctu3vfl53whl3"
+
+[node name="HandSlot" type="Control" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=1718028519]
+visible = false
+layout_mode = 2
+script = ExtResource("17_hxqi7")
+grid_slot_ui_scene = ExtResource("18_0okpl")
+grid_item_stack_ui_scene = ExtResource("19_6xxi0")
+grid_slot_size = Vector2(64, 64)
+metadata/_custom_type_script = "uid://ctu3vfl53whl3"
 
 [node name="StackPopupMenu" parent="UI/InventorySystemUI" index="6"]
 size = Vector2i(32, 8)

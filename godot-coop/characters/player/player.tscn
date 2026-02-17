@@ -25,6 +25,16 @@ size = Vector3(0.125, 0.125, 0.125)
 script = ExtResource("14_58jvb")
 metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
 
+[sub_resource type="GridInventoryConstraint" id="GridInventoryConstraint_8l73k"]
+script = ExtResource("14_58jvb")
+allowed_slot = 1
+metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
+
+[sub_resource type="GridInventoryConstraint" id="GridInventoryConstraint_aqrcq"]
+script = ExtResource("14_58jvb")
+allowed_slot = 2
+metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
+
 [node name="Player" unique_id=385850437 instance=ExtResource("1_6rrl0")]
 script = ExtResource("2_6rrl0")
 
@@ -139,7 +149,6 @@ script = ExtResource("11_hsn1j")
 [node name="Hotbar" type="Hotbar" parent="CharacterInventorySystem" index="4" unique_id=2089028437]
 inventory = NodePath("../Inventory")
 selection_index = 0
-auto_equip_mode = 2
 database = ExtResource("6_b0vde")
 
 [node name="SyncHotbar" type="Node" parent="CharacterInventorySystem/Hotbar" index="0" unique_id=79356403 node_paths=PackedStringArray("hotbar")]
@@ -154,7 +163,7 @@ equipment_slots = {
 0: NodePath("HeadSlot")
 }
 
-[node name="HeadSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="0" unique_id=1653232254]
+[node name="HeadSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="0" unique_id=1653232254 groups=["EquipmentInventory"]]
 size = Vector2i(1, 1)
 grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_58jvb")])
 database = ExtResource("6_b0vde")
@@ -166,4 +175,35 @@ metadata/_custom_type_script = "uid://dlemxn6c687mt"
 
 [node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/HeadSlot" index="1" unique_id=1648968418]
 script = ExtResource("8_41yun")
+is_open = true
+metadata/_custom_type_script = "uid://gngi6ncgkswy"
+
+[node name="ChestSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="1" unique_id=263126615 groups=["EquipmentInventory"]]
+size = Vector2i(1, 1)
+grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_8l73k")])
+database = ExtResource("6_b0vde")
+
+[node name="SyncGridInventory" type="Node" parent="CharacterInventorySystem/EquipmentManager/ChestSlot" index="0" unique_id=526669669 node_paths=PackedStringArray("inventory")]
+script = ExtResource("9_svrv0")
+inventory = NodePath("..")
+metadata/_custom_type_script = "uid://dlemxn6c687mt"
+
+[node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/ChestSlot" index="1" unique_id=1832602154]
+script = ExtResource("8_41yun")
+is_open = true
+metadata/_custom_type_script = "uid://gngi6ncgkswy"
+
+[node name="HandSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="2" unique_id=914039915 groups=["EquipmentInventory"]]
+size = Vector2i(1, 1)
+grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_aqrcq")])
+database = ExtResource("6_b0vde")
+
+[node name="SyncGridInventory" type="Node" parent="CharacterInventorySystem/EquipmentManager/HandSlot" index="0" unique_id=1472078955 node_paths=PackedStringArray("inventory")]
+script = ExtResource("9_svrv0")
+inventory = NodePath("..")
+metadata/_custom_type_script = "uid://dlemxn6c687mt"
+
+[node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/HandSlot" index="1" unique_id=1783181198]
+script = ExtResource("8_41yun")
+is_open = true
 metadata/_custom_type_script = "uid://gngi6ncgkswy"

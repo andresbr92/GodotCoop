@@ -2,7 +2,6 @@
 @icon("res://addons/inventory-system-demos/icons/character_inventory_system.svg")
 class_name InventorySystemManager
 extends NetworkedCharacterInventorySystem
-
 @export_node_path var equipment_manager_path := NodePath("EquipmentManager")
 
 
@@ -23,10 +22,10 @@ func _ready():
 	hotbar.active_slot(1)
 	hotbar.active_slot(2)
 	hotbar.active_slot(3)
-	hotbar.active_slot(4)
-	hotbar.active_slot(5)
-	hotbar.active_slot(6)
-	hotbar.active_slot(7)
+	#hotbar.active_slot(4)
+	#hotbar.active_slot(5)
+	#hotbar.active_slot(6)
+	#hotbar.active_slot(7)
 
 
 func _on_picked(obj : Node):
@@ -279,6 +278,7 @@ func _hotbar_next_item_logic():
 
 
 #region Open Inventories
+#region Open Inventories
 func is_open_inventory(inventory : Inventory):
 	return opened_inventories.find(inventory) != -1
 
@@ -286,6 +286,8 @@ func is_open_inventory(inventory : Inventory):
 func open_inventory(inventory : Inventory):
 	if multiplayer.is_server():
 		_open_inventory_logic(inventory)
+		# Si abrimos un inventario externo suelto, intentamos activar su Openable
+		_set_openable_state(inventory, true) 
 	else:
 		open_inventory_rpc.rpc_id(1, inventory.get_path())
 
@@ -317,16 +319,28 @@ func open_main_inventory():
 
 
 func _open_main_inventory_logic():
+	# 1. Abrir inventario principal
 	_open_inventory_logic(main_inventory)
-	if equipment_manager != null:
-		for inventory in equipment_manager.get_children():
-			if inventory is GridInventory:
-				_open_inventory_logic(inventory)
+	_set_openable_state(main_inventory, true)
+	
+	# 2. Abrir inventarios de equipamiento (Usando el EquipmentManager)
+	if equipment_manager:
+		for slot in equipment_manager.get_children():
+			if slot and slot is Inventory:
+				_open_inventory_logic(slot)
+				_set_openable_state(slot, true)
 
 
 func close_inventory(inventory : Inventory):
+	# Manejo de contenedores externos (Chest, Box)
 	if main_inventory != inventory:
-		inventory.get_parent().close(get_parent())
+		# Si el padre tiene metodo close (ej. BoxInventory), lo llamamos
+		if inventory.get_parent().has_method("close"):
+			inventory.get_parent().close(get_parent())
+	
+	# Manejo del nodo Openable interno del inventario
+	_set_openable_state(inventory, false)
+	
 	remove_open_inventory(inventory)
 
 
@@ -587,4 +601,26 @@ func close_stations_rpc():
 func craft_rpc(craft_station_path : NodePath, recipe_index : int):
 	var station = get_node(craft_station_path)
 	_craft_logic(station, recipe_index)
+#endregion
+
+#region Helpers
+func _set_openable_state(inventory: Inventory, is_open: bool):
+	# 1. Buscamos si tiene el nodo Openable como hijo directo
+	var openable = inventory.get_node_or_null("Openable")
+	
+	# 2. (Opcional) Si no es hijo, miramos si es hermano (patrón BoxInventory)
+	if not openable:
+		var parent = inventory.get_parent()
+		if parent:
+			openable = parent.get_node_or_null("Openable")
+	
+	# 3. Ejecutamos la acción
+	if openable:
+		# Asumimos que drop_parent es el CharacterBody3D (el 'character')
+		if is_open:
+			if openable.has_method("open"):
+				openable.open(drop_parent)
+		else:
+			if openable.has_method("close"):
+				openable.close(drop_parent)
 #endregion

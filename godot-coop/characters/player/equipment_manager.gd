@@ -13,8 +13,7 @@ extends Node
 # Mapping of Slot Enum -> Inventory Node
 # Assign these in the Inspector!
 @export var equipment_slots: Dictionary = {
-	 EquipmentData.SlotType.HEAD : NodePath("$HeadSlot"),
-	 EquipmentData.SlotType.MAIN_HAND : NodePath("$RightHandSlot"),
+	 EquipmentData.SlotType.HEAD : NodePath("$HeadSlot")
 }
 
 # --- RUNTIME STATE ---

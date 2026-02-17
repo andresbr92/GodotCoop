@@ -1115,345 +1115,6 @@ func interact_rpc(character_path : NodePath, _action_index : int = 0):
 	super.interact(get_node(character_path), _action_index)
 </file>
 
-<file path="godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd">
-@tool
-class_name NetworkedCharacterInventorySystem
-extends "../character/character_inventory_system.gd"
-
-
-func _ready():
-	if Engine.is_editor_hint():
-		return
-	if is_multiplayer_authority():
-		# Setup for enabled/disabled mouse 🖱️😀
-		opened_inventory.connect(_update_opened_inventories)
-		closed_inventory.connect(_update_opened_inventories)
-		opened_station.connect(_update_opened_stations)
-		closed_station.connect(_update_opened_stations)
-		_update_opened_inventories(main_inventory)
-	else:
-		picked.connect(_on_picked)
-	hotbar.active_slot(0)
-	hotbar.active_slot(1)
-
-
-func _on_picked(obj : Node):
-	picked_rpc.rpc(obj.get_path())
-
-
-func _input(event : InputEvent):
-	if Engine.is_editor_hint():
-		return
-	if check_inputs and is_multiplayer_authority():
-		hot_bar_inputs(event)
-		inventory_inputs()
-
-
-func open_main_inventory():
-	if multiplayer.is_server():
-		super.open_main_inventory()
-	else:
-		open_main_inventory_rpc.rpc_id(1)
-
-
-func open_inventory(inventory : Inventory):
-	if multiplayer.is_server():
-		super.open_inventory(inventory)
-	else:
-		open_inventory_rpc.rpc_id(1, inventory.get_path())
-
-
-func add_open_inventory(inventory : Inventory):
-	if multiplayer.is_server():
-		add_open_inventory_rpc.rpc(inventory.get_path())
-	super.add_open_inventory(inventory)
-
-
-func remove_open_inventory(inventory : Inventory):
-	if multiplayer.is_server():
-		remove_open_inventory_rpc.rpc(inventory.get_path())
-	super.remove_open_inventory(inventory)
-
-
-func close_inventories():
-	if multiplayer.is_server():
-		super.close_inventories()
-	else:
-		close_inventories_rpc.rpc_id(1)
-
-
-func pick_to_inventory(node : Node):
-	if multiplayer.is_server():
-		super.pick_to_inventory(node)
-	else:
-		pick_to_inventory_rpc.rpc_id(1, node.get_path())
-
-
-func transfer_to(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, destination_pos: Vector2i, amount: int, is_rotated: bool):
-	if multiplayer.is_server():
-		super.transfer_to(inventory, origin_pos, destination, destination_pos, amount, is_rotated)
-	else:
-		transfer_to_rpc.rpc_id(1, inventory.get_path(), origin_pos, destination.get_path(), destination_pos, amount, is_rotated)
-
-
-func rotate(stack: ItemStack, inventory: Inventory):
-	if multiplayer.is_server():
-		super.rotate(stack, inventory)
-	else:
-		var stack_index = inventory.stacks.find(stack)
-		if stack_index != -1:
-			rotate_rpc.rpc_id(1, stack_index, inventory.get_path())
-
-
-func split(inventory : Inventory, stack_index : int, amount : int):
-	if multiplayer.is_server():
-		super.split(inventory, stack_index, amount)
-	else:
-		split_rpc.rpc_id(1, inventory.get_path(), stack_index, amount)
-
-
-func sort(inventory : Inventory):
-	if multiplayer.is_server():
-		super.sort(inventory)
-	else:
-		sort_rpc.rpc_id(1, inventory.get_path())
-
-
-func drop(stack: ItemStack, inventory: Inventory):
-	if multiplayer.is_server():
-		super.drop(stack, inventory)
-	else:
-		var stack_index = inventory.stacks.find(stack)
-		if stack_index != -1:
-			drop_rpc.rpc_id(1, stack_index, inventory.get_path())
-
-
-func equip(stack: ItemStack, inventory: Inventory, slot_index: int):
-	if multiplayer.is_server():
-		super.equip(stack, inventory, slot_index)
-	else:
-		var stack_index = inventory.stacks.find(stack)
-		if stack_index != -1:
-			equip_rpc.rpc_id(1, stack_index, inventory.get_path(), slot_index)
-
-
-func hotbar_change_selection(index : int):
-	if multiplayer.is_server():
-		super.hotbar_change_selection(index)
-	else:
-		hotbar_change_selection_rpc.rpc_id(1, index)
-
-
-func hotbar_previous_item():
-	if multiplayer.is_server():
-		super.hotbar_previous_item()
-	else:
-		hotbar_previous_item_rpc.rpc_id(1)
-
-
-func hotbar_next_item():
-	if multiplayer.is_server():
-		super.hotbar_next_item()
-	else:
-		hotbar_next_item_rpc.rpc_id(1)
-
-
-func open_main_craft_station():
-	if multiplayer.is_server():
-		super.open_main_craft_station()
-	else:
-		open_main_craft_station_rpc.rpc_id(1)
-
-
-func close_craft_stations():
-	if multiplayer.is_server():
-		super.close_craft_stations()
-	else:
-		close_stations_rpc.rpc_id(1)
-
-
-func craft(craft_station : CraftStation, recipe_index : int):
-	if multiplayer.is_server():
-		craft_rpc(craft_station.get_path(), recipe_index)
-	else:
-		craft_rpc.rpc(craft_station.get_path(), recipe_index)
-
-
-func open_station(craft_station : CraftStation):
-	if multiplayer.is_server():
-		open_station_rpc(get_path_to(craft_station))
-	else:
-		open_station_rpc.rpc(get_path_to(craft_station))
-
-
-func add_open_station(craft_station : CraftStation):
-	if multiplayer.is_server():
-		add_open_station_rpc.rpc(craft_station.get_path())
-	super.add_open_station(craft_station)
-
-
-func remove_open_station(craft_station : CraftStation):
-	if multiplayer.is_server():
-		remove_open_station_rpc.rpc(craft_station.get_path())
-	super.remove_open_station(craft_station)
-
-
-@rpc("any_peer")
-func picked_rpc(obj_path : NodePath):
-	var obj = get_node(obj_path)
-	picked.emit(obj)
-
-
-@rpc("any_peer")
-func open_main_inventory_rpc():
-	super.open_main_inventory()
-
-
-@rpc
-func open_inventory_rpc(inventory_path : NodePath):
-	var inventory = get_node(inventory_path)
-	super.open_inventory(inventory)
-
-
-@rpc("any_peer")
-func add_open_inventory_rpc(inventory_path : NodePath):
-	var inventory = get_node(inventory_path)
-	super.add_open_inventory(inventory)
-
-
-@rpc("any_peer")
-func remove_open_inventory_rpc(inventory_path : NodePath):
-	var inventory = get_node(inventory_path)
-	super.remove_open_inventory(inventory)
-
-
-@rpc("any_peer")
-func add_open_station_rpc(station_path : NodePath):
-	var station = get_node(station_path)
-	super.add_open_station(station)
-
-
-@rpc("any_peer")
-func remove_open_station_rpc(station_path : NodePath):
-	var station = get_node(station_path)
-	super.remove_open_station(station)
-
-
-@rpc
-func close_inventories_rpc():
-	if multiplayer.is_server():
-		super.close_inventories()
-
-
-@rpc
-func pick_to_inventory_rpc(node_path: NodePath):
-	super.pick_to_inventory(get_node(node_path))
-
-
-@rpc
-func transfer_to_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination_path: NodePath, destination_pos: Vector2i, amount: int, is_rotated: bool):
-	var inv = get_node(inventory_path)
-	var dest_inv = get_node(destination_path)
-	if inv == null or dest_inv == null:
-		return
-	super.transfer_to(inv, origin_pos, dest_inv, destination_pos, amount, is_rotated)
-
-
-@rpc
-func split_rpc(inventory_path: NodePath, stack_index: int, amount: int):
-	var inv = get_node(inventory_path)
-	if inv == null:
-		return
-	super.split(inv, stack_index, amount)
-
-
-@rpc
-func rotate_rpc(stack_index: int, inventory_path: NodePath):
-	var inv = get_node(inventory_path)
-	if inv == null:
-		return
-	var stack = inv.stacks[stack_index]
-	super.rotate(stack, inv)
-
-
-@rpc
-func sort_rpc(inventory_path: NodePath):
-	var inv = get_node(inventory_path)
-	if inv == null:
-		return
-	super.sort(inv)
-
-
-@rpc
-func drop_rpc(stack_index: int, inventory_path: NodePath):
-	var inv = get_node(inventory_path)
-	if inv == null:
-		return
-	var stack = inv.stacks[stack_index]
-	super.drop(stack, inv)
-
-
-@rpc
-func equip_rpc(stack_index: int, inventory_path: NodePath, slot_index: int):
-	var inv = get_node(inventory_path)
-	if inv == null:
-		return
-	var stack = inv.stacks[stack_index]
-	super.equip(stack, inv, slot_index)
-
-
-@rpc
-func hotbar_change_selection_rpc(selection_index: int):
-	if not multiplayer.is_server():
-		return
-	super.hotbar_change_selection(selection_index)
-
-
-@rpc
-func hotbar_previous_item_rpc():
-	if not multiplayer.is_server():
-		return
-	super.hotbar_previous_item()
-
-
-@rpc
-func hotbar_next_item_rpc():
-	if not multiplayer.is_server():
-		return
-	super.hotbar_next_item()
-
-@rpc
-func open_main_craft_station_rpc():
-	super.open_main_craft_station()
-
-
-@rpc
-func open_station_rpc(craft_station_path : NodePath):
-	var station = get_node(craft_station_path)
-	super.open_station(station)
-
-
-@rpc
-func close_stations_rpc():
-	if multiplayer.is_server():
-		super.close_craft_stations()
-
-
-@rpc
-func craft_rpc(craft_station_path : NodePath, recipe_index : int):
-	var station = get_node(craft_station_path)
-	station.craft(recipe_index)
-
-
-func _physics_process(_delta : float):
-	if Engine.is_editor_hint():
-		return
-	if not can_interact:
-		return
-	if multiplayer.multiplayer_peer != null and is_multiplayer_authority():
-		interactor.try_interact()
-</file>
-
 <file path="godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd">
 extends Dropper
 
@@ -2796,230 +2457,6 @@ func _on_item_activated(grid_item_stack_ui: GridItemStackUI) -> void:
 #endregion
 </file>
 
-<file path="godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd">
-@tool
-extends GridDraggableElementUI
-class_name GridItemStackUI
-
-signal activated
-signal clicked
-signal middle_clicked
-signal context_activated(event: InputEvent)
-
-@export var stack_style: StyleBox
-@export var hover_stack_style: StyleBox
-@export var selected_stack_style: StyleBox
-@export var unknown_icon: Texture2D
-
-@onready var texture_bg: Panel = $TextureBG
-@onready var item_icon: TextureRect = %ItemIcon
-@onready var stack_size_label: Label = $StackSizeLabel
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var audio_stream_player_2: AudioStreamPlayer = $AudioStreamPlayer2
-
-var inventory : GridInventory
-var stack: ItemStack
-
-
-func setup(inv: Inventory, new_stack: ItemStack):
-	self.inventory = inv
-	self.stack = new_stack
-	if stack and inventory != null:
-		var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
-		tooltip_text = definition.description
-		var is_rotated = inventory.is_stack_rotated(stack)
-		var texture = definition.icon
-		if is_rotated:
-			var image = texture.get_image()
-			image.rotate_90(CLOCKWISE)
-			texture = ImageTexture.create_from_image(image)
-		%ItemIcon.texture = texture
-
-		activate()
-		_disconnect_item_signals()
-		_connect_item_signals(stack)
-	else:
-		%ItemIcon.texture = null
-		deactivate()
-	_update_stack_size()
-
-
-func _connect_item_signals(new_item: ItemStack) -> void:
-	if new_item == null:
-		return
-
-	if !new_item.updated.is_connected(_refresh):
-		new_item.updated.connect(_refresh)
-
-	if inventory != null and !inventory.updated_stack.is_connected(_update_stack_index):
-		inventory.updated_stack.connect(_update_stack_index)
-
-
-func _disconnect_item_signals() -> void:
-	if !is_instance_valid(stack):
-		return
-
-	if stack.updated.is_connected(_refresh):
-		stack.updated.disconnect(_refresh)
-
-	if inventory != null and inventory.updated_stack.is_connected(_update_stack_index):
-		inventory.updated_stack.disconnect(_update_stack_index)
-
-
-func _ready() -> void:
-	_set_panel_style(stack_style)
-	mouse_entered.connect(func():
-		# Solo feedback visual si está activo (revelado)
-		if is_active(): 
-			_set_panel_style(hover_stack_style)
-			audio_stream_player_2.play()
-	)
-	mouse_exited.connect(func():
-		_set_panel_style(stack_style)
-	)
-	grabbed.connect(func(_offset):
-		visible = false
-		audio_stream_player.play()
-	)
-	if stack == null:
-		deactivate()
-	else:
-		# Ejecutar lógica visual al inicio
-		_update_visuals()
-
-func _update_visuals():
-	if not stack or not inventory:
-		return
-
-	# 1. Comprobamos si está revelado (por defecto true si no existe la propiedad)
-	var is_revealed: bool = stack.properties.get("revealed", true)
-	
-	if is_revealed:
-		# --- ESTADO REVELADO (Lógica Original) ---
-		var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
-		tooltip_text = definition.description
-		
-		# Gestión de rotación
-		var is_rotated = inventory.is_stack_rotated(stack)
-		var texture = definition.icon
-		if is_rotated:
-			var image = texture.get_image()
-			image.rotate_90(CLOCKWISE)
-			texture = ImageTexture.create_from_image(image)
-		
-		%ItemIcon.texture = texture
-		%ItemIcon.modulate = Color(1, 1, 1, 1) # Restaurar color normal
-		
-		# Activar arrastre e interacción
-		activate() 
-		
-	else:
-		# --- ESTADO OCULTO ("Searching...") ---
-		tooltip_text = "Searching..."
-		
-		# Usar icono de incógnita si existe, si no, poner el del item pero oscuro
-		if unknown_icon:
-			%ItemIcon.texture = unknown_icon
-			%ItemIcon.modulate = Color(1, 1, 1, 1)
-		else:
-			# Fallback: Si no has asignado icono unknown, mostramos el item muy oscuro
-			var definition = inventory.database.get_item(stack.item_id)
-			%ItemIcon.texture = definition.icon
-			%ItemIcon.modulate = Color(0.1, 0.1, 0.1, 1) # Muy oscuro/silueta
-		
-		# DESACTIVAR ARRASTRE (Importante: impide robarlo)
-		deactivate()
-
-	# Actualizar etiqueta de cantidad (si está oculto, quizás quieras ocultar la cantidad también)
-	_update_stack_size(is_revealed)
-
-
-func _update_stack_index(_stack_index: int) -> void:
-	_refresh()
-
-
-func select():
-	if is_instance_valid(selected_stack_style):
-		_set_panel_style(selected_stack_style)
-
-
-func unselect():
-	_set_panel_style(stack_style)
-
-
-func _notification(what) -> void:
-	if what == NOTIFICATION_DRAG_END:
-		visible = true
-
-
-func _update_stack_size(is_revealed: bool = true) -> void:
-	if !is_instance_valid(stack_size_label):
-		return
-		
-	# Si no está revelado, ocultamos la cantidad (opcional, estilo Tarkov hardcore)
-	if not is_revealed:
-		stack_size_label.text = "?"
-		return
-
-	if !is_instance_valid(stack):
-		stack_size_label.text = ""
-		return
-	var stack_size: int = stack.amount
-	if stack_size <= 1:
-		if stack.properties.has("durability"):
-			var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
-			if definition != null:
-				var actual : float = stack.properties["durability"]
-				var total : float = definition.properties["durability"]
-				stack_size_label.text = str(int(actual/total * 100.0)) + "%"
-				return
-	else:
-		stack_size_label.text = "%d" % stack_size
-		return
-	stack_size_label.text = ""
-
-
-func _refresh() -> void:
-	# Cuando el servidor actualiza la propiedad 'revealed' a true,
-	# se dispara esta función. Re-ejecutamos la lógica visual.
-	_update_visuals()
-
-
-func create_preview() -> Control:
-	var preview = self.duplicate()
-	preview.setup(inventory, stack)
-	preview.visible = true
-	return preview
-
-
-func _gui_input(event: InputEvent) -> void:
-	if !(event is InputEventMouseButton):
-		return
-		
-	# BLOQUEO DE INPUT SI NO ESTÁ REVELADO
-	if not is_active():
-		return 
-
-	var mb_event: InputEventMouseButton = event
-	if !mb_event.pressed:
-		return
-	if mb_event.button_index == MOUSE_BUTTON_LEFT:
-		if mb_event.double_click:
-			activated.emit()
-		else:
-			clicked.emit()
-	if mb_event.button_index == MOUSE_BUTTON_MIDDLE:
-		middle_clicked.emit()
-	elif mb_event.button_index == MOUSE_BUTTON_MASK_RIGHT:
-		context_activated.emit(mb_event)
-
-
-func _set_panel_style(style: StyleBox) -> void:
-	remove_theme_stylebox_override("panel")
-	if style != null:
-		add_theme_stylebox_override("panel", style)
-</file>
-
 <file path="godot-coop/addons/inventory-system-demos/ui/grid/grid_selection_panel.gd">
 extends Panel
 class_name GridSelectionPanel
@@ -3932,6 +3369,9 @@ const Interactor = preload("../interaction_system/inventory_interactor.gd")
 ## Loot [InventoryUI], Typically an inventory that has been opened
 @onready var loot_inventory_ui : GridInventoryPanel = %LootGridInventoryUI
 
+## Loot [Equipment UI], Typically an inventory that has been opened
+@onready var equipment_container: VBoxContainer = $MarginContainer/HBoxContainer/EquipmentContainer
+
 ## Hotbar [HotbarUI]
 @onready var hotbar_ui : HotbarUI = get_node(NodePath("HotbarUI"))
 
@@ -3958,6 +3398,7 @@ func _ready():
 	loot_inventory_ui.visible = false
 	drop_area.visible = false
 	hotbar_ui.visible = true
+	equipment_container.visible = false
 	player_craft_station_ui.close()
 	other_craft_station_ui.close()
 	drop_area.request_drop.connect(_request_drop)
@@ -4035,8 +3476,10 @@ func _open_player_inventory():
 # Open Inventory of player	
 func _on_open_inventory(inventory : Inventory):
 	if character.main_inventory != inventory:
+		print(inventory.name)
 		loot_inventory_ui.inventory = inventory
 		loot_inventory_ui.visible = true
+		equipment_container.visible = true
 		alternative_inventory = loot_inventory_ui.inventory
 	else:
 		_open_player_inventory()
@@ -4593,6 +4036,350 @@ func _on_close():
 	super._on_close()
 </file>
 
+<file path="godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd">
+@tool
+class_name NetworkedCharacterInventorySystem
+extends "../character/character_inventory_system.gd"
+@onready var equipment_manager: EquipmentManager = $EquipmentManager
+
+
+func _ready():
+	if Engine.is_editor_hint():
+		return
+	if is_multiplayer_authority():
+		# Setup for enabled/disabled mouse 🖱️😀
+		opened_inventory.connect(_update_opened_inventories)
+		closed_inventory.connect(_update_opened_inventories)
+		opened_station.connect(_update_opened_stations)
+		closed_station.connect(_update_opened_stations)
+		_update_opened_inventories(main_inventory)
+	else:
+		picked.connect(_on_picked)
+	hotbar.active_slot(0)
+	hotbar.active_slot(1)
+
+
+func _on_picked(obj : Node):
+	picked_rpc.rpc(obj.get_path())
+
+
+func _input(event : InputEvent):
+	if Engine.is_editor_hint():
+		return
+	if check_inputs and is_multiplayer_authority():
+		hot_bar_inputs(event)
+		inventory_inputs()
+
+
+func open_main_inventory():
+	if multiplayer.is_server():
+		super.open_main_inventory()
+		for inventory in equipment_manager.get_children():
+			if inventory is GridInventory:
+				open_inventory(inventory)
+	else:
+		open_main_inventory_rpc.rpc_id(1)
+
+
+func open_inventory(inventory : Inventory):
+	if multiplayer.is_server():
+		super.open_inventory(inventory)
+	else:
+		open_inventory_rpc.rpc_id(1, inventory.get_path())
+
+
+func add_open_inventory(inventory : Inventory):
+	if multiplayer.is_server():
+		add_open_inventory_rpc.rpc(inventory.get_path())
+	super.add_open_inventory(inventory)
+
+
+func remove_open_inventory(inventory : Inventory):
+	if multiplayer.is_server():
+		remove_open_inventory_rpc.rpc(inventory.get_path())
+	super.remove_open_inventory(inventory)
+
+
+func close_inventories():
+	if multiplayer.is_server():
+		super.close_inventories()
+		
+	else:
+		close_inventories_rpc.rpc_id(1)
+
+
+func pick_to_inventory(node : Node):
+	if multiplayer.is_server():
+		super.pick_to_inventory(node)
+	else:
+		pick_to_inventory_rpc.rpc_id(1, node.get_path())
+
+
+func transfer_to(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, destination_pos: Vector2i, amount: int, is_rotated: bool):
+	if multiplayer.is_server():
+		super.transfer_to(inventory, origin_pos, destination, destination_pos, amount, is_rotated)
+	else:
+		transfer_to_rpc.rpc_id(1, inventory.get_path(), origin_pos, destination.get_path(), destination_pos, amount, is_rotated)
+
+
+func rotate(stack: ItemStack, inventory: Inventory):
+	if multiplayer.is_server():
+		super.rotate(stack, inventory)
+	else:
+		var stack_index = inventory.stacks.find(stack)
+		if stack_index != -1:
+			rotate_rpc.rpc_id(1, stack_index, inventory.get_path())
+
+
+func split(inventory : Inventory, stack_index : int, amount : int):
+	if multiplayer.is_server():
+		super.split(inventory, stack_index, amount)
+	else:
+		split_rpc.rpc_id(1, inventory.get_path(), stack_index, amount)
+
+
+func sort(inventory : Inventory):
+	if multiplayer.is_server():
+		super.sort(inventory)
+	else:
+		sort_rpc.rpc_id(1, inventory.get_path())
+
+
+func drop(stack: ItemStack, inventory: Inventory):
+	if multiplayer.is_server():
+		super.drop(stack, inventory)
+	else:
+		var stack_index = inventory.stacks.find(stack)
+		if stack_index != -1:
+			drop_rpc.rpc_id(1, stack_index, inventory.get_path())
+
+
+func equip(stack: ItemStack, inventory: Inventory, slot_index: int):
+	if multiplayer.is_server():
+		super.equip(stack, inventory, slot_index)
+	else:
+		var stack_index = inventory.stacks.find(stack)
+		if stack_index != -1:
+			equip_rpc.rpc_id(1, stack_index, inventory.get_path(), slot_index)
+
+
+func hotbar_change_selection(index : int):
+	if multiplayer.is_server():
+		super.hotbar_change_selection(index)
+	else:
+		hotbar_change_selection_rpc.rpc_id(1, index)
+
+
+func hotbar_previous_item():
+	if multiplayer.is_server():
+		super.hotbar_previous_item()
+	else:
+		hotbar_previous_item_rpc.rpc_id(1)
+
+
+func hotbar_next_item():
+	if multiplayer.is_server():
+		super.hotbar_next_item()
+	else:
+		hotbar_next_item_rpc.rpc_id(1)
+
+
+func open_main_craft_station():
+	if multiplayer.is_server():
+		super.open_main_craft_station()
+	else:
+		open_main_craft_station_rpc.rpc_id(1)
+
+
+func close_craft_stations():
+	if multiplayer.is_server():
+		super.close_craft_stations()
+	else:
+		close_stations_rpc.rpc_id(1)
+
+
+func craft(craft_station : CraftStation, recipe_index : int):
+	if multiplayer.is_server():
+		craft_rpc(craft_station.get_path(), recipe_index)
+	else:
+		craft_rpc.rpc(craft_station.get_path(), recipe_index)
+
+
+func open_station(craft_station : CraftStation):
+	if multiplayer.is_server():
+		open_station_rpc(get_path_to(craft_station))
+	else:
+		open_station_rpc.rpc(get_path_to(craft_station))
+
+
+func add_open_station(craft_station : CraftStation):
+	if multiplayer.is_server():
+		add_open_station_rpc.rpc(craft_station.get_path())
+	super.add_open_station(craft_station)
+
+
+func remove_open_station(craft_station : CraftStation):
+	if multiplayer.is_server():
+		remove_open_station_rpc.rpc(craft_station.get_path())
+	super.remove_open_station(craft_station)
+
+
+@rpc("any_peer")
+func picked_rpc(obj_path : NodePath):
+	var obj = get_node(obj_path)
+	picked.emit(obj)
+
+
+@rpc("any_peer")
+func open_main_inventory_rpc():
+	super.open_main_inventory()
+
+
+@rpc
+func open_inventory_rpc(inventory_path : NodePath):
+	var inventory = get_node(inventory_path)
+	super.open_inventory(inventory)
+
+
+@rpc("any_peer")
+func add_open_inventory_rpc(inventory_path : NodePath):
+	var inventory = get_node(inventory_path)
+	super.add_open_inventory(inventory)
+
+
+@rpc("any_peer")
+func remove_open_inventory_rpc(inventory_path : NodePath):
+	var inventory = get_node(inventory_path)
+	super.remove_open_inventory(inventory)
+
+
+@rpc("any_peer")
+func add_open_station_rpc(station_path : NodePath):
+	var station = get_node(station_path)
+	super.add_open_station(station)
+
+
+@rpc("any_peer")
+func remove_open_station_rpc(station_path : NodePath):
+	var station = get_node(station_path)
+	super.remove_open_station(station)
+
+
+@rpc
+func close_inventories_rpc():
+	if multiplayer.is_server():
+		super.close_inventories()
+
+
+@rpc
+func pick_to_inventory_rpc(node_path: NodePath):
+	super.pick_to_inventory(get_node(node_path))
+
+
+@rpc
+func transfer_to_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination_path: NodePath, destination_pos: Vector2i, amount: int, is_rotated: bool):
+	var inv = get_node(inventory_path)
+	var dest_inv = get_node(destination_path)
+	if inv == null or dest_inv == null:
+		return
+	super.transfer_to(inv, origin_pos, dest_inv, destination_pos, amount, is_rotated)
+
+
+@rpc
+func split_rpc(inventory_path: NodePath, stack_index: int, amount: int):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	super.split(inv, stack_index, amount)
+
+
+@rpc
+func rotate_rpc(stack_index: int, inventory_path: NodePath):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	var stack = inv.stacks[stack_index]
+	super.rotate(stack, inv)
+
+
+@rpc
+func sort_rpc(inventory_path: NodePath):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	super.sort(inv)
+
+
+@rpc
+func drop_rpc(stack_index: int, inventory_path: NodePath):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	var stack = inv.stacks[stack_index]
+	super.drop(stack, inv)
+
+
+@rpc
+func equip_rpc(stack_index: int, inventory_path: NodePath, slot_index: int):
+	var inv = get_node(inventory_path)
+	if inv == null:
+		return
+	var stack = inv.stacks[stack_index]
+	super.equip(stack, inv, slot_index)
+
+
+@rpc
+func hotbar_change_selection_rpc(selection_index: int):
+	if not multiplayer.is_server():
+		return
+	super.hotbar_change_selection(selection_index)
+
+
+@rpc
+func hotbar_previous_item_rpc():
+	if not multiplayer.is_server():
+		return
+	super.hotbar_previous_item()
+
+
+@rpc
+func hotbar_next_item_rpc():
+	if not multiplayer.is_server():
+		return
+	super.hotbar_next_item()
+
+@rpc
+func open_main_craft_station_rpc():
+	super.open_main_craft_station()
+
+
+@rpc
+func open_station_rpc(craft_station_path : NodePath):
+	var station = get_node(craft_station_path)
+	super.open_station(station)
+
+
+@rpc
+func close_stations_rpc():
+	if multiplayer.is_server():
+		super.close_craft_stations()
+
+
+@rpc
+func craft_rpc(craft_station_path : NodePath, recipe_index : int):
+	var station = get_node(craft_station_path)
+	station.craft(recipe_index)
+
+
+func _physics_process(_delta : float):
+	if Engine.is_editor_hint():
+		return
+	if not can_interact:
+		return
+	if multiplayer.multiplayer_peer != null and is_multiplayer_authority():
+		interactor.try_interact()
+</file>
+
 <file path="godot-coop/addons/inventory-system-demos/ui/craft/recipe_ui.gd">
 class_name RecipeUI
 extends Control
@@ -4648,68 +4435,228 @@ func check_if_has_ingredients():
 	craft_button.disabled = not craft_station.can_craft(recipe)
 </file>
 
-<file path="godot-coop/characters/player/components/item_thrower.gd">
-extends Node3D
-class_name ItemThrower
+<file path="godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd">
+@tool
+extends GridDraggableElementUI
+class_name GridItemStackUI
 
-@export var hotbar: Hotbar
-@export var hand: Node3D
-@export var camera: Camera3D
-@export var throw_force: float = 15.0
+signal activated
+signal clicked
+signal middle_clicked
+signal context_activated(event: InputEvent)
 
-@onready var projectile_spawner : MultiplayerSpawner = get_tree().get_first_node_in_group("ProjectileSpawner")
+@export var stack_style: StyleBox
+@export var hover_stack_style: StyleBox
+@export var selected_stack_style: StyleBox
+@export var unknown_icon: Texture2D
+
+@onready var texture_bg: Panel = $TextureBG
+@onready var item_icon: TextureRect = %ItemIcon
+@onready var stack_size_label: Label = $StackSizeLabel
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_stream_player_2: AudioStreamPlayer = $AudioStreamPlayer2
+
+var inventory : GridInventory
+var stack: ItemStack
 
 
-func _input(event: InputEvent) -> void:
-	if is_multiplayer_authority():
-		if event.is_action_pressed("throw"):
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-				check_and_throw()
+func setup(inv: Inventory, new_stack: ItemStack):
+	self.inventory = inv
+	self.stack = new_stack
+	if stack and inventory != null:
+		var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
+		tooltip_text = definition.description
+		var is_rotated = inventory.is_stack_rotated(stack)
+		var texture = definition.icon
+		if is_rotated:
+			var image = texture.get_image()
+			image.rotate_90(CLOCKWISE)
+			texture = ImageTexture.create_from_image(image)
+		%ItemIcon.texture = texture
+
+		activate()
+		_disconnect_item_signals()
+		_connect_item_signals(stack)
 	else:
-		set_process(false)
+		%ItemIcon.texture = null
+		deactivate()
+	_update_stack_size()
 
-func  check_and_throw() -> void:
-	var stack = hotbar.get_stack_on_selection()
+
+func _connect_item_signals(new_item: ItemStack) -> void:
+	if new_item == null:
+		return
+
+	if !new_item.updated.is_connected(_refresh):
+		new_item.updated.connect(_refresh)
+
+	if inventory != null and !inventory.updated_stack.is_connected(_update_stack_index):
+		inventory.updated_stack.connect(_update_stack_index)
+
+
+func _disconnect_item_signals() -> void:
+	if !is_instance_valid(stack):
+		return
+
+	if stack.updated.is_connected(_refresh):
+		stack.updated.disconnect(_refresh)
+
+	if inventory != null and inventory.updated_stack.is_connected(_update_stack_index):
+		inventory.updated_stack.disconnect(_update_stack_index)
+
+
+func _ready() -> void:
+	_set_panel_style(stack_style)
+	mouse_entered.connect(func():
+		# Solo feedback visual si está activo (revelado)
+		if is_active(): 
+			_set_panel_style(hover_stack_style)
+			audio_stream_player_2.play()
+	)
+	mouse_exited.connect(func():
+		_set_panel_style(stack_style)
+	)
+	grabbed.connect(func(_offset):
+		visible = false
+		audio_stream_player.play()
+	)
 	if stack == null:
-		return
-	var item_id = stack.item_id
-	var item_def = hotbar.database.get_item(item_id)
-	if item_def == null:
-		return
-	if not item_def.properties.has("throwable_data"): 
-		return
-
-	var stats = item_def.properties["throwable_data"]
-	if stats == null: return
-
-
-	var spawn_pos = hand.global_position
-	var direction = -camera.global_transform.basis.z
-	var velocity = direction * throw_force
-	var stack_index = hotbar.selection_index
-	
-	if multiplayer.is_server():
-		throw_potion_rpc(stack_index, spawn_pos, camera.global_rotation, velocity, stats)
-		pass
+		deactivate()
 	else:
-		throw_potion_rpc.rpc_id(1, stack_index, spawn_pos, camera.global_rotation, velocity, stats)
-		pass
-			
+		# Ejecutar lógica visual al inicio
+		_update_visuals()
+
+func _update_visuals():
+	if not stack or not inventory:
+		return
+
+	# 1. Comprobamos si está revelado (por defecto true si no existe la propiedad)
+	var is_revealed: bool = stack.properties.get("revealed", true)
+	
+	if is_revealed:
+		# --- ESTADO REVELADO (Lógica Original) ---
+		var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
+		tooltip_text = definition.description
 		
-@rpc("any_peer", "call_local", "reliable")
-func throw_potion_rpc(stack_index: int, pos: Vector3, rot: Vector3, vel: Vector3, path_to_tres : String) -> void:
-	if not multiplayer.is_server():
-		return
-	var inventory = hotbar.get_inventory()
-	if stack_index >= inventory.stacks.size(): return
-	
-	if projectile_spawner:
-		projectile_spawner.spawn([pos, rot, vel, path_to_tres ])
+		# Gestión de rotación
+		var is_rotated = inventory.is_stack_rotated(stack)
+		var texture = definition.icon
+		if is_rotated:
+			var image = texture.get_image()
+			image.rotate_90(CLOCKWISE)
+			texture = ImageTexture.create_from_image(image)
+		
+		%ItemIcon.texture = texture
+		%ItemIcon.modulate = Color(1, 1, 1, 1) # Restaurar color normal
+		
+		# Activar arrastre e interacción
+		activate() 
+		
 	else:
-		print("No item spawner")
-	var item_id = inventory.stacks[stack_index].item_id
-	inventory.remove_at(stack_index, item_id, 1)
-	pass
+		# --- ESTADO OCULTO ("Searching...") ---
+		tooltip_text = "Searching..."
+		
+		# Usar icono de incógnita si existe, si no, poner el del item pero oscuro
+		if unknown_icon:
+			%ItemIcon.texture = unknown_icon
+			%ItemIcon.modulate = Color(1, 1, 1, 1)
+		else:
+			# Fallback: Si no has asignado icono unknown, mostramos el item muy oscuro
+			var definition = inventory.database.get_item(stack.item_id)
+			%ItemIcon.texture = definition.icon
+			%ItemIcon.modulate = Color(0.1, 0.1, 0.1, 1) # Muy oscuro/silueta
+		
+		# DESACTIVAR ARRASTRE (Importante: impide robarlo)
+		deactivate()
+
+	# Actualizar etiqueta de cantidad (si está oculto, quizás quieras ocultar la cantidad también)
+	_update_stack_size(is_revealed)
+
+
+func _update_stack_index(_stack_index: int) -> void:
+	_refresh()
+
+
+func select():
+	if is_instance_valid(selected_stack_style):
+		_set_panel_style(selected_stack_style)
+
+
+func unselect():
+	_set_panel_style(stack_style)
+
+
+func _notification(what) -> void:
+	if what == NOTIFICATION_DRAG_END:
+		visible = true
+
+
+func _update_stack_size(is_revealed: bool = true) -> void:
+	if !is_instance_valid(stack_size_label):
+		return
+		
+	# Si no está revelado, ocultamos la cantidad (opcional, estilo Tarkov hardcore)
+	if not is_revealed:
+		stack_size_label.text = "?"
+		return
+
+	if !is_instance_valid(stack):
+		stack_size_label.text = ""
+		return
+	var stack_size: int = stack.amount
+	if stack_size <= 1:
+		if stack.properties.has("durability"):
+			var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
+			if definition != null:
+				var actual : float = stack.properties["durability"]
+				var total : float = definition.properties["durability"]
+				stack_size_label.text = str(int(actual/total * 100.0)) + "%"
+				return
+	else:
+		stack_size_label.text = "%d" % stack_size
+		return
+	stack_size_label.text = ""
+
+
+func _refresh() -> void:
+	# Cuando el servidor actualiza la propiedad 'revealed' a true,
+	# se dispara esta función. Re-ejecutamos la lógica visual.
+	_update_visuals()
+
+
+func create_preview() -> Control:
+	var preview = self.duplicate()
+	preview.setup(inventory, stack)
+	preview.visible = true
+	return preview
+
+
+func _gui_input(event: InputEvent) -> void:
+	if !(event is InputEventMouseButton):
+		return
+		
+	# BLOQUEO DE INPUT SI NO ESTÁ REVELADO
+	if not is_active():
+		return 
+
+	var mb_event: InputEventMouseButton = event
+	if !mb_event.pressed:
+		return
+	if mb_event.button_index == MOUSE_BUTTON_LEFT:
+		if mb_event.double_click:
+			activated.emit()
+		else:
+			clicked.emit()
+	if mb_event.button_index == MOUSE_BUTTON_MIDDLE:
+		middle_clicked.emit()
+	elif mb_event.button_index == MOUSE_BUTTON_MASK_RIGHT:
+		context_activated.emit(mb_event)
+
+
+func _set_panel_style(style: StyleBox) -> void:
+	remove_theme_stylebox_override("panel")
+	if style != null:
+		add_theme_stylebox_override("panel", style)
 </file>
 
 <file path="godot-coop/systems/multiplayer_spawner.gd">
@@ -4732,6 +4679,70 @@ func spawn_player(client_id : int) -> void:
 	player.name = str(client_id)
 	
 	get_node(spawn_path).call_deferred("add_child", player)
+</file>
+
+<file path="godot-coop/characters/player/components/item_thrower.gd">
+extends Node3D
+#class_name ItemThrower
+#
+#@export var hotbar: Hotbar
+#@export var hand: Node3D
+#@export var camera: Camera3D
+#@export var throw_force: float = 15.0
+#
+#@onready var projectile_spawner : MultiplayerSpawner = get_tree().get_first_node_in_group("ProjectileSpawner")
+#
+#
+#func _input(event: InputEvent) -> void:
+	#if is_multiplayer_authority():
+		#if event.is_action_pressed("throw"):
+			#if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+				#check_and_throw()
+	#else:
+		#set_process(false)
+#
+#func  check_and_throw() -> void:
+	#var stack = hotbar.get_stack_on_selection()
+	#if stack == null:
+		#return
+	#var item_id = stack.item_id
+	#var item_def = hotbar.database.get_item(item_id)
+	#if item_def == null:
+		#return
+	#if not item_def.properties.has("throwable_data"): 
+		#return
+#
+	#var stats = item_def.properties["throwable_data"]
+	#if stats == null: return
+#
+#
+	#var spawn_pos = hand.global_position
+	#var direction = -camera.global_transform.basis.z
+	#var velocity = direction * throw_force
+	#var stack_index = hotbar.selection_index
+	#
+	#if multiplayer.is_server():
+		#throw_potion_rpc(stack_index, spawn_pos, camera.global_rotation, velocity, stats)
+		#pass
+	#else:
+		#throw_potion_rpc.rpc_id(1, stack_index, spawn_pos, camera.global_rotation, velocity, stats)
+		#pass
+			#
+		#
+#@rpc("any_peer", "call_local", "reliable")
+#func throw_potion_rpc(stack_index: int, pos: Vector3, rot: Vector3, vel: Vector3, path_to_tres : String) -> void:
+	#if not multiplayer.is_server():
+		#return
+	#var inventory = hotbar.get_inventory()
+	#if stack_index >= inventory.stacks.size(): return
+	#
+	#if projectile_spawner:
+		#projectile_spawner.spawn([pos, rot, vel, path_to_tres ])
+	#else:
+		#print("No item spawner")
+	#var item_id = inventory.stacks[stack_index].item_id
+	#inventory.remove_at(stack_index, item_id, 1)
+	#pass
 </file>
 
 <file path="godot-coop/items/definitions/throwable_data.gd">
@@ -4780,6 +4791,22 @@ func on_inpact(body: Node) -> void:
 	pass
 </file>
 
+<file path="godot-coop/characters/character_base.gd">
+class_name CharacterBase
+extends CharacterBody3D
+
+@onready var attribute_set: AttributeSet = %AttributeSet
+
+
+
+
+
+
+func receive_gameplay_effects(effects: Array[GameplayEffect]) -> void:
+	if attribute_set:
+		attribute_set.apply_gameplay_effects(effects)
+</file>
+
 <file path="godot-coop/characters/player/player.gd">
 extends CharacterBase
 
@@ -4800,6 +4827,8 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/CraftStation/SyncCraftStation.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
+	#var Fireball = GameplayAbility.new()
+	#attribute_set.grant_ability(Fireball, "ability.primary")
 	pass
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -4839,22 +4868,27 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, attribute_set.speed)
 
 	move_and_slide()
-</file>
+func _input(event: InputEvent) -> void:
+	# Only the local player controls input
+	if not is_multiplayer_authority(): return
+	
+	# --- ABILITY INPUT MAPPING ---
+	
+	# Primary Attack (Left Click)
+	if event.is_action_pressed("attack_primary"): # Or "throw" if you kept that name
+		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_PRIMARY)
+		
+	if event.is_action_released("attack_primary"):
+		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_PRIMARY)
 
-<file path="godot-coop/characters/character_base.gd">
-class_name CharacterBase
-extends CharacterBody3D
-
-@onready var attribute_set: AttributeSet = %AttributeSet
-
-
-
-
-
-
-func receive_gameplay_effects(effects: Array[GameplayEffect]) -> void:
-	if attribute_set:
-		attribute_set.apply_gameplay_effects(effects)
+	# Secondary Attack (Right Click - Aiming/Alt Fire)
+	if event.is_action_pressed("attack_secondary"):
+		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
+		
+	if event.is_action_released("attack_secondary"):
+		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
+		
+	# You can add more mappings here (Reload, Jump, Ultimate...)
 </file>
 
 <file path="godot-coop/characters/player/components/attribute_set.gd">
@@ -4863,6 +4897,12 @@ extends Node
 
 signal health_changed(new_value, max_value)
 signal died()
+
+# --- INPUT TAGS CONSTANTS ---
+const INPUT_PRIMARY = "ability.primary"
+const INPUT_SECONDARY = "ability.secondary"
+const INPUT_RELOAD = "ability.reload"
+const INPUT_JUMP = "ability.jump"
 
 # ATRIBUTOS VÁLIDOS (Fuente de verdad)
 const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana"]
@@ -4890,20 +4930,44 @@ var speed: float:
 	get:
 		return get_total_stat("speed")
 
+#region Internal GAS classes
+
 
 # GESTIÓN DE MODIFICADORES TEMPORALES
 class ActiveEffect:
+	var handle: EffectSpecHandle
 	var source_effect: GameplayEffect
 	var time_left: float
 	var tick_timer: float
 	
-	func _init(effect: GameplayEffect):
+	func _init(p_handle: EffectSpecHandle, effect: GameplayEffect):
+		handle = p_handle
 		source_effect = effect
 		time_left = effect.duration
 		tick_timer = 0.0
 
+# --- INTERNAL CLASS FOR GRANTED ABILITIES ---
+class AbilitySpec:
+	var handle: AbilitySpecHandle
+	var ability: GameplayAbility # The resource definition
+	var input_tag: String # The input slot (e.g., "ability.primary")
+	var is_active: bool = false
+	
+	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String):
+		handle = p_handle
+		ability = p_ability
+		input_tag = p_input
+
+#endregion
+
+
+
+var active_effect_registry: Dictionary = {}
 var active_modifiers: Dictionary = {}
 var active_periodic_effects: Array[ActiveEffect] = []
+var granted_abilities: Dictionary = {}
+
+
 
 func _ready() -> void:
 	for attr in VALID_ATTRIBUTES:
@@ -4919,23 +4983,147 @@ func _process(delta: float) -> void:
 
 # --- 1. LÓGICA DE APLICACIÓN ---
 
-func apply_gameplay_effects(effects: Array[GameplayEffect]) -> void:
-	if not multiplayer.is_server(): return
+#region Effect Functions
+
+func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
+	if not multiplayer.is_server(): return []
+	
+	var created_handles: Array[EffectSpecHandle] = []
 	
 	for effect in effects:
 		match effect.mode:
 			GameplayEffect.ApplicationMode.INSTANT:
-				print("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "' on ", effect.target_attribute)
+				# Instant effects don't need handles as they don't persist
+				print("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "'")
 				_apply_instant_change(effect)
 				
 			GameplayEffect.ApplicationMode.PERIODIC:
-				print("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' (Duration: ", effect.duration, "s, Tick: ", effect.tick_rate, "s)")
-				active_periodic_effects.append(ActiveEffect.new(effect))
+				var handle = _create_active_effect(effect)
+				print("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
+				active_periodic_effects.append(active_effect_registry[handle])
+				created_handles.append(handle)
 				
-			GameplayEffect.ApplicationMode.DURATION:
-				print("[AttributeSet] Added DURATION modifier to '", effect.target_attribute, "': '", effect.effect_name, "' (Duration: ", effect.duration, "s)")
-				active_modifiers[effect.target_attribute].append(ActiveEffect.new(effect))
+			GameplayEffect.ApplicationMode.DURATION: # (And INFINITE/PASSIVE in the future)
+				var handle = _create_active_effect(effect)
+				print("[AttributeSet] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
+				active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
 				_on_modifier_changed(effect.target_attribute)
+				created_handles.append(handle)
+	
+	return created_handles
+
+func remove_effect(handle: EffectSpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	
+	if not active_effect_registry.has(handle):
+		print("[AttributeSet] Warning: Check to remove effect ", handle, " failed. Not found.")
+		return
+	
+	var active_effect = active_effect_registry[handle]
+	var source_data = active_effect.source_effect
+	
+	print("[AttributeSet] Removing effect manually: ", handle)
+	
+	# 1. Clean up from logic lists
+	match source_data.mode:
+		GameplayEffect.ApplicationMode.PERIODIC:
+			active_periodic_effects.erase(active_effect)
+			
+		GameplayEffect.ApplicationMode.DURATION:
+			var attr_name = source_data.target_attribute
+			if active_modifiers.has(attr_name):
+				active_modifiers[attr_name].erase(active_effect)
+				_on_modifier_changed(attr_name) # Recalculate stats immediately
+	
+	# 2. Remove from central registry
+	active_effect_registry.erase(handle)
+
+#endregion
+
+
+#region Ability Functions
+func grant_ability(ability_res: GameplayAbility, input_tag: String = "") -> AbilitySpecHandle:
+	if not multiplayer.is_server(): return null
+	if ability_res == null: return null
+	
+	# 1. Generate the unique ID (Receipt)
+	var handle = AbilitySpecHandle.new(ability_res.ability_name)
+	
+	# 2. Create the runtime specification (Instance data)
+	var spec = AbilitySpec.new(handle, ability_res, input_tag)
+	
+	# 3. Store in the registry
+	granted_abilities[handle] = spec
+	
+	print("[AttributeSet] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
+	
+	return handle
+
+func clear_ability(handle: AbilitySpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	
+	if not granted_abilities.has(handle):
+		print("[AttributeSet] Warning: Check to clear ability ", handle, " failed. Not found.")
+		return
+		
+	var spec = granted_abilities[handle]
+	
+	# Force end if running
+	if spec.is_active:
+		# We pass 'get_parent()' assuming AttributeSet is child of CharacterBase
+		spec.ability.end_ability(get_parent(), handle)
+	
+	granted_abilities.erase(handle)
+	print("[AttributeSet] Cleared Ability: ", handle)
+
+
+
+# RPC called by the client when a button is pressed
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_pressed(input_tag: String) -> void:
+	# Security check: Ensure logic runs only on server
+	if not multiplayer.is_server(): return
+	
+	# Find abilities bound to this input tag
+	for handle in granted_abilities:
+		var spec: AbilitySpec = granted_abilities[handle]
+		
+		if spec.input_tag == input_tag:
+			# Found a matching ability!
+			# We assume 'get_parent()' is the CharacterBase (the Actor)
+			var actor = get_parent()
+			
+			print("[AttributeSet] Input '", input_tag, "' triggered ability: ", spec.ability.ability_name)
+			
+			spec.is_active = true
+			spec.ability.activate(actor, handle)
+
+# RPC called by the client when a button is released
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_released(input_tag: String) -> void:
+	if not multiplayer.is_server(): return
+	
+	for handle in granted_abilities:
+		var spec: AbilitySpec = granted_abilities[handle]
+		
+		if spec.input_tag == input_tag:
+			# Notify the ability that input was released (useful for charged attacks, bows, etc)
+			var actor = get_parent()
+			spec.ability.input_released(actor, handle)
+			# Note: We don't set is_active = false here automatically. 
+			# The ability should decide when to end itself callind end_ability().
+
+
+#endregion
+
+
+
+# Helper to create the ActiveEffect and register it
+func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
+	var handle = EffectSpecHandle.new(effect.effect_name)
+	var active = ActiveEffect.new(handle, effect)
+	active_effect_registry[handle] = active
+	return handle
 
 # --- 2. CÁLCULO DE STATS TOTALES ---
 
@@ -4984,11 +5172,11 @@ func _process_periodic_effects(delta: float) -> void:
 		
 		if active.tick_timer >= active.source_effect.tick_rate:
 			active.tick_timer = 0.0
-			print("[AttributeSet] TICK! Periodic effect '", active.source_effect.effect_name, "' applied.")
 			_apply_instant_change(active.source_effect)
 			
 		if active.time_left <= 0:
-			print("[AttributeSet] Periodic effect '", active.source_effect.effect_name, "' EXPIRED.")
+			# Cleanup
+			active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
 			active_periodic_effects.remove_at(i)
 
 func _process_duration_modifiers(delta: float) -> void:
@@ -4999,7 +5187,8 @@ func _process_duration_modifiers(delta: float) -> void:
 			var active = modifiers_list[i]
 			active.time_left -= delta
 			if active.time_left <= 0:
-				print("[AttributeSet] DURATION modifier '", active.source_effect.effect_name, "' EXPIRED on '", attr, "'.")
+				# Cleanup
+				active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
 				modifiers_list.remove_at(i)
 				changed = true
 		

@@ -1,3 +1,53 @@
+This file is a merged representation of a subset of the codebase, containing specifically included files, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd">
 class_name InventorySystemUI
 extends Control
 
@@ -22,12 +72,9 @@ const Interactor = preload("../interaction_system/inventory_interactor.gd")
 
 ## Loot [InventoryUI], Typically an inventory that has been opened
 @onready var loot_inventory_ui : GridInventoryPanel = %LootGridInventoryUI
-@onready var head_slot_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/HeadSlot
-@onready var chest_slot_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/ChestSlot
-@onready var hand_slot_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/HandSlot
 
+## Loot [Equipment UI], Typically an inventory that has been opened
 @onready var equipment_container: VBoxContainer = $MarginContainer/HBoxContainer/EquipmentContainer
-
 
 ## Hotbar [HotbarUI]
 @onready var hotbar_ui : HotbarUI = get_node(NodePath("HotbarUI"))
@@ -55,6 +102,7 @@ func _ready():
 	loot_inventory_ui.visible = false
 	drop_area.visible = false
 	hotbar_ui.visible = true
+	equipment_container.visible = false
 	player_craft_station_ui.close()
 	other_craft_station_ui.close()
 	drop_area.request_drop.connect(_request_drop)
@@ -131,16 +179,14 @@ func _open_player_inventory():
 
 # Open Inventory of player	
 func _on_open_inventory(inventory : Inventory):
-	if character.main_inventory == inventory:
-		_open_player_inventory()
-	elif inventory.is_in_group("EquipmentInventory"):
-		if equipment_container: equipment_container.visible = true
-		_setup_equipment_slot(inventory)
-	else:
-		print("Opening Loot: ", inventory.name)
+	if character.main_inventory != inventory:
+		print(inventory.name)
 		loot_inventory_ui.inventory = inventory
 		loot_inventory_ui.visible = true
+		equipment_container.visible = true
 		alternative_inventory = loot_inventory_ui.inventory
+	else:
+		_open_player_inventory()
 		
 
 # Open Craft Station	
@@ -174,7 +220,6 @@ func _on_close_inventory(inventory : Inventory):
 func _close_player_inventory():
 	player_inventory_ui.visible = false
 	loot_inventory_ui.visible = false
-	equipment_container.visible = false
 	#if loot_inventory_ui.inventory != null:
 		#loot_inventory_ui.disconnect_old_inventory()
 	drop_area.visible = false
@@ -295,32 +340,6 @@ func _on_equip_menu_id_pressed(id: int):
 	if current_inventory == null:
 		return
 	_request_equip(current_stack, current_inventory, id)
+</file>
 
-func _connect_slot_ui_signals(slot_ui: GridInventoryUI):
-	if not slot_ui.request_transfer_to.is_connected(_request_transfer_to):
-		slot_ui.request_transfer_to.connect(_request_transfer_to)
-	if not slot_ui.request_split.is_connected(_request_split):
-		slot_ui.request_split.connect(_request_split)
-	if not slot_ui.inventory_stack_context_activated.is_connected(_inventory_stack_context):
-		slot_ui.inventory_stack_context_activated.connect(_inventory_stack_context)
-	# Fast transfer (Shift+Click)
-	if not slot_ui.request_fast_transfer.is_connected(_request_fast_transfer):
-		slot_ui.request_fast_transfer.connect(_request_fast_transfer)
-
-
-func _setup_equipment_slot(inventory: Inventory):
-	var target_ui: GridInventoryUI = null
-	
-	# Mapeo basado en el nombre del nodo Inventario (definido en Player.tscn)
-	# Asegúrate de que los nombres en Player.tscn coinciden con estos strings
-	match inventory.name:
-		"HeadSlot": target_ui = head_slot_ui
-		"ChestSlot": target_ui = chest_slot_ui
-		"HandSlot": target_ui = hand_slot_ui
-	
-	if target_ui != null:
-		target_ui.inventory = inventory
-		target_ui.visible = true
-		_connect_slot_ui_signals(target_ui)
-	else:
-		printerr("InventorySystemUI: No se encontró UI para el inventario de equipo: ", inventory.name)
+</files>
