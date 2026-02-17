@@ -15,6 +15,12 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/EquipmentInventory/SyncInventory.set_multiplayer_authority(1)
 	%SyncHotbar.set_multiplayer_authority(1)
 	$CharacterInventorySystem/CraftStation/SyncCraftStation.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentManager/HeadSlot/SyncGridInventory.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentManager/HeadSlot/Openable.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentManager/ChestSlot/SyncGridInventory.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentManager/ChestSlot/Openable.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentManager/HandSlot/SyncGridInventory.set_multiplayer_authority(1)
+	$CharacterInventorySystem/EquipmentManager/HandSlot/Openable.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
 	#var Fireball = GameplayAbility.new()
@@ -24,10 +30,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
-	if Input.is_action_just_pressed("aim"):
-		is_strafing = true
-	if Input.is_action_just_released("aim"):
-		is_strafing = false
+	#if Input.is_action_just_pressed("aim"):
+		#is_strafing = true
+	#if Input.is_action_just_released("aim"):
+		#is_strafing = false
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -61,12 +67,14 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	# Only the local player controls input
 	if not is_multiplayer_authority(): return
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
 	
 	# --- ABILITY INPUT MAPPING ---
 	
 	# Primary Attack (Left Click)
-	if event.is_action_pressed("attack_primary"): # Or "throw" if you kept that name
-		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_PRIMARY)
+	if event.is_action_pressed("attack_primary") : # Or "throw" if you kept that name
+		var data = _collect_activation_data()
+		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_PRIMARY, data)
 		
 	if event.is_action_released("attack_primary"):
 		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_PRIMARY)
@@ -79,3 +87,11 @@ func _input(event: InputEvent) -> void:
 		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
 		
 	# You can add more mappings here (Reload, Jump, Ultimate...)
+
+func _collect_activation_data() -> Dictionary:
+	var data = {}
+	data["aim_direction"] = -camera.global_transform.basis.z
+	data["aim_position"] = camera.global_position
+	return data
+func set_strafing(state: bool) -> void:
+	is_strafing = state

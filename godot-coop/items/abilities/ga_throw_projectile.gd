@@ -5,41 +5,35 @@ class_name GA_ThrowProjectile
 # Usamos el mismo recurso que ya tenías para no tirar trabajo a la basura.
 @export var throwable_data: ThrowableData 
 
-func activate(actor: Node, handle: AbilitySpecHandle) -> void:
+func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
 	# 1. Obtener referencias del Actor (Player)
 	# Asumimos que el actor tiene las propiedades expuestas o buscamos los nodos
-	var camera: Camera3D = actor.get_node("SpringArmPivot/Camera3D") # Ajusta la ruta si cambió
-	var hand_marker: Node3D = actor.get_node("MeshInstance3D/HandMarker") # Necesitarás crear este Marker3D
+	var direction = Vector3.FORWARD
+	var spawn_pos = actor.global_position + Vector3(0, 1.5, 0)
 	
-	if not camera:
-		printerr("[GA_Throw] Error: No camera found on actor")
-		return
+	if args.has("aim_direction"):
+		direction = args["aim_direction"]
+	else:
+		# Fallback si no hay datos (ej: activado por IA)
+		direction = -actor.global_transform.basis.z
 
-	# Si no hay marcador de mano, usamos la posición del actor + offset
-	var spawn_pos = actor.global_position + Vector3(0, 1.5, 0) + (actor.global_transform.basis.z * 0.5)
-	if hand_marker:
-		spawn_pos = hand_marker.global_position
+	if args.has("aim_position"):
+		# Ajustamos el spawn para que no salga desde los pies del server,
+		# sino relativo a donde miraba el cliente (o usar HandMarker del server)
+		# Nota: Mejor usar HandMarker del server para evitar trampas de spawn,
+		# pero usar la DIRECCION del cliente.
+		pass
 
-	# 2. Calcular Físicas
-	var direction = -camera.global_transform.basis.z
+	# 2. Calcular Velocidad usando la dirección del cliente
 	var velocity = direction * throwable_data.throw_force
 	
-	# 3. Networking (RPC al Spawner)
-	# La lógica original estaba en ItemThrower. Ahora la habilidad gestiona la petición.
-	# Como GameplayAbility es un Recurso, no tiene RPCs propios.
-	# Llamamos a una función en el Actor para que haga el RPC, o buscamos el Spawner directamente.
-	
-	# Opción más limpia: Buscar el Spawner global (Singleto/Grupo)
+	# 3. Spawnear (Server side)
 	var spawner = actor.get_tree().get_first_node_in_group("ProjectileSpawner")
 	if spawner:
-		# Enviamos los datos necesarios: Pos, Rot, Vel, y la RUTA del recurso de datos
-		# Importante: El Spawner espera la ruta del ThrowableData
-		spawner.spawn([spawn_pos, camera.global_rotation, velocity, throwable_data.resource_path])
+		# Usamos HandMarker del actor (Server) para el origen, 
+		# pero Velocity basada en la cámara del Cliente.
+		var hand_node = actor.get_node_or_null("MeshInstance3D/HandMarker")
+		var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
 		
-		# 4. Consumir munición/item (Opcional por ahora)
-		# Aquí deberíamos restar 1 al stack del inventario.
-		# Esto requiere que la Habilidad sepa de qué Slot vino.
-		# Lo dejaremos para un "refinamiento" posterior para no bloquearnos.
-	
-	print("[GA_Throw] Proyectil lanzado!")
+		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, throwable_data.resource_path])

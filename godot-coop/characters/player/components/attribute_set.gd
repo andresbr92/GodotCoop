@@ -186,23 +186,14 @@ func clear_ability(handle: AbilitySpecHandle) -> void:
 
 # RPC called by the client when a button is pressed
 @rpc("any_peer", "call_local", "reliable")
-func server_ability_input_pressed(input_tag: String) -> void:
-	# Security check: Ensure logic runs only on server
+func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
 	if not multiplayer.is_server(): return
 	
-	# Find abilities bound to this input tag
 	for handle in granted_abilities:
-		var spec: AbilitySpec = granted_abilities[handle]
-		
+		var spec = granted_abilities[handle]
 		if spec.input_tag == input_tag:
-			# Found a matching ability!
-			# We assume 'get_parent()' is the CharacterBase (the Actor)
-			var actor = get_parent()
-			
-			print("[AttributeSet] Input '", input_tag, "' triggered ability: ", spec.ability.ability_name)
-			
-			spec.is_active = true
-			spec.ability.activate(actor, handle)
+			# Pasamos los datos a la habilidad
+			spec.ability.activate(get_parent(), handle, activation_data)
 
 # RPC called by the client when a button is released
 @rpc("any_peer", "call_local", "reliable")

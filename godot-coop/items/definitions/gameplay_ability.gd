@@ -12,8 +12,8 @@ extends Resource
 
 # Called when the ability is activated via input or event
 # 'actor' is the CharacterBase who owns this ability
-func activate(actor: Node, handle: AbilitySpecHandle) -> void:
-	print("Base GameplayAbility activated on ", actor.name)
+func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
+	print("Base activate")
 
 # Called when input is released (for charged abilities like bows)
 func input_released(actor: Node, handle: AbilitySpecHandle) -> void:
