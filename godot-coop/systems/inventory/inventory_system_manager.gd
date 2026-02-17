@@ -1,60 +1,9 @@
 @tool
 @icon("res://addons/inventory-system-demos/icons/character_inventory_system.svg")
 class_name InventorySystemManager
-extends NodeInventories
+extends NetworkedCharacterInventorySystem
 
-signal opened_station(station : CraftStation)
-signal closed_station(station : CraftStation)
-signal opened_inventory(inventory : Inventory)
-signal closed_inventory(inventory : Inventory)
-signal picked(obj : Node)
-
-const Interactor = preload("res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd")
-
-@export_group("🗃️ Inventory Nodes")
-@export_node_path var main_inventory_path := NodePath("InventoryHandler/Inventory")
-@onready var main_inventory : GridInventory = get_node(main_inventory_path)
-@export_node_path var equipment_inventory_path := NodePath("InventoryHandler/EquipmentInventory")
-@onready var equipment_inventory : GridInventory = get_node(equipment_inventory_path)
-@export_node_path("Hotbar") var hotbar_path := NodePath("Hotbar")
-@onready var hotbar : Hotbar = get_node(hotbar_path)
-@export_node_path("CraftStation") var main_station_path := NodePath("CraftStation")
-@onready var main_station : CraftStation = get_node(main_station_path)
-@export_node_path var interactor_path := NodePath("Interactor")
-@onready var interactor : Interactor = get_node(interactor_path)
-@export_node_path var drop_parent_path := NodePath("../..");
-@onready var drop_parent : Node = get_node(drop_parent_path)
-@export_node_path var drop_parent_position_path := NodePath("..");
-@onready var drop_parent_position : Node = get_node(drop_parent_position_path)
 @export_node_path var equipment_manager_path := NodePath("EquipmentManager")
-@onready var equipment_manager : EquipmentManager = get_node(equipment_manager_path)
-
-var opened_stations : Array[CraftStation]
-var opened_inventories : Array[Inventory]
-
-@export_group("⌨️ Inputs")
-## Change mouse state based on inventory status
-@export var change_mouse_state : bool = true
-@export var check_inputs : bool = true
-@export var toggle_inventory_input : String = "toggle_inventory"
-@export var exit_inventory_and_craft_panel_input : String = "escape"
-@export var toggle_craft_panel_input : String = "toggle_craft_panel"
-
-
-@export_group("🫴 Interact")
-@export var can_interact : bool = true
-@export var raycast : RayCast3D:
-	set(value):
-		raycast = value
-		var _interactor = get_node(interactor_path)
-		if _interactor != null and value != null:
-			_interactor.raycast = value
-@export var camera_3d : Camera3D:
-	set(value):
-		camera_3d = value
-		var _interactor = get_node(interactor_path)
-		if _interactor != null and value != null:
-			_interactor.camera = value
 
 
 func _ready():
