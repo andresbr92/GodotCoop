@@ -17,10 +17,10 @@ var searching_process_active: bool = false
 const MAX_INTERACT_DISTANCE_SQR = 3.0 * 3.0
 
 func _ready():
-	#$GridInventory.set_multiplayer_authority(1)
-	#$GridInventory/SyncGridInventory.set_multiplayer_authority(1)
-	#$NetworkedOpenable.set_multiplayer_authority(1)
-	#$LootGenerator.set_multiplayer_authority(1)
+	$GridInventory.set_multiplayer_authority(1)
+	$GridInventory/SyncGridInventory.set_multiplayer_authority(1)
+	$NetworkedOpenable.set_multiplayer_authority(1)
+	$LootGenerator.set_multiplayer_authority(1)
 	interaction_text = "Search"
 	
 	# Configurar generador
@@ -88,35 +88,21 @@ func _on_interaction_canceled():
 func _first_time_generation():
 	if not multiplayer.is_server(): return
 	
-	# 1. Generate loot (The generator fills the inventory)
 	loot_generator.add_loot_to_inventory()
 	
-	# 2. POST-PROCESSING (Here's the fix)
-	# Iterate through EACH slot independently
 	for i in range(inventory.stacks.size()):
 		var stack = inventory.stacks[i]
-		
-		# Verify there's an item in this slot
 		if stack != null and stack.item_id != "":
-			
-			# SAFETY TRICK:
-			# Duplicate the existing properties dictionary.
-			# The 'true' means "Deep Copy" (also copies sub-dictionaries if any).
-			# This ensures this stack has ITS OWN dictionary, unique in the world.
 			var unique_properties = stack.properties.duplicate(true)
 			
-			# Now modify the unique copy
-			unique_properties["revealed"] = false
+			# CAMBIO: En lugar de 'revealed' = false, usamos un array vacío
+			# Este array contendrá los Peer IDs de quienes ya lo descubrieron.
+			unique_properties["revealed_to"] = [] 
 			
-			# And reassign it to the stack.
-			# By reassigning, we break any previous reference.
 			stack.properties = unique_properties
-			
-			# IMPORTANT: Force inventory update so the system knows it changed
-			# (Depending on the addon, sometimes reassigning properties doesn't trigger the signal automatically)
 			inventory.update_stack(i)
 	
-	print("Loot generated and hidden individually.")
+	print("Loot generated with per-player reveal system.")
 
 func _start_revealing_sequence():
 	if not multiplayer.is_server(): return
@@ -136,37 +122,43 @@ func _schedule_next_reveal():
 
 func _reveal_next_item():
 	if not multiplayer.is_server(): return
+	if not is_instance_valid(current_interactor): return
 	
-	# 1. Find the first hidden item (Sequential: top to bottom, left to right)
-	var found_hidden = false
+	# Obtenemos la ID del jugador actual (asumiendo que el nombre es la ID, según tu setup)
+	var player_id = current_interactor.name.to_int()
 	
 	for i in inventory.stacks.size():
 		var stack = inventory.stacks[i]
 		if stack != null and stack.item_id != "":
-			if stack.properties.get("revealed", true) == false:
-				# 2. REVEAL IT
-				stack.properties["revealed"] = true
+			# Recuperamos la lista (o creamos una si no existe por seguridad)
+			var revealed_list: Array = stack.properties.get("revealed_to", [])
+			
+			# Si ESTE jugador NO está en la lista...
+			if player_id not in revealed_list:
+				# 2. REVEAL IT FOR THIS PLAYER
+				revealed_list.append(player_id)
+				stack.properties["revealed_to"] = revealed_list
 				
-				# Notify system to sync this specific slot
+				# Sincronizamos
 				inventory.update_stack(i) 
-				# Or inventory.updated_stack.emit(i) depending on your addon
 				
-				found_hidden = true
-				print("Item revealed in slot ", i)
+				print("Item revealed in slot ", i, " for player ", player_id)
 				
-				# 3. SCHEDULE THE NEXT ONE
 				_schedule_next_reveal()
-				return # Exit, we only reveal one per tick
+				return 
 
-	# If we reach here, no hidden items remain
 	searching_process_active = false
-	print("Search completed.")
+	print("Search completed for player ", player_id)
 
 func _has_hidden_items() -> bool:
+	if not is_instance_valid(current_interactor): return false
+	var player_id = current_interactor.name.to_int()
+	
 	for stack in inventory.stacks:
 		if stack != null and stack.item_id != "":
-			print(stack.properties.get("revealed"))
-			if stack.properties.get("revealed", true) == false:
+			var revealed_list: Array = stack.properties.get("revealed_to", [])
+			# Si el jugador NO está en la lista, significa que para él está oculto
+			if player_id not in revealed_list:
 				return true
 	return false
 

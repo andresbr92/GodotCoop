@@ -92,15 +92,26 @@ func _update_visuals():
 	if not stack or not inventory:
 		return
 
-	# 1. Check if revealed (default true if property doesn't exist)
-	var is_revealed: bool = stack.properties.get("revealed", true)
+	# CAMBIO: Lógica basada en array de IDs
+	var is_revealed = true
+	
+	if stack.properties.has("revealed_to"):
+		var revealed_list = stack.properties["revealed_to"]
+		var my_id = multiplayer.get_unique_id()
+		
+		# Si mi ID no está, no está revelado para mí
+		if my_id not in revealed_list:
+			is_revealed = false
+	else:
+		# Retrocompatibilidad o items normales sin esta mecánica
+		# Si existe la vieja propiedad 'revealed', la usamos, si no, true.
+		is_revealed = stack.properties.get("revealed", true)
 	
 	if is_revealed:
-		# --- REVEALED STATE (Original Logic) ---
+		# --- REVEALED STATE (Lógica original) ---
 		var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
 		tooltip_text = definition.description
 		
-		# Rotation management
 		var is_rotated = inventory.is_stack_rotated(stack)
 		var texture = definition.icon
 		if is_rotated:
@@ -109,29 +120,24 @@ func _update_visuals():
 			texture = ImageTexture.create_from_image(image)
 		
 		%ItemIcon.texture = texture
-		%ItemIcon.modulate = Color(1, 1, 1, 1) # Restore normal color
+		%ItemIcon.modulate = Color(1, 1, 1, 1)
 		
-		# Enable drag and interaction
 		activate() 
 		
 	else:
-		# --- HIDDEN STATE ("Searching...") ---
+		# --- HIDDEN STATE ---
 		tooltip_text = "Searching..."
 		
-		# Use unknown icon if exists, otherwise show item icon but dark
 		if unknown_icon:
 			%ItemIcon.texture = unknown_icon
 			%ItemIcon.modulate = Color(1, 1, 1, 1)
 		else:
-			# Fallback: If you haven't assigned unknown icon, show item very dark
 			var definition = inventory.database.get_item(stack.item_id)
 			%ItemIcon.texture = definition.icon
-			%ItemIcon.modulate = Color(0.1, 0.1, 0.1, 1) # Very dark/silhouette
+			%ItemIcon.modulate = Color(0.0, 0.0, 0.0, 1) # Negro total
 		
-		# DISABLE DRAG (Important: prevents stealing)
 		deactivate()
 
-	# Update quantity label (if hidden, you might want to hide quantity too)
 	_update_stack_size(is_revealed)
 
 
