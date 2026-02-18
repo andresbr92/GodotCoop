@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bdpi3xeufl0ug"]
+
+[ext_resource type="Script" uid="uid://qb2rqs0vp12x" path="res://characters/common_components/attribute_set.gd" id="1_eiwkx"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eiwkx"]
+properties/0/path = NodePath(".:is_strafing")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="AttributeSet" type="Node" unique_id=398172985]
+script = ExtResource("1_eiwkx")
+metadata/_custom_type_script = "uid://qb2rqs0vp12x"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=717679454]
+replication_config = SubResource("SceneReplicationConfig_eiwkx")

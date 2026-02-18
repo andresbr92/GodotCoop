@@ -22,6 +22,7 @@ const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "s
 @export var base_max_health: float = 100.0
 @export var base_speed: float = 5.0
 @export var base_stamina: float = 50.0
+@export var is_strafing: bool = false
 
 # CURRENT STATS (Valores actuales)
 var health: float:

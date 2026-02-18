@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ThrowableData" format=3 uid="uid://blriqcen68jms"]
 
 [ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_58sb2"]
-[ext_resource type="PackedScene" uid="uid://h6vvsfkrplpl" path="res://items/world_models/potions/heal_potion_projectile.tscn" id="1_kfmvx"]
+[ext_resource type="PackedScene" uid="uid://h6vvsfkrplpl" path="res://items/world_models/potions/heal_potion_projectile_backup.tscn" id="1_kfmvx"]
 [ext_resource type="Resource" uid="uid://drdrqyt7kwaky" path="res://items/definitions/gameplay_effects/GE_HealOverTime.tres" id="2_5d0ui"]
 [ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/throwable_data.gd" id="2_58sb2"]
 

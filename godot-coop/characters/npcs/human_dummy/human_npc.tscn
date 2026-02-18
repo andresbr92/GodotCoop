@@ -3,11 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://bkoflorth6kly" path="res://characters/character_base.tscn" id="1_2v448"]
 [ext_resource type="Script" uid="uid://cm3yxqodvoiby" path="res://characters/npcs/human_dummy/human_npc.gd" id="2_rwpfh"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rwpfh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("MeshInstance3D:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwpfh"]
 albedo_color = Color(0.390625, 0, 0, 1)
 
 [node name="HumanNPC" unique_id=385850437 instance=ExtResource("1_2v448")]
 script = ExtResource("2_rwpfh")
 
-[node name="MeshInstance3D" parent="." index="1" unique_id=1547036043]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0" unique_id=1730343911]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_rwpfh")
+
+[node name="MeshInstance3D" parent="." index="2" unique_id=1547036043]
 surface_material_override/0 = SubResource("StandardMaterial3D_rwpfh")

@@ -3,7 +3,6 @@ extends CharacterBase
 
 const JUMP_VELOCITY = 4.5
 const ROTATION_SPEED = 10.0 # Velocidad de giro del personaje
-var is_strafing = false
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
@@ -21,6 +20,7 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/EquipmentManager/ChestSlot/Openable.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/SyncGridInventory.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/Openable.set_multiplayer_authority(1)
+	%AttributeSet.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
 	#var Fireball = GameplayAbility.new()
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Rotate direction vector according to camera
 	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
-	if is_strafing:
+	if attribute_set.is_strafing:
 		mesh_instance_3d.global_rotation.y = camera.global_rotation.y
 	
 	if direction:
@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		
 		# --- ROTATION LOGIC HERE ---
 		var target_rotation = atan2(direction.x, direction.z) + PI
-		if not is_strafing:
+		if not attribute_set.is_strafing:
 			mesh_instance_3d.rotation.y = lerp_angle(mesh_instance_3d.rotation.y, target_rotation, delta * ROTATION_SPEED)
 
 		
@@ -81,15 +81,17 @@ func _input(event: InputEvent) -> void:
 
 	# Secondary Attack (Right Click - Aiming/Alt Fire)
 	if event.is_action_pressed("attack_secondary"):
+		#set_strafing(true) 
 		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
 		
 	if event.is_action_released("attack_secondary"):
+		#set_strafing(false) 
 		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
-	if event.is_action_pressed("aim"): # O el nombre que tengas en InputMap
-		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
-		
-	if event.is_action_released("aim"):
-		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
+	#if event.is_action_pressed("aim"): # O el nombre que tengas en InputMap
+		#attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
+		#
+	#if event.is_action_released("aim"):
+		#attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
 		
 	# You can add more mappings here (Reload, Jump, Ultimate...)
 
@@ -99,4 +101,4 @@ func _collect_activation_data() -> Dictionary:
 	data["aim_position"] = camera.global_position
 	return data
 func set_strafing(state: bool) -> void:
-	is_strafing = state
+	attribute_set.is_strafing = state

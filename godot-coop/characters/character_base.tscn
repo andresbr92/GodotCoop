@@ -1,19 +1,11 @@
 [gd_scene format=3 uid="uid://bkoflorth6kly"]
 
 [ext_resource type="Script" uid="uid://cnx8xlxnq11u1" path="res://characters/character_base.gd" id="1_1mj81"]
-[ext_resource type="Script" uid="uid://qb2rqs0vp12x" path="res://characters/player/components/attribute_set.gd" id="2_gepiv"]
+[ext_resource type="PackedScene" uid="uid://bdpi3xeufl0ug" path="res://characters/common_components/attribute_set.tscn" id="2_gepiv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gepiv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_13xd6"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aea6v"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("MeshInstance3D:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_13xd6"]
 
@@ -34,14 +26,8 @@ mesh = SubResource("CapsuleMesh_13xd6")
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.00031760352, 0.36187744, -0.33904696)
 size = Vector3(0.5, 0.2, 0.705)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=684341116]
+[node name="AttributeSet" parent="." unique_id=398172985 instance=ExtResource("2_gepiv")]
 unique_name_in_owner = true
-replication_config = SubResource("SceneReplicationConfig_aea6v")
-
-[node name="AttributeSet" type="Node" parent="." unique_id=453168896]
-unique_name_in_owner = true
-script = ExtResource("2_gepiv")
-metadata/_custom_type_script = "uid://qb2rqs0vp12x"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1610593320]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -8,7 +8,8 @@ func on_impact(body: Node) -> void:
 	if has_exploded:
 		return
 	if multiplayer.is_server():
-		trigger_explosion_sequence()
+		#trigger_explosion_sequence()
+		pass
 	
 
 func trigger_explosion_sequence() -> void:

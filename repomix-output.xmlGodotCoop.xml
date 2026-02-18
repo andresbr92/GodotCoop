@@ -32,7 +32,7 @@ The content is organized as follows:
 <notes>
 - Some files may have been excluded based on .gitignore rules and Repomix's configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Only files matching these patterns are included: godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd, godot-coop/addons/inventory-system-demos/interaction_system/interact_action.gd, godot-coop/addons/inventory-system-demos/fps/box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/campfire.gd, godot-coop/addons/inventory-system-demos/fps/constraints/category_grid_inventory_constraint.gd, godot-coop/addons/inventory-system-demos/fps/constraints/stack_size_constraint.gd, godot-coop/addons/inventory-system-demos/fps/dropper.gd, godot-coop/addons/inventory-system-demos/fps/fps_demo.gd, godot-coop/addons/inventory-system-demos/fps/loot_box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/modding_demo.gd, godot-coop/addons/inventory-system-demos/fps/player.gd, godot-coop/addons/inventory-system-demos/fps/props/shelf.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_inventory_3d.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_slot_3d.gd, godot-coop/addons/inventory-system-demos/fps/tool_hand_item_3d.gd, godot-coop/addons/inventory-system-demos/fps/use_items_example.gd, godot-coop/addons/inventory-system-demos/fps/workbench.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/characters/character_base.gd, godot-coop/characters/npcs/human_dummy/human_npc.gd, godot-coop/characters/player/components/attribute_set.gd, godot-coop/characters/player/components/camera_follow.gd, godot-coop/characters/player/components/camera_spring_arm.gd, godot-coop/characters/player/components/coop_character_inventory_system.gd, godot-coop/characters/player/components/coop_character_inventory_system_ui.gd, godot-coop/characters/player/player.gd, godot-coop/items/definitions/throwable_data.gd, godot-coop/items/definitions/gameplay_effect.gd, godot-coop/items/definitions/potion/FirePotionStats.tres, godot-coop/items/definitions/potion/HealPotionStats.tres, godot-coop/items/definitions/gameplay_effects/GE_InstantDamage_10.tres, godot-coop/items/definitions/gameplay_effects/GE_HealOverTime.tres, godot-coop/items/projectile_base.gd, godot-coop/items/world_models/potions/fire_potion_projectile.gd, godot-coop/interactables/interactable_base.gd, godot-coop/interactables/harvest_nodes/harvestable.gd, godot-coop/interactables/harvest_nodes/harvestable_data.gd, godot-coop/interactables/loot_container/loot_container.gd, godot-coop/interactables/loot_container/loot_container_data.gd, godot-coop/interactables/loot_container/search_constraint.gd, godot-coop/levels/maps/main.gd, godot-coop/systems/multiplayer_spawner.gd, godot-coop/systems/network_manager.gd, godot-coop/systems/projectile_spawner.gd, godot-coop/systems/inventory/equipment_slot_constraint.gd, godot-coop/systems/inventory/inventory_system_manager.gd, godot-coop/characters/player/equipment_manager.gd, godot-coop/items/abilities/ga_aim.gd, godot-coop/items/abilities/ga_throw_projectile.gd, godot-coop/items/definitions/ability_grant.gd, godot-coop/items/definitions/ability_spec_handle.gd, godot-coop/items/definitions/equipment_data.gd, godot-coop/items/definitions/effect_spec_handle.gd, godot-coop/items/definitions/gameplay_ability.gd, godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd, godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd, godot-coop/addons/inventory-system-demos/character/networked_openable.gd, godot-coop/addons/inventory-system-demos/character/openable.gd
+- Only files matching these patterns are included: godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd, godot-coop/addons/inventory-system-demos/interaction_system/interact_action.gd, godot-coop/addons/inventory-system-demos/fps/box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/campfire.gd, godot-coop/addons/inventory-system-demos/fps/constraints/category_grid_inventory_constraint.gd, godot-coop/addons/inventory-system-demos/fps/constraints/stack_size_constraint.gd, godot-coop/addons/inventory-system-demos/fps/dropper.gd, godot-coop/addons/inventory-system-demos/fps/fps_demo.gd, godot-coop/addons/inventory-system-demos/fps/loot_box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/modding_demo.gd, godot-coop/addons/inventory-system-demos/fps/player.gd, godot-coop/addons/inventory-system-demos/fps/props/shelf.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_inventory_3d.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_slot_3d.gd, godot-coop/addons/inventory-system-demos/fps/tool_hand_item_3d.gd, godot-coop/addons/inventory-system-demos/fps/use_items_example.gd, godot-coop/addons/inventory-system-demos/fps/workbench.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/characters/character_base.gd, godot-coop/characters/npcs/human_dummy/human_npc.gd, godot-coop/characters/player/components/camera_follow.gd, godot-coop/characters/player/components/camera_spring_arm.gd, godot-coop/characters/player/components/coop_character_inventory_system.gd, godot-coop/characters/player/components/coop_character_inventory_system_ui.gd, godot-coop/characters/player/player.gd, godot-coop/items/definitions/throwable_data.gd, godot-coop/items/definitions/gameplay_effect.gd, godot-coop/items/definitions/potion/FirePotionStats.tres, godot-coop/items/definitions/potion/HealPotionStats.tres, godot-coop/items/definitions/gameplay_effects/GE_InstantDamage_10.tres, godot-coop/items/definitions/gameplay_effects/GE_HealOverTime.tres, godot-coop/items/projectile_base.gd, godot-coop/items/world_models/potions/fire_potion_projectile.gd, godot-coop/interactables/interactable_base.gd, godot-coop/interactables/harvest_nodes/harvestable.gd, godot-coop/interactables/harvest_nodes/harvestable_data.gd, godot-coop/interactables/loot_container/loot_container.gd, godot-coop/interactables/loot_container/loot_container_data.gd, godot-coop/interactables/loot_container/search_constraint.gd, godot-coop/levels/maps/main.gd, godot-coop/systems/multiplayer_spawner.gd, godot-coop/systems/network_manager.gd, godot-coop/systems/projectile_spawner.gd, godot-coop/systems/inventory/equipment_slot_constraint.gd, godot-coop/systems/inventory/inventory_system_manager.gd, godot-coop/characters/player/equipment_manager.gd, godot-coop/items/abilities/ga_aim.gd, godot-coop/items/abilities/ga_throw_projectile.gd, godot-coop/items/definitions/ability_grant.gd, godot-coop/items/definitions/ability_spec_handle.gd, godot-coop/items/definitions/equipment_data.gd, godot-coop/items/definitions/effect_spec_handle.gd, godot-coop/items/definitions/gameplay_ability.gd, godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd, godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd, godot-coop/addons/inventory-system-demos/character/networked_openable.gd, godot-coop/addons/inventory-system-demos/character/openable.gd
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Files are sorted by Git change count (files with more changes are at the bottom)
@@ -80,7 +80,6 @@ godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd
 godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd
 godot-coop/characters/character_base.gd
 godot-coop/characters/npcs/human_dummy/human_npc.gd
-godot-coop/characters/player/components/attribute_set.gd
 godot-coop/characters/player/components/camera_follow.gd
 godot-coop/characters/player/components/camera_spring_arm.gd
 godot-coop/characters/player/components/coop_character_inventory_system_ui.gd
@@ -1738,114 +1737,6 @@ func input_inventory_removed_rpc(inventory_path : NodePath):
 	craft_station.remove_input_inventory(craft_station.get_node(inventory_path))
 </file>
 
-<file path="godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd">
-class_name SyncGridInventory
-extends Node
-
-#@export var sync_item_added_signal := true
-#@export var sync_item_removed_signal := true
-@export var sync_when_content_update_only := false
-
-@export var inventory : GridInventory
-
-## Networked version of inventory where server sends rpcs to client for
-## slot update, add and remove signals
-##
-## Why not use [MultiplayerSyncronizer]?
-## The idea of using rpc signals only when changed saves a lot of bandwidth,
-## but at the cost of being sure which signals will be called, ie calling
-## slot[i] = new Dictionary is not replicated across the network.
-## Also keep in mind that signals need to be handled if switching to a use of
-## MultiplayerSyncronizer
-##
-## Note: Slot categories are not synced
-
-func _ready():
-	if Engine.is_editor_hint():
-		return
-	multiplayer.peer_connected.connect(_on_connected)
-	if(inventory != null):
-		setup()
-
-
-func setup():
-	if sync_when_content_update_only:
-		inventory.contents_changed.connect(_on_contents_changed)
-	else:
-		inventory.stack_added.connect(_on_stack_added)
-		inventory.updated_stack.connect(_on_updated_stack)
-		inventory.stack_removed.connect(_on_stack_removed)
-
-
-
-func _on_contents_changed():
-	if not multiplayer.is_server():
-		return
-	var inv_data = inventory.serialize()
-	_update_inventory_rpc.rpc(inv_data)
-
-
-func _on_connected(id):
-	if not multiplayer.is_server():
-		return
-	var inv_data = inventory.serialize()
-	_update_inventory_rpc.rpc_id(id, inv_data)
-
-
-func _on_stack_added(stack_index : int):
-	if not multiplayer.is_server():
-		return
-
-	var item_id = inventory.stacks[stack_index].item_id
-	var amount = inventory.stacks[stack_index].amount
-	var properties = inventory.stacks[stack_index].properties
-	var position = inventory.stack_positions[stack_index]
-	var rotation = inventory.stack_rotations[stack_index]
-	_stack_added_rpc.rpc(stack_index, item_id, amount, properties, position, rotation)
-
-
-func _on_updated_stack(stack_index : int):
-	if not multiplayer.is_server():
-		return
-	_updated_slot_rpc.rpc(stack_index, inventory.stacks[stack_index].serialize())
-
-
-func _on_stack_removed(stack_index : int):
-	if not multiplayer.is_server():
-		return
-
-	_stack_removed_rpc.rpc(stack_index)
-
-
-@rpc
-func _update_inventory_rpc(inv_data : Dictionary):
-	if not multiplayer.is_server():
-		inventory.deserialize(inv_data)
-		inventory.contents_changed.emit()
-
-
-@rpc
-func _stack_added_rpc(_stack_index: int, item_id: String, amount: int, properties: Dictionary, position: Vector2i, rotation: bool):
-	if multiplayer.is_server():
-		return
-	inventory.add_at_position(position, item_id, amount, properties, rotation)
-
-
-@rpc
-func _updated_slot_rpc(stack_index : int, slot_data : Array):
-	if multiplayer.is_server():
-		return
-	var stack : ItemStack = inventory.stacks[stack_index]
-	stack.deserialize(slot_data)
-	inventory.updated_stack.emit(stack_index)
-
-@rpc
-func _stack_removed_rpc(stack_index : int):
-	if multiplayer.is_server():
-		return
-	inventory.remove_stack(stack_index)
-</file>
-
 <file path="godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd">
 extends Node
 class_name	SyncHotbar
@@ -2164,14 +2055,16 @@ class_name GA_Aim
 
 func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
 	# 1. Start Strafing
-	if actor.has_method("set_strafing"):
-		actor.set_strafing(true)
+	var asc = actor.get_node("AttributeSet")
+	if asc:
+		asc.is_strafing = true
 		print("[GA_Aim] Strafing Active")
 
 func input_released(actor: Node, handle: AbilitySpecHandle) -> void:
 	# 2. Stop Strafing when button is released
-	if actor.has_method("set_strafing"):
-		actor.set_strafing(false)
+	var asc = actor.get_node("AttributeSet")
+	if asc:
+		asc.is_strafing = false
 		print("[GA_Aim] Strafing Ended")
 	
 	# 3. End the ability immediately
@@ -2741,6 +2634,115 @@ func _physics_process(_delta : float):
 		interactor.try_interact()
 </file>
 
+<file path="godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd">
+class_name SyncGridInventory
+extends Node
+
+#@export var sync_item_added_signal := true
+#@export var sync_item_removed_signal := true
+@export var sync_when_content_update_only := false
+
+@export var inventory : GridInventory
+
+## Networked version of inventory where server sends rpcs to client for
+## slot update, add and remove signals
+##
+## Why not use [MultiplayerSyncronizer]?
+## The idea of using rpc signals only when changed saves a lot of bandwidth,
+## but at the cost of being sure which signals will be called, ie calling
+## slot[i] = new Dictionary is not replicated across the network.
+## Also keep in mind that signals need to be handled if switching to a use of
+## MultiplayerSyncronizer
+##
+## Note: Slot categories are not synced
+
+func _ready():
+	if Engine.is_editor_hint():
+		return
+	multiplayer.peer_connected.connect(_on_connected)
+	if(inventory != null):
+		setup()
+
+
+func setup():
+	if sync_when_content_update_only:
+		inventory.contents_changed.connect(_on_contents_changed)
+	else:
+		inventory.stack_added.connect(_on_stack_added)
+		inventory.updated_stack.connect(_on_updated_stack)
+		inventory.stack_removed.connect(_on_stack_removed)
+
+
+
+func _on_contents_changed():
+	if not multiplayer.is_server():
+		return
+	var inv_data = inventory.serialize()
+	_update_inventory_rpc.rpc(inv_data)
+
+
+func _on_connected(id):
+	if not multiplayer.is_server():
+		return
+	var inv_data = inventory.serialize()
+	_update_inventory_rpc.rpc_id(id, inv_data)
+
+
+func _on_stack_added(stack_index : int):
+	if not multiplayer.is_server():
+		return
+
+	var item_id = inventory.stacks[stack_index].item_id
+	var amount = inventory.stacks[stack_index].amount
+	var properties = inventory.stacks[stack_index].properties
+	var position = inventory.stack_positions[stack_index]
+	var rotation = inventory.stack_rotations[stack_index]
+	_stack_added_rpc.rpc(stack_index, item_id, amount, properties, position, rotation)
+
+
+func _on_updated_stack(stack_index : int):
+	if not multiplayer.is_server():
+		return
+	_updated_slot_rpc.rpc(stack_index, inventory.stacks[stack_index].serialize())
+
+
+func _on_stack_removed(stack_index : int):
+	if not multiplayer.is_server():
+		return
+
+	_stack_removed_rpc.rpc(stack_index)
+
+
+@rpc
+func _update_inventory_rpc(inv_data : Dictionary):
+	if not multiplayer.is_server():
+		inventory.deserialize(inv_data)
+		inventory.contents_changed.emit()
+
+
+@rpc
+func _stack_added_rpc(_stack_index: int, item_id: String, amount: int, properties: Dictionary, position: Vector2i, rotation: bool):
+	if multiplayer.is_server():
+		return
+	inventory.add_at_position(position, item_id, amount, properties, rotation)
+
+
+@rpc
+func _updated_slot_rpc(stack_index : int, slot_data : Array):
+	if multiplayer.is_server():
+		return
+	if stack_index < 0 or stack_index >= inventory.stacks.size(): return
+	var stack : ItemStack = inventory.stacks[stack_index]
+	stack.deserialize(slot_data)
+	inventory.updated_stack.emit(stack_index)
+
+@rpc
+func _stack_removed_rpc(stack_index : int):
+	if multiplayer.is_server():
+		return
+	inventory.remove_stack(stack_index)
+</file>
+
 <file path="godot-coop/interactables/harvest_nodes/harvestable.gd">
 class_name Harvestable
 extends InteractableBase
@@ -3032,7 +3034,214 @@ func spawn_player(client_id : int) -> void:
 	get_node(spawn_path).call_deferred("add_child", player)
 </file>
 
+<file path="godot-coop/interactables/interactable_base.gd">
+class_name InteractableBase
+extends StaticBody3D
+
+# --- CONFIGURATION ---
+@export_group("Interaction Settings")
+@export var object_name: String = "Interactable"
+@export var interaction_text: String = "Interact"
+
+
+@export var default_action: InteractAction 
+var current_interactor: Node = null
+
+
+var is_being_used: bool = false 
+
+# --- INTERFAZ OBLIGATORIA (Contrato con InventoryInteractor) ---
+
+
+func get_interaction_position(interaction_point: Vector3) -> Vector3:
+	return global_position
+
+
+func get_interact_actions(interactor: Node) -> Array:
+	if not _can_interact(interactor):
+		return []
+	
+	if default_action:
+		default_action.description = interaction_text + " " + object_name
+		return [default_action]
+	
+	return []
+
+
+func interact(character: Node, action_index: int = 0) -> void:
+
+	if not _can_interact(character):
+		return
+	
+	
+	if multiplayer.is_server():
+		_server_interact(character)
+	else:
+		_request_interact_rpc.rpc_id(1, character.get_path())
+
+
+
+func _can_interact(_character: Node) -> bool:
+	return true # By default always allowed
+
+# This is the function that Chests and Bushes will override
+func _on_interacted(character: Node) -> void:
+	print("Interacted with ", object_name)
+
+# --- RED ---
+
+@rpc("any_peer", "call_local", "reliable")
+func _request_interact_rpc(character_path: NodePath) -> void:
+	# Solo el servidor ejecuta esto
+	if not multiplayer.is_server(): return
+	
+	var character = get_node(character_path)
+	if character:
+		_server_interact(character)
+
+func _server_interact(character: Node):
+	if current_interactor != null and current_interactor != character:
+		print("Objeto ocupado por otro jugador")
+		return
+
+	current_interactor = character
+	_on_interacted(character)
+
+
+func cancel_interaction():
+	if current_interactor == null: return
+	
+	print("Interacción cancelada con ", current_interactor.name)
+	_on_interaction_canceled() # Hook virtual para los hijos
+	current_interactor = null
+
+func _on_interaction_canceled():
+	pass
+</file>
+
+<file path="godot-coop/systems/inventory/equipment_slot_constraint.gd">
+class_name EquipmentSlotConstraint
+extends GridInventoryConstraint
+
+# The slot this inventory accepts
+@export var allowed_slot: EquipmentData.SlotType
+
+# 1. Entry point for Grid Drag & Drop
+func _can_add_on_position(inventory: Node, position: Vector2i, item_id: String, amount: int, properties: Dictionary, is_rotated: bool) -> bool:
+	return _validate_item(inventory, item_id)
+
+# 2. Entry point for Auto-Add / Quick Transfer (for safety)
+func _can_add_on_inventory(inventory: Node, item_id: String, amount: int, properties: Dictionary) -> bool:
+	return _validate_item(inventory, item_id)
+
+# --- Common Logic ---
+func _validate_item(inventory: Node, item_id: String) -> bool:
+	print("validating item")
+	# 1. Get database
+	if not "database" in inventory: 
+		return false
+	
+	var def = inventory.database.get_item(item_id)
+	if def == null: 
+		return false
+	
+	# 2. Check if it has equipment data
+	# NOTE: Make sure the property name in the DB is EXACTLY "equipment_data"
+	if not def.properties.has("equipment_data"):
+		return false 
+	
+	var data_path = def.properties["equipment_data"] 
+	var data = load(data_path) as EquipmentData
+	#if item_definition.properties.has("hand_item"):
+		#var path = item_definition.properties["hand_item"]
+		#hand_item_scene = load(path)
+	if data == null: 
+		return false
+	
+	# 3. Validate the Slot
+	# If the item's slot matches the one allowed by this constraint
+	if data.slot_type == allowed_slot:
+		return true
+		
+	# Optional feedback (debug only)
+	# print("Rejected: Item is ", data.slot_type, " but slot requires ", allowed_slot)
+	return false
+</file>
+
+<file path="godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd">
+class_name HandItemHolder3D
+extends Node3D
+
+const Interactor = preload("../interaction_system/inventory_interactor.gd")
+
+
+@export var hotbar: Hotbar
+@export var interactor: NodeInventories
+@export var default_hand_item_object: MeshInstance3D 
+
+var last_item : ItemDefinition = null
+var objects_per_id : Dictionary
+
+
+func _ready():
+	hotbar.on_change_selection.connect(_on_change_selection)
+	hotbar.equipped_stack_changed.connect(_on_update_selection_stack)
+	hotbar.equipped.connect(_on_equipped)
+	hotbar.unequipped.connect(_on_unequipped)
+	_on_change_selection(hotbar.selection_index)
+
+
+func _on_equipped(_slot_index: int):
+	_on_change_selection(hotbar.selection_index)
+
+
+func _on_update_selection_stack(_slot_index: int):
+	_on_change_selection(hotbar.selection_index)
+
+
+func _on_unequipped(_slot_index: int):
+	_on_change_selection(hotbar.selection_index)
+
+
+func _on_change_selection(_new_index: int):
+	_clear_last_selection()
+	if not hotbar.has_valid_stack_on_selection():
+		interactor.set_actual_hand_object(null)
+		return
+	var stack = hotbar.get_stack_on_selection()
+	var item_id = ""
+	if stack != null:
+		item_id = stack.item_id
+	var item_definition = hotbar.database.get_item(item_id)
+	var hand_item_scene = null
+	if item_definition.properties.has("hand_item"):
+		var path = item_definition.properties["hand_item"]
+		hand_item_scene = load(path)
+	last_item = item_definition
+	if hand_item_scene == null:
+		default_hand_item_object.visible = true
+		interactor.set_actual_hand_object(null)
+		return
+	if objects_per_id.has(item_definition):
+		objects_per_id[item_definition].visible = true
+	else:
+		var hand_item_obj = hand_item_scene.instantiate()
+		add_child(hand_item_obj)
+		objects_per_id[item_definition] = hand_item_obj
+	interactor.set_actual_hand_object(objects_per_id[item_definition])
+
+
+func _clear_last_selection():
+	default_hand_item_object.visible = false
+	if last_item == null:
+		return
+	if objects_per_id.has(last_item):
+		objects_per_id[last_item].visible = false
+</file>
+
 <file path="godot-coop/characters/player/equipment_manager.gd">
+@tool
+@icon("res://addons/inventory-system/icons/interactor.svg")
 class_name EquipmentManager
 extends Node
 
@@ -3131,8 +3340,14 @@ func _apply_equipment_logic(data: EquipmentData, slot_type: int) -> void:
 		
 		# B. Granted Abilities
 		if data.granted_abilities.size() > 0:
+			var inventory_node = get_node(equipment_slots[slot_type])
 			for grant in data.granted_abilities:
-				var handle = attribute_set.grant_ability(grant.ability, grant.input_tag)
+				var handle = attribute_set.grant_ability(
+					grant.ability,
+					grant.input_tag,
+					inventory_node,
+					0
+					)
 				if handle:
 					context["ability_handles"].append(handle)
 	
@@ -3189,91 +3404,6 @@ func _spawn_visual_attachment(data: EquipmentData) -> Node3D:
 		return visual_instance
 </file>
 
-<file path="godot-coop/interactables/interactable_base.gd">
-class_name InteractableBase
-extends StaticBody3D
-
-# --- CONFIGURATION ---
-@export_group("Interaction Settings")
-@export var object_name: String = "Interactable"
-@export var interaction_text: String = "Interact"
-
-
-@export var default_action: InteractAction 
-var current_interactor: Node = null
-
-
-var is_being_used: bool = false 
-
-# --- INTERFAZ OBLIGATORIA (Contrato con InventoryInteractor) ---
-
-
-func get_interaction_position(interaction_point: Vector3) -> Vector3:
-	return global_position
-
-
-func get_interact_actions(interactor: Node) -> Array:
-	if not _can_interact(interactor):
-		return []
-	
-	if default_action:
-		default_action.description = interaction_text + " " + object_name
-		return [default_action]
-	
-	return []
-
-
-func interact(character: Node, action_index: int = 0) -> void:
-
-	if not _can_interact(character):
-		return
-	
-	
-	if multiplayer.is_server():
-		_server_interact(character)
-	else:
-		_request_interact_rpc.rpc_id(1, character.get_path())
-
-
-
-func _can_interact(_character: Node) -> bool:
-	return true # By default always allowed
-
-# This is the function that Chests and Bushes will override
-func _on_interacted(character: Node) -> void:
-	print("Interacted with ", object_name)
-
-# --- RED ---
-
-@rpc("any_peer", "call_local", "reliable")
-func _request_interact_rpc(character_path: NodePath) -> void:
-	# Solo el servidor ejecuta esto
-	if not multiplayer.is_server(): return
-	
-	var character = get_node(character_path)
-	if character:
-		_server_interact(character)
-
-func _server_interact(character: Node):
-	if current_interactor != null and current_interactor != character:
-		print("Objeto ocupado por otro jugador")
-		return
-
-	current_interactor = character
-	_on_interacted(character)
-
-
-func cancel_interaction():
-	if current_interactor == null: return
-	
-	print("Interacción cancelada con ", current_interactor.name)
-	_on_interaction_canceled() # Hook virtual para los hijos
-	current_interactor = null
-
-func _on_interaction_canceled():
-	pass
-</file>
-
 <file path="godot-coop/interactables/loot_container/loot_container.gd">
 class_name LootContainer
 extends InteractableBase
@@ -3294,6 +3424,10 @@ var searching_process_active: bool = false
 const MAX_INTERACT_DISTANCE_SQR = 3.0 * 3.0
 
 func _ready():
+	#$GridInventory.set_multiplayer_authority(1)
+	#$GridInventory/SyncGridInventory.set_multiplayer_authority(1)
+	#$NetworkedOpenable.set_multiplayer_authority(1)
+	#$LootGenerator.set_multiplayer_authority(1)
 	interaction_text = "Search"
 	
 	# Configurar generador
@@ -3452,81 +3586,44 @@ func close(character : Node):
 </file>
 
 <file path="godot-coop/items/projectile_base.gd">
-extends RigidBody3D
-
-
 class_name ProjectileBase
+extends ItemBase # <--- CHANGED: Inherits from ItemBase instead of RigidBody3D
 
-var data: ThrowableData
-var thrower_id: int = 0
+# --- SPECIFIC DATA ---
+# We keep a typed reference for autocomplete convenience,
+# but logic could also use 'common_data' from parent casted.
+var throwable_data: ThrowableData
 
-@onready var visuals: Node3D = $Visuals
+# --- NODE REFERENCES ---
+# 'visuals' is already defined in ItemBase!
 @onready var area_effect: Area3D = %AreaEffect
 @onready var impact_sound: AudioStreamPlayer3D = %ImpactSound
 @onready var impact_particles: GPUParticles3D = %ImpactParticles
 
-
 func _ready() -> void:
-	contact_monitor = false
-	max_contacts_reported = 1
+	super._ready() # <--- IMPORTANT: Call parent _ready
+	
+	# Projectile specific physics settings override
+	# (Though ItemBase already sets this, we keep it explicit if logic changes)
 	if multiplayer.is_server():
-		body_entered.connect(on_inpact)
+		body_entered.connect(on_impact)
 
-func setup_projectile(new_data : ThrowableData, initial_velocity: Vector3) -> void:
-	self.data = new_data
+# --- SETUP ---
+
+# This matches the signature called by ProjectileSpawner
+func setup_projectile(new_data: ThrowableData, initial_velocity: Vector3, p_thrower_id: int = 0) -> void:
+	# 1. Store specific data
+	self.throwable_data = new_data
 	self.linear_velocity = initial_velocity
+	
+	# 2. Call generic setup from ItemBase (Handles ID and Collision Exceptions)
+	base_setup(p_thrower_id, new_data)
 
-func on_inpact(body: Node) -> void:
+# --- VIRTUAL METHODS ---
+
+func on_impact(_body: Node) -> void:
+	# To be overridden by specific projectiles (e.g. PotionProjectile)
 	pass
-</file>
-
-<file path="godot-coop/systems/inventory/equipment_slot_constraint.gd">
-class_name EquipmentSlotConstraint
-extends GridInventoryConstraint
-
-# The slot this inventory accepts
-@export var allowed_slot: EquipmentData.SlotType
-
-# 1. Entry point for Grid Drag & Drop
-func _can_add_on_position(inventory: Node, position: Vector2i, item_id: String, amount: int, properties: Dictionary, is_rotated: bool) -> bool:
-	return _validate_item(inventory, item_id)
-
-# 2. Entry point for Auto-Add / Quick Transfer (for safety)
-func _can_add_on_inventory(inventory: Node, item_id: String, amount: int, properties: Dictionary) -> bool:
-	return _validate_item(inventory, item_id)
-
-# --- Common Logic ---
-func _validate_item(inventory: Node, item_id: String) -> bool:
-	print("validating item")
-	# 1. Get database
-	if not "database" in inventory: 
-		return false
-	
-	var def = inventory.database.get_item(item_id)
-	if def == null: 
-		return false
-	
-	# 2. Check if it has equipment data
-	# NOTE: Make sure the property name in the DB is EXACTLY "equipment_data"
-	if not def.properties.has("equipment_data"):
-		return false 
-	
-	var data_path = def.properties["equipment_data"] 
-	var data = load(data_path) as EquipmentData
-	#if item_definition.properties.has("hand_item"):
-		#var path = item_definition.properties["hand_item"]
-		#hand_item_scene = load(path)
-	if data == null: 
-		return false
-	
-	# 3. Validate the Slot
-	# If the item's slot matches the one allowed by this constraint
-	if data.slot_type == allowed_slot:
-		return true
-		
-	# Optional feedback (debug only)
-	# print("Rejected: Item is ", data.slot_type, " but slot requires ", allowed_slot)
-	return false
 </file>
 
 <file path="godot-coop/systems/projectile_spawner.gd">
@@ -3543,6 +3640,9 @@ func _spawn_projectile(data: Array):
 	var rot_data = data[1] # Le cambio el nombre a rot_data
 	var vel = data[2]
 	var path_to_tres = data[3]
+	var thrower_id = 0
+	if data.size() > 4:
+		thrower_id = data[4]
 	
 	var stats_resource = load(path_to_tres) as ThrowableData
 	if not stats_resource: return null
@@ -3569,80 +3669,25 @@ func _spawn_projectile(data: Array):
 		
 	if obj.has_method("setup_projectile"):
 		# Note: make sure setup_projectile expects the Resource, not the path
-		obj.setup_projectile(stats_resource, vel)
+		obj.setup_projectile(stats_resource, vel, thrower_id)
 	
 	return obj
 </file>
 
-<file path="godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd">
-class_name HandItemHolder3D
-extends Node3D
+<file path="godot-coop/characters/character_base.gd">
+class_name CharacterBase
+extends CharacterBody3D
 
-const Interactor = preload("../interaction_system/inventory_interactor.gd")
-
-
-@export var hotbar: Hotbar
-@export var interactor: NodeInventories
-@export var default_hand_item_object: MeshInstance3D 
-
-var last_item : ItemDefinition = null
-var objects_per_id : Dictionary
+@onready var attribute_set: AttributeSet = %AttributeSet
 
 
-func _ready():
-	hotbar.on_change_selection.connect(_on_change_selection)
-	hotbar.equipped_stack_changed.connect(_on_update_selection_stack)
-	hotbar.equipped.connect(_on_equipped)
-	hotbar.unequipped.connect(_on_unequipped)
-	_on_change_selection(hotbar.selection_index)
 
 
-func _on_equipped(_slot_index: int):
-	_on_change_selection(hotbar.selection_index)
 
 
-func _on_update_selection_stack(_slot_index: int):
-	_on_change_selection(hotbar.selection_index)
-
-
-func _on_unequipped(_slot_index: int):
-	_on_change_selection(hotbar.selection_index)
-
-
-func _on_change_selection(_new_index: int):
-	_clear_last_selection()
-	if not hotbar.has_valid_stack_on_selection():
-		interactor.set_actual_hand_object(null)
-		return
-	var stack = hotbar.get_stack_on_selection()
-	var item_id = ""
-	if stack != null:
-		item_id = stack.item_id
-	var item_definition = hotbar.database.get_item(item_id)
-	var hand_item_scene = null
-	if item_definition.properties.has("hand_item"):
-		var path = item_definition.properties["hand_item"]
-		hand_item_scene = load(path)
-	last_item = item_definition
-	if hand_item_scene == null:
-		default_hand_item_object.visible = true
-		interactor.set_actual_hand_object(null)
-		return
-	if objects_per_id.has(item_definition):
-		objects_per_id[item_definition].visible = true
-	else:
-		var hand_item_obj = hand_item_scene.instantiate()
-		add_child(hand_item_obj)
-		objects_per_id[item_definition] = hand_item_obj
-	interactor.set_actual_hand_object(objects_per_id[item_definition])
-
-
-func _clear_last_selection():
-	default_hand_item_object.visible = false
-	if last_item == null:
-		return
-	if objects_per_id.has(last_item):
-		objects_per_id[last_item].visible = false
+func receive_gameplay_effects(effects: Array[GameplayEffect]) -> void:
+	if attribute_set:
+		attribute_set.apply_gameplay_effects(effects)
 </file>
 
 <file path="godot-coop/items/abilities/ga_throw_projectile.gd">
@@ -3684,7 +3729,28 @@ func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> 
 		var hand_node = actor.get_node_or_null("MeshInstance3D/HandMarker")
 		var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
 		
-		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, throwable_data.resource_path])
+		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, throwable_data.resource_path, actor.name.to_int()])
+		if throwable_data.consume_on_use:
+			_consume_source_item(actor, handle)
+
+func _consume_source_item(actor: Node, handle: AbilitySpecHandle):
+	# Buscamos el AttributeSet (asumiendo que el actor es el CharacterBase)
+	var asc = actor.get_node_or_null("AttributeSet") # O usa actor.attribute_set si es accesible
+	if not asc: return
+	
+	# Pedimos el contexto
+	var source = asc.get_ability_source(handle)
+	var inventory: Inventory = source.get("inventory")
+	var slot_index: int = source.get("slot", -1)
+	
+	if inventory and slot_index != -1:
+		# Opción A: Restar cantidad (Pociones)
+		inventory.remove_at(slot_index, inventory.stacks[slot_index].item_id, 1)
+		
+		# Opción B: Bajar durabilidad (Espadas/Varitas)
+		# var stack = inventory.stacks[slot_index]
+		# stack.properties["durability"] -= 10
+		# inventory.update_stack(slot_index)
 </file>
 
 <file path="godot-coop/items/definitions/throwable_data.gd">
@@ -3702,6 +3768,9 @@ extends Resource
 @export_group("Gameplay Effects")
 # HERE'S THE KEY: An array of resources
 @export var effects: Array[GameplayEffect] = []
+
+@export_group("Inventory Item Settings")
+@export var consume_on_use : bool = true
 </file>
 
 <file path="godot-coop/systems/inventory/inventory_system_manager.gd">
@@ -3823,10 +3892,12 @@ func _pick_to_inventory_logic(node : Node):
 
 #region Transfer
 func transfer(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, amount: int):
-	var stack_index = inventory.get_stack_index_at(origin_pos)
-	if stack_index == -1:
-		return
-	inventory.transfer(stack_index, destination, amount)
+	if multiplayer.is_server():
+		# Si soy el servidor, lo hago normal
+		super.transfer(inventory, origin_pos, destination, amount)
+	else:
+		# Si soy cliente, NO lo hago local. Se lo pido al server.
+		transfer_rpc.rpc_id(1, inventory.get_path(), origin_pos, destination.get_path(), amount)
 
 
 func transfer_to(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, destination_pos: Vector2i, amount: int, is_rotated: bool):
@@ -4222,6 +4293,18 @@ func transfer_to_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination
 		return
 	_transfer_to_logic(inv, origin_pos, dest_inv, destination_pos, amount, is_rotated)
 
+@rpc("any_peer", "call_local")
+func transfer_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination_path: NodePath, amount: int):
+	var inv = get_node(inventory_path)
+	var dest = get_node(destination_path)
+	
+	# Validación básica de seguridad
+	if inv == null or dest == null:
+		return
+		
+	# Ejecutamos la lógica real en el servidor
+	super.transfer(inv, origin_pos, dest, amount)
+
 
 @rpc
 func split_rpc(inventory_path: NodePath, stack_index: int, amount: int):
@@ -4333,22 +4416,6 @@ func _set_openable_state(inventory: Inventory, is_open: bool):
 #endregion
 </file>
 
-<file path="godot-coop/characters/character_base.gd">
-class_name CharacterBase
-extends CharacterBody3D
-
-@onready var attribute_set: AttributeSet = %AttributeSet
-
-
-
-
-
-
-func receive_gameplay_effects(effects: Array[GameplayEffect]) -> void:
-	if attribute_set:
-		attribute_set.apply_gameplay_effects(effects)
-</file>
-
 <file path="godot-coop/items/definitions/potion/FirePotionStats.tres">
 [gd_resource type="Resource" script_class="ThrowableData" format=3 uid="uid://ct4s2o2boagpb"]
 
@@ -4380,7 +4447,7 @@ class_name PotionProjectile
 var has_exploded: bool = false
 var hit_targets: Array = []
 
-func on_inpact(body: Node) -> void:
+func on_impact(body: Node) -> void:
 	if has_exploded:
 		return
 	if multiplayer.is_server():
@@ -4398,7 +4465,7 @@ func trigger_explosion_sequence() -> void:
 	### VFX/SFX
 	play_impact_effects.rpc()
 	
-	get_tree().create_timer(data.area_effect_duration).timeout.connect(on_effect_finished)
+	get_tree().create_timer(common_data.area_effect_duration).timeout.connect(on_effect_finished)
 	
 
 		
@@ -4406,7 +4473,7 @@ func trigger_explosion_sequence() -> void:
 
 func apply_area_effects() -> void:
 
-	var radius = data.blast_radius
+	var radius = common_data.blast_radius
 	var shape = $AreaEffect/ExplosionShape.shape as SphereShape3D
 	if shape:
 		shape.radius = radius
@@ -4414,7 +4481,7 @@ func apply_area_effects() -> void:
 
 func _apply_specific_effect(target: Node) -> void:
 	if target.has_method("receive_gameplay_effects"):
-		target.receive_gameplay_effects(data.effects)
+		target.receive_gameplay_effects(common_data.effects)
 
 
 func _on_timer_timeout() -> void:
@@ -4449,7 +4516,6 @@ extends CharacterBase
 
 const JUMP_VELOCITY = 4.5
 const ROTATION_SPEED = 10.0 # Velocidad de giro del personaje
-var is_strafing = false
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
@@ -4467,6 +4533,7 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/EquipmentManager/ChestSlot/Openable.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/SyncGridInventory.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/Openable.set_multiplayer_authority(1)
+	%AttributeSet.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
 	#var Fireball = GameplayAbility.new()
@@ -4492,7 +4559,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Rotate direction vector according to camera
 	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
-	if is_strafing:
+	if attribute_set.is_strafing:
 		mesh_instance_3d.global_rotation.y = camera.global_rotation.y
 	
 	if direction:
@@ -4501,7 +4568,7 @@ func _physics_process(delta: float) -> void:
 		
 		# --- ROTATION LOGIC HERE ---
 		var target_rotation = atan2(direction.x, direction.z) + PI
-		if not is_strafing:
+		if not attribute_set.is_strafing:
 			mesh_instance_3d.rotation.y = lerp_angle(mesh_instance_3d.rotation.y, target_rotation, delta * ROTATION_SPEED)
 
 		
@@ -4527,15 +4594,17 @@ func _input(event: InputEvent) -> void:
 
 	# Secondary Attack (Right Click - Aiming/Alt Fire)
 	if event.is_action_pressed("attack_secondary"):
+		#set_strafing(true) 
 		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
 		
 	if event.is_action_released("attack_secondary"):
+		#set_strafing(false) 
 		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
-	if event.is_action_pressed("aim"): # O el nombre que tengas en InputMap
-		attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
-		
-	if event.is_action_released("aim"):
-		attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
+	#if event.is_action_pressed("aim"): # O el nombre que tengas en InputMap
+		#attribute_set.server_ability_input_pressed.rpc(AttributeSet.INPUT_SECONDARY)
+		#
+	#if event.is_action_released("aim"):
+		#attribute_set.server_ability_input_released.rpc(AttributeSet.INPUT_SECONDARY)
 		
 	# You can add more mappings here (Reload, Jump, Ultimate...)
 
@@ -4545,312 +4614,7 @@ func _collect_activation_data() -> Dictionary:
 	data["aim_position"] = camera.global_position
 	return data
 func set_strafing(state: bool) -> void:
-	is_strafing = state
-</file>
-
-<file path="godot-coop/characters/player/components/attribute_set.gd">
-class_name AttributeSet
-extends Node
-
-signal health_changed(new_value, max_value)
-signal died()
-
-@export_group("Innate Abilities")
-# List of abilities the character is born with.
-# We use AbilityGrant to know which Input Tag to assign them.
-@export var default_abilities: Array[AbilityGrant] 
-
-# --- INPUT TAGS CONSTANTS ---
-const INPUT_PRIMARY = "ability.primary"
-const INPUT_SECONDARY = "ability.secondary"
-const INPUT_RELOAD = "ability.reload"
-const INPUT_JUMP = "ability.jump"
-
-# VALID ATTRIBUTES (Source of truth)
-const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana"]
-
-@export_group("Base Stats")
-@export var base_max_health: float = 100.0
-@export var base_speed: float = 5.0
-@export var base_stamina: float = 50.0
-
-# CURRENT STATS (Valores actuales)
-var health: float:
-	set(value):
-		var current_max = get_total_stat("max_health")
-		var old_health = health
-		health = clamp(value, 0.0, current_max)
-		
-		# Only emit signal and print if it actually changed
-		if health != old_health:
-			print("[AttributeSet] HEALTH UPDATE: ", health, " / ", current_max)
-			health_changed.emit(health, current_max)
-			if health == 0.0:
-				print("[AttributeSet] CHARACTER DIED!")
-				died.emit()
-var speed: float:
-	get:
-		return get_total_stat("speed")
-
-#region Internal GAS classes
-
-
-# TEMPORARY MODIFIERS MANAGEMENT
-class ActiveEffect:
-	var handle: EffectSpecHandle
-	var source_effect: GameplayEffect
-	var time_left: float
-	var tick_timer: float
-	
-	func _init(p_handle: EffectSpecHandle, effect: GameplayEffect):
-		handle = p_handle
-		source_effect = effect
-		time_left = effect.duration
-		tick_timer = 0.0
-
-# --- INTERNAL CLASS FOR GRANTED ABILITIES ---
-class AbilitySpec:
-	var handle: AbilitySpecHandle
-	var ability: GameplayAbility # The resource definition
-	var input_tag: String # The input slot (e.g., "ability.primary")
-	var is_active: bool = false
-	
-	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String):
-		handle = p_handle
-		ability = p_ability
-		input_tag = p_input
-
-#endregion
-
-
-
-var active_effect_registry: Dictionary = {}
-var active_modifiers: Dictionary = {}
-var active_periodic_effects: Array[ActiveEffect] = []
-var granted_abilities: Dictionary = {}
-
-
-
-func _ready() -> void:
-	for attr in VALID_ATTRIBUTES:
-		active_modifiers[attr] = []
-	health = base_max_health
-	print("[AttributeSet] Initialized. Starting Health: ", health)
-	if multiplayer.is_server():
-		for grant in default_abilities:
-			if grant.ability:
-				grant_ability(grant.ability, grant.input_tag)
-
-func _process(delta: float) -> void:
-	if not multiplayer.is_server(): return
-	
-	_process_periodic_effects(delta)
-	_process_duration_modifiers(delta)
-
-#region Effect Functions
-
-func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
-	if not multiplayer.is_server(): return []
-	
-	var created_handles: Array[EffectSpecHandle] = []
-	
-	for effect in effects:
-		match effect.mode:
-			GameplayEffect.ApplicationMode.INSTANT:
-				# Instant effects don't need handles as they don't persist
-				print("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "'")
-				_apply_instant_change(effect)
-				
-			GameplayEffect.ApplicationMode.PERIODIC:
-				var handle = _create_active_effect(effect)
-				print("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
-				active_periodic_effects.append(active_effect_registry[handle])
-				created_handles.append(handle)
-				
-			GameplayEffect.ApplicationMode.DURATION: # (And INFINITE/PASSIVE in the future)
-				var handle = _create_active_effect(effect)
-				print("[AttributeSet] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
-				active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
-				_on_modifier_changed(effect.target_attribute)
-				created_handles.append(handle)
-	
-	return created_handles
-
-func remove_effect(handle: EffectSpecHandle) -> void:
-	if not multiplayer.is_server(): return
-	
-	if not active_effect_registry.has(handle):
-		print("[AttributeSet] Warning: Check to remove effect ", handle, " failed. Not found.")
-		return
-	
-	var active_effect = active_effect_registry[handle]
-	var source_data = active_effect.source_effect
-	
-	print("[AttributeSet] Removing effect manually: ", handle)
-	
-	# 1. Clean up from logic lists
-	match source_data.mode:
-		GameplayEffect.ApplicationMode.PERIODIC:
-			active_periodic_effects.erase(active_effect)
-			
-		GameplayEffect.ApplicationMode.DURATION:
-			var attr_name = source_data.target_attribute
-			if active_modifiers.has(attr_name):
-				active_modifiers[attr_name].erase(active_effect)
-				_on_modifier_changed(attr_name) # Recalculate stats immediately
-	
-	# 2. Remove from central registry
-	active_effect_registry.erase(handle)
-
-#endregion
-
-
-#region Ability Functions
-func grant_ability(ability_res: GameplayAbility, input_tag: String = "") -> AbilitySpecHandle:
-	if not multiplayer.is_server(): return null
-	if ability_res == null: return null
-	
-	# 1. Generate the unique ID (Receipt)
-	var handle = AbilitySpecHandle.new(ability_res.ability_name)
-	
-	# 2. Create the runtime specification (Instance data)
-	var spec = AbilitySpec.new(handle, ability_res, input_tag)
-	
-	# 3. Store in the registry
-	granted_abilities[handle] = spec
-	
-	print("[AttributeSet] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
-	
-	return handle
-
-func clear_ability(handle: AbilitySpecHandle) -> void:
-	if not multiplayer.is_server(): return
-	
-	if not granted_abilities.has(handle):
-		print("[AttributeSet] Warning: Check to clear ability ", handle, " failed. Not found.")
-		return
-		
-	var spec = granted_abilities[handle]
-	
-	# Force end if running
-	if spec.is_active:
-		# We pass 'get_parent()' assuming AttributeSet is child of CharacterBase
-		spec.ability.end_ability(get_parent(), handle)
-	
-	granted_abilities.erase(handle)
-	print("[AttributeSet] Cleared Ability: ", handle)
-
-
-
-# RPC called by the client when a button is pressed
-@rpc("any_peer", "call_local", "reliable")
-func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
-	if not multiplayer.is_server(): return
-	
-	for handle in granted_abilities:
-		var spec = granted_abilities[handle]
-		if spec.input_tag == input_tag:
-			# Pasamos los datos a la habilidad
-			spec.ability.activate(get_parent(), handle, activation_data)
-
-# RPC called by the client when a button is released
-@rpc("any_peer", "call_local", "reliable")
-func server_ability_input_released(input_tag: String) -> void:
-	if not multiplayer.is_server(): return
-	
-	for handle in granted_abilities:
-		var spec: AbilitySpec = granted_abilities[handle]
-		
-		if spec.input_tag == input_tag:
-			# Notify the ability that input was released (useful for charged attacks, bows, etc)
-			var actor = get_parent()
-			spec.ability.input_released(actor, handle)
-			# Note: We don't set is_active = false here automatically. 
-			# The ability should decide when to end itself callind end_ability().
-
-
-#endregion
-
-
-
-# Helper to create the ActiveEffect and register it
-func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
-	var handle = EffectSpecHandle.new(effect.effect_name)
-	var active = ActiveEffect.new(handle, effect)
-	active_effect_registry[handle] = active
-	return handle
-
-# --- 2. TOTAL STATS CALCULATION ---
-
-func get_total_stat(stat_name: String) -> float:
-	if stat_name == "health": return health 
-	
-	var base_val = get("base_" + stat_name)
-	if base_val == null: return 0.0
-	
-	var final_value = base_val
-	var multiplier = 1.0
-	
-	for active in active_modifiers[stat_name]:
-		var eff = active.source_effect
-		match eff.operation:
-			GameplayEffect.ModifierOp.ADD: final_value += eff.value
-			GameplayEffect.ModifierOp.SUBTRACT: final_value -= eff.value
-			GameplayEffect.ModifierOp.MULTIPLY: multiplier *= eff.value
-			GameplayEffect.ModifierOp.DIVIDE: if eff.value != 0: multiplier /= eff.value
-			
-	return final_value * multiplier
-
-# --- 3. MANEJO INTERNO DE EFECTOS ---
-
-func _apply_instant_change(effect: GameplayEffect) -> void:
-	var val = effect.value
-	if effect.operation == GameplayEffect.ModifierOp.SUBTRACT: val = -val
-	
-	if effect.target_attribute == "health":
-		var old_h = health
-		self.health += val
-		print("[AttributeSet] Instant change applied: ", effect.value, " | Health went from ", old_h, " to ", health)
-	else:
-		printerr("[AttributeSet] WARNING: INSTANT effects are usually for current stats (health, mana). Check effect: ", effect.effect_name)
-
-func _on_modifier_changed(stat_name: String) -> void:
-	print("[AttributeSet] Recalculating TOTAL stat for: ", stat_name, " | New Total: ", get_total_stat(stat_name))
-	if stat_name == "max_health":
-		self.health = self.health 
-
-# --- 1. APPLICATION LOGIC ---
-
-func _process_periodic_effects(delta: float) -> void:
-	for i in range(active_periodic_effects.size() - 1, -1, -1):
-		var active = active_periodic_effects[i]
-		active.time_left -= delta
-		active.tick_timer += delta
-		
-		if active.tick_timer >= active.source_effect.tick_rate:
-			active.tick_timer = 0.0
-			_apply_instant_change(active.source_effect)
-			
-		if active.time_left <= 0:
-			# Cleanup
-			active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
-			active_periodic_effects.remove_at(i)
-
-func _process_duration_modifiers(delta: float) -> void:
-	for attr in active_modifiers.keys():
-		var modifiers_list = active_modifiers[attr]
-		var changed = false
-		for i in range(modifiers_list.size() - 1, -1, -1):
-			var active = modifiers_list[i]
-			active.time_left -= delta
-			if active.time_left <= 0:
-				# Cleanup
-				active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
-				modifiers_list.remove_at(i)
-				changed = true
-		
-		if changed:
-			_on_modifier_changed(attr)
+	attribute_set.is_strafing = state
 </file>
 
 </files>
