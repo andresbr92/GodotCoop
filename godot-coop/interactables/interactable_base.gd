@@ -7,7 +7,7 @@ extends StaticBody3D
 @export var interaction_text: String = "Interact"
 
 
-@export var default_action: InteractAction 
+@export var default_action: InteractAction
 var current_interactor: Node = null
 
 

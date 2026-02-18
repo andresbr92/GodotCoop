@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c7orlrjhtxxjb"]
+
+[ext_resource type="PackedScene" uid="uid://cxsrf68nasl2d" path="res://interactables/items/ingredients/ingredient_base.tscn" id="1_gphe7"]
+[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="2_wn4ma"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vvxmw"]
+radius = 0.20751953
+height = 0.9914551
+
+[node name="WaterIngredient" unique_id=1007750467 instance=ExtResource("1_gphe7")]
+collision_layer = 1
+collision_mask = 1
+item_id = "wood"
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=1356679971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43391114, 0)
+shape = SubResource("CapsuleShape3D_vvxmw")
+
+[node name="bottle2" parent="Visual" parent_id_path=PackedInt32Array(972949016) index="0" unique_id=1161776949 instance=ExtResource("2_wn4ma")]

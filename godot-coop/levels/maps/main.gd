@@ -52,7 +52,7 @@ func make_scene_objects_to_network() -> void:
 	var items = $Level/Items
 	var spawner = get_node("DroppedItemSpawner")
 	for i in items.get_child_count():
-		var item_dropped = items.get_child(i) as DroppedItem3D
+		var item_dropped = items.get_child(i)
 		var item_id : String = item_dropped.item_id
 		var definition = database.get_item(item_id)
 		var position = item_dropped.position

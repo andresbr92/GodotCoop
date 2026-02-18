@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ch1ixmsfcaf5c" path="res://addons/inventory-system-demos/ui/grid/grid_item_stack_ui.tscn" id="19_6xxi0"]
 [ext_resource type="PackedScene" uid="uid://b2847opptwu7x" path="res://interactables/loot_container/loot_container.tscn" id="19_hxqi7"]
 [ext_resource type="PackedScene" uid="uid://br8sd7qy15mun" path="res://interactables/harvest_nodes/harvestable.tscn" id="21_6xxi0"]
+[ext_resource type="PackedScene" uid="uid://c7orlrjhtxxjb" path="res://interactables/items/ingredients/water_ingredient.tscn" id="23_8xksg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -119,6 +120,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.457982, 4.7683716e-07, 2.9
 
 [node name="HealPotion3" parent="Level/Items" unique_id=1340588436 instance=ExtResource("19_3w03t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7936996, 4.7683716e-07, 2.9860444)
+
+[node name="WaterIngredient" parent="Level/Items" unique_id=1007750467 instance=ExtResource("23_8xksg")]
 
 [node name="Structures" type="Node3D" parent="." unique_id=1433449841]
 
@@ -300,15 +303,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
 
 [node name="Harvestable" parent="." unique_id=1634607651 instance=ExtResource("21_6xxi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7625704, 0.5000005, 4.388818)
+object_name = null
+interaction_text = null
 
 [node name="LootContainer" parent="." unique_id=1489507830 instance=ExtResource("19_hxqi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6012278, 0.5, 7.8081636)
+object_name = null
+interaction_text = null
 
 [node name="LootContainer2" parent="." unique_id=1675055399 instance=ExtResource("19_hxqi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6012278, 0.5, 10.268247)
+object_name = null
+interaction_text = null
 
 [node name="LootContainer3" parent="." unique_id=1155768572 instance=ExtResource("19_hxqi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6012278, 0.5, 5.3363824)
+object_name = null
+interaction_text = null
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]
