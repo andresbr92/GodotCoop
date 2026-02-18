@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cg5xo2arbsukg"]
+
+[ext_resource type="Script" uid="uid://batb4tqf7lpgs" path="res://items/item_base.gd" id="1_et2oy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ufc5"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8ndl7"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:angular_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="ItemBase" type="RigidBody3D" unique_id=304658744]
+collision_layer = 32
+collision_mask = 7
+script = ExtResource("1_et2oy")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=1756568574]
+
+[node name="PhysicsShape" type="CollisionShape3D" parent="." unique_id=45591102]
+shape = SubResource("BoxShape3D_5ufc5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1808623039]
+replication_config = SubResource("SceneReplicationConfig_8ndl7")

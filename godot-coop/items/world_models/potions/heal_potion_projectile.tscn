@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://h6vvsfkrplpl"]
 
-[ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/projectile_base.tscn" id="1_hstp8"]
+[ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/projectile_base_backup.tscn" id="1_hstp8"]
 [ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/world_models/potions/fire_potion_projectile.gd" id="2_b7pg8"]
 [ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="3_lhkte"]
 [ext_resource type="AudioStream" uid="uid://cs7mypovngs1j" path="res://addons/assets/Sounds/Potions/potion_break.wav" id="4_r6l8j"]

@@ -1,26 +1,38 @@
-extends RigidBody3D
-
-
 class_name ProjectileBase
+extends ItemBase # <--- CHANGED: Inherits from ItemBase instead of RigidBody3D
 
-var data: ThrowableData
-var thrower_id: int = 0
+# --- SPECIFIC DATA ---
+# We keep a typed reference for autocomplete convenience,
+# but logic could also use 'common_data' from parent casted.
+var throwable_data: ThrowableData
 
-@onready var visuals: Node3D = $Visuals
+# --- NODE REFERENCES ---
+# 'visuals' is already defined in ItemBase!
 @onready var area_effect: Area3D = %AreaEffect
 @onready var impact_sound: AudioStreamPlayer3D = %ImpactSound
 @onready var impact_particles: GPUParticles3D = %ImpactParticles
 
-
 func _ready() -> void:
-	contact_monitor = false
-	max_contacts_reported = 1
+	super._ready() # <--- IMPORTANT: Call parent _ready
+	
+	# Projectile specific physics settings override
+	# (Though ItemBase already sets this, we keep it explicit if logic changes)
 	if multiplayer.is_server():
-		body_entered.connect(on_inpact)
+		body_entered.connect(on_impact)
 
-func setup_projectile(new_data : ThrowableData, initial_velocity: Vector3) -> void:
-	self.data = new_data
+# --- SETUP ---
+
+# This matches the signature called by ProjectileSpawner
+func setup_projectile(new_data: ThrowableData, initial_velocity: Vector3, p_thrower_id: int = 0) -> void:
+	# 1. Store specific data
+	self.throwable_data = new_data
 	self.linear_velocity = initial_velocity
+	
+	# 2. Call generic setup from ItemBase (Handles ID and Collision Exceptions)
+	base_setup(p_thrower_id, new_data)
 
-func on_inpact(body: Node) -> void:
+# --- VIRTUAL METHODS ---
+
+func on_impact(_body: Node) -> void:
+	# To be overridden by specific projectiles (e.g. PotionProjectile)
 	pass

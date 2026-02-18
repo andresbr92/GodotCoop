@@ -11,6 +11,9 @@ func _spawn_projectile(data: Array):
 	var rot_data = data[1] # Le cambio el nombre a rot_data
 	var vel = data[2]
 	var path_to_tres = data[3]
+	var thrower_id = 0
+	if data.size() > 4:
+		thrower_id = data[4]
 	
 	var stats_resource = load(path_to_tres) as ThrowableData
 	if not stats_resource: return null
@@ -37,6 +40,6 @@ func _spawn_projectile(data: Array):
 		
 	if obj.has_method("setup_projectile"):
 		# Note: make sure setup_projectile expects the Resource, not the path
-		obj.setup_projectile(stats_resource, vel)
+		obj.setup_projectile(stats_resource, vel, thrower_id)
 	
 	return obj

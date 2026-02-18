@@ -4,7 +4,7 @@ class_name PotionProjectile
 var has_exploded: bool = false
 var hit_targets: Array = []
 
-func on_inpact(body: Node) -> void:
+func on_impact(body: Node) -> void:
 	if has_exploded:
 		return
 	if multiplayer.is_server():
@@ -22,7 +22,7 @@ func trigger_explosion_sequence() -> void:
 	### VFX/SFX
 	play_impact_effects.rpc()
 	
-	get_tree().create_timer(data.area_effect_duration).timeout.connect(on_effect_finished)
+	get_tree().create_timer(common_data.area_effect_duration).timeout.connect(on_effect_finished)
 	
 
 		
@@ -30,7 +30,7 @@ func trigger_explosion_sequence() -> void:
 
 func apply_area_effects() -> void:
 
-	var radius = data.blast_radius
+	var radius = common_data.blast_radius
 	var shape = $AreaEffect/ExplosionShape.shape as SphereShape3D
 	if shape:
 		shape.radius = radius
@@ -38,7 +38,7 @@ func apply_area_effects() -> void:
 
 func _apply_specific_effect(target: Node) -> void:
 	if target.has_method("receive_gameplay_effects"):
-		target.receive_gameplay_effects(data.effects)
+		target.receive_gameplay_effects(common_data.effects)
 
 
 func _on_timer_timeout() -> void:

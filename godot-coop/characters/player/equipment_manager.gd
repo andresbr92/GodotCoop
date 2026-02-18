@@ -1,3 +1,5 @@
+@tool
+@icon("res://addons/inventory-system/icons/interactor.svg")
 class_name EquipmentManager
 extends Node
 
@@ -96,8 +98,14 @@ func _apply_equipment_logic(data: EquipmentData, slot_type: int) -> void:
 		
 		# B. Granted Abilities
 		if data.granted_abilities.size() > 0:
+			var inventory_node = get_node(equipment_slots[slot_type])
 			for grant in data.granted_abilities:
-				var handle = attribute_set.grant_ability(grant.ability, grant.input_tag)
+				var handle = attribute_set.grant_ability(
+					grant.ability,
+					grant.input_tag,
+					inventory_node,
+					0
+					)
 				if handle:
 					context["ability_handles"].append(handle)
 	

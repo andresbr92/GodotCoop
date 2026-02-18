@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5lajvpkqtskq"]
 
-[ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/projectile_base.tscn" id="1_kolm0"]
+[ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/projectile_base_backup.tscn" id="1_kolm0"]
 [ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/world_models/potions/fire_potion_projectile.gd" id="2_orcsd"]
 [ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="3_r0t06"]
 [ext_resource type="AudioStream" uid="uid://cs7mypovngs1j" path="res://addons/assets/Sounds/Potions/potion_break.wav" id="4_orcsd"]
@@ -10,6 +10,7 @@ radius = 0.2109375
 height = 1.0002441
 
 [node name="PotionProjectile" unique_id=1392492332 instance=ExtResource("1_kolm0")]
+collision_layer = 40
 continuous_cd = true
 script = ExtResource("2_orcsd")
 

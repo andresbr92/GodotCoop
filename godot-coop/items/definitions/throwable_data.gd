@@ -12,3 +12,6 @@ extends Resource
 @export_group("Gameplay Effects")
 # HERE'S THE KEY: An array of resources
 @export var effects: Array[GameplayEffect] = []
+
+@export_group("Inventory Item Settings")
+@export var consume_on_use : bool = true

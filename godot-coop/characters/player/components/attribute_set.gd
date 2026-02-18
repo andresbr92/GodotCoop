@@ -63,11 +63,15 @@ class AbilitySpec:
 	var ability: GameplayAbility # The resource definition
 	var input_tag: String # The input slot (e.g., "ability.primary")
 	var is_active: bool = false
+	var source_inventory: Inventory = null
+	var source_slot_index : int = -1
 	
-	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String):
+	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String, p_inv: Inventory, p_slot:int):
 		handle = p_handle
 		ability = p_ability
 		input_tag = p_input
+		source_inventory = p_inv
+		source_slot_index = p_slot
 
 #endregion
 
@@ -155,7 +159,7 @@ func remove_effect(handle: EffectSpecHandle) -> void:
 
 
 #region Ability Functions
-func grant_ability(ability_res: GameplayAbility, input_tag: String = "") -> AbilitySpecHandle:
+func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
 	if not multiplayer.is_server(): return null
 	if ability_res == null: return null
 	
@@ -163,7 +167,7 @@ func grant_ability(ability_res: GameplayAbility, input_tag: String = "") -> Abil
 	var handle = AbilitySpecHandle.new(ability_res.ability_name)
 	
 	# 2. Create the runtime specification (Instance data)
-	var spec = AbilitySpec.new(handle, ability_res, input_tag)
+	var spec = AbilitySpec.new(handle, ability_res, input_tag, source_inventory, source_slot_index)
 	
 	# 3. Store in the registry
 	granted_abilities[handle] = spec
@@ -300,3 +304,13 @@ func _process_duration_modifiers(delta: float) -> void:
 		
 		if changed:
 			_on_modifier_changed(attr)
+
+
+func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
+	if granted_abilities.has(handle):
+		var spec = granted_abilities[handle]
+		return {
+			"inventory": spec.source_inventory,
+			"slot": spec.source_slot_index
+		}
+	return {}

@@ -17,6 +17,10 @@ var searching_process_active: bool = false
 const MAX_INTERACT_DISTANCE_SQR = 3.0 * 3.0
 
 func _ready():
+	#$GridInventory.set_multiplayer_authority(1)
+	#$GridInventory/SyncGridInventory.set_multiplayer_authority(1)
+	#$NetworkedOpenable.set_multiplayer_authority(1)
+	#$LootGenerator.set_multiplayer_authority(1)
 	interaction_text = "Search"
 	
 	# Configurar generador

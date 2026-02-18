@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://caxny4ehonhre"]
+
+[ext_resource type="Script" uid="uid://h3fxka2ykobe" path="res://items/projectile_base_backup.gd" id="1_5hlo8"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2rc06"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pmu5y"]
+
+[node name="ProjectileBase" type="RigidBody3D" unique_id=709672249]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_5hlo8")
+metadata/_custom_type_script = "uid://batb4tqf7lpgs"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1479570499]
+replication_config = SubResource("SceneReplicationConfig_2rc06")
+
+[node name="PhysicsShape" type="CollisionShape3D" parent="." unique_id=283471477]
+
+[node name="Visuals" type="Node3D" parent="." unique_id=579098310]
+
+[node name="AreaEffect" type="Area3D" parent="." unique_id=1918654380]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="ExplosionShape" type="CollisionShape3D" parent="AreaEffect" unique_id=1592878891]
+shape = SubResource("SphereShape3D_pmu5y")
+
+[node name="ImpactParticles" type="GPUParticles3D" parent="." unique_id=426355514]
+unique_name_in_owner = true
+emitting = false
+one_shot = true
+
+[node name="ImpactSound" type="AudioStreamPlayer3D" parent="." unique_id=90279983]
+unique_name_in_owner = true

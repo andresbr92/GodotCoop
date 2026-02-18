@@ -116,10 +116,12 @@ func _pick_to_inventory_logic(node : Node):
 
 #region Transfer
 func transfer(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, amount: int):
-	var stack_index = inventory.get_stack_index_at(origin_pos)
-	if stack_index == -1:
-		return
-	inventory.transfer(stack_index, destination, amount)
+	if multiplayer.is_server():
+		# Si soy el servidor, lo hago normal
+		super.transfer(inventory, origin_pos, destination, amount)
+	else:
+		# Si soy cliente, NO lo hago local. Se lo pido al server.
+		transfer_rpc.rpc_id(1, inventory.get_path(), origin_pos, destination.get_path(), amount)
 
 
 func transfer_to(inventory: GridInventory, origin_pos: Vector2i, destination: GridInventory, destination_pos: Vector2i, amount: int, is_rotated: bool):
@@ -514,6 +516,18 @@ func transfer_to_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination
 	if inv == null or dest_inv == null:
 		return
 	_transfer_to_logic(inv, origin_pos, dest_inv, destination_pos, amount, is_rotated)
+
+@rpc("any_peer", "call_local")
+func transfer_rpc(inventory_path: NodePath, origin_pos: Vector2i, destination_path: NodePath, amount: int):
+	var inv = get_node(inventory_path)
+	var dest = get_node(destination_path)
+	
+	# Validación básica de seguridad
+	if inv == null or dest == null:
+		return
+		
+	# Ejecutamos la lógica real en el servidor
+	super.transfer(inv, origin_pos, dest, amount)
 
 
 @rpc

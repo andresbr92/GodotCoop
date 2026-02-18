@@ -94,6 +94,7 @@ func _stack_added_rpc(_stack_index: int, item_id: String, amount: int, propertie
 func _updated_slot_rpc(stack_index : int, slot_data : Array):
 	if multiplayer.is_server():
 		return
+	if stack_index < 0 or stack_index >= inventory.stacks.size(): return
 	var stack : ItemStack = inventory.stacks[stack_index]
 	stack.deserialize(slot_data)
 	inventory.updated_stack.emit(stack_index)
