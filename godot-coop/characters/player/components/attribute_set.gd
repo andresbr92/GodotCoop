@@ -5,8 +5,8 @@ signal health_changed(new_value, max_value)
 signal died()
 
 @export_group("Innate Abilities")
-# Lista de habilidades con las que nace el personaje.
-# Usamos AbilityGrant para saber qué Input Tag asignarles.
+# List of abilities the character is born with.
+# We use AbilityGrant to know which Input Tag to assign them.
 @export var default_abilities: Array[AbilityGrant] 
 
 # --- INPUT TAGS CONSTANTS ---
@@ -15,7 +15,7 @@ const INPUT_SECONDARY = "ability.secondary"
 const INPUT_RELOAD = "ability.reload"
 const INPUT_JUMP = "ability.jump"
 
-# ATRIBUTOS VÁLIDOS (Fuente de verdad)
+# VALID ATTRIBUTES (Source of truth)
 const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana"]
 
 @export_group("Base Stats")
@@ -30,7 +30,7 @@ var health: float:
 		var old_health = health
 		health = clamp(value, 0.0, current_max)
 		
-		# Solo disparamos la señal y el print si realmente cambió
+		# Only emit signal and print if it actually changed
 		if health != old_health:
 			print("[AttributeSet] HEALTH UPDATE: ", health, " / ", current_max)
 			health_changed.emit(health, current_max)
@@ -44,7 +44,7 @@ var speed: float:
 #region Internal GAS classes
 
 
-# GESTIÓN DE MODIFICADORES TEMPORALES
+# TEMPORARY MODIFIERS MANAGEMENT
 class ActiveEffect:
 	var handle: EffectSpecHandle
 	var source_effect: GameplayEffect
@@ -95,8 +95,6 @@ func _process(delta: float) -> void:
 	
 	_process_periodic_effects(delta)
 	_process_duration_modifiers(delta)
-
-# --- 1. LÓGICA DE APLICACIÓN ---
 
 #region Effect Functions
 
@@ -231,7 +229,7 @@ func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
 	active_effect_registry[handle] = active
 	return handle
 
-# --- 2. CÁLCULO DE STATS TOTALES ---
+# --- 2. TOTAL STATS CALCULATION ---
 
 func get_total_stat(stat_name: String) -> float:
 	if stat_name == "health": return health 
@@ -269,6 +267,8 @@ func _on_modifier_changed(stat_name: String) -> void:
 	print("[AttributeSet] Recalculating TOTAL stat for: ", stat_name, " | New Total: ", get_total_stat(stat_name))
 	if stat_name == "max_health":
 		self.health = self.health 
+
+# --- 1. APPLICATION LOGIC ---
 
 func _process_periodic_effects(delta: float) -> void:
 	for i in range(active_periodic_effects.size() - 1, -1, -1):

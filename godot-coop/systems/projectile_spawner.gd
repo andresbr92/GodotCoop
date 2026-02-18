@@ -19,16 +19,16 @@ func _spawn_projectile(data: Array):
 	if not scene_inside_resource: return null
 	var obj = scene_inside_resource.instantiate()
 	
-	# ASIGNACIÓN DE POSICIÓN
+	# POSITION ASSIGNMENT
 	obj.position = pos
 	
-	# --- CORRECCIÓN AQUÍ ---
-	# Comprobamos el tipo de dato para asignarlo correctamente
+	# --- FIX HERE ---
+	# Check the data type to assign it correctly
 	if rot_data is Basis:
-		# Si llega un Basis (Matriz), lo asignamos a la basis del transform
+		# If it's a Basis (Matrix), assign it to the transform's basis
 		obj.transform.basis = rot_data
 	elif rot_data is Vector3:
-		# Si llega un Vector3 (Euler), lo asignamos a la rotación
+		# If it's a Vector3 (Euler), assign it to rotation
 		obj.rotation = rot_data
 	# -----------------------
 
@@ -36,7 +36,7 @@ func _spawn_projectile(data: Array):
 		obj.linear_velocity = vel
 		
 	if obj.has_method("setup_projectile"):
-		# Nota: asegúrate de que setup_projectile espera el Resource, no el path
+		# Note: make sure setup_projectile expects the Resource, not the path
 		obj.setup_projectile(stats_resource, vel)
 	
 	return obj

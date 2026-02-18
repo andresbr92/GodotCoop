@@ -2,7 +2,7 @@
 class_name GameplayEffect
 extends Resource
 
-# 1. Nuevos modos de aplicación
+# 1. New application modes
 enum ApplicationMode { INSTANT, PERIODIC, DURATION }
 enum ModifierOp { ADD, SUBTRACT, MULTIPLY, DIVIDE } 
 

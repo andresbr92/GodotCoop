@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
 	
-	# Rotamos el vector de dirección según la cámara
+	# Rotate direction vector according to camera
 	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
 	if is_strafing:
 		mesh_instance_3d.global_rotation.y = camera.global_rotation.y
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * attribute_set.speed
 		velocity.z = direction.z * attribute_set.speed
 		
-		# --- AQUÍ ESTÁ LA LÓGICA DE ROTACIÓN ---
+		# --- ROTATION LOGIC HERE ---
 		var target_rotation = atan2(direction.x, direction.z) + PI
 		if not is_strafing:
 			mesh_instance_3d.rotation.y = lerp_angle(mesh_instance_3d.rotation.y, target_rotation, delta * ROTATION_SPEED)

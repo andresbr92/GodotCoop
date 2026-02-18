@@ -70,7 +70,7 @@ func _disconnect_item_signals() -> void:
 func _ready() -> void:
 	_set_panel_style(stack_style)
 	mouse_entered.connect(func():
-		# Solo feedback visual si está activo (revelado)
+		# Only visual feedback if active (revealed)
 		if is_active(): 
 			_set_panel_style(hover_stack_style)
 			audio_stream_player_2.play()
@@ -85,22 +85,22 @@ func _ready() -> void:
 	if stack == null:
 		deactivate()
 	else:
-		# Ejecutar lógica visual al inicio
+		# Execute visual logic at start
 		_update_visuals()
 
 func _update_visuals():
 	if not stack or not inventory:
 		return
 
-	# 1. Comprobamos si está revelado (por defecto true si no existe la propiedad)
+	# 1. Check if revealed (default true if property doesn't exist)
 	var is_revealed: bool = stack.properties.get("revealed", true)
 	
 	if is_revealed:
-		# --- ESTADO REVELADO (Lógica Original) ---
+		# --- REVEALED STATE (Original Logic) ---
 		var definition: ItemDefinition = inventory.database.get_item(stack.item_id)
 		tooltip_text = definition.description
 		
-		# Gestión de rotación
+		# Rotation management
 		var is_rotated = inventory.is_stack_rotated(stack)
 		var texture = definition.icon
 		if is_rotated:
@@ -109,29 +109,29 @@ func _update_visuals():
 			texture = ImageTexture.create_from_image(image)
 		
 		%ItemIcon.texture = texture
-		%ItemIcon.modulate = Color(1, 1, 1, 1) # Restaurar color normal
+		%ItemIcon.modulate = Color(1, 1, 1, 1) # Restore normal color
 		
-		# Activar arrastre e interacción
+		# Enable drag and interaction
 		activate() 
 		
 	else:
-		# --- ESTADO OCULTO ("Searching...") ---
+		# --- HIDDEN STATE ("Searching...") ---
 		tooltip_text = "Searching..."
 		
-		# Usar icono de incógnita si existe, si no, poner el del item pero oscuro
+		# Use unknown icon if exists, otherwise show item icon but dark
 		if unknown_icon:
 			%ItemIcon.texture = unknown_icon
 			%ItemIcon.modulate = Color(1, 1, 1, 1)
 		else:
-			# Fallback: Si no has asignado icono unknown, mostramos el item muy oscuro
+			# Fallback: If you haven't assigned unknown icon, show item very dark
 			var definition = inventory.database.get_item(stack.item_id)
 			%ItemIcon.texture = definition.icon
-			%ItemIcon.modulate = Color(0.1, 0.1, 0.1, 1) # Muy oscuro/silueta
+			%ItemIcon.modulate = Color(0.1, 0.1, 0.1, 1) # Very dark/silhouette
 		
-		# DESACTIVAR ARRASTRE (Importante: impide robarlo)
+		# DISABLE DRAG (Important: prevents stealing)
 		deactivate()
 
-	# Actualizar etiqueta de cantidad (si está oculto, quizás quieras ocultar la cantidad también)
+	# Update quantity label (if hidden, you might want to hide quantity too)
 	_update_stack_size(is_revealed)
 
 
@@ -157,7 +157,7 @@ func _update_stack_size(is_revealed: bool = true) -> void:
 	if !is_instance_valid(stack_size_label):
 		return
 		
-	# Si no está revelado, ocultamos la cantidad (opcional, estilo Tarkov hardcore)
+	# If not revealed, hide quantity (optional, Tarkov hardcore style)
 	if not is_revealed:
 		stack_size_label.text = "?"
 		return
@@ -181,8 +181,8 @@ func _update_stack_size(is_revealed: bool = true) -> void:
 
 
 func _refresh() -> void:
-	# Cuando el servidor actualiza la propiedad 'revealed' a true,
-	# se dispara esta función. Re-ejecutamos la lógica visual.
+	# When the server updates the 'revealed' property to true,
+	# this function is triggered. Re-execute visual logic.
 	_update_visuals()
 
 
@@ -197,7 +197,7 @@ func _gui_input(event: InputEvent) -> void:
 	if !(event is InputEventMouseButton):
 		return
 		
-	# BLOQUEO DE INPUT SI NO ESTÁ REVELADO
+	# BLOCK INPUT IF NOT REVEALED
 	if not is_active():
 		return 
 

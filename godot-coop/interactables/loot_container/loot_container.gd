@@ -31,17 +31,17 @@ func _process(_delta):
 		set_process(false)
 		return
 		
-	# Si se aleja demasiado -> Cancelamos a la fuerza
+	# If too far away -> Force cancel
 	if global_position.distance_squared_to(current_interactor.global_position) > MAX_INTERACT_DISTANCE_SQR:
-		# Forzamos cierre de UI en el cliente (opcional, pero recomendado)
+		# Force close UI on client (optional, but recommended)
 		var char_sys = current_interactor.get_node_or_null("CharacterInventorySystem")
 		if char_sys:
-			char_sys.close_inventories() # Esto disparará la señal closed_inventory
+			char_sys.close_inventories() # This will trigger the closed_inventory signal
 		
 		cancel_interaction()
-# Sobrescribimos la interacción base
+# Override base interaction
 func _on_interacted(character: Node):
-	# Lógica anterior de abrir inventario...
+	# Previous inventory opening logic...
 	if not is_opened:
 		_first_time_generation()
 		is_opened = true
@@ -50,69 +50,69 @@ func _on_interacted(character: Node):
 	if char_sys:
 		char_sys.open_inventory(inventory)
 		
-		# CONEXIÓN: Escuchar si el jugador cierra el inventario voluntariamente
-		# Conectamos con flag CONNECT_ONE_SHOT para que se desconecte sola al dispararse
+		# CONNECTION: Listen if player closes inventory voluntarily
+		# Connect with CONNECT_ONE_SHOT flag so it disconnects automatically when triggered
 		if not char_sys.closed_inventory.is_connected(_on_player_closed_inventory):
 			char_sys.closed_inventory.connect(_on_player_closed_inventory)
 	
-	# Activar chequeo de distancia
+	# Activate distance check
 	set_process(true)
 	
-	# Iniciar búsqueda
+	# Start search
 	if data.auto_search_on_open:
 		_start_revealing_sequence()
 
 func _on_player_closed_inventory(closed_inv: Inventory):
-	# Verificamos que cerró ESTE inventario (por si tiene varios abiertos)
+	# Verify they closed THIS inventory (in case they have multiple open)
 	if closed_inv == inventory:
 		cancel_interaction()
 
 func _on_interaction_canceled():
-	# PARAR EL PROCESO DE REVELADO
+	# STOP THE REVEAL PROCESS
 	searching_process_active = false
 	reveal_timer.stop()
-	set_process(false) # Dejar de chequear distancia
+	set_process(false) # Stop checking distance
 	
-	# Desconectar señal por seguridad (si no fue one_shot o si cancelamos por distancia)
+	# Disconnect signal for safety (if it wasn't one_shot or if we cancel due to distance)
 	if current_interactor:
 		var char_sys = current_interactor.get_node_or_null("CharacterInventorySystem")
 		if char_sys and char_sys.closed_inventory.is_connected(_on_player_closed_inventory):
 			char_sys.closed_inventory.disconnect(_on_player_closed_inventory)
 	
-	print("Búsqueda detenida. Items restantes permanecen ocultos.")
+	print("Search stopped. Remaining items stay hidden.")
 
 func _first_time_generation():
 	if not multiplayer.is_server(): return
 	
-	# 1. Generar el loot (El generador llena el inventario)
+	# 1. Generate loot (The generator fills the inventory)
 	loot_generator.add_loot_to_inventory()
 	
-	# 2. POST-PROCESADO (Aquí está el arreglo)
-	# Iteramos por CADA slot independientemente
+	# 2. POST-PROCESSING (Here's the fix)
+	# Iterate through EACH slot independently
 	for i in range(inventory.stacks.size()):
 		var stack = inventory.stacks[i]
 		
-		# Verificamos que hay un item en este slot
+		# Verify there's an item in this slot
 		if stack != null and stack.item_id != "":
 			
-			# TRUCO DE SEGURIDAD:
-			# Duplicamos el diccionario de propiedades existente.
-			# El 'true' significa "Deep Copy" (copia también sub-diccionarios si los hubiera).
-			# Esto asegura que este stack tenga SU PROPIO diccionario, único en el mundo.
+			# SAFETY TRICK:
+			# Duplicate the existing properties dictionary.
+			# The 'true' means "Deep Copy" (also copies sub-dictionaries if any).
+			# This ensures this stack has ITS OWN dictionary, unique in the world.
 			var unique_properties = stack.properties.duplicate(true)
 			
-			# Ahora modificamos la copia única
+			# Now modify the unique copy
 			unique_properties["revealed"] = false
 			
-			# Y la reasignamos al stack.
-			# Al reasignar, rompemos cualquier referencia anterior.
+			# And reassign it to the stack.
+			# By reassigning, we break any previous reference.
 			stack.properties = unique_properties
 			
-			# IMPORTANTE: Forzar actualización del inventario para que el sistema sepa que cambió
-			# (Dependiendo del addon, a veces reasignar properties no dispara la señal automáticamente)
+			# IMPORTANT: Force inventory update so the system knows it changed
+			# (Depending on the addon, sometimes reassigning properties doesn't trigger the signal automatically)
 			inventory.update_stack(i)
 	
-	print("Loot generado y ocultado individualmente.")
+	print("Loot generated and hidden individually.")
 
 func _start_revealing_sequence():
 	if not multiplayer.is_server(): return
@@ -133,30 +133,30 @@ func _schedule_next_reveal():
 func _reveal_next_item():
 	if not multiplayer.is_server(): return
 	
-	# 1. Buscar el primer item oculto (Secuencial: de arriba a abajo, izq a der)
+	# 1. Find the first hidden item (Sequential: top to bottom, left to right)
 	var found_hidden = false
 	
 	for i in inventory.stacks.size():
 		var stack = inventory.stacks[i]
 		if stack != null and stack.item_id != "":
 			if stack.properties.get("revealed", true) == false:
-				# 2. REVELARLO
+				# 2. REVEAL IT
 				stack.properties["revealed"] = true
 				
-				# Avisar al sistema para sincronizar este slot específico
+				# Notify system to sync this specific slot
 				inventory.update_stack(i) 
-				# O inventory.updated_stack.emit(i) dependiendo de tu addon
+				# Or inventory.updated_stack.emit(i) depending on your addon
 				
 				found_hidden = true
-				print("Item revelado en slot ", i)
+				print("Item revealed in slot ", i)
 				
-				# 3. PROGRAMAR EL SIGUIENTE
+				# 3. SCHEDULE THE NEXT ONE
 				_schedule_next_reveal()
-				return # Salimos, solo revelamos uno por tick
+				return # Exit, we only reveal one per tick
 
-	# Si llegamos aquí, no quedan items ocultos
+	# If we reach here, no hidden items remain
 	searching_process_active = false
-	print("Búsqueda completada.")
+	print("Search completed.")
 
 func _has_hidden_items() -> bool:
 	for stack in inventory.stacks:

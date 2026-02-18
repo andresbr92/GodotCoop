@@ -605,16 +605,16 @@ func craft_rpc(craft_station_path : NodePath, recipe_index : int):
 
 #region Helpers
 func _set_openable_state(inventory: Inventory, is_open: bool):
-	# 1. Buscamos si tiene el nodo Openable como hijo directo
+	# 1. Check if it has Openable node as direct child
 	var openable = inventory.get_node_or_null("Openable")
 	
-	# 2. (Opcional) Si no es hijo, miramos si es hermano (patrón BoxInventory)
+	# 2. (Optional) If not a child, check if it's a sibling (BoxInventory pattern)
 	if not openable:
 		var parent = inventory.get_parent()
 		if parent:
 			openable = parent.get_node_or_null("Openable")
 	
-	# 3. Ejecutamos la acción
+	# 3. Execute the action
 	if openable:
 		# Asumimos que drop_parent es el CharacterBody3D (el 'character')
 		if is_open:

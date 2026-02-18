@@ -1,38 +1,38 @@
 extends GameplayAbility
 class_name GA_ThrowProjectile
 
-# Referencia a los datos del proyectil (Visuales, Daño, Radio...)
-# Usamos el mismo recurso que ya tenías para no tirar trabajo a la basura.
+# Reference to projectile data (Visuals, Damage, Radius...)
+# We use the same resource you already had to avoid wasting work.
 @export var throwable_data: ThrowableData 
 
 func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
-	# 1. Obtener referencias del Actor (Player)
-	# Asumimos que el actor tiene las propiedades expuestas o buscamos los nodos
+	# 1. Get references from the Actor (Player)
+	# We assume the actor has exposed properties or we search for the nodes
 	var direction = Vector3.FORWARD
 	var spawn_pos = actor.global_position + Vector3(0, 1.5, 0)
 	
 	if args.has("aim_direction"):
 		direction = args["aim_direction"]
 	else:
-		# Fallback si no hay datos (ej: activado por IA)
+		# Fallback if no data (e.g.: activated by AI)
 		direction = -actor.global_transform.basis.z
 
 	if args.has("aim_position"):
-		# Ajustamos el spawn para que no salga desde los pies del server,
-		# sino relativo a donde miraba el cliente (o usar HandMarker del server)
-		# Nota: Mejor usar HandMarker del server para evitar trampas de spawn,
-		# pero usar la DIRECCION del cliente.
+		# Adjust spawn so it doesn't come from the server's feet,
+		# but relative to where the client was looking (or use server's HandMarker)
+		# Note: Better to use server's HandMarker to avoid spawn cheats,
+		# but use the client's DIRECTION.
 		pass
 
-	# 2. Calcular Velocidad usando la dirección del cliente
+	# 2. Calculate Velocity using client's direction
 	var velocity = direction * throwable_data.throw_force
 	
-	# 3. Spawnear (Server side)
+	# 3. Spawn (Server side)
 	var spawner = actor.get_tree().get_first_node_in_group("ProjectileSpawner")
 	if spawner:
-		# Usamos HandMarker del actor (Server) para el origen, 
-		# pero Velocity basada en la cámara del Cliente.
+		# We use the actor's HandMarker (Server) for origin,
+		# but Velocity based on the Client's camera.
 		var hand_node = actor.get_node_or_null("MeshInstance3D/HandMarker")
 		var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
 		

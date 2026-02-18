@@ -1,7 +1,7 @@
 class_name InteractableBase
 extends StaticBody3D
 
-# --- CONFIGURACIÓN ---
+# --- CONFIGURATION ---
 @export_group("Interaction Settings")
 @export var object_name: String = "Interactable"
 @export var interaction_text: String = "Interact"
@@ -45,11 +45,11 @@ func interact(character: Node, action_index: int = 0) -> void:
 
 
 func _can_interact(_character: Node) -> bool:
-	return true # Por defecto siempre se puede
+	return true # By default always allowed
 
-# Esta es la función que Cofres y Arbustos sobrescribirán
+# This is the function that Chests and Bushes will override
 func _on_interacted(character: Node) -> void:
-	print("Interactuado con ", object_name)
+	print("Interacted with ", object_name)
 
 # --- RED ---
 

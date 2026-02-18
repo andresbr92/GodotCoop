@@ -6,9 +6,9 @@ extends Resource
 @export var throw_force : float = 15.0
 
 @export_group("Explosion Settings")
-@export var blast_radius : float = 3.0       # Mantenemos esto aquí (es propiedad de la explosión física)
-@export var area_effect_duration : float = 0.5 # Cuánto tiempo dura el área de efecto activa (fuego en el suelo)
+@export var blast_radius : float = 3.0       # We keep this here (it's a physical explosion property)
+@export var area_effect_duration : float = 0.5 # How long the area effect stays active (fire on the ground)
 
 @export_group("Gameplay Effects")
-# AQUÍ ESTÁ LA CLAVE: Un array de recursos
+# HERE'S THE KEY: An array of resources
 @export var effects: Array[GameplayEffect] = []

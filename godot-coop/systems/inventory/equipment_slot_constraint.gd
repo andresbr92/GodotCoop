@@ -1,21 +1,21 @@
 class_name EquipmentSlotConstraint
 extends GridInventoryConstraint
 
-# El slot que este inventario acepta
+# The slot this inventory accepts
 @export var allowed_slot: EquipmentData.SlotType
 
-# 1. Punto de entrada para Drag & Drop en Grilla (Lo que te fallaba)
+# 1. Entry point for Grid Drag & Drop
 func _can_add_on_position(inventory: Node, position: Vector2i, item_id: String, amount: int, properties: Dictionary, is_rotated: bool) -> bool:
 	return _validate_item(inventory, item_id)
 
-# 2. Punto de entrada para Auto-Add / Transferencia Rápida (Por seguridad)
+# 2. Entry point for Auto-Add / Quick Transfer (for safety)
 func _can_add_on_inventory(inventory: Node, item_id: String, amount: int, properties: Dictionary) -> bool:
 	return _validate_item(inventory, item_id)
 
-# --- Lógica Común ---
+# --- Common Logic ---
 func _validate_item(inventory: Node, item_id: String) -> bool:
 	print("validating item")
-	# 1. Obtener base de datos
+	# 1. Get database
 	if not "database" in inventory: 
 		return false
 	
@@ -23,8 +23,8 @@ func _validate_item(inventory: Node, item_id: String) -> bool:
 	if def == null: 
 		return false
 	
-	# 2. Verificar si tiene datos de equipamiento
-	# NOTA: Asegúrate de que el nombre de la propiedad en la DB es EXACTAMENTE "equipment_data"
+	# 2. Check if it has equipment data
+	# NOTE: Make sure the property name in the DB is EXACTLY "equipment_data"
 	if not def.properties.has("equipment_data"):
 		return false 
 	
@@ -36,11 +36,11 @@ func _validate_item(inventory: Node, item_id: String) -> bool:
 	if data == null: 
 		return false
 	
-	# 3. Validar el Slot
-	# Si el slot del item coincide con el permitido por este constraint
+	# 3. Validate the Slot
+	# If the item's slot matches the one allowed by this constraint
 	if data.slot_type == allowed_slot:
 		return true
 		
-	# Feedback opcional (solo debug)
-	# print("Rechazado: El item es ", data.slot_type, " pero el slot pide ", allowed_slot)
+	# Optional feedback (debug only)
+	# print("Rejected: Item is ", data.slot_type, " but slot requires ", allowed_slot)
 	return false

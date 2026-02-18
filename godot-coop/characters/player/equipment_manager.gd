@@ -76,37 +76,37 @@ func _on_item_unequipped(stack_index: int, inventory: Node, slot_type: int) -> v
 
 
 func _apply_equipment_logic(data: EquipmentData, slot_type: int) -> void:
-		# Si ya había algo (por error de señales), limpiamos primero
+	# If there was something already (due to signal error), clean up first
 	if active_equipment.has(slot_type):
 		_remove_equipment_logic(slot_type)
 	
-	# Estructura de contexto para guardar los recibos
+	# Context structure to store receipts
 	var context = {
 		"effect_handles": [],
 		"ability_handles": [],
 		"visual_node": null
 	}
 	
-	# 1. APLICAR GAS (Solo Servidor)
+	# 1. APPLY GAS (Server Only)
 	if multiplayer.is_server():
-		# A. Efectos Pasivos (Stats)
+		# A. Passive Effects (Stats)
 		if data.passive_effects.size() > 0:
 			var handles = attribute_set.apply_gameplay_effects(data.passive_effects)
 			context["effect_handles"].append_array(handles)
 		
-		# B. Habilidades Otorgadas
+		# B. Granted Abilities
 		if data.granted_abilities.size() > 0:
 			for grant in data.granted_abilities:
 				var handle = attribute_set.grant_ability(grant.ability, grant.input_tag)
 				if handle:
 					context["ability_handles"].append(handle)
 	
-	# 2. APLICAR VISUALES (Todos los peers)
-	# (Asumiendo que InventorySync replica la acción de equipar, todos verán esto)
+	# 2. APPLY VISUALS (All peers)
+	# (Assuming InventorySync replicates the equip action, everyone will see this)
 	if data.visual_scene and fake_skeleton:
 		context["visual_node"] = _spawn_visual_attachment(data)
 	
-	# Guardar contexto en memoria
+	# Save context in memory
 	active_equipment[slot_type] = context
 	pass
 func _remove_equipment_logic(slot_type: int) -> void:
@@ -114,34 +114,34 @@ func _remove_equipment_logic(slot_type: int) -> void:
 	
 	var context = active_equipment[slot_type]
 	
-	# 1. RETIRAR GAS (Solo Servidor)
+	# 1. REMOVE GAS (Server Only)
 	if multiplayer.is_server():
-		# Retirar efectos usando los Handles guardados
+		# Remove effects using stored Handles
 		for handle in context["effect_handles"]:
 			attribute_set.remove_effect(handle)
 			
-		# Retirar habilidades
+		# Remove abilities
 		for handle in context["ability_handles"]:
 			attribute_set.clear_ability(handle)
 	
-	# 2. RETIRAR VISUALES
+	# 2. REMOVE VISUALS
 	if is_instance_valid(context["visual_node"]):
 		context["visual_node"].queue_free()
 	
-	# Limpiar diccionario
+	# Clean up dictionary
 	active_equipment.erase(slot_type)
 	pass
 func _spawn_visual_attachment(data: EquipmentData) -> Node3D:
 	if not data.visual_scene: return null
 	
-	# Instanciamos el modelo del item
+	# Instantiate the item model
 	var visual_instance = data.visual_scene.instantiate()
 	
-	# Si se definió un hueso, usamos BoneAttachment3D
+	# If a bone was defined, use BoneAttachment3D
 	if data.bone_name != "":
 		var attachment = BoneAttachment3D.new()
 		attachment.bone_name = data.bone_name
-		# Importante: El nombre debe ser único o no importa, pero ayuda a debuggear
+		# Important: Name should be unique or doesn't matter, but helps with debugging
 		attachment.name = "VisualAttachment_" + str(data.slot_type)
 		
 		fake_skeleton.add_child(attachment)
@@ -149,6 +149,6 @@ func _spawn_visual_attachment(data: EquipmentData) -> Node3D:
 		
 		return attachment
 	else:
-		# Si no hay hueso, lo pegamos al esqueleto (o raíz) directamente (Fallback)
+		# If no bone, attach to skeleton (or root) directly (Fallback)
 		fake_skeleton.add_child(visual_instance)
 		return visual_instance

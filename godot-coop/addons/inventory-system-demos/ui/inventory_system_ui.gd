@@ -311,8 +311,8 @@ func _connect_slot_ui_signals(slot_ui: GridInventoryUI):
 func _setup_equipment_slot(inventory: Inventory):
 	var target_ui: GridInventoryUI = null
 	
-	# Mapeo basado en el nombre del nodo Inventario (definido en Player.tscn)
-	# Asegúrate de que los nombres en Player.tscn coinciden con estos strings
+	# Mapping based on Inventory node name (defined in Player.tscn)
+	# Make sure names in Player.tscn match these strings
 	match inventory.name:
 		"HeadSlot": target_ui = head_slot_ui
 		"ChestSlot": target_ui = chest_slot_ui
@@ -323,4 +323,4 @@ func _setup_equipment_slot(inventory: Inventory):
 		target_ui.visible = true
 		_connect_slot_ui_signals(target_ui)
 	else:
-		printerr("InventorySystemUI: No se encontró UI para el inventario de equipo: ", inventory.name)
+		printerr("InventorySystemUI: No UI found for equipment inventory: ", inventory.name)
