@@ -193,6 +193,8 @@ script = ExtResource("8_41yun")
 is_open = true
 metadata/_custom_type_script = "uid://gngi6ncgkswy"
 
+[node name="Node3D" type="Node3D" parent="CharacterInventorySystem/EquipmentManager/HeadSlot" index="2" unique_id=602699188]
+
 [node name="ChestSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="1" unique_id=263126615 groups=["EquipmentInventory"]]
 size = Vector2i(1, 1)
 grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_8l73k")])
