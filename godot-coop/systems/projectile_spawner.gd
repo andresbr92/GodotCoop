@@ -40,6 +40,6 @@ func _spawn_projectile(data: Array):
 		
 	if obj.has_method("setup_projectile"):
 		# Note: make sure setup_projectile expects the Resource, not the path
-		obj.setup_projectile(stats_resource, vel, thrower_id)
+		obj.setup_projectile(stats_resource, vel)
 	
 	return obj
