@@ -65,7 +65,21 @@
         "godot-coop/levels/maps/main.gd",
         "godot-coop/systems/multiplayer_spawner.gd",
         "godot-coop/systems/network_manager.gd",
-        "godot-coop/systems/projectile_spawner.gd"
+        "godot-coop/systems/projectile_spawner.gd",
+        "godot-coop/systems/inventory/equipment_slot_constraint.gd",
+        "godot-coop/systems/inventory/inventory_system_manager.gd",
+        "godot-coop/characters/player/equipment_manager.gd",
+        "godot-coop/items/abilities/ga_aim.gd",
+        "godot-coop/items/abilities/ga_throw_projectile.gd",
+        "godot-coop/items/definitions/ability_grant.gd",
+        "godot-coop/items/definitions/ability_spec_handle.gd",
+        "godot-coop/items/definitions/equipment_data.gd",
+        "godot-coop/items/definitions/effect_spec_handle.gd",
+        "godot-coop/items/definitions/gameplay_ability.gd",
+        "godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd",
+        "godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd",
+        "godot-coop/addons/inventory-system-demos/character/networked_openable.gd",
+        "godot-coop/addons/inventory-system-demos/character/openable.gd"
       ]
     },
     "fps-ui-892": {
@@ -142,7 +156,28 @@
         "godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd",
         "godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_panel.gd",
         "godot-coop/addons/inventory-system-demos/ui/grid/grid_drop_zone_ui.gd",
-        "godot-coop/addons/inventory-system-demos/ui/grid/grid_draggable_element_ui.gd"
+        "godot-coop/addons/inventory-system-demos/ui/grid/grid_draggable_element_ui.gd",
+        "godot-coop/systems/inventory/equipment_slot_constraint.gd",
+        "godot-coop/systems/inventory/inventory_system_manager.gd",
+        "godot-coop/characters/player/equipment_manager.gd",
+        "godot-coop/items/abilities/ga_aim.gd",
+        "godot-coop/items/abilities/ga_throw_projectile.gd",
+        "godot-coop/items/definitions/ability_grant.gd",
+        "godot-coop/items/definitions/ability_spec_handle.gd",
+        "godot-coop/items/definitions/equipment_data.gd",
+        "godot-coop/items/definitions/effect_spec_handle.gd",
+        "godot-coop/items/definitions/gameplay_ability.gd",
+        "godot-coop/items/definitions/gameplay_effect.gd",
+        "godot-coop/interactables/interactable_base.gd",
+        "godot-coop/interactables/harvest_nodes/harvestable.gd",
+        "godot-coop/interactables/harvest_nodes/harvestable_data.gd",
+        "godot-coop/interactables/loot_container/loot_container.gd",
+        "godot-coop/interactables/loot_container/loot_container_data.gd",
+        "godot-coop/interactables/loot_container/search_constraint.gd",
+        "godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd",
+        "godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd",
+        "godot-coop/addons/inventory-system-demos/character/networked_openable.gd",
+        "godot-coop/addons/inventory-system-demos/character/openable.gd"
       ]
     }
   }
