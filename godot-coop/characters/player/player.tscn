@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://chlfotutlp83j"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eus45"]
 
-[sub_resource type="GridInventoryConstraint" id="GridInventoryConstraint_58jvb"]
+[sub_resource type="GridInventoryConstraint" id="GridInventoryConstraint_d2agh"]
 script = ExtResource("14_58jvb")
 metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
 
@@ -180,7 +180,7 @@ equipment_slots = {
 
 [node name="HeadSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="0" unique_id=1653232254 groups=["EquipmentInventory"]]
 size = Vector2i(1, 1)
-grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_58jvb")])
+grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_d2agh")])
 database = ExtResource("6_b0vde")
 
 [node name="SyncGridInventory" type="Node" parent="CharacterInventorySystem/EquipmentManager/HeadSlot" index="0" unique_id=566725823 node_paths=PackedStringArray("inventory")]
