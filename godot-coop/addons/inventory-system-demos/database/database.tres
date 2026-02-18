@@ -49,6 +49,10 @@ name = "Helmet"
 color = Color(1, 0.501961, 1, 1)
 icon = ExtResource("4_7goi1")
 
+[sub_resource type="ItemCategory" id="ItemCategory_4cjml"]
+id = "ingredient"
+name = "Ingredient"
+
 [sub_resource type="ItemDefinition" id="ItemDefinition_b5y1y"]
 id = "wood"
 max_stack = 16
@@ -239,6 +243,18 @@ properties = {
 "throwable_data": "res://items/definitions/potion/HealPotionStats.tres"
 }
 
+[sub_resource type="ItemDefinition" id="ItemDefinition_utrd5"]
+id = "water"
+max_stack = 1
+name = "Water"
+icon = ExtResource("10_gmco0")
+properties = {
+"dropped_item": "res://interactables/items/ingredients/water_ingredient.tscn",
+"hand_item": "res://addons/assets/bottle.glb"
+}
+categories = Array[ItemCategory]([SubResource("ItemCategory_4cjml")])
+description = "This is a basic bottle of water"
+
 [sub_resource type="LootItem" id="LootItem_6ctep"]
 item_id = "stone_axe"
 weight = 0.4
@@ -403,8 +419,8 @@ station = SubResource("CraftStationType_4cjml")
 ingredients = Array[ItemStack]([SubResource("ItemStack_utrd5"), SubResource("ItemStack_4fkxu")])
 
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml"), SubResource("ItemDefinition_utrd5")])
 recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y"), SubResource("Recipe_4cjml")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
-item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv")])
+item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])
 loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml")])

@@ -1,9 +1,9 @@
 @icon("res://addons/inventory-system-demos/icons/dropped_item_3d.svg")
-extends Node3D
+extends RigidBody3D
 class_name ItemBase
 
 
-const Interactor = preload("res://systems/interactor/inventory_interactor.gd")
+const Interactor = preload("res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd")
 
 @export var item_id : String
 @export var amount : int = 1

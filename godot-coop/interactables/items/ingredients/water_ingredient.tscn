@@ -8,9 +8,7 @@ radius = 0.20751953
 height = 0.9914551
 
 [node name="WaterIngredient" unique_id=1007750467 instance=ExtResource("1_gphe7")]
-collision_layer = 1
-collision_mask = 1
-item_id = "wood"
+item_id = "water"
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=1356679971]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43391114, 0)

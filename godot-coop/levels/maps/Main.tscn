@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://systems/projectile_spawner.gd" id="9_r7gtk"]
 [ext_resource type="Script" uid="uid://owlc7hwlygbt" path="res://addons/inventory-system-demos/mp/dropped_item_spawner.gd" id="10_clxfl"]
 [ext_resource type="Script" uid="uid://bn7s6bo56ow2w" path="res://addons/inventory-system-demos/mp/placeable_item_spawner.gd" id="11_au11x"]
+[ext_resource type="Script" uid="uid://dttp27rk0lwvx" path="res://addons/inventory-system-demos/interaction_system/interact_action.gd" id="11_r7gtk"]
 [ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="12_8ca51"]
 [ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="13_vptr5"]
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
@@ -36,6 +37,10 @@ background_mode = 2
 sky = SubResource("Sky_d8mrn")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_clxfl"]
+script = ExtResource("11_r7gtk")
+metadata/_custom_type_script = "uid://dttp27rk0lwvx"
 
 [node name="Main" type="Node" unique_id=1964116347]
 script = ExtResource("1_ypdrr")

@@ -11,8 +11,9 @@ metadata/_custom_type_script = "uid://dttp27rk0lwvx"
 size = Vector3(0.4, 0.8911133, 0.4)
 
 [node name="ItemBase" type="RigidBody3D" unique_id=1629066525]
-collision_layer = 32
+collision_layer = 8
 collision_mask = 3
+mass = 0.08
 script = ExtResource("1_jy8jt")
 actions = [SubResource("Resource_2s765")]
 
