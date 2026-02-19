@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AbilityGrant" format=3 uid="uid://rtgwsfbpqg"]
+
+[ext_resource type="Resource" uid="uid://cf3574jgd5m47" path="res://items/definitions/gameplay_abilities/GA_Drink_Potion.tres" id="1_ev4sa"]
+[ext_resource type="Script" uid="uid://chlfotutlp83j" path="res://items/definitions/ability_grant.gd" id="2_xnehu"]
+
+[resource]
+script = ExtResource("2_xnehu")
+ability = ExtResource("1_ev4sa")
+metadata/_custom_type_script = "uid://chlfotutlp83j"

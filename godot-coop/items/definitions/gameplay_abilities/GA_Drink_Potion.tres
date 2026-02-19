@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GA_Drink_Potion" format=3 uid="uid://cf3574jgd5m47"]
+
+[ext_resource type="Script" uid="uid://khurr64pdji1" path="res://items/abilities/ga_drink_potion.gd" id="1_muo2t"]
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_otrn2"]
+
+[resource]
+script = ExtResource("1_muo2t")
+ability_name = "Drink Potion"
+activation_blocked_tags = PackedStringArray("state.aiming")
+metadata/_custom_type_script = "uid://khurr64pdji1"

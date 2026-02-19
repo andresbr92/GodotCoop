@@ -1,8 +1,17 @@
 [gd_resource type="Resource" script_class="GameplayAbility" format=3 uid="uid://cg6y81fasxwob"]
 
 [ext_resource type="Script" uid="uid://161nty25m7wj" path="res://items/definitions/gameplay_ability.gd" id="1_8pi5w"]
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_cd5xo"]
+
+[sub_resource type="Resource" id="Resource_033cs"]
+script = ExtResource("1_cd5xo")
+mode = 3
+granted_tags = PackedStringArray("state.aiming")
+target_attribute = "health"
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [resource]
 script = ExtResource("1_8pi5w")
 ability_name = "Aiming"
+ongoing_effects = Array[ExtResource("1_cd5xo")]([SubResource("Resource_033cs")])
 metadata/_custom_type_script = "uid://161nty25m7wj"

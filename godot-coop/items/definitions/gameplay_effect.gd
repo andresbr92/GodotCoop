@@ -3,7 +3,7 @@ class_name GameplayEffect
 extends Resource
 
 # 1. New application modes
-enum ApplicationMode { INSTANT, PERIODIC, DURATION }
+enum ApplicationMode { INSTANT, PERIODIC, DURATION, INFINITE }
 enum ModifierOp { ADD, SUBTRACT, MULTIPLY, DIVIDE } 
 
 var target_attribute: String = "health"

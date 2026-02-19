@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="ThrowableData" format=3 uid="uid://ct4s2o2boagpb"]
+[gd_resource type="Resource" script_class="PotionData" format=3 uid="uid://ct4s2o2boagpb"]
 
 [ext_resource type="PackedScene" uid="uid://b5lajvpkqtskq" path="res://items/definitions/projectiles/fire_potion_projectile.tscn" id="1_7q3qh"]
 [ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_iotwp"]
-[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="1_wmb64"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="3_vnphk"]
+
+[sub_resource type="Resource" id="Resource_iotwp"]
+script = ExtResource("1_iotwp")
+granted_tags = PackedStringArray("state.drink")
+target_attribute = "health"
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [sub_resource type="Resource" id="Resource_vnphk"]
 script = ExtResource("1_iotwp")
@@ -15,8 +21,9 @@ target_attribute = "max_health"
 metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [resource]
-script = ExtResource("1_wmb64")
+script = ExtResource("3_vnphk")
 projectile_scene = ExtResource("1_7q3qh")
 blast_radius = 5.0
 effects = Array[ExtResource("1_iotwp")]([SubResource("Resource_vnphk")])
+consumed_effects = Array[ExtResource("1_iotwp")]([SubResource("Resource_iotwp")])
 metadata/_custom_type_script = "uid://wok753vjriib"

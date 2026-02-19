@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="AbilityGrant" format=3 uid="uid://vxjl28r53fed"]
-
-[ext_resource type="Script" uid="uid://chlfotutlp83j" path="res://items/definitions/ability_grant.gd" id="1_8kewf"]
-[ext_resource type="Resource" uid="uid://dw1muktqyoewf" path="res://items/definitions/gameplay_abilities/GA_Throw_FirePotion.tres" id="1_qbt10"]
-
-[resource]
-script = ExtResource("1_8kewf")
-ability = ExtResource("1_qbt10")
-metadata/_custom_type_script = "uid://chlfotutlp83j"

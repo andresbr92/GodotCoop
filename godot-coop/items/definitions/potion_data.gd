@@ -15,3 +15,10 @@ extends Resource
 
 @export_group("Inventory Item Settings")
 @export var consume_on_use : bool = true
+
+
+@export_group("Drink Properties")
+# Optional: A specific animation or sound to play when drinking
+@export var drink_animation_name: String = "drink_potion"
+# Effects applied to the player who drinks it
+@export var consumed_effects: Array[GameplayEffect]

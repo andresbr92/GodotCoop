@@ -77,6 +77,7 @@ class AbilitySpec:
 	var is_active: bool = false
 	var source_inventory: Inventory = null
 	var source_slot_index : int = -1
+	var active_effect_handles: Array[EffectSpecHandle] = []
 	
 	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String, p_inv: Inventory, p_slot:int):
 		handle = p_handle
@@ -131,12 +132,13 @@ func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecH
 				active_periodic_effects.append(active_effect_registry[handle])
 				created_handles.append(handle)
 				
-			GameplayEffect.ApplicationMode.DURATION: # (And INFINITE/PASSIVE in the future)
+			GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE: # (And INFINITE/PASSIVE in the future)
 				var handle = _create_active_effect(effect)
 				GlobalLogger.log("[AttributeSet] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
 				active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
 				_on_modifier_changed(effect.target_attribute)
 				created_handles.append(handle)
+				
 	
 	return created_handles
 
@@ -216,8 +218,16 @@ func server_ability_input_pressed(input_tag: String, activation_data: Dictionary
 	for handle in granted_abilities:
 		var spec = granted_abilities[handle]
 		if spec.input_tag == input_tag:
+			if spec.ability.can_activate(get_parent()):
 			# Pasamos los datos a la habilidad
-			spec.ability.activate(get_parent(), handle, activation_data)
+				spec.ability.activate(get_parent(), handle, activation_data)
+				spec.is_active = true
+				if spec.ability.ongoing_effects.size() > 0:
+					var handles = apply_gameplay_effects(spec.ability.ongoing_effects)
+					spec.active_effect_handles.append_array(handles)
+		else:
+			print("[AttributeSet] The ability has been blocked: ", spec.ability.ability_name)
+
 
 # RPC called by the client when a button is released
 @rpc("any_peer", "call_local", "reliable")
@@ -228,6 +238,10 @@ func server_ability_input_released(input_tag: String) -> void:
 		var spec: AbilitySpec = granted_abilities[handle]
 		
 		if spec.input_tag == input_tag:
+			spec.is_active = false
+			for effect_handle in spec.active_effect_handles:
+				remove_effect(effect_handle)
+			spec.active_effect_handles.clear()
 			# Notify the ability that input was released (useful for charged attacks, bows, etc)
 			var actor = get_parent()
 			spec.ability.input_released(actor, handle)
@@ -366,6 +380,8 @@ func _process_duration_modifiers(delta: float) -> void:
 		var changed = false
 		for i in range(modifiers_list.size() - 1, -1, -1):
 			var active = modifiers_list[i]
+			if active.source_effect.mode == GameplayEffect.ApplicationMode.INFINITE:
+				continue
 			active.time_left -= delta
 			if active.time_left <= 0:
 				if "granted_tags" in active.source_effect:
