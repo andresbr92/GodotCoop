@@ -4,3 +4,4 @@ extends GameplayAbility
 
 func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
 	GlobalLogger.log("drinking potion")
+	

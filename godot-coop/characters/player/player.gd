@@ -21,6 +21,7 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/EquipmentManager/ChestSlot/Openable.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/SyncGridInventory.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/Openable.set_multiplayer_authority(1)
+	%AttributeSet.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
 	#var Fireball = GameplayAbility.new()
