@@ -29,6 +29,8 @@ func _ready():
 
 
 func _on_picked(obj : Node):
+	if not is_instance_valid(obj): 
+		return
 	picked_rpc.rpc(obj.get_path())
 
 
@@ -459,8 +461,9 @@ func is_open_any_station():
 #region RPCs
 @rpc("any_peer")
 func picked_rpc(obj_path : NodePath):
-	var obj = get_node(obj_path)
-	picked.emit(obj)
+	var obj = get_node_or_null(obj_path)
+	if is_instance_valid(obj):
+		picked.emit(obj)
 
 
 @rpc("any_peer")

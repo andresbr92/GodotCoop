@@ -9,6 +9,7 @@ const ROTATION_SPEED = 10.0 # Velocidad de giro del personaje
 @onready var character_inventory_system: NetworkedCharacterInventorySystem = $CharacterInventorySystem
 
 func _enter_tree() -> void:
+	super._enter_tree()
 	set_multiplayer_authority(name.to_int())
 	$CharacterInventorySystem/Inventory/SyncInventory.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentInventory/SyncInventory.set_multiplayer_authority(1)
@@ -20,7 +21,6 @@ func _enter_tree() -> void:
 	$CharacterInventorySystem/EquipmentManager/ChestSlot/Openable.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/SyncGridInventory.set_multiplayer_authority(1)
 	$CharacterInventorySystem/EquipmentManager/HandSlot/Openable.set_multiplayer_authority(1)
-	%AttributeSet.set_multiplayer_authority(1)
 	#$Dropper.set_multiplayer_authority(1)
 func _ready() -> void:
 	#var Fireball = GameplayAbility.new()

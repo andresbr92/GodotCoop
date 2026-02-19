@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bkoflorth6kly" path="res://characters/character_base.tscn" id="1_2v448"]
 [ext_resource type="Script" uid="uid://cm3yxqodvoiby" path="res://characters/npcs/human_dummy/human_npc.gd" id="2_rwpfh"]
+[ext_resource type="Texture2D" uid="uid://b5uupgpe0g0j5" path="res://addons/assets/kenney_prototype-textures/PNG/Light/texture_01.png" id="3_jnq7d"]
+[ext_resource type="Texture2D" uid="uid://cugrrstyhew8t" path="res://addons/assets/kenney_prototype-textures/PNG/Green/texture_01.png" id="3_k1en1"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rwpfh"]
 properties/0/path = NodePath(".:position")
@@ -11,8 +13,11 @@ properties/1/path = NodePath("MeshInstance3D:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwpfh"]
-albedo_color = Color(0.390625, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fmcj"]
+albedo_texture = ExtResource("3_k1en1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1en1"]
+albedo_texture = ExtResource("3_jnq7d")
 
 [node name="HumanNPC" unique_id=385850437 instance=ExtResource("1_2v448")]
 script = ExtResource("2_rwpfh")
@@ -22,4 +27,8 @@ unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_rwpfh")
 
 [node name="MeshInstance3D" parent="." index="2" unique_id=1547036043]
-surface_material_override/0 = SubResource("StandardMaterial3D_rwpfh")
+material_override = SubResource("StandardMaterial3D_3fmcj")
+surface_material_override/0 = SubResource("StandardMaterial3D_k1en1")
+
+[node name="FireTagReactionComponent" parent="." index="5" unique_id=1769359576]
+texture_normal = ExtResource("3_k1en1")

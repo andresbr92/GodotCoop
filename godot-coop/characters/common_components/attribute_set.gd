@@ -1,8 +1,16 @@
 class_name AttributeSet
 extends Node
-
+#region Signals
 signal health_changed(new_value, max_value)
 signal died()
+
+# --- GameplayTags Signals ---
+signal tag_added(tag: StringName)
+signal tag_removed(tag: StringName)
+
+#endregion
+
+
 
 @export_group("Innate Abilities")
 # List of abilities the character is born with.
@@ -41,6 +49,9 @@ var health: float:
 var speed: float:
 	get:
 		return get_total_stat("speed")
+
+
+var active_tags: Dictionary = {}
 
 #region Internal GAS classes
 
@@ -89,7 +100,6 @@ func _ready() -> void:
 	for attr in VALID_ATTRIBUTES:
 		active_modifiers[attr] = []
 	health = base_max_health
-	print("[AttributeSet] Initialized. Starting Health: ", health)
 	if multiplayer.is_server():
 		for grant in default_abilities:
 			if grant.ability:
@@ -112,18 +122,18 @@ func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecH
 		match effect.mode:
 			GameplayEffect.ApplicationMode.INSTANT:
 				# Instant effects don't need handles as they don't persist
-				print("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "'")
+				GlobalLogger.log("[AttributeSet] Applying INSTANT effect: '", effect.effect_name, "'")
 				_apply_instant_change(effect)
 				
 			GameplayEffect.ApplicationMode.PERIODIC:
 				var handle = _create_active_effect(effect)
-				print("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
+				GlobalLogger.log("[AttributeSet] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
 				active_periodic_effects.append(active_effect_registry[handle])
 				created_handles.append(handle)
 				
 			GameplayEffect.ApplicationMode.DURATION: # (And INFINITE/PASSIVE in the future)
 				var handle = _create_active_effect(effect)
-				print("[AttributeSet] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
+				GlobalLogger.log("[AttributeSet] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
 				active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
 				_on_modifier_changed(effect.target_attribute)
 				created_handles.append(handle)
@@ -134,13 +144,15 @@ func remove_effect(handle: EffectSpecHandle) -> void:
 	if not multiplayer.is_server(): return
 	
 	if not active_effect_registry.has(handle):
-		print("[AttributeSet] Warning: Check to remove effect ", handle, " failed. Not found.")
+		GlobalLogger.log("[AttributeSet] Warning: Check to remove effect ", handle, " failed. Not found.")
 		return
 	
 	var active_effect = active_effect_registry[handle]
 	var source_data = active_effect.source_effect
+	for tag in source_data.granted_tags:
+		remove_granted_tag(tag)
 	
-	print("[AttributeSet] Removing effect manually: ", handle)
+	GlobalLogger.log("[AttributeSet] Removing effect manually: ", handle)
 	
 	# 1. Clean up from logic lists
 	match source_data.mode:
@@ -225,13 +237,68 @@ func server_ability_input_released(input_tag: String) -> void:
 
 #endregion
 
+#region GameplayTags Functions
+func add_granted_tag(tag: StringName) -> void:
+	# Como el servidor gestiona los efectos, él inicia el flujo
+	if multiplayer.is_server():
+		_add_granted_tag_logic(tag)
+		add_granted_tag_rpc.rpc(tag)
 
+func remove_granted_tag(tag: StringName) -> void:
+	if multiplayer.is_server():
+		_remove_granted_tag_logic(tag)
+		remove_granted_tag_rpc.rpc(tag)
+func has_tag(tag: StringName) -> bool:
+	return active_tags.get(tag, 0) > 0
+# Internal function to process adding a tag (Server only)
+
+func _add_granted_tag_logic(tag: StringName) -> void:
+	var current_count = active_tags.get(tag, 0)
+	active_tags[tag] = current_count + 1
+	GlobalLogger.log("[AttributeSet] Gained count for tag: ", tag, current_count + 1)
+	
+	if current_count == 0:
+		GlobalLogger.log("[AttributeSet] Gained Tag: ", tag)
+		tag_added.emit(tag)
+
+func _remove_granted_tag_logic(tag: StringName) -> void:
+	var current_count = active_tags.get(tag, 0)
+	
+	if current_count > 0:
+		active_tags[tag] = current_count - 1
+		GlobalLogger.log("[AttributeSet] Gained count for tag: ", tag, current_count - 1)
+		
+		if active_tags[tag] == 0:
+			active_tags.erase(tag)
+			GlobalLogger.log("[AttributeSet] Lost Tag: ", tag)
+
+			tag_removed.emit(tag)
+
+
+
+@rpc("authority", "call_remote", "reliable")
+func add_granted_tag_rpc(tag: StringName) -> void:
+	if not multiplayer.is_server():
+		_add_granted_tag_logic(tag)
+
+@rpc("authority", "call_remote", "reliable")
+func remove_granted_tag_rpc(tag: StringName) -> void:
+	if not multiplayer.is_server():
+		_remove_granted_tag_logic(tag)
+
+
+#endregion
 
 # Helper to create the ActiveEffect and register it
 func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
 	var handle = EffectSpecHandle.new(effect.effect_name)
 	var active = ActiveEffect.new(handle, effect)
 	active_effect_registry[handle] = active
+	
+	# Add granted tags
+	for tag in effect.granted_tags:
+		add_granted_tag(tag)
+
 	return handle
 
 # --- 2. TOTAL STATS CALCULATION ---
@@ -264,12 +331,12 @@ func _apply_instant_change(effect: GameplayEffect) -> void:
 	if effect.target_attribute == "health":
 		var old_h = health
 		self.health += val
-		print("[AttributeSet] Instant change applied: ", effect.value, " | Health went from ", old_h, " to ", health)
+		#print("[AttributeSet] Instant change applied: ", effect.value, " | Health went from ", old_h, " to ", health)
 	else:
 		printerr("[AttributeSet] WARNING: INSTANT effects are usually for current stats (health, mana). Check effect: ", effect.effect_name)
 
 func _on_modifier_changed(stat_name: String) -> void:
-	print("[AttributeSet] Recalculating TOTAL stat for: ", stat_name, " | New Total: ", get_total_stat(stat_name))
+	GlobalLogger.log("[AttributeSet] Recalculating TOTAL stat for: ", stat_name, " | New Total: ", get_total_stat(stat_name))
 	if stat_name == "max_health":
 		self.health = self.health 
 
@@ -289,6 +356,9 @@ func _process_periodic_effects(delta: float) -> void:
 			# Cleanup
 			active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
 			active_periodic_effects.remove_at(i)
+			if "granted_tags" in active.source_effect:
+				for tag in active.source_effect.granted_tags:
+					remove_granted_tag(tag)
 
 func _process_duration_modifiers(delta: float) -> void:
 	for attr in active_modifiers.keys():
@@ -298,10 +368,14 @@ func _process_duration_modifiers(delta: float) -> void:
 			var active = modifiers_list[i]
 			active.time_left -= delta
 			if active.time_left <= 0:
+				if "granted_tags" in active.source_effect:
+					for tag in active.source_effect.granted_tags:
+						remove_granted_tag(tag)
 				# Cleanup
 				active_effect_registry.erase(active.handle) # <--- REMOVE FROM REGISTRY
 				modifiers_list.remove_at(i)
 				changed = true
+				
 		
 		if changed:
 			_on_modifier_changed(attr)

@@ -21,6 +21,9 @@ var target_attribute: String = "health"
 @export var effect_name: String = "Generic Effect" 
 @export var vfx_tag: String = "" 
 
+@export_group("GameplayTags")
+@export var granted_tags: PackedStringArray
+
 func _get_property_list() -> Array:
 	var properties = []
 	var hint_string = ",".join(AttributeSet.VALID_ATTRIBUTES)

@@ -33,7 +33,7 @@ func connect_to_ip(ip):
 	$"UI/Connect Panel".visible = false
 	var items = $Level/Items
 	for i in items.get_child_count():
-		var item = items.get_child(i) as DroppedItem3D
+		var item = items.get_child(i)
 		item.queue_free()
 
 func create_player(client_id) -> void:

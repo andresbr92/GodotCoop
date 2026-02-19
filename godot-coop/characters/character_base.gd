@@ -4,7 +4,9 @@ extends CharacterBody3D
 @onready var attribute_set: AttributeSet = %AttributeSet
 
 
-
+func _enter_tree() -> void:
+	%AttributeSet.set_multiplayer_authority(1)
+	pass
 
 
 
