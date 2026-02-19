@@ -3,7 +3,7 @@ class_name GA_ThrowProjectile
 
 # Reference to projectile data (Visuals, Damage, Radius...)
 # We use the same resource you already had to avoid wasting work.
-@export var throwable_data: ThrowableData 
+@export var potion_data: PotionData 
 
 func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
@@ -26,7 +26,7 @@ func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> 
 		pass
 
 	# 2. Calculate Velocity using client's direction
-	var velocity = direction * throwable_data.throw_force
+	var velocity = direction * potion_data.throw_force
 	
 	# 3. Spawn (Server side)
 	var spawner = actor.get_tree().get_first_node_in_group("ProjectileSpawner")
@@ -36,8 +36,8 @@ func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> 
 		var hand_node = actor.get_node_or_null("MeshInstance3D/HandMarker")
 		var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
 		
-		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, throwable_data.resource_path, actor.name.to_int()])
-		if throwable_data.consume_on_use:
+		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, potion_data.resource_path, actor.name.to_int()])
+		if potion_data.consume_on_use:
 			_consume_source_item(actor, handle)
 
 func _consume_source_item(actor: Node, handle: AbilitySpecHandle):

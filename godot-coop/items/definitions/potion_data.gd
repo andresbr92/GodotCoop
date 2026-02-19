@@ -1,4 +1,4 @@
-class_name ThrowableData
+class_name PotionData
 extends Resource
 
 @export_group("Physics & Visuals")

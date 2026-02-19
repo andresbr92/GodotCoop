@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_58sb2"]
 [ext_resource type="PackedScene" uid="uid://h6vvsfkrplpl" path="res://items/definitions/projectiles/heal_potion_projectile.tscn" id="1_kfmvx"]
 [ext_resource type="Resource" uid="uid://drdrqyt7kwaky" path="res://items/definitions/gameplay_effects/GE_HealOverTime.tres" id="2_5d0ui"]
-[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/throwable_data.gd" id="2_58sb2"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="2_58sb2"]
 
 [resource]
 script = ExtResource("2_58sb2")

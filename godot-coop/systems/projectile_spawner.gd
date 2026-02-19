@@ -15,7 +15,7 @@ func _spawn_projectile(data: Array):
 	if data.size() > 4:
 		thrower_id = data[4]
 	
-	var stats_resource = load(path_to_tres) as ThrowableData
+	var stats_resource = load(path_to_tres) as PotionData
 	if not stats_resource: return null
 	var scene_inside_resource = stats_resource.projectile_scene
 

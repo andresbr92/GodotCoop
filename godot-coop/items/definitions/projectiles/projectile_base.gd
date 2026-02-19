@@ -3,7 +3,7 @@ extends RigidBody3D
 
 class_name ProjectileBase
 
-var data: ThrowableData
+var data: PotionData
 var thrower_id: int = 0
 
 @onready var visuals: Node3D = $Visuals
@@ -18,7 +18,7 @@ func _ready() -> void:
 	if multiplayer.is_server():
 		body_entered.connect(on_impact)
 
-func setup_projectile(new_data : ThrowableData, initial_velocity: Vector3) -> void:
+func setup_projectile(new_data : PotionData, initial_velocity: Vector3) -> void:
 	self.data = new_data
 	self.linear_velocity = initial_velocity
 
