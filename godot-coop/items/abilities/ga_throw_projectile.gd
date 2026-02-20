@@ -5,7 +5,7 @@ class_name GA_ThrowProjectile
 func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
 	
-	var asc: AttributeSet = actor.get_node_or_null("AttributeSet")
+	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
 	if not asc: return
 	
 	var potion_data = _get_potion_data_from_source(asc, handle)
@@ -33,7 +33,7 @@ func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> 
 			_consume_source_item(asc, handle)
 
 
-func _get_potion_data_from_source(asc: AttributeSet, handle: AbilitySpecHandle) -> PotionData:
+func _get_potion_data_from_source(asc: AbilitySystemComponent, handle: AbilitySpecHandle) -> PotionData:
 	var source = asc.get_ability_source(handle)
 	var inventory: Inventory = source.get("inventory")
 	var slot_index: int = source.get("slot", -1)
@@ -54,7 +54,7 @@ func _get_potion_data_from_source(asc: AttributeSet, handle: AbilitySpecHandle) 
 	return null
 
 
-func _consume_source_item(asc: AttributeSet, handle: AbilitySpecHandle) -> void:
+func _consume_source_item(asc: AbilitySystemComponent, handle: AbilitySpecHandle) -> void:
 	var source = asc.get_ability_source(handle)
 	var inventory: Inventory = source.get("inventory")
 	var slot_index: int = source.get("slot", -1)

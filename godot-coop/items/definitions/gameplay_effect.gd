@@ -26,7 +26,7 @@ var target_attribute: String = "health"
 
 func _get_property_list() -> Array:
 	var properties = []
-	var hint_string = ",".join(AttributeSet.VALID_ATTRIBUTES)
+	var hint_string = ",".join(GASAttributeSet.VALID_ATTRIBUTES)
 	
 	properties.append({
 		"name": "target_attribute",

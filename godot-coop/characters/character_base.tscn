@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bkoflorth6kly"]
 
 [ext_resource type="Script" uid="uid://cnx8xlxnq11u1" path="res://characters/character_base.gd" id="1_1mj81"]
-[ext_resource type="PackedScene" uid="uid://bdpi3xeufl0ug" path="res://characters/common_components/attribute_set.tscn" id="2_gepiv"]
 [ext_resource type="Script" uid="uid://b8fid1m6avs0l" path="res://characters/test_tag_reaction_component.gd" id="3_13xd6"]
 [ext_resource type="Texture2D" uid="uid://b57s7asqg7nji" path="res://addons/assets/kenney_prototype-textures/PNG/Red/texture_01.png" id="4_6q7jg"]
+[ext_resource type="PackedScene" path="res://characters/common_components/gas/ability_system_component.tscn" id="5_6q7jg"]
 [ext_resource type="Texture2D" uid="uid://b5uupgpe0g0j5" path="res://addons/assets/kenney_prototype-textures/PNG/Light/texture_01.png" id="5_lijnf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gepiv"]
@@ -29,9 +29,6 @@ mesh = SubResource("CapsuleMesh_13xd6")
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.00031760352, 0.36187744, -0.33904696)
 size = Vector3(0.5, 0.2, 0.705)
 
-[node name="AttributeSet" parent="." unique_id=398172985 instance=ExtResource("2_gepiv")]
-unique_name_in_owner = true
-
 [node name="Hitbox" type="Area3D" parent="." unique_id=1610593320]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 16
@@ -40,10 +37,12 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=297805765]
 shape = SubResource("CapsuleShape3D_13xd6")
 
-[node name="FireTagReactionComponent" type="Node" parent="." unique_id=1769359576 node_paths=PackedStringArray("attribute_set")]
+[node name="FireTagReactionComponent" type="Node" parent="." unique_id=1769359576 node_paths=PackedStringArray("ability_system")]
 script = ExtResource("3_13xd6")
 target_tag = &"state.fire"
-attribute_set = NodePath("../AttributeSet")
+ability_system = NodePath("../AbilitySystemComponent")
 texture_burn = ExtResource("4_6q7jg")
 texture_normal = ExtResource("5_lijnf")
 metadata/_custom_type_script = "uid://bs2nrqdxgn6rt"
+
+[node name="AbilitySystemComponent" parent="." unique_id=192236031 instance=ExtResource("5_6q7jg")]

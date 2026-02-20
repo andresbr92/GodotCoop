@@ -3,7 +3,7 @@ extends GameplayAbility
 
 
 func activate(actor: Node, handle: AbilitySpecHandle, _args: Dictionary = {}) -> void:
-	var asc: AttributeSet = actor.get_node_or_null("AttributeSet")
+	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
 	if not asc: return
 	
 	var potion_data = _get_potion_data_from_source(asc, handle)
@@ -13,7 +13,6 @@ func activate(actor: Node, handle: AbilitySpecHandle, _args: Dictionary = {}) ->
 	
 	GlobalLogger.log("[GA_Drink_Potion] Starting to drink potion... Hold for ", potion_data.drink_duration, "s")
 	
-	# Start the cast - player must hold the button for drink_duration seconds
 	var on_complete = func(): _on_drink_complete(actor, handle, potion_data)
 	var on_cancel = func(): _on_drink_cancelled(actor, handle)
 	
@@ -23,7 +22,7 @@ func activate(actor: Node, handle: AbilitySpecHandle, _args: Dictionary = {}) ->
 func _on_drink_complete(actor: Node, handle: AbilitySpecHandle, potion_data: PotionData) -> void:
 	GlobalLogger.log("[GA_Drink_Potion] Drink complete! Applying effects...")
 	
-	var asc: AttributeSet = actor.get_node_or_null("AttributeSet")
+	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
 	if not asc: return
 	
 	if potion_data.consumed_effects.size() > 0:
@@ -37,7 +36,7 @@ func _on_drink_cancelled(_actor: Node, _handle: AbilitySpecHandle) -> void:
 	GlobalLogger.log("[GA_Drink_Potion] Drink cancelled! Potion not consumed.")
 
 
-func _get_potion_data_from_source(asc: AttributeSet, handle: AbilitySpecHandle) -> PotionData:
+func _get_potion_data_from_source(asc: AbilitySystemComponent, handle: AbilitySpecHandle) -> PotionData:
 	var source = asc.get_ability_source(handle)
 	var inventory: Inventory = source.get("inventory")
 	var slot_index: int = source.get("slot", -1)
@@ -54,7 +53,7 @@ func _get_potion_data_from_source(asc: AttributeSet, handle: AbilitySpecHandle) 
 	return load(item_def.properties["potion_data"]) as PotionData
 
 
-func _consume_source_item(asc: AttributeSet, handle: AbilitySpecHandle) -> void:
+func _consume_source_item(asc: AbilitySystemComponent, handle: AbilitySpecHandle) -> void:
 	var source = asc.get_ability_source(handle)
 	var inventory: Inventory = source.get("inventory")
 	var slot_index: int = source.get("slot", -1)
