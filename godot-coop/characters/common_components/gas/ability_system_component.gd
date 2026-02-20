@@ -12,7 +12,7 @@ signal tag_removed(tag: StringName)
 @onready var cast_manager: CastManager = $CastManager
 @onready var tag_container: TagContainer = $TagContainer
 
-var is_strafing: bool:
+@export var is_strafing: bool:
 	get:
 		return attribute_set.is_strafing if attribute_set else false
 	set(value):

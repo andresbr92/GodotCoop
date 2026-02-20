@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [sub_resource type="Resource" id="Resource_kdw6s"]
 script = ExtResource("7_c04mj")
+ability_name = "Aim ability"
 ongoing_effects = Array[ExtResource("6_lscpr")]([SubResource("Resource_uege0")])
 metadata/_custom_type_script = "uid://bvd7veay3hndt"
 
@@ -27,6 +28,11 @@ script = ExtResource("5_uege0")
 ability = SubResource("Resource_kdw6s")
 input_tag = "ability.secondary"
 metadata/_custom_type_script = "uid://chlfotutlp83j"
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uege0"]
+properties/0/path = NodePath(".:is_strafing")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [node name="AbilitySystemComponent" type="Node" unique_id=2030581002]
 script = ExtResource("1_asc")
@@ -46,3 +52,6 @@ script = ExtResource("5_cast")
 
 [node name="TagContainer" type="Node" parent="." unique_id=952941750]
 script = ExtResource("6_tags")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=727886242]
+replication_config = SubResource("SceneReplicationConfig_uege0")
