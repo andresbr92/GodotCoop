@@ -22,4 +22,4 @@ extends Resource
 @export var drink_animation_name: String = "drink_potion"
 # Effects applied to the player who drinks it
 @export var consumed_effects: Array[GameplayEffect]
-@export var drink_duraction: float = 1.5
+@export var drink_duration: float = 1.5
