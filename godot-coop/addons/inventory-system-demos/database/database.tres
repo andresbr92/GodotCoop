@@ -223,16 +223,15 @@ properties = {
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_dqypk"]
 id = "fire_potion"
-max_stack = 10
+max_stack = 1
 name = "Fire Potion"
 icon = ExtResource("17_4cjml")
 properties = {
 "dropped_item": "res://items/inventory_items/potions/fire_potion.tscn",
 "equipment_data": "res://items/definitions/equipment/EqData_FirePotion.tres",
 "hand_item": "res://addons/assets/bottle.glb",
-"potion_data": "res://items/definitions/equipment/EqData_FirePotion.tres"
+"potion_data": "res://items/definitions/potion/FirePotionStats.tres"
 }
-dynamic_properties = Array[String](["potion_data"])
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_4cjml"]
 id = "heal_potion"
@@ -256,19 +255,6 @@ properties = {
 }
 categories = Array[ItemCategory]([SubResource("ItemCategory_4cjml")])
 description = "This is a basic bottle of water"
-
-[sub_resource type="ItemDefinition" id="ItemDefinition_4fkxu"]
-id = "poison_potion"
-max_stack = 10
-name = "Fire Potion(2)"
-icon = ExtResource("17_4cjml")
-properties = {
-"dropped_item": "res://items/inventory_items/potions/fire_potion.tscn",
-"equipment_data": "res://items/definitions/equipment/EqData_FirePotion.tres",
-"hand_item": "res://addons/assets/bottle.glb",
-"potion_data": "res://items/definitions/equipment/EqData_FirePotion.tres"
-}
-dynamic_properties = Array[String](["potion_data"])
 
 [sub_resource type="LootItem" id="LootItem_6ctep"]
 item_id = "stone_axe"
@@ -434,7 +420,7 @@ station = SubResource("CraftStationType_4cjml")
 ingredients = Array[ItemStack]([SubResource("ItemStack_utrd5"), SubResource("ItemStack_4fkxu")])
 
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml"), SubResource("ItemDefinition_utrd5"), SubResource("ItemDefinition_4fkxu")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml"), SubResource("ItemDefinition_utrd5")])
 recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y"), SubResource("Recipe_4cjml")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])

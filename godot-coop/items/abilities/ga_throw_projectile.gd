@@ -25,7 +25,7 @@ func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> 
 	
 	var spawner = actor.get_tree().get_first_node_in_group("ProjectileSpawner")
 	if spawner:
-		var hand_node = actor.get_node_or_null("MeshInstance3D/HandMarker")
+		var hand_node = actor.get_node_or_null("MeshInstance3D/FakeSkeleton/RightHand")
 		var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
 		
 		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, potion_data.resource_path, actor.name.to_int()])
@@ -45,11 +45,9 @@ func _get_potion_data_from_source(asc: AbilitySystemComponent, handle: AbilitySp
 	
 	var item_def = inventory.database.get_item(stack.item_id)
 	if not item_def: return null
-	
+	print(item_def.properties)
 	if item_def.properties.has("potion_data"):
 		return load(item_def.properties["potion_data"]) as PotionData
-	elif item_def.properties.has("throwable_data"):
-		return load(item_def.properties["throwable_data"]) as PotionData
 	
 	return null
 
