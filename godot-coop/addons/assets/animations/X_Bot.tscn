@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b04iyfe1w0di5"]
+
+[ext_resource type="PackedScene" uid="uid://fbkfoame380q" path="res://WitchHag/Demo/Level/X_Bot.glb" id="1_d0q0l"]
+[ext_resource type="Material" uid="uid://bqfb6yigi25cj" path="res://WitchHag/Demo/Level/Beta_HighLimbsGeoSG3.tres" id="2_ul52n"]
+[ext_resource type="Material" uid="uid://dpxejegw5ux7d" path="res://WitchHag/Demo/Level/Beta_Joints_MAT1.tres" id="3_djdlo"]
+
+[node name = "X_Bot" instance = ExtResource("1_d0q0l")]
+
+[node name="Skeleton3D" parent="Mesh" index="0"]
+
+[node name="Mesh" parent="Mesh/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_ul52n")
+surface_material_override/1 = ExtResource("3_djdlo")

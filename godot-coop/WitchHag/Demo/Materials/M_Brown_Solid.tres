@@ -1,0 +1,11 @@
+[gd_resource type = "ShaderMaterial" load_steps=1 format=3 uid="uid://cux8fdpk4ledf"]
+
+[ext_resource type="Shader" uid="uid://ejhhpogsbxj7" path="res://Shaders/M_Brown_Solid.tres" id="1_xokjb"]
+
+[resource]
+resource_name = "M_Brown_Solid"
+render_priority = 0
+shader = ExtResource("1_xokjb")
+shader_parameter/Base_Color = Vector4(0.061, 0.019, 0.000, 1.000)
+shader_parameter/Metallic = 0.000
+shader_parameter/Roughness = 1.000
