@@ -28,7 +28,7 @@ window/size/always_on_top=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tile-run-instances/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/tile-run-instances/plugin.cfg")
 
 [file_customization]
 
@@ -39,7 +39,8 @@ folder_colors={
 "res://interactables/": "purple",
 "res://items/": "green",
 "res://levels/": "yellow",
-"res://systems/": "red"
+"res://systems/": "red",
+"res://test/": "gray"
 }
 
 [global_group]
