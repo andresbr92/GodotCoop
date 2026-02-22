@@ -64,11 +64,12 @@ metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
 script = ExtResource("23_3a7m8")
 mode = 3
 granted_tags = PackedStringArray("state.aiming")
-target_attribute = "none"
+target_attribute = ""
 metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [sub_resource type="Resource" id="Resource_iopkm"]
 script = ExtResource("24_y3et5")
+ability_name = "Ga aim"
 ongoing_effects = Array[ExtResource("23_3a7m8")]([SubResource("Resource_jepfe")])
 metadata/_custom_type_script = "uid://bvd7veay3hndt"
 
@@ -301,10 +302,9 @@ text = "Player name"
 font_size = 24
 outline_size = 8
 
-[node name="FireTagReactionComponent" type="Node" parent="." index="8" unique_id=2101435594 node_paths=PackedStringArray("ability_system")]
+[node name="FireTagReactionComponent" type="Node" parent="." index="8" unique_id=2101435594]
 script = ExtResource("15_d2agh")
 target_tag = &"state.fire"
-ability_system = NodePath("")
 texture_burn = ExtResource("16_fpo3a")
 texture_normal = ExtResource("17_kyfeq")
 metadata/_custom_type_script = "uid://bs2nrqdxgn6rt"

@@ -60,11 +60,9 @@ func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
 				GlobalLogger.log("[EffectManager] Applying INSTANT effect: '", effect.effect_name, "'")
 				if has_attribute:
 					_apply_instant_effect(effect)
-				# INSTANT effects with tags: create a handle so they can be removed later
-				# This is needed for ongoing_effects that need to be cleaned up
-				if effect.granted_tags.size() > 0:
-					var handle = _create_active_effect(effect)
-					created_handles.append(handle)
+				# For INSTANT tag-only effects, just apply tags (they stay until manually removed)
+				for tag in effect.granted_tags:
+					_tag_container.add_tag(tag)
 				
 			GameplayEffect.ApplicationMode.PERIODIC:
 				var handle = _create_active_effect(effect)
@@ -105,10 +103,6 @@ func remove_effect(handle: EffectSpecHandle) -> void:
 	var has_attribute = _has_valid_attribute(source_data)
 	
 	match source_data.mode:
-		GameplayEffect.ApplicationMode.INSTANT:
-			# INSTANT effects with tags are only in the registry, nothing else to clean up
-			pass
-			
 		GameplayEffect.ApplicationMode.PERIODIC:
 			active_periodic_effects.erase(active_effect)
 			
