@@ -55,7 +55,6 @@ func _connect_slots() -> void:
 
 
 func _on_item_equipped(stack_index: int, inventory: Node, slot_id: String) -> void:
-	print(slot_id)
 	var stack = inventory.stacks[stack_index]
 	if stack == null: return
 	
@@ -66,11 +65,8 @@ func _on_item_equipped(stack_index: int, inventory: Node, slot_id: String) -> vo
 	var data = load(data_path) as EquipmentData
 	_apply_equipment_logic(data, slot_id)
 
-	print("[EquipmentManager] Equipped item in slot: ", slot_id)
-
 
 func _on_item_unequipped(_stack_index: int, _inventory: Node, slot_id: String) -> void:
-	print("[EquipmentManager] Unequipped item from slot: ", slot_id)
 	_remove_equipment_logic(slot_id)
 
 
@@ -140,6 +136,149 @@ const SLOT_TO_MARKER: Dictionary = {
 	"BeltSlot2": "BeltSlotMarker2",
 	"BeltSlot3": "BeltSlotMarker3",
 }
+
+## Belt slot names for quick access by index (1, 2, 3)
+const BELT_SLOTS: Array[String] = ["BeltSlot1", "BeltSlot2", "BeltSlot3"]
+
+## Tracks if a swap is currently in progress (prevents spam)
+var _swap_in_progress: bool = false
+
+
+# ============================================
+# BELT SLOT SWAP SYSTEM
+# ============================================
+
+## Called by client to request a swap between HandSlot and a BeltSlot
+## belt_index: 0, 1, or 2 (corresponding to BeltSlot1, BeltSlot2, BeltSlot3)
+func request_swap_belt_slot(belt_index: int) -> void:
+	if belt_index < 0 or belt_index >= BELT_SLOTS.size():
+		return
+	
+	if multiplayer.is_server():
+		_start_swap(belt_index)
+	else:
+		_swap_belt_slot_rpc.rpc_id(1, belt_index)
+
+
+@rpc("any_peer", "reliable")
+func _swap_belt_slot_rpc(belt_index: int) -> void:
+	if not multiplayer.is_server():
+		return
+	_start_swap(belt_index)
+
+
+## Validates and starts the swap process with delay
+func _start_swap(belt_index: int) -> void:
+	# Prevent multiple swaps at once
+	if _swap_in_progress:
+		return
+	
+	var hand_slot: GridInventory = get_node_or_null(equipment_slots["HandSlot"])
+	var belt_slot: GridInventory = get_node_or_null(equipment_slots[BELT_SLOTS[belt_index]])
+	
+	if hand_slot == null or belt_slot == null:
+		return
+	
+	# Check if there's anything to swap
+	var hand_has_item = _slot_has_item(hand_slot)
+	var belt_has_item = _slot_has_item(belt_slot)
+	
+	# Only proceed if at least one slot has an item
+	if not hand_has_item and not belt_has_item:
+		return
+	
+	# Get swap time from ability system's attribute set
+	var swap_duration = 0.5  # Default fallback
+	if ability_system and ability_system.attribute_set:
+		swap_duration = ability_system.attribute_set.swap_time
+	
+	_swap_in_progress = true
+	print("[EquipmentManager] Starting swap... (%.2fs)" % swap_duration)
+	
+	# Wait for the swap duration, then perform the swap
+	await get_tree().create_timer(swap_duration).timeout
+	
+	# Re-validate after delay (items might have changed)
+	if _slot_has_item(hand_slot) or _slot_has_item(belt_slot):
+		_perform_atomic_swap(belt_index)
+	
+	_swap_in_progress = false
+
+
+## Checks if a slot contains any item
+func _slot_has_item(slot: GridInventory) -> bool:
+	if slot.stacks.size() == 0:
+		return false
+	return slot.stacks[0] != null
+
+
+## Performs an atomic swap between HandSlot and the specified BeltSlot
+## This runs ONLY on the server to prevent race conditions
+func _perform_atomic_swap(belt_index: int) -> void:
+	var hand_slot: GridInventory = get_node_or_null(equipment_slots["HandSlot"])
+	var belt_slot: GridInventory = get_node_or_null(equipment_slots[BELT_SLOTS[belt_index]])
+	
+	if hand_slot == null or belt_slot == null:
+		return
+	
+	# Extract data from both slots BEFORE modifying anything
+	var hand_data = _extract_slot_data(hand_slot)
+	var belt_data = _extract_slot_data(belt_slot)
+	
+	# Clear both slots (this triggers stack_removed signals)
+	_clear_slot(hand_slot)
+	_clear_slot(belt_slot)
+	
+	# Add items to swapped positions (this triggers stack_added signals)
+	# Belt item -> Hand
+	if not belt_data.is_empty():
+		_add_to_slot(hand_slot, belt_data)
+	
+	# Hand item -> Belt
+	if not hand_data.is_empty():
+		_add_to_slot(belt_slot, hand_data)
+	
+	print("[EquipmentManager] Swapped HandSlot <-> ", BELT_SLOTS[belt_index])
+
+
+## Extracts item data from a slot (returns null if empty)
+func _extract_slot_data(slot: GridInventory) -> Dictionary:
+	if slot.stacks.size() == 0:
+		return {}
+	
+	var stack = slot.stacks[0]
+	if stack == null:
+		return {}
+	
+	return {
+		"item_id": stack.item_id,
+		"amount": stack.amount,
+		"properties": stack.properties.duplicate(),
+		"position": slot.stack_positions[0] if slot.stack_positions.size() > 0 else Vector2i.ZERO,
+		"rotation": slot.stack_rotations[0] if slot.stack_rotations.size() > 0 else false
+	}
+
+
+## Clears all items from a slot
+func _clear_slot(slot: GridInventory) -> void:
+	# Remove from end to start to avoid index shifting issues
+	for i in range(slot.stacks.size() - 1, -1, -1):
+		var stack = slot.stacks[i]
+		if stack != null:
+			slot.remove_at(i, stack.item_id, stack.amount)
+
+
+## Adds an item to a slot using extracted data
+func _add_to_slot(slot: GridInventory, data: Dictionary) -> void:
+	if data.is_empty():
+		return
+	slot.add_at_position(
+		data.get("position", Vector2i.ZERO),
+		data["item_id"],
+		data["amount"],
+		data.get("properties", {}),
+		data.get("rotation", false)
+	)
 
 
 func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:

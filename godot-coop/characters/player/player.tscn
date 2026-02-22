@@ -314,6 +314,7 @@ script = ExtResource("18_4cx7u")
 
 [node name="AttributeSet" type="Node" parent="AbilitySystemComponent" index="0" unique_id=646311960]
 script = ExtResource("19_w53g3")
+base_swap_time = 1.5
 
 [node name="EffectManager" type="Node" parent="AbilitySystemComponent" index="1" unique_id=316435791]
 script = ExtResource("20_e0pgg")

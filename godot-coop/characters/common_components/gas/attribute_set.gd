@@ -4,12 +4,13 @@ extends Node
 signal health_changed(new_value: float, max_value: float)
 signal died()
 
-const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana"]
+const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana", "swap_time"]
 
 @export_group("Base Stats")
 @export var base_max_health: float = 100.0
 @export var base_speed: float = 5.0
 @export var base_stamina: float = 50.0
+@export var base_swap_time: float = 0.5  ## Time in seconds to swap items between hand and belt
 
 var is_strafing: bool = false
 
@@ -32,6 +33,10 @@ var health: float:
 var speed: float:
 	get:
 		return get_computed_stat("speed")
+
+var swap_time: float:
+	get:
+		return get_computed_stat("swap_time")
 
 var _effect_manager: EffectManager
 

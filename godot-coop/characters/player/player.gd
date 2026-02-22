@@ -79,6 +79,22 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_released("attack_secondary"):
 		ability_system.server_ability_input_released(AbilityManager.INPUT_SECONDARY)
+	
+	# Belt slot swap inputs (1, 2, 3 keys)
+	_handle_belt_slot_inputs(event)
+
+
+func _handle_belt_slot_inputs(event: InputEvent) -> void:
+	var equipment_manager = character_inventory_system.equipment_manager
+	if equipment_manager == null:
+		return
+	
+	if event.is_action_pressed("belt_slot_1"):
+		equipment_manager.request_swap_belt_slot(0)
+	elif event.is_action_pressed("belt_slot_2"):
+		equipment_manager.request_swap_belt_slot(1)
+	elif event.is_action_pressed("belt_slot_3"):
+		equipment_manager.request_swap_belt_slot(2)
 
 
 func _collect_activation_data() -> Dictionary:
