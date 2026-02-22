@@ -19,6 +19,8 @@ var _tag_container: TagContainer
 var active_effect_registry: Dictionary = {}
 var active_modifiers: Dictionary = {}
 var active_periodic_effects: Array[ActiveEffect] = []
+## Duration effects that only apply tags (no attribute modification)
+var active_duration_tag_effects: Array[ActiveEffect] = []
 
 
 func _ready() -> void:
@@ -37,6 +39,12 @@ func _process(delta: float) -> void:
 	
 	_process_periodic_effects(delta)
 	_process_duration_modifiers(delta)
+	_process_duration_tag_effects(delta)
+
+
+## Returns true if the effect has a valid target attribute (not "none" or empty)
+func _has_valid_attribute(effect: GameplayEffect) -> bool:
+	return effect.target_attribute != "" and effect.target_attribute != "none"
 
 
 func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
@@ -45,22 +53,33 @@ func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
 	var created_handles: Array[EffectSpecHandle] = []
 	
 	for effect in effects:
+		var has_attribute = _has_valid_attribute(effect)
+		
 		match effect.mode:
 			GameplayEffect.ApplicationMode.INSTANT:
 				GlobalLogger.log("[EffectManager] Applying INSTANT effect: '", effect.effect_name, "'")
-				_apply_instant_effect(effect)
+				if has_attribute:
+					_apply_instant_effect(effect)
+				# For INSTANT tag-only effects, just apply tags (they stay until manually removed)
+				for tag in effect.granted_tags:
+					_tag_container.add_tag(tag)
 				
 			GameplayEffect.ApplicationMode.PERIODIC:
 				var handle = _create_active_effect(effect)
 				GlobalLogger.log("[EffectManager] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
-				active_periodic_effects.append(active_effect_registry[handle])
+				if has_attribute:
+					active_periodic_effects.append(active_effect_registry[handle])
 				created_handles.append(handle)
 				
 			GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE:
 				var handle = _create_active_effect(effect)
-				GlobalLogger.log("[EffectManager] Added DURATION modifier: '", effect.effect_name, "' Handle: ", handle)
-				active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
-				_on_modifier_changed(effect.target_attribute)
+				GlobalLogger.log("[EffectManager] Added DURATION effect: '", effect.effect_name, "' Handle: ", handle)
+				if has_attribute:
+					active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
+					_on_modifier_changed(effect.target_attribute)
+				else:
+					# Tag-only duration effect - track separately for expiration
+					active_duration_tag_effects.append(active_effect_registry[handle])
 				created_handles.append(handle)
 	
 	return created_handles
@@ -81,15 +100,21 @@ func remove_effect(handle: EffectSpecHandle) -> void:
 	
 	GlobalLogger.log("[EffectManager] Removing effect: ", handle)
 	
+	var has_attribute = _has_valid_attribute(source_data)
+	
 	match source_data.mode:
 		GameplayEffect.ApplicationMode.PERIODIC:
 			active_periodic_effects.erase(active_effect)
 			
-		GameplayEffect.ApplicationMode.DURATION:
-			var attr_name = source_data.target_attribute
-			if active_modifiers.has(attr_name):
-				active_modifiers[attr_name].erase(active_effect)
-				_on_modifier_changed(attr_name)
+		GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE:
+			if has_attribute:
+				var attr_name = source_data.target_attribute
+				if active_modifiers.has(attr_name):
+					active_modifiers[attr_name].erase(active_effect)
+					_on_modifier_changed(attr_name)
+			else:
+				# Tag-only duration effect
+				active_duration_tag_effects.erase(active_effect)
 	
 	active_effect_registry.erase(handle)
 
@@ -146,7 +171,9 @@ func _process_periodic_effects(delta: float) -> void:
 		
 		if active.tick_timer >= active.source_effect.tick_rate:
 			active.tick_timer = 0.0
-			_apply_instant_effect(active.source_effect)
+			# Only apply attribute change if target_attribute is valid
+			if _has_valid_attribute(active.source_effect):
+				_apply_instant_effect(active.source_effect)
 			
 		if active.time_left <= 0:
 			active_effect_registry.erase(active.handle)
@@ -175,3 +202,19 @@ func _process_duration_modifiers(delta: float) -> void:
 		
 		if changed:
 			_on_modifier_changed(attr)
+
+
+## Process duration effects that only have tags (no attribute modification)
+func _process_duration_tag_effects(delta: float) -> void:
+	for i in range(active_duration_tag_effects.size() - 1, -1, -1):
+		var active = active_duration_tag_effects[i]
+		if active.source_effect.mode == GameplayEffect.ApplicationMode.INFINITE:
+			continue
+		
+		active.time_left -= delta
+		if active.time_left <= 0:
+			GlobalLogger.log("[EffectManager] Duration tag effect expired: '", active.source_effect.effect_name, "'")
+			for tag in active.source_effect.granted_tags:
+				_tag_container.remove_tag(tag)
+			active_effect_registry.erase(active.handle)
+			active_duration_tag_effects.remove_at(i)

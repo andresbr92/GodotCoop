@@ -30,5 +30,5 @@ replication_config = SubResource("SceneReplicationConfig_rwpfh")
 material_override = SubResource("StandardMaterial3D_3fmcj")
 surface_material_override/0 = SubResource("StandardMaterial3D_k1en1")
 
-[node name="FireTagReactionComponent" parent="." index="5" unique_id=1769359576]
+[node name="FireTagReactionComponent" parent="." index="4" unique_id=1769359576]
 texture_normal = ExtResource("3_k1en1")

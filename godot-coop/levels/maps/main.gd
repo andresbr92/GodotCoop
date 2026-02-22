@@ -13,6 +13,10 @@ var peer : ENetMultiplayerPeer
 func _ready():
 	multiplayer.peer_connected.connect(_player_connected)
 	multiplayer.peer_disconnected.connect(_player_disconnected)
+	if OS.has_feature("server"):
+		host_game()
+	elif OS.has_feature("client"):
+		connect_to_ip("localhost")
 
 
 

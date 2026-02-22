@@ -6,10 +6,13 @@ extends Resource
 enum ApplicationMode { INSTANT, PERIODIC, DURATION, INFINITE }
 enum ModifierOp { ADD, SUBTRACT, MULTIPLY, DIVIDE } 
 
-var target_attribute: String = "health"
+## Leave empty ("") to apply only tags without modifying any attribute.
+var target_attribute: String = ""
 
 @export_group("Effect Definition")
+## Only used if target_attribute is set.
 @export var operation: ModifierOp = ModifierOp.SUBTRACT
+## Only used if target_attribute is set.
 @export var value: float = 10.0
 
 @export_group("Timing")
@@ -26,7 +29,10 @@ var target_attribute: String = "health"
 
 func _get_property_list() -> Array:
 	var properties = []
-	var hint_string = ",".join(GASAttributeSet.VALID_ATTRIBUTES)
+	# Add "none" option at the beginning for tag-only effects
+	var options = ["none"]
+	options.append_array(GASAttributeSet.VALID_ATTRIBUTES)
+	var hint_string = ",".join(options)
 	
 	properties.append({
 		"name": "target_attribute",

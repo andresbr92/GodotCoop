@@ -7,6 +7,7 @@ const ROTATION_SPEED = 10.0
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var character_inventory_system: NetworkedCharacterInventorySystem = $CharacterInventorySystem
+@onready var label_3d: Label3D = $Label3D
 
 
 func _enter_tree() -> void:
@@ -16,16 +17,19 @@ func _enter_tree() -> void:
 	#$CharacterInventorySystem/EquipmentInventory/SyncInventory.set_multiplayer_authority(1)
 	#%SyncHotbar.set_multiplayer_authority(1)
 	$CharacterInventorySystem/CraftStation/SyncCraftStation.set_multiplayer_authority(1)
-	$CharacterInventorySystem/EquipmentManager/HeadSlot/SyncGridInventory.set_multiplayer_authority(1)
-	$CharacterInventorySystem/EquipmentManager/HeadSlot/Openable.set_multiplayer_authority(1)
-	$CharacterInventorySystem/EquipmentManager/ChestSlot/SyncGridInventory.set_multiplayer_authority(1)
-	$CharacterInventorySystem/EquipmentManager/ChestSlot/Openable.set_multiplayer_authority(1)
-	$CharacterInventorySystem/EquipmentManager/HandSlot/SyncGridInventory.set_multiplayer_authority(1)
-	$CharacterInventorySystem/EquipmentManager/HandSlot/Openable.set_multiplayer_authority(1)
 	$AbilitySystemComponent.set_multiplayer_authority(1)
+	for system in $AbilitySystemComponent.get_children():
+		system.set_multiplayer_authority(1)
+
+	for inventory in $CharacterInventorySystem/EquipmentManager.get_children():
+		if inventory is GridInventory:
+			inventory.set_multiplayer_authority(1)
+			for sincronizer in inventory.get_children():
+				sincronizer.set_multiplayer_authority(1)
 
 
 func _ready() -> void:
+	label_3d.text = str(name)
 	pass
 
 

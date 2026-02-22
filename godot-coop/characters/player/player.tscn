@@ -258,3 +258,11 @@ metadata/_custom_type_script = "uid://dlemxn6c687mt"
 script = ExtResource("8_41yun")
 is_open = true
 metadata/_custom_type_script = "uid://gngi6ncgkswy"
+
+[node name="Label3D" type="Label3D" parent="." index="9" unique_id=1773017313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2259169, 0)
+billboard = 2
+fixed_size = true
+text = "Player name"
+font_size = 24
+outline_size = 8
