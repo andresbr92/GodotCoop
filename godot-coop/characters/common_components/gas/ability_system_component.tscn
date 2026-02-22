@@ -5,29 +5,7 @@
 [ext_resource type="Script" uid="uid://6gxsp3s6lgqp" path="res://characters/common_components/gas/effect_manager.gd" id="3_eff"]
 [ext_resource type="Script" uid="uid://c1bx3awc4o3vp" path="res://characters/common_components/gas/ability_manager.gd" id="4_abil"]
 [ext_resource type="Script" uid="uid://ywhq2enrb0md" path="res://characters/common_components/gas/cast_manager.gd" id="5_cast"]
-[ext_resource type="Script" uid="uid://chlfotutlp83j" path="res://items/definitions/ability_grant.gd" id="5_uege0"]
-[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="6_lscpr"]
 [ext_resource type="Script" uid="uid://b44a50lmrb1bj" path="res://characters/common_components/gas/tag_container.gd" id="6_tags"]
-[ext_resource type="Script" uid="uid://bvd7veay3hndt" path="res://items/abilities/ga_aim.gd" id="7_c04mj"]
-
-[sub_resource type="Resource" id="Resource_uege0"]
-script = ExtResource("6_lscpr")
-mode = 3
-granted_tags = PackedStringArray("state.aiming")
-target_attribute = "none"
-metadata/_custom_type_script = "uid://1k1vrnybbjdr"
-
-[sub_resource type="Resource" id="Resource_kdw6s"]
-script = ExtResource("7_c04mj")
-ability_name = "Aim ability"
-ongoing_effects = Array[ExtResource("6_lscpr")]([SubResource("Resource_uege0")])
-metadata/_custom_type_script = "uid://bvd7veay3hndt"
-
-[sub_resource type="Resource" id="Resource_lqijo"]
-script = ExtResource("5_uege0")
-ability = SubResource("Resource_kdw6s")
-input_tag = "ability.secondary"
-metadata/_custom_type_script = "uid://chlfotutlp83j"
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uege0"]
 properties/0/path = NodePath(".:is_strafing")
@@ -45,7 +23,6 @@ script = ExtResource("3_eff")
 
 [node name="AbilityManager" type="Node" parent="." unique_id=1422784350]
 script = ExtResource("4_abil")
-default_abilities = Array[ExtResource("5_uege0")]([SubResource("Resource_lqijo")])
 
 [node name="CastManager" type="Node" parent="." unique_id=1946062198]
 script = ExtResource("5_cast")

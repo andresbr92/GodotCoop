@@ -2,8 +2,8 @@
 @icon("res://addons/inventory-system/icons/interactor.svg")
 class_name EquipmentManager
 extends Node
-
-@export var ability_system: AbilitySystemComponent
+@export var ability_system_node: NodePath = "../../AbilitySystemComponent"
+@onready var ability_system: AbilitySystemComponent = get_node(ability_system_node)
 @onready var openable: Openable = $HeadSlot/Openable
 @onready var fake_skeleton: Node3D = $"../../MeshInstance3D/FakeSkeleton"
 
