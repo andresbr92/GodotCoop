@@ -26,6 +26,9 @@
 [ext_resource type="Script" uid="uid://bvd7veay3hndt" path="res://items/abilities/ga_aim.gd" id="24_y3et5"]
 [ext_resource type="Script" uid="uid://ywhq2enrb0md" path="res://characters/common_components/gas/cast_manager.gd" id="25_0mbv2"]
 [ext_resource type="Script" uid="uid://b44a50lmrb1bj" path="res://characters/common_components/gas/tag_container.gd" id="26_8v65i"]
+[ext_resource type="Script" uid="uid://dx5h504odwbps" path="res://characters/common_components/state_machine/state_machine.gd" id="27_sbttr"]
+[ext_resource type="Script" uid="uid://bwglmetsrl0n5" path="res://characters/common_components/state_machine/idle.gd" id="28_6pj1p"]
+[ext_resource type="Script" uid="uid://bdy8wny8cmlb0" path="res://characters/common_components/state_machine/move.gd" id="29_3a7m8"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aqrcq"]
 properties/0/path = NodePath(".:position")
@@ -331,3 +334,16 @@ script = ExtResource("26_8v65i")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="AbilitySystemComponent" index="5" unique_id=727886242]
 replication_config = SubResource("SceneReplicationConfig_uege0")
+
+[node name="StateMachine" type="Node" parent="." index="10" unique_id=104639167]
+script = ExtResource("27_sbttr")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://dx5h504odwbps"
+
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=380610439]
+script = ExtResource("28_6pj1p")
+metadata/_custom_type_script = "uid://pgublmiqjbtp"
+
+[node name="Move" type="Node" parent="StateMachine" index="1" unique_id=805756636]
+script = ExtResource("29_3a7m8")
+metadata/_custom_type_script = "uid://pgublmiqjbtp"
