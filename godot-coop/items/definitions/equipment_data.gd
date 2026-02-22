@@ -1,10 +1,15 @@
 class_name EquipmentData
 extends Resource
 
-enum SlotType { HEAD, CHEST, HAND }
+## SlotType define el TIPO de equipamiento, no la instancia física.
+## Un item con SlotType.BELT puede ir en cualquier BeltSlot (1, 2 o 3).
+## Un item puede tener múltiples allowed_slots (ej: poción puede ir en BELT o HAND).
+enum SlotType { HEAD, CHEST, HAND, BELT }
 
 @export_group("Slot Configuration")
-@export var slot_type: SlotType
+## Lista de slots donde este item puede equiparse.
+## Ejemplo: una poción puede tener [BELT, HAND] para equiparse en cualquiera.
+@export var allowed_slots: Array[SlotType]
 
 @export_group("Visuals")
 @export var visual_scene: PackedScene 

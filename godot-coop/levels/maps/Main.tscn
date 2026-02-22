@@ -12,18 +12,21 @@
 [ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://systems/projectile_spawner.gd" id="9_r7gtk"]
 [ext_resource type="Script" uid="uid://owlc7hwlygbt" path="res://addons/inventory-system-demos/mp/dropped_item_spawner.gd" id="10_clxfl"]
 [ext_resource type="Script" uid="uid://bn7s6bo56ow2w" path="res://addons/inventory-system-demos/mp/placeable_item_spawner.gd" id="11_au11x"]
-[ext_resource type="Script" uid="uid://dttp27rk0lwvx" path="res://addons/inventory-system-demos/interaction_system/interact_action.gd" id="11_r7gtk"]
 [ext_resource type="PackedScene" uid="uid://bqnv3x0igblvs" path="res://addons/inventory-system-demos/fps/labels.tscn" id="12_8ca51"]
-[ext_resource type="PackedScene" uid="uid://da2b73383isem" path="res://addons/inventory-system-demos/ui/inventory_system_ui.tscn" id="13_vptr5"]
 [ext_resource type="Resource" uid="uid://vm1ta374rw08" path="res://addons/inventory-system-demos/base/kenney_input_icons.tres" id="14_pj6ab"]
+[ext_resource type="Script" uid="uid://c6ar3rrxp6ypx" path="res://addons/inventory-system-demos/ui/inventory_system_ui.gd" id="16_8ca51"]
 [ext_resource type="Script" uid="uid://ctu3vfl53whl3" path="res://addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd" id="17_hxqi7"]
+[ext_resource type="PackedScene" uid="uid://doyklj58bvj21" path="res://addons/inventory-system-demos/ui/interactor/interactor_ui.tscn" id="17_vptr5"]
 [ext_resource type="PackedScene" uid="uid://cxevor61mdhtc" path="res://addons/inventory-system-demos/ui/grid/grid_slot_ui.tscn" id="18_0okpl"]
 [ext_resource type="PackedScene" uid="uid://cmfrl55ed4jfp" path="res://characters/npcs/human_dummy/human_npc.tscn" id="18_bivqv"]
 [ext_resource type="PackedScene" uid="uid://ppoth6laefj7" path="res://items/inventory_items/potions/heal_potion.tscn" id="19_3w03t"]
 [ext_resource type="PackedScene" uid="uid://ch1ixmsfcaf5c" path="res://addons/inventory-system-demos/ui/grid/grid_item_stack_ui.tscn" id="19_6xxi0"]
 [ext_resource type="PackedScene" uid="uid://b2847opptwu7x" path="res://interactables/loot_container/loot_container.tscn" id="19_hxqi7"]
+[ext_resource type="Script" uid="uid://dbuenlapnr3k4" path="res://addons/inventory-system-demos/ui/drop_area.gd" id="19_pj6ab"]
+[ext_resource type="PackedScene" uid="uid://1dijqt6vr078" path="res://addons/inventory-system-demos/ui/grid/grid_inventory_panel.tscn" id="20_nxb8c"]
 [ext_resource type="PackedScene" uid="uid://br8sd7qy15mun" path="res://interactables/harvest_nodes/harvestable.tscn" id="21_6xxi0"]
 [ext_resource type="PackedScene" uid="uid://c7orlrjhtxxjb" path="res://interactables/items/ingredients/water_ingredient.tscn" id="23_8xksg"]
+[ext_resource type="PackedScene" uid="uid://cci6dwxmbapt1" path="res://addons/inventory-system-demos/ui/craft/craft_station_ui.tscn" id="24_3b04x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f4by"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -37,10 +40,6 @@ background_mode = 2
 sky = SubResource("Sky_d8mrn")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="Resource" id="Resource_clxfl"]
-script = ExtResource("11_r7gtk")
-metadata/_custom_type_script = "uid://dttp27rk0lwvx"
 
 [node name="Main" type="Node" unique_id=1964116347]
 script = ExtResource("1_ypdrr")
@@ -230,12 +229,64 @@ script = ExtResource("11_au11x")
 
 [node name="Labels" parent="UI" unique_id=2079847158 instance=ExtResource("12_8ca51")]
 
-[node name="InventorySystemUI" parent="UI" unique_id=1814528407 instance=ExtResource("13_vptr5")]
+[node name="InventorySystemUI" type="Control" parent="UI" unique_id=1814528407]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_8ca51")
 
-[node name="InteractorUI" parent="UI/InventorySystemUI" index="0"]
+[node name="InteractorUI" parent="UI/InventorySystemUI" unique_id=1177645913 instance=ExtResource("17_vptr5")]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+mouse_filter = 2
 input_icons = ExtResource("14_pj6ab")
 
-[node name="EquipmentContainer" type="VBoxContainer" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" index="1" unique_id=829956861]
+[node name="DropArea" type="Control" parent="UI/InventorySystemUI" unique_id=1620074063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_pj6ab")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/InventorySystemUI" unique_id=1729697319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/InventorySystemUI/MarginContainer" unique_id=1732041003]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="PlayerGridInventoryUI" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" unique_id=2034128052 instance=ExtResource("20_nxb8c")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="EquipmentContainer" type="VBoxContainer" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" unique_id=829956861]
 visible = false
 layout_mode = 2
 alignment = 1
@@ -271,7 +322,58 @@ grid_item_stack_ui_scene = ExtResource("19_6xxi0")
 grid_slot_size = Vector2(64, 64)
 metadata/_custom_type_script = "uid://ctu3vfl53whl3"
 
-[node name="StackPopupMenu" parent="UI/InventorySystemUI" index="6"]
+[node name="BeltSlot1" type="Control" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=2107865241]
+visible = false
+layout_mode = 2
+script = ExtResource("17_hxqi7")
+grid_slot_ui_scene = ExtResource("18_0okpl")
+grid_item_stack_ui_scene = ExtResource("19_6xxi0")
+grid_slot_size = Vector2(64, 64)
+metadata/_custom_type_script = "uid://ctu3vfl53whl3"
+
+[node name="BeltSlot2" type="Control" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=1905609882]
+visible = false
+layout_mode = 2
+script = ExtResource("17_hxqi7")
+grid_slot_ui_scene = ExtResource("18_0okpl")
+grid_item_stack_ui_scene = ExtResource("19_6xxi0")
+grid_slot_size = Vector2(64, 64)
+metadata/_custom_type_script = "uid://ctu3vfl53whl3"
+
+[node name="BeltSlot3" type="Control" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer/EquipmentContainer" unique_id=1723377776]
+visible = false
+layout_mode = 2
+script = ExtResource("17_hxqi7")
+grid_slot_ui_scene = ExtResource("18_0okpl")
+grid_item_stack_ui_scene = ExtResource("19_6xxi0")
+grid_slot_size = Vector2(64, 64)
+metadata/_custom_type_script = "uid://ctu3vfl53whl3"
+
+[node name="LootGridInventoryUI" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" unique_id=1558153204 instance=ExtResource("20_nxb8c")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PlayerCraftStationUI" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" unique_id=1126779680 instance=ExtResource("24_3b04x")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+view_input_inventory = false
+view_output_inventory = false
+
+[node name="OtherCraftStationUI" parent="UI/InventorySystemUI/MarginContainer/HBoxContainer" unique_id=5633780 instance=ExtResource("24_3b04x")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SlotClick" type="AudioStreamPlayer" parent="UI/InventorySystemUI" unique_id=561439089]
+volume_db = -12.0
+
+[node name="SlotDrop" type="AudioStreamPlayer" parent="UI/InventorySystemUI" unique_id=1568841440]
+volume_db = -12.0
+
+[node name="StackPopupMenu" type="PopupMenu" parent="UI/InventorySystemUI" unique_id=1396649100]
 size = Vector2i(32, 8)
 
 [node name="Connect Panel" type="ColorRect" parent="UI" unique_id=556102306]
@@ -329,5 +431,3 @@ interaction_text = null
 
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/HostButton" to="." method="_on_host_button_button_up"]
 [connection signal="button_up" from="UI/Connect Panel/VBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]
-
-[editable path="UI/InventorySystemUI"]

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b1ea2xmhs0qmh"]
+
+[ext_resource type="Script" uid="uid://cu1ae8hcp3hlb" path="res://characters/common_components/gas/ability_system_component.gd" id="1_asc"]
+[ext_resource type="Script" uid="uid://cpxmslgbg4swj" path="res://characters/common_components/gas/attribute_set.gd" id="2_attr"]
+[ext_resource type="Script" uid="uid://6gxsp3s6lgqp" path="res://characters/common_components/gas/effect_manager.gd" id="3_eff"]
+[ext_resource type="Script" uid="uid://c1bx3awc4o3vp" path="res://characters/common_components/gas/ability_manager.gd" id="4_abil"]
+[ext_resource type="Script" uid="uid://ywhq2enrb0md" path="res://characters/common_components/gas/cast_manager.gd" id="5_cast"]
+[ext_resource type="Script" uid="uid://b44a50lmrb1bj" path="res://characters/common_components/gas/tag_container.gd" id="6_tags"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uege0"]
+properties/0/path = NodePath(".:is_strafing")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="AbilitySystemComponent" type="Node" unique_id=2030581002]
+script = ExtResource("1_asc")
+
+[node name="AttributeSet" type="Node" parent="." unique_id=646311960]
+script = ExtResource("2_attr")
+
+[node name="EffectManager" type="Node" parent="." unique_id=316435791]
+script = ExtResource("3_eff")
+
+[node name="AbilityManager" type="Node" parent="." unique_id=1422784350]
+script = ExtResource("4_abil")
+
+[node name="CastManager" type="Node" parent="." unique_id=1946062198]
+script = ExtResource("5_cast")
+
+[node name="TagContainer" type="Node" parent="." unique_id=952941750]
+script = ExtResource("6_tags")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=727886242]
+replication_config = SubResource("SceneReplicationConfig_uege0")

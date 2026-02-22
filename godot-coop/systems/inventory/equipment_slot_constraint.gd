@@ -2,7 +2,7 @@ class_name EquipmentSlotConstraint
 extends GridInventoryConstraint
 
 # The slot this inventory accepts
-@export var allowed_slot: EquipmentData.SlotType
+@export var allowed_slot: Array[EquipmentData.SlotType]
 
 # 1. Entry point for Grid Drag & Drop
 func _can_add_on_position(inventory: Node, position: Vector2i, item_id: String, amount: int, properties: Dictionary, is_rotated: bool) -> bool:
@@ -14,7 +14,6 @@ func _can_add_on_inventory(inventory: Node, item_id: String, amount: int, proper
 
 # --- Common Logic ---
 func _validate_item(inventory: Node, item_id: String) -> bool:
-	print("validating item")
 	# 1. Get database
 	if not "database" in inventory: 
 		return false
@@ -30,17 +29,15 @@ func _validate_item(inventory: Node, item_id: String) -> bool:
 	
 	var data_path = def.properties["equipment_data"] 
 	var data = load(data_path) as EquipmentData
-	#if item_definition.properties.has("hand_item"):
-		#var path = item_definition.properties["hand_item"]
-		#hand_item_scene = load(path)
 	if data == null: 
 		return false
 	
 	# 3. Validate the Slot
-	# If the item's slot matches the one allowed by this constraint
-	if data.slot_type == allowed_slot:
-		return true
+	# Check if ANY of the item's allowed_slots matches ANY slot this constraint accepts
+	for item_slot in data.allowed_slots:
+		if allowed_slot.has(item_slot):
+			return true
 		
 	# Optional feedback (debug only)
-	# print("Rejected: Item is ", data.slot_type, " but slot requires ", allowed_slot)
+	# print("Rejected: Item allows ", data.allowed_slots, " but slot requires ", allowed_slot)
 	return false

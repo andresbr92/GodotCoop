@@ -1,15 +1,13 @@
 class_name CharacterBase
 extends CharacterBody3D
 
-@onready var attribute_set: AttributeSet = %AttributeSet
+@onready var ability_system: AbilitySystemComponent = $AbilitySystemComponent
 
 
 func _enter_tree() -> void:
-	%AttributeSet.set_multiplayer_authority(1)
 	pass
 
 
-
 func receive_gameplay_effects(effects: Array[GameplayEffect]) -> void:
-	if attribute_set:
-		attribute_set.apply_gameplay_effects(effects)
+	if ability_system:
+		ability_system.apply_gameplay_effects(effects)

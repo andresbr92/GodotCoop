@@ -7,17 +7,16 @@
 [sub_resource type="Resource" id="Resource_iotwp"]
 script = ExtResource("1_iotwp")
 granted_tags = PackedStringArray("state.drink")
-target_attribute = "health"
+target_attribute = ""
 metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [sub_resource type="Resource" id="Resource_vnphk"]
 script = ExtResource("1_iotwp")
-operation = 3
-value = 2.0
 mode = 2
 duration = 5.0
+effect_name = "Fire Effect"
 granted_tags = PackedStringArray("state.fire")
-target_attribute = "max_health"
+target_attribute = "none"
 metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [resource]

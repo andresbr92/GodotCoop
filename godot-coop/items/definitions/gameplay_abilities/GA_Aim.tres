@@ -7,7 +7,7 @@
 script = ExtResource("1_cd5xo")
 mode = 3
 granted_tags = PackedStringArray("state.aiming")
-target_attribute = "health"
+target_attribute = "none"
 metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 
 [resource]

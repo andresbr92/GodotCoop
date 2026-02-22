@@ -25,12 +25,19 @@ const Interactor = preload("../interaction_system/inventory_interactor.gd")
 @onready var head_slot_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/HeadSlot
 @onready var chest_slot_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/ChestSlot
 @onready var hand_slot_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/HandSlot
+@onready var belt_slot_1_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/BeltSlot1
+@onready var belt_slot_2_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/BeltSlot2
+@onready var belt_slot_3_ui: GridInventoryUI = $MarginContainer/HBoxContainer/EquipmentContainer/BeltSlot3
+
+
+
+
 
 @onready var equipment_container: VBoxContainer = $MarginContainer/HBoxContainer/EquipmentContainer
 
 
 ## Hotbar [HotbarUI]
-@onready var hotbar_ui : HotbarUI = get_node(NodePath("HotbarUI"))
+#@onready var hotbar_ui : HotbarUI = get_node(NodePath("HotbarUI"))
 
 ## Control that identifies area where a transaction slot can call the handler to drop items
 @onready var drop_area: DropArea = get_node(NodePath("DropArea"))
@@ -54,7 +61,7 @@ func _ready():
 	player_inventory_ui.visible = false
 	loot_inventory_ui.visible = false
 	drop_area.visible = false
-	hotbar_ui.visible = true
+	#hotbar_ui.visible = true
 	player_craft_station_ui.close()
 	other_craft_station_ui.close()
 	drop_area.request_drop.connect(_request_drop)
@@ -102,7 +109,7 @@ func setup(_character : CharacterInventorySystem):
 	self.interactor = interactor
 	interactor_ui.setup(character.interactor)
 	# Hotbar
-	hotbar_ui.set_hotbar(character.hotbar)
+	#hotbar_ui.set_hotbar(character.hotbar)
 	
 
 
@@ -121,7 +128,7 @@ func _drop_area_input(event : InputEvent):
 func _open_player_inventory():
 	player_inventory_ui.visible = true
 		
-	hotbar_ui.visible = false
+	#hotbar_ui.visible = false
 	drop_area.visible = true
 #	TODO console mode?
 	#if console_mode and not player_inventories_ui.is_empty():
@@ -151,7 +158,7 @@ func _on_open_craft_station(craft_station : CraftStation):
 	else:
 		other_craft_station_ui.open(craft_station)
 		alternative_inventory = craft_station.get_input_inventory()
-	hotbar_ui.visible = false
+	#hotbar_ui.visible = false
 	_open_player_inventory()
 
 
@@ -161,7 +168,7 @@ func _on_close_craft_station(craft_station : CraftStation):
 	else:
 		other_craft_station_ui.close()
 		alternative_inventory = null
-	hotbar_ui.visible = true
+	#hotbar_ui.visible = true
 	_close_player_inventory()
 
 
@@ -178,7 +185,7 @@ func _close_player_inventory():
 	#if loot_inventory_ui.inventory != null:
 		#loot_inventory_ui.disconnect_old_inventory()
 	drop_area.visible = false
-	hotbar_ui.visible = true
+	#hotbar_ui.visible = true
 
 
 func _on_craft(craft_station : CraftStation, recipe_index : int):
@@ -252,9 +259,9 @@ func _inventory_stack_context(event: InputEvent, inventory: GridInventory, stack
 	
 	
 	var equip_menu : PopupMenu = PopupMenu.new()
-	for i in 4:
-		if hotbar_ui.hotbar.is_active_slot(i):
-			equip_menu.add_item(str("Equip on ",(i+1)), i)
+	#for i in 4:
+		#if hotbar_ui.hotbar.is_active_slot(i):
+			#equip_menu.add_item(str("Equip on ",(i+1)), i)
 	equip_menu.id_pressed.connect(_on_equip_menu_id_pressed)
 	
 	
@@ -317,6 +324,9 @@ func _setup_equipment_slot(inventory: Inventory):
 		"HeadSlot": target_ui = head_slot_ui
 		"ChestSlot": target_ui = chest_slot_ui
 		"HandSlot": target_ui = hand_slot_ui
+		"BeltSlot1": target_ui = belt_slot_1_ui
+		"BeltSlot2": target_ui = belt_slot_2_ui
+		"BeltSlot3": target_ui = belt_slot_3_ui
 	
 	if target_ui != null:
 		target_ui.inventory = inventory

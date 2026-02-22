@@ -15,9 +15,9 @@ const Interactor = preload("../interaction_system/inventory_interactor.gd")
 @export_node_path var main_inventory_path := NodePath("InventoryHandler/Inventory")
 @onready var main_inventory : GridInventory = get_node(main_inventory_path)
 @export_node_path var equipment_inventory_path := NodePath("InventoryHandler/EquipmentInventory")
-@onready var equipment_inventory : GridInventory = get_node(equipment_inventory_path)
-@export_node_path("Hotbar") var hotbar_path := NodePath("Hotbar")
-@onready var hotbar : Hotbar = get_node(hotbar_path)
+#@onready var equipment_inventory : GridInventory = get_node(equipment_inventory_path)
+#@export_node_path("Hotbar") var hotbar_path := NodePath("Hotbar")
+#@onready var hotbar : Hotbar = get_node(hotbar_path)
 @export_node_path("CraftStation") var main_station_path := NodePath("CraftStation")
 @onready var main_station : CraftStation = get_node(main_station_path)
 @export_node_path var interactor_path := NodePath("Interactor")
@@ -58,14 +58,14 @@ var opened_inventories : Array[Inventory]
 func _ready():
 	if Engine.is_editor_hint():
 		return
-	hotbar.active_slot(0)
-	hotbar.active_slot(1)
-	hotbar.active_slot(2)
-	hotbar.active_slot(3)
-	hotbar.active_slot(4)
-	hotbar.active_slot(5)
-	hotbar.active_slot(6)
-	hotbar.active_slot(7)
+	#hotbar.active_slot(0)
+	#hotbar.active_slot(1)
+	#hotbar.active_slot(2)
+	#hotbar.active_slot(3)
+	#hotbar.active_slot(4)
+	#hotbar.active_slot(5)
+	#hotbar.active_slot(6)
+	#hotbar.active_slot(7)
 	## Setup for enabled/disabled mouse 🖱️😀
 	if change_mouse_state:
 		opened_inventory.connect(_update_opened_inventories)
@@ -79,7 +79,7 @@ func _input(event : InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	if check_inputs:
-		hot_bar_inputs(event)
+		#hot_bar_inputs(event)
 		inventory_inputs()
 
 
@@ -160,8 +160,8 @@ func split(inventory : Inventory, stack_index : int, amount : int):
 	inventory.split(stack_index, amount)
 
 
-func equip(stack: ItemStack, _inventory : Inventory, slot_index: int):
-	hotbar.equip(stack, slot_index)
+#func equip(stack: ItemStack, _inventory : Inventory, slot_index: int):
+	#hotbar.equip(stack, slot_index)
 
 
 func rotate(stack: ItemStack, inventory : Inventory):
@@ -182,7 +182,7 @@ func drop(stack: ItemStack, inventory: Inventory):
 
 func drop_all_items():
 	main_inventory.drop_all_stacks()
-	equipment_inventory.drop_all_stacks()
+	#equipment_inventory.drop_all_stacks()
 
 #endregion
 
@@ -193,32 +193,32 @@ func craft(craft_station : CraftStation, recipe_index : int):
 #endregion
 
 #region Hotbar
-func hot_bar_inputs(event : InputEvent):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				hotbar_previous_item()
-			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				hotbar_next_item()
-	if event is InputEventKey:
-		var input_key_event = event as InputEventKey
-		if event.is_pressed() and not event.is_echo():
-			if input_key_event.keycode > KEY_0 and input_key_event.keycode < KEY_9:
-				hotbar_change_selection(input_key_event.keycode - KEY_1)
+#func hot_bar_inputs(event : InputEvent):
+	#if event is InputEventMouseButton:
+		#if event.is_pressed():
+			#if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				#hotbar_previous_item()
+			#if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				#hotbar_next_item()
+	#if event is InputEventKey:
+		#var input_key_event = event as InputEventKey
+		#if event.is_pressed() and not event.is_echo():
+			#if input_key_event.keycode > KEY_0 and input_key_event.keycode < KEY_9:
+				#hotbar_change_selection(input_key_event.keycode - KEY_1)
 
 
-func hotbar_change_selection(index : int):
-	if hotbar.selection_index == index:
-		index = -1
-	hotbar.selection_index = index
-
-
-func hotbar_previous_item():
-	hotbar.previous_item()
-
-
-func hotbar_next_item():
-	hotbar.next_item()
+#func hotbar_change_selection(index : int):
+	#if hotbar.selection_index == index:
+		#index = -1
+	#hotbar.selection_index = index
+#
+#
+#func hotbar_previous_item():
+	#hotbar.previous_item()
+#
+#
+#func hotbar_next_item():
+	#hotbar.next_item()
 
 #endregion
 

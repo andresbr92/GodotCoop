@@ -223,7 +223,7 @@ properties = {
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_dqypk"]
 id = "fire_potion"
-max_stack = 10
+max_stack = 1
 name = "Fire Potion"
 icon = ExtResource("17_4cjml")
 properties = {
@@ -250,6 +250,7 @@ name = "Water"
 icon = ExtResource("10_gmco0")
 properties = {
 "dropped_item": "res://interactables/items/ingredients/water_ingredient.tscn",
+"equipment_data": "",
 "hand_item": "res://addons/assets/bottle.glb"
 }
 categories = Array[ItemCategory]([SubResource("ItemCategory_4cjml")])

@@ -1,12 +1,9 @@
 [gd_resource type="Resource" script_class="GA_ThrowProjectile" format=3 uid="uid://dw1muktqyoewf"]
 
-[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_ttwf1"]
-[ext_resource type="Resource" uid="uid://ct4s2o2boagpb" path="res://items/definitions/potion/FirePotionStats.tres" id="2_3cqef"]
-[ext_resource type="Script" uid="uid://dk3yov21gbuc7" path="res://items/abilities/ga_throw_projectile.gd" id="3_etx5o"]
+[ext_resource type="Script" uid="uid://dk3yov21gbuc7" path="res://items/abilities/ga_throw_projectile.gd" id="1_etx5o"]
 
 [resource]
-script = ExtResource("3_etx5o")
-potion_data = ExtResource("2_3cqef")
-ability_name = "Throw Fire Potion"
+script = ExtResource("1_etx5o")
+ability_name = "Throw Potion"
 activation_required_tags = PackedStringArray("state.aiming")
 metadata/_custom_type_script = "uid://dk3yov21gbuc7"
