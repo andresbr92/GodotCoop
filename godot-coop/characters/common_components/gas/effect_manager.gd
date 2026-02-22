@@ -36,7 +36,11 @@ func setup(attribute_set: GASAttributeSet, tag_container: TagContainer) -> void:
 
 func _process(delta: float) -> void:
 	if not multiplayer.is_server(): return
-	
+	_process_logic(delta)
+
+
+## Testable process logic - call directly in tests
+func _process_logic(delta: float) -> void:
 	_process_periodic_effects(delta)
 	_process_duration_modifiers(delta)
 	_process_duration_tag_effects(delta)
@@ -49,7 +53,11 @@ func _has_valid_attribute(effect: GameplayEffect) -> bool:
 
 func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
 	if not multiplayer.is_server(): return []
-	
+	return _apply_effects_logic(effects)
+
+
+## Testable apply effects logic - call directly in tests
+func _apply_effects_logic(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
 	var created_handles: Array[EffectSpecHandle] = []
 	
 	for effect in effects:
@@ -62,7 +70,7 @@ func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
 					_apply_instant_effect(effect)
 				# For INSTANT tag-only effects, just apply tags (they stay until manually removed)
 				for tag in effect.granted_tags:
-					_tag_container.add_tag(tag)
+					_tag_container._add_tag_logic(tag)
 				
 			GameplayEffect.ApplicationMode.PERIODIC:
 				var handle = _create_active_effect(effect)
@@ -87,7 +95,11 @@ func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
 
 func remove_effect(handle: EffectSpecHandle) -> void:
 	if not multiplayer.is_server(): return
-	
+	_remove_effect_logic(handle)
+
+
+## Testable remove effect logic - call directly in tests
+func _remove_effect_logic(handle: EffectSpecHandle) -> void:
 	if not active_effect_registry.has(handle):
 		GlobalLogger.log("[EffectManager] Warning: Effect not found: ", handle)
 		return
@@ -96,7 +108,7 @@ func remove_effect(handle: EffectSpecHandle) -> void:
 	var source_data = active_effect.source_effect
 	
 	for tag in source_data.granted_tags:
-		_tag_container.remove_tag(tag)
+		_tag_container._remove_tag_logic(tag)
 	
 	GlobalLogger.log("[EffectManager] Removing effect: ", handle)
 	
@@ -148,7 +160,7 @@ func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
 	active_effect_registry[handle] = active
 	
 	for tag in effect.granted_tags:
-		_tag_container.add_tag(tag)
+		_tag_container._add_tag_logic(tag)
 
 	return handle
 
@@ -179,7 +191,7 @@ func _process_periodic_effects(delta: float) -> void:
 			active_effect_registry.erase(active.handle)
 			active_periodic_effects.remove_at(i)
 			for tag in active.source_effect.granted_tags:
-				_tag_container.remove_tag(tag)
+				_tag_container._remove_tag_logic(tag)
 
 
 func _process_duration_modifiers(delta: float) -> void:
@@ -195,7 +207,7 @@ func _process_duration_modifiers(delta: float) -> void:
 			active.time_left -= delta
 			if active.time_left <= 0:
 				for tag in active.source_effect.granted_tags:
-					_tag_container.remove_tag(tag)
+					_tag_container._remove_tag_logic(tag)
 				active_effect_registry.erase(active.handle)
 				modifiers_list.remove_at(i)
 				changed = true
@@ -215,6 +227,6 @@ func _process_duration_tag_effects(delta: float) -> void:
 		if active.time_left <= 0:
 			GlobalLogger.log("[EffectManager] Duration tag effect expired: '", active.source_effect.effect_name, "'")
 			for tag in active.source_effect.granted_tags:
-				_tag_container.remove_tag(tag)
+				_tag_container._remove_tag_logic(tag)
 			active_effect_registry.erase(active.handle)
 			active_duration_tag_effects.remove_at(i)

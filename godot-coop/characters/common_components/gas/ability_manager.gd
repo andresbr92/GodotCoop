@@ -34,9 +34,14 @@ var granted_abilities: Dictionary = {}
 
 func _ready() -> void:
 	if multiplayer.is_server():
-		for grant in default_abilities:
-			if grant and grant.ability:
-				grant_ability(grant.ability, grant.input_tag)
+		_ready_logic()
+
+
+## Testable ready logic - call directly in tests
+func _ready_logic() -> void:
+	for grant in default_abilities:
+		if grant and grant.ability:
+			_grant_ability_logic(grant.ability, grant.input_tag)
 
 
 func setup(actor: Node, effect_manager: EffectManager, tag_container: TagContainer, cast_manager: CastManager) -> void:
@@ -48,6 +53,11 @@ func setup(actor: Node, effect_manager: EffectManager, tag_container: TagContain
 
 func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
 	if not multiplayer.is_server(): return null
+	return _grant_ability_logic(ability_res, input_tag, source_inventory, source_slot_index)
+
+
+## Testable grant ability logic - call directly in tests
+func _grant_ability_logic(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
 	if ability_res == null: return null
 	
 	var handle = AbilitySpecHandle.new(ability_res.ability_name)
@@ -61,7 +71,11 @@ func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_
 
 func clear_ability(handle: AbilitySpecHandle) -> void:
 	if not multiplayer.is_server(): return
-	
+	_clear_ability_logic(handle)
+
+
+## Testable clear ability logic - call directly in tests
+func _clear_ability_logic(handle: AbilitySpecHandle) -> void:
 	if not granted_abilities.has(handle):
 		print("[AbilityManager] Warning: Ability not found: ", handle)
 		return
@@ -100,7 +114,11 @@ func can_activate_ability(ability: GameplayAbility) -> bool:
 @rpc("any_peer", "call_local", "reliable")
 func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
 	if not multiplayer.is_server(): return
-	
+	_ability_input_pressed_logic(input_tag, activation_data)
+
+
+## Testable ability input pressed logic - call directly in tests
+func _ability_input_pressed_logic(input_tag: String, activation_data: Dictionary = {}) -> void:
 	for handle in granted_abilities:
 		var spec = granted_abilities[handle]
 		if spec.input_tag == input_tag:
@@ -108,7 +126,7 @@ func server_ability_input_pressed(input_tag: String, activation_data: Dictionary
 				spec.ability.activate(_actor, handle, activation_data)
 				spec.is_active = true
 				if spec.ability.ongoing_effects.size() > 0:
-					var handles = _effect_manager.apply_effects(spec.ability.ongoing_effects)
+					var handles = _effect_manager._apply_effects_logic(spec.ability.ongoing_effects)
 					spec.active_effect_handles.append_array(handles)
 			else:
 				print("[AbilityManager] Ability blocked: ", spec.ability.ability_name)
@@ -117,7 +135,11 @@ func server_ability_input_pressed(input_tag: String, activation_data: Dictionary
 @rpc("any_peer", "call_local", "reliable")
 func server_ability_input_released(input_tag: String) -> void:
 	if not multiplayer.is_server(): return
-	
+	_ability_input_released_logic(input_tag)
+
+
+## Testable ability input released logic - call directly in tests
+func _ability_input_released_logic(input_tag: String) -> void:
 	for handle in granted_abilities:
 		var spec: AbilitySpec = granted_abilities[handle]
 		
@@ -125,10 +147,10 @@ func server_ability_input_released(input_tag: String) -> void:
 			spec.is_active = false
 			
 			for effect_handle in spec.active_effect_handles:
-				_effect_manager.remove_effect(effect_handle)
+				_effect_manager._remove_effect_logic(effect_handle)
 			spec.active_effect_handles.clear()
 			
 			if _cast_manager.has_active_cast(handle):
-				_cast_manager.cancel_cast(handle)
+				_cast_manager._cancel_cast_logic(handle)
 			
 			spec.ability.input_released(_actor, handle)

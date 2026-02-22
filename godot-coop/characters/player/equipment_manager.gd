@@ -84,21 +84,7 @@ func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
 	
 	# Only apply abilities and effects for NON-storage slots (active equipment)
 	if not is_storage_slot and multiplayer.is_server():
-		if data.passive_effects.size() > 0:
-			var handles = ability_system.apply_gameplay_effects(data.passive_effects)
-			context["effect_handles"].append_array(handles)
-		
-		if data.granted_abilities.size() > 0:
-			var inventory_node = get_node(equipment_slots[slot_id])
-			for grant in data.granted_abilities:
-				var handle = ability_system.grant_ability(
-					grant.ability,
-					grant.input_tag,
-					inventory_node,
-					0
-				)
-				if handle:
-					context["ability_handles"].append(handle)
+		_apply_equipment_effects_logic(data, slot_id, context)
 	
 	# Visuals are applied for ALL slots (including storage)
 	if data.visual_scene and fake_skeleton:
@@ -107,22 +93,46 @@ func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
 	active_equipment[slot_id] = context
 
 
+## Testable equipment effects logic - call directly in tests
+func _apply_equipment_effects_logic(data: EquipmentData, slot_id: String, context: Dictionary) -> void:
+	if data.passive_effects.size() > 0:
+		var handles = ability_system.effect_manager._apply_effects_logic(data.passive_effects)
+		context["effect_handles"].append_array(handles)
+	
+	if data.granted_abilities.size() > 0:
+		var inventory_node = get_node(equipment_slots[slot_id])
+		for grant in data.granted_abilities:
+			var handle = ability_system.ability_manager._grant_ability_logic(
+				grant.ability,
+				grant.input_tag,
+				inventory_node,
+				0
+			)
+			if handle:
+				context["ability_handles"].append(handle)
+
+
 func _remove_equipment_logic(slot_id: String) -> void:
 	if not active_equipment.has(slot_id): return
 	
 	var context = active_equipment[slot_id]
 	
 	if multiplayer.is_server():
-		for handle in context["effect_handles"]:
-			ability_system.remove_effect(handle)
-			
-		for handle in context["ability_handles"]:
-			ability_system.clear_ability(handle)
+		_remove_equipment_effects_logic(context)
 	
 	if is_instance_valid(context["visual_node"]):
 		context["visual_node"].queue_free()
 	
 	active_equipment.erase(slot_id)
+
+
+## Testable remove equipment effects logic - call directly in tests
+func _remove_equipment_effects_logic(context: Dictionary) -> void:
+	for handle in context["effect_handles"]:
+		ability_system.effect_manager._remove_effect_logic(handle)
+		
+	for handle in context["ability_handles"]:
+		ability_system.ability_manager._clear_ability_logic(handle)
 
 
 ## Maps slot_id to the corresponding visual marker name in the skeleton.
@@ -158,6 +168,13 @@ func request_swap_belt_slot(belt_index: int) -> void:
 		_start_swap(belt_index)
 	else:
 		_swap_belt_slot_rpc.rpc_id(1, belt_index)
+
+
+## Testable swap request logic - call directly in tests (bypasses network check)
+func _request_swap_belt_slot_logic(belt_index: int) -> void:
+	if belt_index < 0 or belt_index >= BELT_SLOTS.size():
+		return
+	_start_swap(belt_index)
 
 
 @rpc("any_peer", "reliable")

@@ -47,7 +47,11 @@ func _on_interacted(character: Node):
 
 func _process(delta: float):
 	if not multiplayer.is_server(): return
-	
+	_process_logic(delta)
+
+
+## Testable process logic - call directly in tests
+func _process_logic(delta: float) -> void:
 	# 1. CANCELLATION CHECK
 	if not is_instance_valid(current_harvester):
 		_cancel_harvest()

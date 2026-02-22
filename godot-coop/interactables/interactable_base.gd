@@ -32,15 +32,20 @@ func get_interact_actions(interactor: Node) -> Array:
 
 
 func interact(character: Node, action_index: int = 0) -> void:
-
 	if not _can_interact(character):
 		return
-	
 	
 	if multiplayer.is_server():
 		_server_interact(character)
 	else:
 		_request_interact_rpc.rpc_id(1, character.get_path())
+
+
+## Testable interact logic - call directly in tests (bypasses network check)
+func _interact_logic(character: Node, _action_index: int = 0) -> void:
+	if not _can_interact(character):
+		return
+	_server_interact(character)
 
 
 

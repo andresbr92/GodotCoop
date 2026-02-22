@@ -19,12 +19,21 @@ var active_casts: Dictionary = {}
 
 func _process(delta: float) -> void:
 	if not multiplayer.is_server(): return
+	_process_logic(delta)
+
+
+## Testable process logic - call directly in tests
+func _process_logic(delta: float) -> void:
 	_process_active_casts(delta)
 
 
 func start_cast(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
 	if not multiplayer.is_server(): return
-	
+	_start_cast_logic(handle, duration, on_complete, on_cancel)
+
+
+## Testable start cast logic - call directly in tests
+func _start_cast_logic(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
 	if active_casts.has(handle):
 		GlobalLogger.log("[CastManager] Warning: Cast already in progress for: ", handle)
 		return
@@ -36,7 +45,11 @@ func start_cast(handle: AbilitySpecHandle, duration: float, on_complete: Callabl
 
 func cancel_cast(handle: AbilitySpecHandle) -> void:
 	if not multiplayer.is_server(): return
-	
+	_cancel_cast_logic(handle)
+
+
+## Testable cancel cast logic - call directly in tests
+func _cancel_cast_logic(handle: AbilitySpecHandle) -> void:
 	if not active_casts.has(handle): return
 	
 	var cast: ActiveCast = active_casts[handle]
