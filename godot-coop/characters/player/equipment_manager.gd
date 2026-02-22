@@ -141,6 +141,107 @@ const SLOT_TO_MARKER: Dictionary = {
 	"BeltSlot3": "BeltSlotMarker3",
 }
 
+## Belt slot names for quick access by index (1, 2, 3)
+const BELT_SLOTS: Array[String] = ["BeltSlot1", "BeltSlot2", "BeltSlot3"]
+
+
+# ============================================
+# BELT SLOT SWAP SYSTEM
+# ============================================
+
+## Called by client to request a swap between HandSlot and a BeltSlot
+## belt_index: 0, 1, or 2 (corresponding to BeltSlot1, BeltSlot2, BeltSlot3)
+func request_swap_belt_slot(belt_index: int) -> void:
+	if belt_index < 0 or belt_index >= BELT_SLOTS.size():
+		printerr("[EquipmentManager] Invalid belt index: ", belt_index)
+		return
+	
+	if multiplayer.is_server():
+		_perform_atomic_swap(belt_index)
+	else:
+		_swap_belt_slot_rpc.rpc_id(1, belt_index)
+
+
+@rpc("any_peer", "reliable")
+func _swap_belt_slot_rpc(belt_index: int) -> void:
+	if not multiplayer.is_server():
+		return
+	_perform_atomic_swap(belt_index)
+
+
+## Performs an atomic swap between HandSlot and the specified BeltSlot
+## This runs ONLY on the server to prevent race conditions
+func _perform_atomic_swap(belt_index: int) -> void:
+	var hand_slot: GridInventory = get_node_or_null(equipment_slots["HandSlot"])
+	var belt_slot: GridInventory = get_node_or_null(equipment_slots[BELT_SLOTS[belt_index]])
+	
+	if hand_slot == null or belt_slot == null:
+		printerr("[EquipmentManager] Cannot find slots for swap")
+		return
+	
+	# Extract data from both slots BEFORE modifying anything
+	var hand_data = _extract_slot_data(hand_slot)
+	var belt_data = _extract_slot_data(belt_slot)
+	
+	# If both are empty, nothing to do
+	if hand_data == null and belt_data == null:
+		return
+	
+	# Clear both slots (this triggers stack_removed signals)
+	_clear_slot(hand_slot)
+	_clear_slot(belt_slot)
+	
+	# Add items to swapped positions (this triggers stack_added signals)
+	# Belt item -> Hand
+	if belt_data != null:
+		_add_to_slot(hand_slot, belt_data)
+	
+	# Hand item -> Belt
+	if hand_data != null:
+		_add_to_slot(belt_slot, hand_data)
+	
+	print("[EquipmentManager] Swapped HandSlot <-> ", BELT_SLOTS[belt_index])
+
+
+## Extracts item data from a slot (returns null if empty)
+func _extract_slot_data(slot: GridInventory) -> Dictionary:
+	if slot.stacks.size() == 0:
+		return {}
+	
+	var stack = slot.stacks[0]
+	if stack == null:
+		return {}
+	
+	return {
+		"item_id": stack.item_id,
+		"amount": stack.amount,
+		"properties": stack.properties.duplicate(),
+		"position": slot.stack_positions[0] if slot.stack_positions.size() > 0 else Vector2i.ZERO,
+		"rotation": slot.stack_rotations[0] if slot.stack_rotations.size() > 0 else false
+	}
+
+
+## Clears all items from a slot
+func _clear_slot(slot: GridInventory) -> void:
+	# Remove from end to start to avoid index shifting issues
+	for i in range(slot.stacks.size() - 1, -1, -1):
+		var stack = slot.stacks[i]
+		if stack != null:
+			slot.remove_at(i, stack.item_id, stack.amount)
+
+
+## Adds an item to a slot using extracted data
+func _add_to_slot(slot: GridInventory, data: Dictionary) -> void:
+	if data.is_empty():
+		return
+	slot.add_at_position(
+		data.get("position", Vector2i.ZERO),
+		data["item_id"],
+		data["amount"],
+		data.get("properties", {}),
+		data.get("rotation", false)
+	)
+
 
 func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
 	if not data.visual_scene: return null
