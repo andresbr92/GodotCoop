@@ -1,9 +1,16 @@
 [gd_resource type="Resource" script_class="AbilityGrant" format=3 uid="uid://vxjl28r53fed"]
 
-[ext_resource type="Resource" uid="uid://dw1muktqyoewf" path="res://items/definitions/gameplay_abilities/GA_Throw_Potion.tres" id="1_inacb"]
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_ii8yp"]
 [ext_resource type="Script" uid="uid://chlfotutlp83j" path="res://items/definitions/ability_grant.gd" id="2_ii8yp"]
+[ext_resource type="Script" uid="uid://dk3yov21gbuc7" path="res://items/abilities/ga_throw_projectile.gd" id="2_t2thf"]
+
+[sub_resource type="Resource" id="Resource_ov48i"]
+script = ExtResource("2_t2thf")
+ability_name = "Throw Potion"
+activation_required_tags = PackedStringArray("state.aiming")
+metadata/_custom_type_script = "uid://dk3yov21gbuc7"
 
 [resource]
 script = ExtResource("2_ii8yp")
-ability = ExtResource("1_inacb")
+ability = SubResource("Resource_ov48i")
 metadata/_custom_type_script = "uid://chlfotutlp83j"

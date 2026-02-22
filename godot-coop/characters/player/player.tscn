@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://bldichxbdfybi" path="res://addons/inventory-system-demos/mp/sync_craft_station.gd" id="10_4rspn"]
 [ext_resource type="Script" uid="uid://dj3cs68xqlw3v" path="res://addons/inventory-system-demos/interaction_system/inventory_interactor.gd" id="11_58jvb"]
 [ext_resource type="Script" uid="uid://coxx33tl8y1wc" path="res://addons/inventory-system-demos/mp/networked_object_placer.gd" id="11_hsn1j"]
-[ext_resource type="Script" uid="uid://dimv4yn7jk4o4" path="res://addons/inventory-system-demos/mp/sync_hotbar.gd" id="12_dx8gg"]
 [ext_resource type="Script" uid="uid://c27mauyic3r3d" path="res://characters/player/equipment_manager.gd" id="14_8l73k"]
 [ext_resource type="Script" uid="uid://dl88cmaxmlmgw" path="res://systems/inventory/equipment_slot_constraint.gd" id="14_58jvb"]
 [ext_resource type="Script" uid="uid://chpxhifwptoga" path="res://addons/inventory-system-demos/character/hand_item_holder_3d.gd" id="14_icpky"]
@@ -40,7 +39,12 @@ metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
 
 [sub_resource type="GridInventoryConstraint" id="GridInventoryConstraint_aqrcq"]
 script = ExtResource("14_58jvb")
-allowed_slot = 2
+allowed_slot = 3
+metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
+
+[sub_resource type="GridInventoryConstraint" id="GridInventoryConstraint_58jvb"]
+script = ExtResource("14_58jvb")
+allowed_slot = 3
 metadata/_custom_type_script = "uid://dl88cmaxmlmgw"
 
 [node name="Player" unique_id=385850437 instance=ExtResource("1_6rrl0")]
@@ -51,12 +55,9 @@ script = ExtResource("2_6rrl0")
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_aqrcq")
 
-[node name="ThirdPersonHandItem" type="Node3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="1" unique_id=1843986240 node_paths=PackedStringArray("hotbar", "interactor", "default_hand_item_object")]
+[node name="ThirdPersonHandItem" type="Node3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="1" unique_id=1843986240]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.3727371, -0.03408885, -0.5769679)
 script = ExtResource("14_icpky")
-hotbar = NodePath("../../CharacterInventorySystem/Hotbar")
-interactor = NodePath("../../CharacterInventorySystem/Interactor")
-default_hand_item_object = NodePath("DefaultHandItem")
 
 [node name="DefaultHandItem" type="MeshInstance3D" parent="MeshInstance3D/ThirdPersonHandItem" index="0" unique_id=2107963658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103376, 0, 0.154242)
@@ -66,8 +67,17 @@ mesh = SubResource("BoxMesh_58jvb")
 [node name="FakeSkeleton" type="Node3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="2" unique_id=1032185415]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.1280191e-09, 0.94798553, -0.012903035)
 
-[node name="HandMarker" type="Marker3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(1547036043) index="3" unique_id=1928405143]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7257591, 0.23627758, -0.3571083)
+[node name="HandMarker" type="Marker3D" parent="MeshInstance3D/FakeSkeleton" index="0" unique_id=1928405143]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.725759, -0.71170795, 0.34420532)
+
+[node name="BeltSlotMarker1" type="Marker3D" parent="MeshInstance3D/FakeSkeleton" index="1" unique_id=343123808]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.41151667, -1.3374592, -0.48462182)
+
+[node name="BeltSlotMarker2" type="Marker3D" parent="MeshInstance3D/FakeSkeleton" index="2" unique_id=1621305105]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.029609323, -1.3374592, -0.6252764)
+
+[node name="BeltSlotMarker3" type="Marker3D" parent="MeshInstance3D/FakeSkeleton" index="3" unique_id=81540233]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.4436139, -1.3374592, -0.48965603)
 
 [node name="HUD" type="Control" parent="." index="5" unique_id=1651431043]
 layout_mode = 3
@@ -117,7 +127,7 @@ collision_mask = 40
 database = ExtResource("6_b0vde")
 script = ExtResource("8_58jvb")
 main_inventory_path = NodePath("Inventory")
-equipment_inventory_path = NodePath("EquipmentInventory")
+equipment_inventory_path = NodePath("")
 raycast = NodePath("../SpringArmPivot/Camera3D/RayCast3D")
 camera_3d = NodePath("../SpringArmPivot/Camera3D")
 
@@ -131,15 +141,7 @@ script = ExtResource("8_41yun")
 script = ExtResource("9_svrv0")
 inventory = NodePath("..")
 
-[node name="EquipmentInventory" type="GridInventory" parent="CharacterInventorySystem" index="1" unique_id=1882182579]
-inventory_name = "Equipment"
-database = ExtResource("6_b0vde")
-
-[node name="SyncInventory" type="Node" parent="CharacterInventorySystem/EquipmentInventory" index="0" unique_id=1161109739 node_paths=PackedStringArray("inventory")]
-script = ExtResource("9_svrv0")
-inventory = NodePath("..")
-
-[node name="CraftStation" type="CraftStation" parent="CharacterInventorySystem" index="2" unique_id=1366115136]
+[node name="CraftStation" type="CraftStation" parent="CharacterInventorySystem" index="1" unique_id=1366115136]
 input_inventories = Array[NodePath]([NodePath("../Inventory")])
 output_inventories = Array[NodePath]([NodePath("../Inventory")])
 database = ExtResource("6_b0vde")
@@ -148,7 +150,7 @@ database = ExtResource("6_b0vde")
 script = ExtResource("10_4rspn")
 craft_station = NodePath("..")
 
-[node name="Interactor" type="NodeInventories" parent="CharacterInventorySystem" index="3" unique_id=783006086 node_paths=PackedStringArray("raycast", "camera")]
+[node name="Interactor" type="NodeInventories" parent="CharacterInventorySystem" index="2" unique_id=783006086 node_paths=PackedStringArray("raycast", "camera")]
 database = ExtResource("6_b0vde")
 script = ExtResource("11_58jvb")
 node_base_to_interactions = NodePath("../..")
@@ -159,22 +161,17 @@ camera = NodePath("../../SpringArmPivot/Camera3D")
 database = ExtResource("6_b0vde")
 script = ExtResource("11_hsn1j")
 
-[node name="Hotbar" type="Hotbar" parent="CharacterInventorySystem" index="4" unique_id=2089028437]
-inventory = NodePath("../Inventory")
-selection_index = 0
-database = ExtResource("6_b0vde")
-
-[node name="SyncHotbar" type="Node" parent="CharacterInventorySystem/Hotbar" index="0" unique_id=79356403 node_paths=PackedStringArray("hotbar")]
-unique_name_in_owner = true
-script = ExtResource("12_dx8gg")
-hotbar = NodePath("..")
-
-[node name="EquipmentManager" type="Node" parent="CharacterInventorySystem" index="5" unique_id=2103615737 node_paths=PackedStringArray("ability_system", "character_mesh_root")]
+[node name="EquipmentManager" type="Node" parent="CharacterInventorySystem" index="3" unique_id=2103615737 node_paths=PackedStringArray("ability_system", "character_mesh_root")]
 script = ExtResource("14_8l73k")
 ability_system = NodePath("../../AbilitySystemComponent")
 character_mesh_root = NodePath("../../MeshInstance3D")
 equipment_slots = {
-0: NodePath("HeadSlot")
+0: NodePath("HeadSlot"),
+1: NodePath("ChestSlot"),
+2: NodePath("HandSlot"),
+3: NodePath("BeltSlot1"),
+4: NodePath("BeltSlot2"),
+5: NodePath("BeltSlot3")
 }
 
 [node name="HeadSlot" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="0" unique_id=1653232254 groups=["EquipmentInventory"]]
@@ -220,6 +217,51 @@ inventory = NodePath("..")
 metadata/_custom_type_script = "uid://dlemxn6c687mt"
 
 [node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/HandSlot" index="1" unique_id=1783181198]
+script = ExtResource("8_41yun")
+is_open = true
+metadata/_custom_type_script = "uid://gngi6ncgkswy"
+
+[node name="BeltSlot1" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="3" unique_id=1998054858 groups=["EquipmentInventory"]]
+size = Vector2i(1, 1)
+grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_58jvb")])
+database = ExtResource("6_b0vde")
+
+[node name="SyncGridInventory" type="Node" parent="CharacterInventorySystem/EquipmentManager/BeltSlot1" index="0" unique_id=1835341727 node_paths=PackedStringArray("inventory")]
+script = ExtResource("9_svrv0")
+inventory = NodePath("..")
+metadata/_custom_type_script = "uid://dlemxn6c687mt"
+
+[node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/BeltSlot1" index="1" unique_id=602280963]
+script = ExtResource("8_41yun")
+is_open = true
+metadata/_custom_type_script = "uid://gngi6ncgkswy"
+
+[node name="BeltSlot2" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="4" unique_id=112178725 groups=["EquipmentInventory"]]
+size = Vector2i(1, 1)
+grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_aqrcq")])
+database = ExtResource("6_b0vde")
+
+[node name="SyncGridInventory" type="Node" parent="CharacterInventorySystem/EquipmentManager/BeltSlot2" index="0" unique_id=459743516 node_paths=PackedStringArray("inventory")]
+script = ExtResource("9_svrv0")
+inventory = NodePath("..")
+metadata/_custom_type_script = "uid://dlemxn6c687mt"
+
+[node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/BeltSlot2" index="1" unique_id=2073127082]
+script = ExtResource("8_41yun")
+is_open = true
+metadata/_custom_type_script = "uid://gngi6ncgkswy"
+
+[node name="BeltSlot3" type="GridInventory" parent="CharacterInventorySystem/EquipmentManager" index="5" unique_id=1541789032 groups=["EquipmentInventory"]]
+size = Vector2i(1, 1)
+grid_constraints = Array[GridInventoryConstraint]([SubResource("GridInventoryConstraint_aqrcq")])
+database = ExtResource("6_b0vde")
+
+[node name="SyncGridInventory" type="Node" parent="CharacterInventorySystem/EquipmentManager/BeltSlot3" index="0" unique_id=184897583 node_paths=PackedStringArray("inventory")]
+script = ExtResource("9_svrv0")
+inventory = NodePath("..")
+metadata/_custom_type_script = "uid://dlemxn6c687mt"
+
+[node name="Openable" type="Node" parent="CharacterInventorySystem/EquipmentManager/BeltSlot3" index="1" unique_id=897573145]
 script = ExtResource("8_41yun")
 is_open = true
 metadata/_custom_type_script = "uid://gngi6ncgkswy"

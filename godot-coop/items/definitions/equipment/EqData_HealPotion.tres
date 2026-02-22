@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://dhlr65yt0xk11"]
+
+[ext_resource type="Script" uid="uid://chlfotutlp83j" path="res://items/definitions/ability_grant.gd" id="1_me68n"]
+[ext_resource type="Resource" uid="uid://vxjl28r53fed" path="res://items/definitions/gameplay_abilities/Grants/Grant_Throw_Potion.tres" id="2_mfip0"]
+[ext_resource type="Resource" uid="uid://rtgwsfbpqg" path="res://items/definitions/gameplay_abilities/Grants/Grant_Drink_Potion.tres" id="3_j7j0i"]
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="4_f2mx1"]
+[ext_resource type="Script" uid="uid://gk4v8hjc16d6" path="res://items/definitions/equipment_data.gd" id="5_6xtqv"]
+[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="6_vw1eq"]
+
+[resource]
+script = ExtResource("5_6xtqv")
+slot_type = 3
+visual_scene = ExtResource("6_vw1eq")
+bone_name = "BeltSlotMarker1"
+granted_abilities = Array[ExtResource("1_me68n")]([ExtResource("2_mfip0"), ExtResource("3_j7j0i")])
+metadata/_custom_type_script = "uid://gk4v8hjc16d6"

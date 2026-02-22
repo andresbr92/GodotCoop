@@ -1,7 +1,7 @@
 class_name EquipmentData
 extends Resource
 
-enum SlotType { HEAD, CHEST, HAND }
+enum SlotType { HEAD, CHEST, HAND, BELTSLOT }
 
 @export_group("Slot Configuration")
 @export var slot_type: SlotType

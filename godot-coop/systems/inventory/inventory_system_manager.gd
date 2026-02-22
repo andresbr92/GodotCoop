@@ -18,10 +18,10 @@ func _ready():
 			_update_opened_inventories(main_inventory)
 	else:
 		picked.connect(_on_picked)
-	hotbar.active_slot(0)
-	hotbar.active_slot(1)
-	hotbar.active_slot(2)
-	hotbar.active_slot(3)
+	#hotbar.active_slot(0)
+	#hotbar.active_slot(1)
+	#hotbar.active_slot(2)
+	#hotbar.active_slot(3)
 	#hotbar.active_slot(4)
 	#hotbar.active_slot(5)
 	#hotbar.active_slot(6)
@@ -38,7 +38,7 @@ func _input(event : InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	if check_inputs and is_multiplayer_authority():
-		hot_bar_inputs(event)
+		#hot_bar_inputs(event)
 		inventory_inputs()
 
 
@@ -152,17 +152,17 @@ func _split_logic(inventory : Inventory, stack_index : int, amount : int):
 
 
 #region Equip
-func equip(stack: ItemStack, inventory: Inventory, slot_index: int):
-	if multiplayer.is_server():
-		_equip_logic(stack, inventory, slot_index)
-	else:
-		var stack_index = inventory.stacks.find(stack)
-		if stack_index != -1:
-			equip_rpc.rpc_id(1, stack_index, inventory.get_path(), slot_index)
+#func equip(stack: ItemStack, inventory: Inventory, slot_index: int):
+	#if multiplayer.is_server():
+		#_equip_logic(stack, inventory, slot_index)
+	#else:
+		#var stack_index = inventory.stacks.find(stack)
+		#if stack_index != -1:
+			#equip_rpc.rpc_id(1, stack_index, inventory.get_path(), slot_index)
 
 
-func _equip_logic(stack: ItemStack, _inventory : Inventory, slot_index: int):
-	hotbar.equip(stack, slot_index)
+#func _equip_logic(stack: ItemStack, _inventory : Inventory, slot_index: int):
+	#hotbar.equip(stack, slot_index)
 #endregion
 
 
@@ -213,7 +213,7 @@ func _drop_logic(stack: ItemStack, inventory: Inventory):
 
 func drop_all_items():
 	main_inventory.drop_all_stacks()
-	equipment_inventory.drop_all_stacks()
+	#equipment_inventory.drop_all_stacks()
 #endregion
 
 
@@ -231,53 +231,53 @@ func _craft_logic(craft_station : CraftStation, recipe_index : int):
 
 
 #region Hotbar
-func hot_bar_inputs(event : InputEvent):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				hotbar_previous_item()
-			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				hotbar_next_item()
-	if event is InputEventKey:
-		var input_key_event = event as InputEventKey
-		if event.is_pressed() and not event.is_echo():
-			if input_key_event.keycode > KEY_0 and input_key_event.keycode < KEY_9:
-				hotbar_change_selection(input_key_event.keycode - KEY_1)
+#func hot_bar_inputs(event : InputEvent):
+	#if event is InputEventMouseButton:
+		#if event.is_pressed():
+			#if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				#hotbar_previous_item()
+			#if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				#hotbar_next_item()
+	#if event is InputEventKey:
+		#var input_key_event = event as InputEventKey
+		#if event.is_pressed() and not event.is_echo():
+			#if input_key_event.keycode > KEY_0 and input_key_event.keycode < KEY_9:
+				#hotbar_change_selection(input_key_event.keycode - KEY_1)
 
 
-func hotbar_change_selection(index : int):
-	if multiplayer.is_server():
-		_hotbar_change_selection_logic(index)
-	else:
-		hotbar_change_selection_rpc.rpc_id(1, index)
+#func hotbar_change_selection(index : int):
+	#if multiplayer.is_server():
+		#_hotbar_change_selection_logic(index)
+	#else:
+		#hotbar_change_selection_rpc.rpc_id(1, index)
 
 
-func _hotbar_change_selection_logic(index : int):
-	if hotbar.selection_index == index:
-		index = -1
-	hotbar.selection_index = index
+#func _hotbar_change_selection_logic(index : int):
+	#if hotbar.selection_index == index:
+		#index = -1
+	#hotbar.selection_index = index
 
 
-func hotbar_previous_item():
-	if multiplayer.is_server():
-		_hotbar_previous_item_logic()
-	else:
-		hotbar_previous_item_rpc.rpc_id(1)
+#func hotbar_previous_item():
+	#if multiplayer.is_server():
+		#_hotbar_previous_item_logic()
+	#else:
+		#hotbar_previous_item_rpc.rpc_id(1)
 
 
-func _hotbar_previous_item_logic():
-	hotbar.previous_item()
+#func _hotbar_previous_item_logic():
+	#hotbar.previous_item()
 
 
-func hotbar_next_item():
-	if multiplayer.is_server():
-		_hotbar_next_item_logic()
-	else:
-		hotbar_next_item_rpc.rpc_id(1)
+#func hotbar_next_item():
+	#if multiplayer.is_server():
+		#_hotbar_next_item_logic()
+	#else:
+		#hotbar_next_item_rpc.rpc_id(1)
 
 
-func _hotbar_next_item_logic():
-	hotbar.next_item()
+#func _hotbar_next_item_logic():
+	#hotbar.next_item()
 #endregion
 
 
@@ -567,34 +567,34 @@ func drop_rpc(stack_index: int, inventory_path: NodePath):
 	_drop_logic(stack, inv)
 
 
-@rpc
-func equip_rpc(stack_index: int, inventory_path: NodePath, slot_index: int):
-	var inv = get_node(inventory_path)
-	if inv == null:
-		return
-	var stack = inv.stacks[stack_index]
-	_equip_logic(stack, inv, slot_index)
+#@rpc
+#func equip_rpc(stack_index: int, inventory_path: NodePath, slot_index: int):
+	#var inv = get_node(inventory_path)
+	#if inv == null:
+		#return
+	#var stack = inv.stacks[stack_index]
+	#_equip_logic(stack, inv, slot_index)
+#
+#
+#@rpc
+#func hotbar_change_selection_rpc(selection_index: int):
+	#if not multiplayer.is_server():
+		#return
+	#_hotbar_change_selection_logic(selection_index)
+#
+#
+#@rpc
+#func hotbar_previous_item_rpc():
+	#if not multiplayer.is_server():
+		#return
+	#_hotbar_previous_item_logic()
 
-
-@rpc
-func hotbar_change_selection_rpc(selection_index: int):
-	if not multiplayer.is_server():
-		return
-	_hotbar_change_selection_logic(selection_index)
-
-
-@rpc
-func hotbar_previous_item_rpc():
-	if not multiplayer.is_server():
-		return
-	_hotbar_previous_item_logic()
-
-
-@rpc
-func hotbar_next_item_rpc():
-	if not multiplayer.is_server():
-		return
-	_hotbar_next_item_logic()
+#
+#@rpc
+#func hotbar_next_item_rpc():
+	#if not multiplayer.is_server():
+		#return
+	#_hotbar_next_item_logic()
 
 
 @rpc

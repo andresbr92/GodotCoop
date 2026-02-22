@@ -14,7 +14,6 @@ func _can_add_on_inventory(inventory: Node, item_id: String, amount: int, proper
 
 # --- Common Logic ---
 func _validate_item(inventory: Node, item_id: String) -> bool:
-	print("validating item")
 	# 1. Get database
 	if not "database" in inventory: 
 		return false

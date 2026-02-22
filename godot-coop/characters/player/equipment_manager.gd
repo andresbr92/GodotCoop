@@ -10,7 +10,12 @@ extends Node
 @export var character_mesh_root: Node3D 
 
 @export var equipment_slots: Dictionary = {
-	EquipmentData.SlotType.HEAD : NodePath("$HeadSlot")
+	EquipmentData.SlotType.HEAD : NodePath("$HeadSlot"),
+	EquipmentData.SlotType.CHEST : NodePath("$ChestSlot"),
+	EquipmentData.SlotType.HAND : NodePath("$HandSlot"),
+	EquipmentData.SlotType.BELTSLOT : NodePath("$BeltSlot1"),
+	EquipmentData.SlotType.BELTSLOT : NodePath("$BeltSlot2"),
+	EquipmentData.SlotType.BELTSLOT : NodePath("$BeltSlot3")
 }
 
 var active_equipment: Dictionary = {}
@@ -31,6 +36,7 @@ func _ready() -> void:
 
 func _connect_slots() -> void:
 	for slot_key in equipment_slots:
+		print(slot_key)
 		var node_path = equipment_slots[slot_key]
 		var inventory = get_node_or_null(node_path)
 		
@@ -113,21 +119,15 @@ func _remove_equipment_logic(slot_type: int) -> void:
 func _spawn_visual_attachment(data: EquipmentData) -> Node3D:
 	if not data.visual_scene: return null
 	
-	# Instantiate the item model
 	var visual_instance = data.visual_scene.instantiate()
 	
-	# If a bone was defined, use BoneAttachment3D
 	if data.bone_name != "":
-		var attachment = BoneAttachment3D.new()
-		attachment.bone_name = data.bone_name
-		# Important: Name should be unique or doesn't matter, but helps with debugging
-		attachment.name = "VisualAttachment_" + str(data.slot_type)
-		
-		fake_skeleton.add_child(attachment)
-		attachment.add_child(visual_instance)
-		
-		return attachment
-	else:
-		# If no bone, attach to skeleton (or root) directly (Fallback)
-		fake_skeleton.add_child(visual_instance)
-		return visual_instance
+		var marker = fake_skeleton.get_node_or_null(data.bone_name)
+		if marker:
+			marker.add_child(visual_instance)
+			return visual_instance
+		else:
+			printerr("[EquipmentManager] Marker not found: ", data.bone_name)
+	
+	fake_skeleton.add_child(visual_instance)
+	return visual_instance

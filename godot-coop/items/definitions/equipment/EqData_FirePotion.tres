@@ -9,7 +9,8 @@
 
 [resource]
 script = ExtResource("3_gi57j")
+slot_type = 3
 visual_scene = ExtResource("5_ncfb1")
-bone_name = "Head"
+bone_name = "BeltSlotMarker1"
 granted_abilities = Array[ExtResource("1_p07eg")]([ExtResource("2_gi57j"), ExtResource("3_ncfb1")])
 metadata/_custom_type_script = "uid://gk4v8hjc16d6"
