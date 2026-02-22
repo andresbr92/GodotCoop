@@ -32,7 +32,7 @@ The content is organized as follows:
 <notes>
 - Some files may have been excluded based on .gitignore rules and Repomix's configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Only files matching these patterns are included: godot-coop/characters/character_base.gd, godot-coop/characters/common_components/gas/ability_manager.gd, godot-coop/characters/common_components/gas/ability_system_component.gd, godot-coop/characters/common_components/gas/attribute_set.gd, godot-coop/characters/common_components/gas/cast_manager.gd, godot-coop/characters/common_components/gas/effect_manager.gd, godot-coop/characters/common_components/gas/tag_container.gd, godot-coop/characters/common_components/tag_reaction_component.gd, godot-coop/characters/npcs/human_dummy/human_npc.gd, godot-coop/characters/player/components/camera_follow.gd, godot-coop/characters/player/components/camera_spring_arm.gd, godot-coop/characters/player/components/coop_character_inventory_system.gd, godot-coop/characters/player/components/coop_character_inventory_system_ui.gd, godot-coop/characters/player/equipment_manager.gd, godot-coop/characters/player/player.gd, godot-coop/characters/test_tag_reaction_component.gd, godot-coop/interactables/harvest_nodes/harvestable.gd, godot-coop/interactables/harvest_nodes/harvestable_data.gd, godot-coop/interactables/interactable_base.gd, godot-coop/interactables/items/ingredients/ingredient_base.gd, godot-coop/interactables/items/item_base.gd, godot-coop/interactables/loot_container/loot_container.gd, godot-coop/interactables/loot_container/loot_container_data.gd, godot-coop/interactables/loot_container/search_constraint.gd, godot-coop/items/abilities/ga_aim.gd, godot-coop/items/abilities/ga_drink_potion.gd, godot-coop/items/abilities/ga_throw_projectile.gd, godot-coop/items/definitions/ability_grant.gd, godot-coop/items/definitions/ability_spec_handle.gd, godot-coop/items/definitions/effect_spec_handle.gd, godot-coop/items/definitions/equipment_data.gd, godot-coop/items/definitions/gameplay_ability.gd, godot-coop/items/definitions/gameplay_effect.gd, godot-coop/items/definitions/potion_data.gd, godot-coop/items/definitions/projectiles/fire_potion_projectile.gd, godot-coop/items/definitions/projectiles/projectile_base.gd, godot-coop/levels/maps/main.gd, godot-coop/systems/inventory/equipment_slot_constraint.gd, godot-coop/systems/inventory/inventory_system_manager.gd, godot-coop/systems/log_helper/Logger.gd, godot-coop/systems/multiplayer_spawner.gd, godot-coop/systems/network_manager.gd, godot-coop/systems/projectile_spawner.gd, godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd, godot-coop/addons/inventory-system-demos/interaction_system/interact_action.gd, godot-coop/addons/inventory-system-demos/fps/box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/campfire.gd, godot-coop/addons/inventory-system-demos/fps/constraints/category_grid_inventory_constraint.gd, godot-coop/addons/inventory-system-demos/fps/constraints/stack_size_constraint.gd, godot-coop/addons/inventory-system-demos/fps/dropper.gd, godot-coop/addons/inventory-system-demos/fps/fps_demo.gd, godot-coop/addons/inventory-system-demos/fps/loot_box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/modding_demo.gd, godot-coop/addons/inventory-system-demos/fps/player.gd, godot-coop/addons/inventory-system-demos/fps/props/shelf.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_inventory_3d.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_slot_3d.gd, godot-coop/addons/inventory-system-demos/fps/tool_hand_item_3d.gd, godot-coop/addons/inventory-system-demos/fps/use_items_example.gd, godot-coop/addons/inventory-system-demos/fps/workbench.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd, godot-coop/addons/inventory-system-demos/ui/drop_area.gd, godot-coop/addons/inventory-system-demos/ui/craft/recipe_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/ingredient_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craftings_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/crafting_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craft_station_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/interactor_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_icons.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_helper.gd, godot-coop/addons/inventory-system-demos/ui/interactor/action_message_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_selection_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_drop_zone_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_draggable_element_ui.gd, godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd, godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd, godot-coop/addons/inventory-system-demos/character/networked_openable.gd, godot-coop/addons/inventory-system-demos/character/openable.gd
+- Only files matching these patterns are included: godot-coop/characters/character_base.gd, godot-coop/characters/common_components/gas/ability_manager.gd, godot-coop/characters/common_components/gas/ability_system_component.gd, godot-coop/characters/common_components/gas/attribute_set.gd, godot-coop/characters/common_components/gas/cast_manager.gd, godot-coop/characters/common_components/gas/effect_manager.gd, godot-coop/characters/common_components/gas/tag_container.gd, godot-coop/characters/common_components/tag_reaction_component.gd, godot-coop/characters/npcs/human_dummy/human_npc.gd, godot-coop/characters/player/components/camera_follow.gd, godot-coop/characters/player/components/camera_spring_arm.gd, godot-coop/characters/player/components/coop_character_inventory_system.gd, godot-coop/characters/player/components/coop_character_inventory_system_ui.gd, godot-coop/characters/player/equipment_manager.gd, godot-coop/characters/player/player.gd, godot-coop/characters/test_tag_reaction_component.gd, godot-coop/interactables/harvest_nodes/harvestable.gd, godot-coop/interactables/harvest_nodes/harvestable_data.gd, godot-coop/interactables/interactable_base.gd, godot-coop/interactables/items/ingredients/ingredient_base.gd, godot-coop/interactables/items/item_base.gd, godot-coop/interactables/loot_container/loot_container.gd, godot-coop/interactables/loot_container/loot_container_data.gd, godot-coop/interactables/loot_container/search_constraint.gd, godot-coop/items/abilities/ga_aim.gd, godot-coop/items/abilities/ga_drink_potion.gd, godot-coop/items/abilities/ga_throw_projectile.gd, godot-coop/items/definitions/ability_grant.gd, godot-coop/items/definitions/ability_spec_handle.gd, godot-coop/items/definitions/effect_spec_handle.gd, godot-coop/items/definitions/equipment_data.gd, godot-coop/items/definitions/gameplay_ability.gd, godot-coop/items/definitions/gameplay_effect.gd, godot-coop/items/definitions/potion_data.gd, godot-coop/items/definitions/projectiles/fire_potion_projectile.gd, godot-coop/items/definitions/projectiles/projectile_base.gd, godot-coop/levels/maps/main.gd, godot-coop/systems/inventory/equipment_slot_constraint.gd, godot-coop/systems/inventory/inventory_system_manager.gd, godot-coop/systems/log_helper/Logger.gd, godot-coop/systems/multiplayer_spawner.gd, godot-coop/systems/network_manager.gd, godot-coop/systems/projectile_spawner.gd, godot-coop/test/unit-test/test_ability_manager.gd, godot-coop/test/unit-test/test_cast_manager.gd, godot-coop/test/unit-test/test_data_equipment.gd, godot-coop/test/unit-test/test_data_gameplay_ability.gd, godot-coop/test/unit-test/test_data_gameplay_effect.gd, godot-coop/test/unit-test/test_data_integrity.gd, godot-coop/test/unit-test/test_data_potion.gd, godot-coop/test/unit-test/test_effect_manager.gd, godot-coop/test/unit-test/test_tag_container.gd, godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd, godot-coop/addons/inventory-system-demos/interaction_system/interact_action.gd, godot-coop/addons/inventory-system-demos/fps/box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/campfire.gd, godot-coop/addons/inventory-system-demos/fps/constraints/category_grid_inventory_constraint.gd, godot-coop/addons/inventory-system-demos/fps/constraints/stack_size_constraint.gd, godot-coop/addons/inventory-system-demos/fps/dropper.gd, godot-coop/addons/inventory-system-demos/fps/fps_demo.gd, godot-coop/addons/inventory-system-demos/fps/loot_box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/modding_demo.gd, godot-coop/addons/inventory-system-demos/fps/player.gd, godot-coop/addons/inventory-system-demos/fps/props/shelf.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_inventory_3d.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_slot_3d.gd, godot-coop/addons/inventory-system-demos/fps/tool_hand_item_3d.gd, godot-coop/addons/inventory-system-demos/fps/use_items_example.gd, godot-coop/addons/inventory-system-demos/fps/workbench.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd, godot-coop/addons/inventory-system-demos/ui/drop_area.gd, godot-coop/addons/inventory-system-demos/ui/craft/recipe_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/ingredient_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craftings_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/crafting_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craft_station_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/interactor_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_icons.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_helper.gd, godot-coop/addons/inventory-system-demos/ui/interactor/action_message_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_selection_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_drop_zone_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_draggable_element_ui.gd, godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd, godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd, godot-coop/addons/inventory-system-demos/character/networked_openable.gd, godot-coop/addons/inventory-system-demos/character/openable.gd
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Files are sorted by Git change count (files with more changes are at the bottom)
@@ -141,6 +141,15 @@ godot-coop/systems/log_helper/Logger.gd
 godot-coop/systems/multiplayer_spawner.gd
 godot-coop/systems/network_manager.gd
 godot-coop/systems/projectile_spawner.gd
+godot-coop/test/unit-test/test_ability_manager.gd
+godot-coop/test/unit-test/test_cast_manager.gd
+godot-coop/test/unit-test/test_data_equipment.gd
+godot-coop/test/unit-test/test_data_gameplay_ability.gd
+godot-coop/test/unit-test/test_data_gameplay_effect.gd
+godot-coop/test/unit-test/test_data_integrity.gd
+godot-coop/test/unit-test/test_data_potion.gd
+godot-coop/test/unit-test/test_effect_manager.gd
+godot-coop/test/unit-test/test_tag_container.gd
 </directory_structure>
 
 <files>
@@ -3070,298 +3079,6 @@ func preview_interact(actions : Array, position_on_screen : Vector2):
 			interact_message.hide_message()
 </file>
 
-<file path="godot-coop/characters/common_components/gas/ability_manager.gd">
-class_name AbilityManager
-extends Node
-
-const INPUT_PRIMARY = "ability.primary"
-const INPUT_SECONDARY = "ability.secondary"
-const INPUT_RELOAD = "ability.reload"
-const INPUT_JUMP = "ability.jump"
-
-class AbilitySpec:
-	var handle: AbilitySpecHandle
-	var ability: GameplayAbility
-	var input_tag: String
-	var is_active: bool = false
-	var source_inventory: Inventory = null
-	var source_slot_index: int = -1
-	var active_effect_handles: Array[EffectSpecHandle] = []
-	
-	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String, p_inv: Inventory, p_slot: int):
-		handle = p_handle
-		ability = p_ability
-		input_tag = p_input
-		source_inventory = p_inv
-		source_slot_index = p_slot
-
-@export var default_abilities: Array[AbilityGrant]
-
-var _effect_manager: EffectManager
-var _tag_container: TagContainer
-var _cast_manager: CastManager
-var _actor: Node
-
-var granted_abilities: Dictionary = {}
-
-
-func _ready() -> void:
-	if multiplayer.is_server():
-		for grant in default_abilities:
-			if grant and grant.ability:
-				grant_ability(grant.ability, grant.input_tag)
-
-
-func setup(actor: Node, effect_manager: EffectManager, tag_container: TagContainer, cast_manager: CastManager) -> void:
-	_actor = actor
-	_effect_manager = effect_manager
-	_tag_container = tag_container
-	_cast_manager = cast_manager
-
-
-func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
-	if not multiplayer.is_server(): return null
-	if ability_res == null: return null
-	
-	var handle = AbilitySpecHandle.new(ability_res.ability_name)
-	var spec = AbilitySpec.new(handle, ability_res, input_tag, source_inventory, source_slot_index)
-	granted_abilities[handle] = spec
-	
-	print("[AbilityManager] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
-	
-	return handle
-
-
-func clear_ability(handle: AbilitySpecHandle) -> void:
-	if not multiplayer.is_server(): return
-	
-	if not granted_abilities.has(handle):
-		print("[AbilityManager] Warning: Ability not found: ", handle)
-		return
-		
-	var spec = granted_abilities[handle]
-	
-	if spec.is_active:
-		spec.ability.end_ability(_actor, handle)
-	
-	granted_abilities.erase(handle)
-	print("[AbilityManager] Cleared Ability: ", handle)
-
-
-func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
-	if granted_abilities.has(handle):
-		var spec = granted_abilities[handle]
-		return {
-			"inventory": spec.source_inventory,
-			"slot": spec.source_slot_index
-		}
-	return {}
-
-
-func can_activate_ability(ability: GameplayAbility) -> bool:
-	for tag in ability.activation_required_tags:
-		if not _tag_container.has_tag(tag):
-			return false
-			
-	for tag in ability.activation_blocked_tags:
-		if _tag_container.has_tag(tag):
-			return false
-			
-	return true
-
-
-@rpc("any_peer", "call_local", "reliable")
-func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
-	if not multiplayer.is_server(): return
-	
-	for handle in granted_abilities:
-		var spec = granted_abilities[handle]
-		if spec.input_tag == input_tag:
-			if can_activate_ability(spec.ability):
-				spec.ability.activate(_actor, handle, activation_data)
-				spec.is_active = true
-				if spec.ability.ongoing_effects.size() > 0:
-					var handles = _effect_manager.apply_effects(spec.ability.ongoing_effects)
-					spec.active_effect_handles.append_array(handles)
-			else:
-				print("[AbilityManager] Ability blocked: ", spec.ability.ability_name)
-
-
-@rpc("any_peer", "call_local", "reliable")
-func server_ability_input_released(input_tag: String) -> void:
-	if not multiplayer.is_server(): return
-	
-	for handle in granted_abilities:
-		var spec: AbilitySpec = granted_abilities[handle]
-		
-		if spec.input_tag == input_tag:
-			spec.is_active = false
-			
-			for effect_handle in spec.active_effect_handles:
-				_effect_manager.remove_effect(effect_handle)
-			spec.active_effect_handles.clear()
-			
-			if _cast_manager.has_active_cast(handle):
-				_cast_manager.cancel_cast(handle)
-			
-			spec.ability.input_released(_actor, handle)
-</file>
-
-<file path="godot-coop/characters/common_components/gas/attribute_set.gd">
-class_name GASAttributeSet
-extends Node
-
-signal health_changed(new_value: float, max_value: float)
-signal died()
-
-const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana"]
-
-@export_group("Base Stats")
-@export var base_max_health: float = 100.0
-@export var base_speed: float = 5.0
-@export var base_stamina: float = 50.0
-
-var is_strafing: bool = false
-
-var _health: float
-var health: float:
-	set(value):
-		var current_max = get_max_health()
-		var old_health = _health
-		_health = clamp(value, 0.0, current_max)
-		
-		if _health != old_health:
-			print("[GASAttributeSet] HEALTH UPDATE: ", _health, " / ", current_max)
-			health_changed.emit(_health, current_max)
-			if _health == 0.0:
-				print("[GASAttributeSet] CHARACTER DIED!")
-				died.emit()
-	get:
-		return _health
-
-var speed: float:
-	get:
-		return get_computed_stat("speed")
-
-var _effect_manager: EffectManager
-
-
-func _ready() -> void:
-	_health = base_max_health
-
-
-func set_effect_manager(effect_manager: EffectManager) -> void:
-	_effect_manager = effect_manager
-
-
-func get_max_health() -> float:
-	return get_computed_stat("max_health")
-
-
-func get_computed_stat(stat_name: String) -> float:
-	if stat_name == "health": 
-		return _health
-	
-	var base_val = get("base_" + stat_name)
-	if base_val == null: 
-		return 0.0
-	
-	if not _effect_manager:
-		return base_val
-	
-	return _effect_manager.compute_stat_with_modifiers(stat_name, base_val)
-
-
-func apply_instant_change(attribute: String, value: float, operation: int) -> void:
-	var final_value = value
-	if operation == GameplayEffect.ModifierOp.SUBTRACT:
-		final_value = -value
-	
-	if attribute == "health":
-		self.health += final_value
-	else:
-		printerr("[GASAttributeSet] WARNING: INSTANT effects are usually for 'health' or 'mana'. Check attribute: ", attribute)
-
-
-func on_max_health_changed() -> void:
-	self.health = self.health
-</file>
-
-<file path="godot-coop/characters/common_components/gas/cast_manager.gd">
-class_name CastManager
-extends Node
-
-class ActiveCast:
-	var handle: AbilitySpecHandle
-	var duration: float
-	var elapsed: float = 0.0
-	var on_complete: Callable
-	var on_cancel: Callable
-	
-	func _init(p_handle: AbilitySpecHandle, p_duration: float, p_on_complete: Callable, p_on_cancel: Callable = Callable()):
-		handle = p_handle
-		duration = p_duration
-		on_complete = p_on_complete
-		on_cancel = p_on_cancel
-
-var active_casts: Dictionary = {}
-
-
-func _process(delta: float) -> void:
-	if not multiplayer.is_server(): return
-	_process_active_casts(delta)
-
-
-func start_cast(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
-	if not multiplayer.is_server(): return
-	
-	if active_casts.has(handle):
-		GlobalLogger.log("[CastManager] Warning: Cast already in progress for: ", handle)
-		return
-	
-	var cast = ActiveCast.new(handle, duration, on_complete, on_cancel)
-	active_casts[handle] = cast
-	GlobalLogger.log("[CastManager] Started cast for ", handle, " | Duration: ", duration, "s")
-
-
-func cancel_cast(handle: AbilitySpecHandle) -> void:
-	if not multiplayer.is_server(): return
-	
-	if not active_casts.has(handle): return
-	
-	var cast: ActiveCast = active_casts[handle]
-	GlobalLogger.log("[CastManager] Cast CANCELLED for ", handle)
-	
-	if cast.on_cancel.is_valid():
-		cast.on_cancel.call()
-	
-	active_casts.erase(handle)
-
-
-func has_active_cast(handle: AbilitySpecHandle) -> bool:
-	return active_casts.has(handle)
-
-
-func _process_active_casts(delta: float) -> void:
-	var completed_casts: Array[AbilitySpecHandle] = []
-	
-	for handle in active_casts:
-		var cast: ActiveCast = active_casts[handle]
-		cast.elapsed += delta
-		
-		if cast.elapsed >= cast.duration:
-			completed_casts.append(handle)
-	
-	for handle in completed_casts:
-		var cast: ActiveCast = active_casts[handle]
-		GlobalLogger.log("[CastManager] Cast COMPLETED for ", handle)
-		
-		if cast.on_complete.is_valid():
-			cast.on_complete.call()
-		
-		active_casts.erase(handle)
-</file>
-
 <file path="godot-coop/characters/common_components/gas/tag_container.gd">
 class_name TagContainer
 extends Node
@@ -3845,6 +3562,1053 @@ func on_peer_connected(_client_id : int) -> void:
 
 func on_peer_disconnected(_client_id : int) -> void:
 	print("client disconnected")
+</file>
+
+<file path="godot-coop/test/unit-test/test_ability_manager.gd">
+extends GutTest
+## Tests for AbilityManager - handles granting, clearing, and activating GameplayAbilities
+
+var _ability_manager: AbilityManager
+var _effect_manager: EffectManager
+var _tag_container: TagContainer
+var _cast_manager: CastManager
+var _attribute_set: GASAttributeSet
+var _mock_actor: Node
+
+
+func before_each() -> void:
+	_tag_container = TagContainer.new()
+	_attribute_set = GASAttributeSet.new()
+	_effect_manager = EffectManager.new()
+	_cast_manager = CastManager.new()
+	_ability_manager = AbilityManager.new()
+	_mock_actor = Node.new()
+	
+	add_child(_tag_container)
+	add_child(_attribute_set)
+	add_child(_effect_manager)
+	add_child(_cast_manager)
+	add_child(_ability_manager)
+	add_child(_mock_actor)
+	
+	# Initialize components
+	_effect_manager._ready()
+	_effect_manager.setup(_attribute_set, _tag_container)
+	_ability_manager.setup(_mock_actor, _effect_manager, _tag_container, _cast_manager)
+
+
+func after_each() -> void:
+	_ability_manager.queue_free()
+	_cast_manager.queue_free()
+	_effect_manager.queue_free()
+	_attribute_set.queue_free()
+	_tag_container.queue_free()
+	_mock_actor.queue_free()
+
+
+# Helper to create a test GameplayAbility
+func _create_ability(ability_name: String, required_tags: PackedStringArray = [], 
+		blocked_tags: PackedStringArray = []) -> GameplayAbility:
+	var ability = GameplayAbility.new()
+	ability.ability_name = ability_name
+	ability.activation_required_tags = required_tags
+	ability.activation_blocked_tags = blocked_tags
+	return ability
+
+
+func test_grant_ability() -> void:
+	# Granting an ability should register it and return a handle
+	var test_ability = _create_ability("Test Ability")
+	
+	var handle = _ability_manager._grant_ability_logic(test_ability, "ability.primary")
+	
+	assert_not_null(handle, "Should return a valid handle")
+	assert_true(_ability_manager.granted_abilities.has(handle), "Ability should be registered")
+	
+	var spec = _ability_manager.granted_abilities[handle]
+	assert_eq(spec.ability, test_ability, "Stored ability should match")
+	assert_eq(spec.input_tag, "ability.primary", "Input tag should match")
+
+
+func test_clear_ability() -> void:
+	# Clearing an ability should remove it from granted_abilities
+	var test_ability = _create_ability("Test Ability")
+	var handle = _ability_manager._grant_ability_logic(test_ability, "ability.primary")
+	
+	assert_eq(_ability_manager.granted_abilities.size(), 1, "Should have one ability")
+	
+	_ability_manager._clear_ability_logic(handle)
+	
+	assert_eq(_ability_manager.granted_abilities.size(), 0, "Should have no abilities after clear")
+	assert_false(_ability_manager.granted_abilities.has(handle), "Handle should be removed")
+
+
+func test_can_activate_with_required_tags() -> void:
+	# Ability with required tags should only activate when tags are present
+	var ability_with_requirements = _create_ability(
+		"Grounded Attack",
+		PackedStringArray(["state.grounded"]),  # Requires grounded tag
+		PackedStringArray()
+	)
+	
+	# Without required tag - should NOT be able to activate
+	assert_false(
+		_ability_manager.can_activate_ability(ability_with_requirements),
+		"Should not activate without required tag"
+	)
+	
+	# Add the required tag
+	_tag_container._add_tag_logic(&"state.grounded")
+	
+	# With required tag - should be able to activate
+	assert_true(
+		_ability_manager.can_activate_ability(ability_with_requirements),
+		"Should activate with required tag"
+	)
+
+
+func test_can_activate_with_blocked_tags() -> void:
+	# Ability with blocked tags should NOT activate when those tags are present
+	var ability_blocked_by_stun = _create_ability(
+		"Attack",
+		PackedStringArray(),
+		PackedStringArray(["state.stunned"])  # Blocked by stunned
+	)
+	
+	# Without blocking tag - should be able to activate
+	assert_true(
+		_ability_manager.can_activate_ability(ability_blocked_by_stun),
+		"Should activate without blocking tag"
+	)
+	
+	# Add the blocking tag
+	_tag_container._add_tag_logic(&"state.stunned")
+	
+	# With blocking tag - should NOT be able to activate
+	assert_false(
+		_ability_manager.can_activate_ability(ability_blocked_by_stun),
+		"Should not activate with blocking tag"
+	)
+
+
+func test_ability_source_tracking() -> void:
+	# get_ability_source should return the inventory and slot info
+	var test_ability = _create_ability("Item Ability")
+	
+	# Create a mock inventory (just a Node for testing)
+	var mock_inventory = Inventory.new()
+	add_child(mock_inventory)
+	
+	var handle = _ability_manager._grant_ability_logic(
+		test_ability, 
+		"ability.primary",
+		mock_inventory,
+		2  # slot index
+	)
+	
+	var source = _ability_manager.get_ability_source(handle)
+	
+	assert_eq(source["inventory"], mock_inventory, "Should return correct inventory")
+	assert_eq(source["slot"], 2, "Should return correct slot index")
+	
+	# Test with non-existent handle
+	var fake_handle = AbilitySpecHandle.new("Fake")
+	var empty_source = _ability_manager.get_ability_source(fake_handle)
+	assert_true(empty_source.is_empty(), "Should return empty dict for invalid handle")
+	
+	mock_inventory.queue_free()
+</file>
+
+<file path="godot-coop/test/unit-test/test_cast_manager.gd">
+extends GutTest
+## Tests for CastManager - handles channeled/casted abilities with duration
+
+var _cast_manager: CastManager
+
+# Tracking variables for callbacks (class-level to avoid lambda capture issues)
+var _cancel_called: bool = false
+var _complete_called: bool = false
+
+
+func before_each() -> void:
+	_cast_manager = CastManager.new()
+	_cancel_called = false
+	_complete_called = false
+	add_child(_cast_manager)
+
+
+func after_each() -> void:
+	_cast_manager.queue_free()
+
+
+func _on_cancel() -> void:
+	_cancel_called = true
+
+
+func _on_complete() -> void:
+	_complete_called = true
+
+
+func test_start_cast() -> void:
+	# Starting a cast should register it in active_casts
+	var handle = AbilitySpecHandle.new("Test Cast")
+	
+	_cast_manager._start_cast_logic(handle, 2.0, _on_complete)
+	
+	assert_true(_cast_manager.active_casts.has(handle), "Cast should be registered")
+	assert_eq(_cast_manager.active_casts[handle].duration, 2.0, "Duration should match")
+	assert_eq(_cast_manager.active_casts[handle].elapsed, 0.0, "Elapsed should start at 0")
+
+
+func test_cancel_cast() -> void:
+	# Cancelling a cast should call on_cancel and remove it
+	var handle = AbilitySpecHandle.new("Cancelable Cast")
+	
+	_cast_manager._start_cast_logic(handle, 5.0, _on_complete, _on_cancel)
+	assert_true(_cast_manager.has_active_cast(handle), "Cast should be active")
+	
+	_cast_manager._cancel_cast_logic(handle)
+	
+	assert_true(_cancel_called, "on_cancel callback should be called")
+	assert_false(_cast_manager.has_active_cast(handle), "Cast should be removed after cancel")
+
+
+func test_cast_completes() -> void:
+	# Cast should call on_complete when duration is reached
+	var handle = AbilitySpecHandle.new("Completing Cast")
+	
+	_cast_manager._start_cast_logic(handle, 2.0, _on_complete)
+	
+	# Simulate time passing (not enough to complete)
+	_cast_manager._process_logic(1.0)
+	assert_false(_complete_called, "on_complete should not be called yet")
+	assert_true(_cast_manager.has_active_cast(handle), "Cast should still be active")
+	
+	# Simulate more time (enough to complete)
+	_cast_manager._process_logic(1.5)
+	assert_true(_complete_called, "on_complete should be called after duration")
+	assert_false(_cast_manager.has_active_cast(handle), "Cast should be removed after completion")
+
+
+func test_has_active_cast() -> void:
+	# has_active_cast should correctly report cast status
+	var handle = AbilitySpecHandle.new("Status Check Cast")
+	
+	assert_false(_cast_manager.has_active_cast(handle), "Should not have cast initially")
+	
+	_cast_manager._start_cast_logic(handle, 3.0, _on_complete)
+	assert_true(_cast_manager.has_active_cast(handle), "Should have cast after starting")
+	
+	_cast_manager._cancel_cast_logic(handle)
+	assert_false(_cast_manager.has_active_cast(handle), "Should not have cast after cancel")
+</file>
+
+<file path="godot-coop/test/unit-test/test_data_equipment.gd">
+extends GutTest
+## Tests for EquipmentData Resource structure and data integrity
+
+
+func test_equipment_slot_types_enum() -> void:
+	# Verify SlotType enum has all expected values
+	assert_eq(EquipmentData.SlotType.HEAD, 0, "HEAD should be 0")
+	assert_eq(EquipmentData.SlotType.CHEST, 1, "CHEST should be 1")
+	assert_eq(EquipmentData.SlotType.HAND, 2, "HAND should be 2")
+	assert_eq(EquipmentData.SlotType.BELT, 3, "BELT should be 3")
+	
+	# Test that equipment can use each slot type
+	var equipment = EquipmentData.new()
+	
+	equipment.allowed_slots.clear()
+	equipment.allowed_slots.append(EquipmentData.SlotType.HEAD)
+	assert_true(EquipmentData.SlotType.HEAD in equipment.allowed_slots, "Should accept HEAD slot")
+	
+	equipment.allowed_slots.clear()
+	equipment.allowed_slots.append(EquipmentData.SlotType.CHEST)
+	assert_true(EquipmentData.SlotType.CHEST in equipment.allowed_slots, "Should accept CHEST slot")
+	
+	equipment.allowed_slots.clear()
+	equipment.allowed_slots.append(EquipmentData.SlotType.HAND)
+	assert_true(EquipmentData.SlotType.HAND in equipment.allowed_slots, "Should accept HAND slot")
+	
+	equipment.allowed_slots.clear()
+	equipment.allowed_slots.append(EquipmentData.SlotType.BELT)
+	assert_true(EquipmentData.SlotType.BELT in equipment.allowed_slots, "Should accept BELT slot")
+
+
+func test_equipment_default_values() -> void:
+	# Verify default values are correct for a new EquipmentData
+	var equipment = EquipmentData.new()
+	
+	assert_true(equipment.allowed_slots is Array, "allowed_slots should be an Array")
+	assert_eq(equipment.allowed_slots.size(), 0, "Default allowed_slots should be empty")
+	assert_null(equipment.visual_scene, "Default visual_scene should be null")
+	assert_eq(equipment.bone_name, "", "Default bone_name should be empty string")
+	assert_true(equipment.passive_effects is Array, "passive_effects should be an Array")
+	assert_eq(equipment.passive_effects.size(), 0, "Default passive_effects should be empty")
+	assert_true(equipment.granted_abilities is Array, "granted_abilities should be an Array")
+	assert_eq(equipment.granted_abilities.size(), 0, "Default granted_abilities should be empty")
+
+
+func test_equipment_arrays_typed() -> void:
+	# Verify arrays accept correct types
+	var equipment = EquipmentData.new()
+	
+	# Test passive_effects accepts GameplayEffect
+	var effect = GameplayEffect.new()
+	effect.effect_name = "Armor Buff"
+	effect.mode = GameplayEffect.ApplicationMode.INFINITE
+	effect.target_attribute = "max_health"
+	effect.operation = GameplayEffect.ModifierOp.ADD
+	effect.value = 50.0
+	
+	equipment.passive_effects.append(effect)
+	assert_eq(equipment.passive_effects.size(), 1, "Should have 1 passive effect")
+	assert_eq(equipment.passive_effects[0].effect_name, "Armor Buff", "Effect should be Armor Buff")
+	
+	# Test granted_abilities accepts AbilityGrant
+	var ability = GameplayAbility.new()
+	ability.ability_name = "Sword Slash"
+	
+	var grant = AbilityGrant.new()
+	grant.ability = ability
+	grant.input_tag = "ability.primary"
+	
+	equipment.granted_abilities.append(grant)
+	assert_eq(equipment.granted_abilities.size(), 1, "Should have 1 granted ability")
+	assert_eq(equipment.granted_abilities[0].ability.ability_name, "Sword Slash", "Ability should be Sword Slash")
+	assert_eq(equipment.granted_abilities[0].input_tag, "ability.primary", "Input tag should be ability.primary")
+
+
+func test_equipment_can_have_multiple_slots() -> void:
+	# Verify equipment can be assigned to multiple slot types (e.g., potion can go in HAND or BELT)
+	var equipment = EquipmentData.new()
+	
+	# Single slot
+	equipment.allowed_slots.append(EquipmentData.SlotType.HEAD)
+	assert_eq(equipment.allowed_slots.size(), 1, "Should have 1 allowed slot")
+	
+	# Multiple slots (like a potion that can go in hand or belt)
+	equipment.allowed_slots.clear()
+	equipment.allowed_slots.append(EquipmentData.SlotType.HAND)
+	equipment.allowed_slots.append(EquipmentData.SlotType.BELT)
+	assert_eq(equipment.allowed_slots.size(), 2, "Should have 2 allowed slots")
+	assert_true(EquipmentData.SlotType.HAND in equipment.allowed_slots, "Should allow HAND slot")
+	assert_true(EquipmentData.SlotType.BELT in equipment.allowed_slots, "Should allow BELT slot")
+	
+	# All slots (hypothetical universal item)
+	equipment.allowed_slots.clear()
+	equipment.allowed_slots.append(EquipmentData.SlotType.HEAD)
+	equipment.allowed_slots.append(EquipmentData.SlotType.CHEST)
+	equipment.allowed_slots.append(EquipmentData.SlotType.HAND)
+	equipment.allowed_slots.append(EquipmentData.SlotType.BELT)
+	assert_eq(equipment.allowed_slots.size(), 4, "Should have 4 allowed slots")
+</file>
+
+<file path="godot-coop/test/unit-test/test_data_gameplay_ability.gd">
+extends GutTest
+## Tests for GameplayAbility Resource structure and data integrity
+
+
+func test_ability_default_values() -> void:
+	# Verify default values are correct for a new GameplayAbility
+	var ability = GameplayAbility.new()
+	
+	assert_eq(ability.ability_name, "Base Ability", "Default ability_name should be 'Base Ability'")
+	assert_true(ability.activation_required_tags is PackedStringArray, "activation_required_tags should be PackedStringArray")
+	assert_eq(ability.activation_required_tags.size(), 0, "Default activation_required_tags should be empty")
+	assert_true(ability.activation_blocked_tags is PackedStringArray, "activation_blocked_tags should be PackedStringArray")
+	assert_eq(ability.activation_blocked_tags.size(), 0, "Default activation_blocked_tags should be empty")
+
+
+func test_ability_tags_are_arrays() -> void:
+	# Verify tags can be set and are proper PackedStringArray
+	var ability = GameplayAbility.new()
+	
+	# Set required tags
+	ability.activation_required_tags = PackedStringArray(["state.grounded", "state.alive"])
+	assert_eq(ability.activation_required_tags.size(), 2, "Should have 2 required tags")
+	assert_true("state.grounded" in ability.activation_required_tags, "Should contain grounded tag")
+	assert_true("state.alive" in ability.activation_required_tags, "Should contain alive tag")
+	
+	# Set blocked tags
+	ability.activation_blocked_tags = PackedStringArray(["state.stunned", "state.dead", "state.casting"])
+	assert_eq(ability.activation_blocked_tags.size(), 3, "Should have 3 blocked tags")
+	assert_true("state.stunned" in ability.activation_blocked_tags, "Should contain stunned tag")
+	assert_true("state.dead" in ability.activation_blocked_tags, "Should contain dead tag")
+	assert_true("state.casting" in ability.activation_blocked_tags, "Should contain casting tag")
+
+
+func test_ability_ongoing_effects_type() -> void:
+	# Verify ongoing_effects is properly typed array
+	var ability = GameplayAbility.new()
+	
+	# Default should be empty array
+	assert_true(ability.ongoing_effects is Array, "ongoing_effects should be an Array")
+	assert_eq(ability.ongoing_effects.size(), 0, "Default ongoing_effects should be empty")
+	
+	# Create and add effects
+	var effect1 = GameplayEffect.new()
+	effect1.effect_name = "Ongoing Buff"
+	effect1.mode = GameplayEffect.ApplicationMode.INFINITE
+	effect1.target_attribute = "speed"
+	effect1.operation = GameplayEffect.ModifierOp.ADD
+	effect1.value = 2.0
+	
+	var effect2 = GameplayEffect.new()
+	effect2.effect_name = "Ongoing Tag"
+	effect2.mode = GameplayEffect.ApplicationMode.INFINITE
+	effect2.target_attribute = "none"
+	effect2.granted_tags = PackedStringArray(["state.aiming"])
+	
+	ability.ongoing_effects.append(effect1)
+	ability.ongoing_effects.append(effect2)
+	
+	assert_eq(ability.ongoing_effects.size(), 2, "Should have 2 ongoing effects")
+	assert_eq(ability.ongoing_effects[0].effect_name, "Ongoing Buff", "First effect should be Ongoing Buff")
+	assert_eq(ability.ongoing_effects[1].effect_name, "Ongoing Tag", "Second effect should be Ongoing Tag")
+
+
+func test_ability_virtual_methods_exist() -> void:
+	# Verify that virtual methods exist and can be called
+	var ability = GameplayAbility.new()
+	
+	# Check methods exist
+	assert_true(ability.has_method("can_activate"), "Should have can_activate method")
+	assert_true(ability.has_method("activate"), "Should have activate method")
+	assert_true(ability.has_method("input_released"), "Should have input_released method")
+	assert_true(ability.has_method("end_ability"), "Should have end_ability method")
+	
+	# Create a mock actor node for testing
+	var mock_actor = Node.new()
+	add_child(mock_actor)
+	
+	# Test that methods can be called without crashing
+	# Note: can_activate needs an AbilitySystemComponent, so it will return false
+	var can_activate_result = ability.can_activate(mock_actor)
+	assert_false(can_activate_result, "can_activate should return false without ASC")
+	
+	# Create a mock handle
+	var mock_handle = AbilitySpecHandle.new("TestAbility")
+	
+	# These should not crash when called (they are virtual/base implementations)
+	ability.activate(mock_actor, mock_handle, {})
+	ability.input_released(mock_actor, mock_handle)
+	ability.end_ability(mock_actor, mock_handle)
+	
+	# If we got here without crashing, the methods work
+	assert_true(true, "Virtual methods can be called without crashing")
+	
+	mock_actor.queue_free()
+</file>
+
+<file path="godot-coop/test/unit-test/test_data_gameplay_effect.gd">
+extends GutTest
+## Tests for GameplayEffect Resource structure and data integrity
+
+
+func test_effect_default_values() -> void:
+	# Verify default values are correct for a new GameplayEffect
+	var effect = GameplayEffect.new()
+	
+	assert_eq(effect.target_attribute, "", "Default target_attribute should be empty string")
+	assert_eq(effect.operation, GameplayEffect.ModifierOp.SUBTRACT, "Default operation should be SUBTRACT")
+	assert_eq(effect.value, 10.0, "Default value should be 10.0")
+	assert_eq(effect.mode, GameplayEffect.ApplicationMode.INSTANT, "Default mode should be INSTANT")
+	assert_eq(effect.duration, 0.0, "Default duration should be 0.0")
+	assert_eq(effect.tick_rate, 1.0, "Default tick_rate should be 1.0")
+	assert_eq(effect.effect_name, "Generic Effect", "Default effect_name should be 'Generic Effect'")
+	assert_eq(effect.vfx_tag, "", "Default vfx_tag should be empty")
+	assert_true(effect.granted_tags is PackedStringArray, "granted_tags should be PackedStringArray")
+	assert_eq(effect.granted_tags.size(), 0, "Default granted_tags should be empty")
+
+
+func test_effect_modes_enum() -> void:
+	# Verify ApplicationMode enum has all expected values
+	assert_eq(GameplayEffect.ApplicationMode.INSTANT, 0, "INSTANT should be 0")
+	assert_eq(GameplayEffect.ApplicationMode.PERIODIC, 1, "PERIODIC should be 1")
+	assert_eq(GameplayEffect.ApplicationMode.DURATION, 2, "DURATION should be 2")
+	assert_eq(GameplayEffect.ApplicationMode.INFINITE, 3, "INFINITE should be 3")
+	
+	# Test that we can create effects with each mode
+	var effect = GameplayEffect.new()
+	
+	effect.mode = GameplayEffect.ApplicationMode.INSTANT
+	assert_eq(effect.mode, GameplayEffect.ApplicationMode.INSTANT, "Should accept INSTANT mode")
+	
+	effect.mode = GameplayEffect.ApplicationMode.PERIODIC
+	assert_eq(effect.mode, GameplayEffect.ApplicationMode.PERIODIC, "Should accept PERIODIC mode")
+	
+	effect.mode = GameplayEffect.ApplicationMode.DURATION
+	assert_eq(effect.mode, GameplayEffect.ApplicationMode.DURATION, "Should accept DURATION mode")
+	
+	effect.mode = GameplayEffect.ApplicationMode.INFINITE
+	assert_eq(effect.mode, GameplayEffect.ApplicationMode.INFINITE, "Should accept INFINITE mode")
+
+
+func test_effect_operations_enum() -> void:
+	# Verify ModifierOp enum has all expected values
+	assert_eq(GameplayEffect.ModifierOp.ADD, 0, "ADD should be 0")
+	assert_eq(GameplayEffect.ModifierOp.SUBTRACT, 1, "SUBTRACT should be 1")
+	assert_eq(GameplayEffect.ModifierOp.MULTIPLY, 2, "MULTIPLY should be 2")
+	assert_eq(GameplayEffect.ModifierOp.DIVIDE, 3, "DIVIDE should be 3")
+	
+	# Test that we can create effects with each operation
+	var effect = GameplayEffect.new()
+	
+	effect.operation = GameplayEffect.ModifierOp.ADD
+	assert_eq(effect.operation, GameplayEffect.ModifierOp.ADD, "Should accept ADD operation")
+	
+	effect.operation = GameplayEffect.ModifierOp.SUBTRACT
+	assert_eq(effect.operation, GameplayEffect.ModifierOp.SUBTRACT, "Should accept SUBTRACT operation")
+	
+	effect.operation = GameplayEffect.ModifierOp.MULTIPLY
+	assert_eq(effect.operation, GameplayEffect.ModifierOp.MULTIPLY, "Should accept MULTIPLY operation")
+	
+	effect.operation = GameplayEffect.ModifierOp.DIVIDE
+	assert_eq(effect.operation, GameplayEffect.ModifierOp.DIVIDE, "Should accept DIVIDE operation")
+
+
+func test_effect_valid_attributes() -> void:
+	# Verify that valid attributes are defined in GASAttributeSet
+	var valid_attrs = GASAttributeSet.VALID_ATTRIBUTES
+	
+	assert_true(valid_attrs is PackedStringArray, "VALID_ATTRIBUTES should be PackedStringArray")
+	assert_true(valid_attrs.size() > 0, "Should have at least one valid attribute")
+	
+	# Check expected attributes exist
+	assert_true("health" in valid_attrs, "health should be a valid attribute")
+	assert_true("max_health" in valid_attrs, "max_health should be a valid attribute")
+	assert_true("speed" in valid_attrs, "speed should be a valid attribute")
+	
+	# Test setting target_attribute to valid values
+	var effect = GameplayEffect.new()
+	
+	effect.target_attribute = "health"
+	assert_eq(effect.target_attribute, "health", "Should accept 'health' as target")
+	
+	effect.target_attribute = "none"
+	assert_eq(effect.target_attribute, "none", "Should accept 'none' for tag-only effects")
+	
+	effect.target_attribute = ""
+	assert_eq(effect.target_attribute, "", "Should accept empty string for tag-only effects")
+
+
+func test_effect_tag_only_mode() -> void:
+	# Verify effects can work without targeting an attribute (tag-only)
+	var tag_effect = GameplayEffect.new()
+	tag_effect.effect_name = "Burning Status"
+	tag_effect.target_attribute = "none"
+	tag_effect.mode = GameplayEffect.ApplicationMode.DURATION
+	tag_effect.duration = 5.0
+	tag_effect.granted_tags = PackedStringArray(["state.burning", "debuff.fire"])
+	
+	assert_eq(tag_effect.target_attribute, "none", "Tag-only effect should have 'none' as target")
+	assert_eq(tag_effect.granted_tags.size(), 2, "Should have 2 granted tags")
+	assert_true("state.burning" in tag_effect.granted_tags, "Should contain burning tag")
+	assert_true("debuff.fire" in tag_effect.granted_tags, "Should contain fire debuff tag")
+	
+	# Also test with empty string
+	var tag_effect2 = GameplayEffect.new()
+	tag_effect2.target_attribute = ""
+	tag_effect2.granted_tags = PackedStringArray(["state.stunned"])
+	
+	assert_eq(tag_effect2.target_attribute, "", "Tag-only effect can use empty string")
+	assert_eq(tag_effect2.granted_tags.size(), 1, "Should have 1 granted tag")
+</file>
+
+<file path="godot-coop/test/unit-test/test_data_integrity.gd">
+extends GutTest
+## Tests for data integrity - verifies all .tres files load correctly
+## These tests catch breaking changes in Resource structure
+
+
+func test_load_all_gameplay_effects() -> void:
+	# Verify all GameplayEffect .tres files load without errors
+	var effect_paths = [
+		"res://items/definitions/gameplay_effects/GE_HealOverTime.tres",
+		"res://items/definitions/gameplay_effects/GE_InstantDamage_10.tres",
+	]
+	
+	for path in effect_paths:
+		var effect = load(path)
+		assert_not_null(effect, "Should load effect: " + path)
+		if effect:
+			assert_true(effect is GameplayEffect, path + " should be GameplayEffect")
+			assert_ne(effect.effect_name, "", path + " should have effect_name")
+
+
+func test_load_all_equipment_data() -> void:
+	# Verify all EquipmentData .tres files load without errors
+	var equipment_paths = [
+		"res://items/definitions/equipment/EqData_FirePotion.tres",
+		"res://items/definitions/equipment/EqData_HealPotion.tres",
+		"res://items/definitions/equipment/EqData_PoisonPotion.tres",
+	]
+	
+	for path in equipment_paths:
+		var equipment = load(path)
+		assert_not_null(equipment, "Should load equipment: " + path)
+		if equipment:
+			assert_true(equipment is EquipmentData, path + " should be EquipmentData")
+			assert_gt(equipment.allowed_slots.size(), 0, path + " should have at least one allowed slot")
+
+
+func test_load_all_potion_data() -> void:
+	# Verify all PotionData .tres files load without errors
+	var potion_paths = [
+		"res://items/definitions/potion/FirePotionStats.tres",
+		"res://items/definitions/potion/HealPotionStats.tres",
+	]
+	
+	for path in potion_paths:
+		var potion = load(path)
+		assert_not_null(potion, "Should load potion: " + path)
+		if potion:
+			assert_true(potion is PotionData, path + " should be PotionData")
+			assert_gt(potion.throw_force, 0.0, path + " should have positive throw_force")
+
+
+func test_equipment_references_valid() -> void:
+	# Verify that EquipmentData references (abilities, effects) are valid
+	var equipment_paths = [
+		"res://items/definitions/equipment/EqData_FirePotion.tres",
+		"res://items/definitions/equipment/EqData_HealPotion.tres",
+		"res://items/definitions/equipment/EqData_PoisonPotion.tres",
+	]
+	
+	for path in equipment_paths:
+		var equipment = load(path) as EquipmentData
+		if not equipment:
+			continue
+		
+		# Check passive_effects are valid GameplayEffect
+		for i in range(equipment.passive_effects.size()):
+			var effect = equipment.passive_effects[i]
+			assert_not_null(effect, path + " passive_effects[" + str(i) + "] should not be null")
+			if effect:
+				assert_true(effect is GameplayEffect, path + " passive_effects[" + str(i) + "] should be GameplayEffect")
+		
+		# Check granted_abilities are valid AbilityGrant with valid ability
+		for i in range(equipment.granted_abilities.size()):
+			var grant = equipment.granted_abilities[i]
+			assert_not_null(grant, path + " granted_abilities[" + str(i) + "] should not be null")
+			if grant:
+				assert_true(grant is AbilityGrant, path + " granted_abilities[" + str(i) + "] should be AbilityGrant")
+				assert_not_null(grant.ability, path + " granted_abilities[" + str(i) + "].ability should not be null")
+				if grant.ability:
+					assert_true(grant.ability is GameplayAbility, path + " ability should be GameplayAbility")
+					assert_ne(grant.input_tag, "", path + " should have input_tag")
+</file>
+
+<file path="godot-coop/test/unit-test/test_data_potion.gd">
+extends GutTest
+## Tests for PotionData Resource structure and data integrity
+
+
+func test_potion_default_values() -> void:
+	# Verify default values are correct for a new PotionData
+	var potion = PotionData.new()
+	
+	# Physics & Visuals
+	assert_null(potion.projectile_scene, "Default projectile_scene should be null")
+	assert_eq(potion.throw_force, 15.0, "Default throw_force should be 15.0")
+	
+	# Explosion Settings
+	assert_eq(potion.blast_radius, 3.0, "Default blast_radius should be 3.0")
+	assert_eq(potion.area_effect_duration, 0.5, "Default area_effect_duration should be 0.5")
+	
+	# Gameplay Effects
+	assert_true(potion.effects is Array, "effects should be an Array")
+	assert_eq(potion.effects.size(), 0, "Default effects should be empty")
+	
+	# Inventory Item Settings
+	assert_true(potion.consume_on_use, "Default consume_on_use should be true")
+	
+	# Drink Properties
+	assert_eq(potion.drink_animation_name, "drink_potion", "Default drink_animation_name should be 'drink_potion'")
+	assert_true(potion.consumed_effects is Array, "consumed_effects should be an Array")
+	assert_eq(potion.consumed_effects.size(), 0, "Default consumed_effects should be empty")
+	assert_eq(potion.drink_duration, 1.5, "Default drink_duration should be 1.5")
+
+
+func test_potion_effects_arrays() -> void:
+	# Verify effects and consumed_effects accept GameplayEffect
+	var potion = PotionData.new()
+	
+	# Create throw/splash effects (applied to targets hit)
+	var fire_effect = GameplayEffect.new()
+	fire_effect.effect_name = "Fire Damage"
+	fire_effect.mode = GameplayEffect.ApplicationMode.PERIODIC
+	fire_effect.target_attribute = "health"
+	fire_effect.operation = GameplayEffect.ModifierOp.SUBTRACT
+	fire_effect.value = 5.0
+	fire_effect.duration = 3.0
+	fire_effect.tick_rate = 1.0
+	fire_effect.granted_tags = PackedStringArray(["state.burning"])
+	
+	var burn_tag = GameplayEffect.new()
+	burn_tag.effect_name = "Burning Status"
+	burn_tag.mode = GameplayEffect.ApplicationMode.DURATION
+	burn_tag.target_attribute = "none"
+	burn_tag.duration = 5.0
+	burn_tag.granted_tags = PackedStringArray(["state.fire", "debuff.dot"])
+	
+	potion.effects.append(fire_effect)
+	potion.effects.append(burn_tag)
+	assert_eq(potion.effects.size(), 2, "Should have 2 throw effects")
+	assert_eq(potion.effects[0].effect_name, "Fire Damage", "First effect should be Fire Damage")
+	assert_eq(potion.effects[1].effect_name, "Burning Status", "Second effect should be Burning Status")
+	
+	# Create drink/consumed effects (applied to self)
+	var heal_effect = GameplayEffect.new()
+	heal_effect.effect_name = "Heal"
+	heal_effect.mode = GameplayEffect.ApplicationMode.INSTANT
+	heal_effect.target_attribute = "health"
+	heal_effect.operation = GameplayEffect.ModifierOp.ADD
+	heal_effect.value = 50.0
+	
+	potion.consumed_effects.append(heal_effect)
+	assert_eq(potion.consumed_effects.size(), 1, "Should have 1 consumed effect")
+	assert_eq(potion.consumed_effects[0].effect_name, "Heal", "Consumed effect should be Heal")
+
+
+func test_potion_physics_properties() -> void:
+	# Verify physics properties are valid positive values
+	var potion = PotionData.new()
+	
+	# Test default values are positive
+	assert_gt(potion.throw_force, 0.0, "throw_force should be positive")
+	assert_gt(potion.blast_radius, 0.0, "blast_radius should be positive")
+	assert_gt(potion.area_effect_duration, 0.0, "area_effect_duration should be positive")
+	
+	# Test custom values can be set
+	potion.throw_force = 25.0
+	assert_eq(potion.throw_force, 25.0, "Should accept custom throw_force")
+	
+	potion.blast_radius = 5.0
+	assert_eq(potion.blast_radius, 5.0, "Should accept custom blast_radius")
+	
+	potion.area_effect_duration = 2.0
+	assert_eq(potion.area_effect_duration, 2.0, "Should accept custom area_effect_duration")
+
+
+func test_potion_drink_properties() -> void:
+	# Verify drink properties are valid
+	var potion = PotionData.new()
+	
+	# Test default drink_duration is positive
+	assert_gt(potion.drink_duration, 0.0, "drink_duration should be positive")
+	
+	# Test custom drink duration
+	potion.drink_duration = 3.0
+	assert_eq(potion.drink_duration, 3.0, "Should accept custom drink_duration")
+	
+	# Test drink animation name
+	potion.drink_animation_name = "custom_drink"
+	assert_eq(potion.drink_animation_name, "custom_drink", "Should accept custom drink_animation_name")
+	
+	# Test consume_on_use can be toggled
+	potion.consume_on_use = false
+	assert_false(potion.consume_on_use, "consume_on_use should be false")
+	
+	potion.consume_on_use = true
+	assert_true(potion.consume_on_use, "consume_on_use should be true")
+</file>
+
+<file path="godot-coop/test/unit-test/test_effect_manager.gd">
+extends GutTest
+## Tests for EffectManager - handles GameplayEffects (instant, duration, periodic)
+
+var _effect_manager: EffectManager
+var _attribute_set: GASAttributeSet
+var _tag_container: TagContainer
+
+
+func before_each() -> void:
+	_tag_container = TagContainer.new()
+	_attribute_set = GASAttributeSet.new()
+	_effect_manager = EffectManager.new()
+	
+	add_child(_tag_container)
+	add_child(_attribute_set)
+	add_child(_effect_manager)
+	
+	# Initialize the effect manager's modifiers dictionary
+	_effect_manager._ready()
+	# Setup connections between components
+	_effect_manager.setup(_attribute_set, _tag_container)
+
+
+func after_each() -> void:
+	_effect_manager.queue_free()
+	_attribute_set.queue_free()
+	_tag_container.queue_free()
+
+
+# Helper to create a GameplayEffect for testing
+func _create_effect(effect_name: String, mode: int, target_attr: String = "health", 
+		operation: int = GameplayEffect.ModifierOp.SUBTRACT, value: float = 10.0,
+		duration: float = 5.0, tick_rate: float = 1.0, tags: PackedStringArray = []) -> GameplayEffect:
+	var effect = GameplayEffect.new()
+	effect.effect_name = effect_name
+	effect.mode = mode
+	effect.target_attribute = target_attr
+	effect.operation = operation
+	effect.value = value
+	effect.duration = duration
+	effect.tick_rate = tick_rate
+	effect.granted_tags = tags
+	return effect
+
+
+func test_apply_instant_effect() -> void:
+	# INSTANT effect should immediately modify health
+	var initial_health = _attribute_set.health
+	
+	var damage_effect = _create_effect(
+		"Damage",
+		GameplayEffect.ApplicationMode.INSTANT,
+		"health",
+		GameplayEffect.ModifierOp.SUBTRACT,
+		25.0
+	)
+	
+	var effects: Array[GameplayEffect] = [damage_effect]
+	_effect_manager._apply_effects_logic(effects)
+	
+	assert_eq(_attribute_set.health, initial_health - 25.0, "Health should be reduced by 25")
+
+
+func test_apply_duration_effect() -> void:
+	# DURATION effect should modify stat while active
+	var base_speed = _attribute_set.base_speed
+	
+	var speed_buff = _create_effect(
+		"Speed Boost",
+		GameplayEffect.ApplicationMode.DURATION,
+		"speed",
+		GameplayEffect.ModifierOp.ADD,
+		5.0,
+		10.0  # 10 second duration
+	)
+	
+	var effects: Array[GameplayEffect] = [speed_buff]
+	var handles = _effect_manager._apply_effects_logic(effects)
+	
+	assert_eq(handles.size(), 1, "Should return one handle")
+	assert_eq(_attribute_set.speed, base_speed + 5.0, "Speed should be increased by 5")
+	
+	# Remove the effect
+	_effect_manager._remove_effect_logic(handles[0])
+	assert_eq(_attribute_set.speed, base_speed, "Speed should return to base after removal")
+
+
+func test_apply_periodic_effect() -> void:
+	# PERIODIC effect should apply damage each tick
+	var initial_health = _attribute_set.health
+	
+	var dot_effect = _create_effect(
+		"Poison",
+		GameplayEffect.ApplicationMode.PERIODIC,
+		"health",
+		GameplayEffect.ModifierOp.SUBTRACT,
+		5.0,
+		3.0,  # 3 second duration
+		1.0   # tick every 1 second
+	)
+	
+	var effects: Array[GameplayEffect] = [dot_effect]
+	_effect_manager._apply_effects_logic(effects)
+	
+	# Simulate 1 second passing - should trigger one tick
+	_effect_manager._process_logic(1.0)
+	assert_eq(_attribute_set.health, initial_health - 5.0, "Health should be reduced by one tick")
+	
+	# Simulate another second
+	_effect_manager._process_logic(1.0)
+	assert_eq(_attribute_set.health, initial_health - 10.0, "Health should be reduced by two ticks")
+
+
+func test_remove_effect() -> void:
+	# Removing an effect should clean up modifiers and tags
+	var speed_buff = _create_effect(
+		"Speed Boost",
+		GameplayEffect.ApplicationMode.DURATION,
+		"speed",
+		GameplayEffect.ModifierOp.ADD,
+		10.0,
+		60.0,
+		1.0,
+		PackedStringArray(["buff.speed"])
+	)
+	
+	var effects: Array[GameplayEffect] = [speed_buff]
+	var handles = _effect_manager._apply_effects_logic(effects)
+	
+	assert_true(_tag_container.has_tag(&"buff.speed"), "Tag should be granted")
+	assert_eq(_effect_manager.active_effect_registry.size(), 1, "Effect should be registered")
+	
+	_effect_manager._remove_effect_logic(handles[0])
+	
+	assert_false(_tag_container.has_tag(&"buff.speed"), "Tag should be removed")
+	assert_eq(_effect_manager.active_effect_registry.size(), 0, "Effect should be unregistered")
+
+
+func test_effect_grants_tags() -> void:
+	# Effects should grant their tags when applied
+	var tag_effect = _create_effect(
+		"Burning",
+		GameplayEffect.ApplicationMode.DURATION,
+		"none",  # Tag-only effect
+		GameplayEffect.ModifierOp.ADD,
+		0.0,
+		5.0,
+		1.0,
+		PackedStringArray(["state.burning", "debuff.fire"])
+	)
+	
+	var effects: Array[GameplayEffect] = [tag_effect]
+	_effect_manager._apply_effects_logic(effects)
+	
+	assert_true(_tag_container.has_tag(&"state.burning"), "Should have burning tag")
+	assert_true(_tag_container.has_tag(&"debuff.fire"), "Should have fire debuff tag")
+
+
+func test_compute_stat_modifiers() -> void:
+	# Test all modifier operations: ADD, SUBTRACT, MULTIPLY, DIVIDE
+	var base_speed = _attribute_set.base_speed  # 5.0
+	
+	# ADD modifier
+	var add_effect = _create_effect("Add", GameplayEffect.ApplicationMode.INFINITE, "speed", 
+		GameplayEffect.ModifierOp.ADD, 3.0)
+	var effects: Array[GameplayEffect] = [add_effect]
+	var handles = _effect_manager._apply_effects_logic(effects)
+	assert_eq(_attribute_set.speed, base_speed + 3.0, "ADD should increase speed")
+	_effect_manager._remove_effect_logic(handles[0])
+	
+	# MULTIPLY modifier
+	var mult_effect = _create_effect("Multiply", GameplayEffect.ApplicationMode.INFINITE, "speed",
+		GameplayEffect.ModifierOp.MULTIPLY, 2.0)
+	effects = [mult_effect]
+	handles = _effect_manager._apply_effects_logic(effects)
+	assert_eq(_attribute_set.speed, base_speed * 2.0, "MULTIPLY should double speed")
+	_effect_manager._remove_effect_logic(handles[0])
+	
+	# DIVIDE modifier
+	var div_effect = _create_effect("Divide", GameplayEffect.ApplicationMode.INFINITE, "speed",
+		GameplayEffect.ModifierOp.DIVIDE, 2.0)
+	effects = [div_effect]
+	handles = _effect_manager._apply_effects_logic(effects)
+	assert_eq(_attribute_set.speed, base_speed / 2.0, "DIVIDE should halve speed")
+	_effect_manager._remove_effect_logic(handles[0])
+
+
+func test_duration_effect_expires() -> void:
+	# DURATION effects should expire after their duration
+	var buff = _create_effect(
+		"Temp Buff",
+		GameplayEffect.ApplicationMode.DURATION,
+		"speed",
+		GameplayEffect.ModifierOp.ADD,
+		10.0,
+		2.0  # 2 second duration
+	)
+	
+	var effects: Array[GameplayEffect] = [buff]
+	_effect_manager._apply_effects_logic(effects)
+	
+	var base_speed = _attribute_set.base_speed
+	assert_eq(_attribute_set.speed, base_speed + 10.0, "Speed should be buffed initially")
+	
+	# Simulate time passing (not enough to expire)
+	_effect_manager._process_logic(1.0)
+	assert_eq(_attribute_set.speed, base_speed + 10.0, "Speed should still be buffed")
+	
+	# Simulate more time (effect should expire)
+	_effect_manager._process_logic(1.5)
+	assert_eq(_attribute_set.speed, base_speed, "Speed should return to base after expiration")
+	assert_eq(_effect_manager.active_effect_registry.size(), 0, "Effect should be removed from registry")
+</file>
+
+<file path="godot-coop/test/unit-test/test_tag_container.gd">
+extends GutTest
+## Tests for TagContainer - the GameplayTag system with reference counting
+
+var _tag_container: TagContainer
+
+
+func before_each() -> void:
+	_tag_container = TagContainer.new()
+	add_child(_tag_container)
+
+
+func after_each() -> void:
+	_tag_container.queue_free()
+
+
+func test_add_tag() -> void:
+	# Adding a tag should register it in active_tags
+	_tag_container._add_tag_logic(&"state.burning")
+	
+	assert_true(_tag_container.active_tags.has(&"state.burning"), "Tag should be in active_tags")
+	assert_eq(_tag_container.active_tags[&"state.burning"], 1, "Tag count should be 1")
+
+
+func test_remove_tag() -> void:
+	# Removing a tag should decrement and eventually remove it
+	_tag_container._add_tag_logic(&"state.burning")
+	_tag_container._remove_tag_logic(&"state.burning")
+	
+	assert_false(_tag_container.active_tags.has(&"state.burning"), "Tag should be removed from active_tags")
+
+
+func test_tag_reference_counting() -> void:
+	# Multiple adds require multiple removes (stacking)
+	_tag_container._add_tag_logic(&"buff.speed")
+	_tag_container._add_tag_logic(&"buff.speed")
+	_tag_container._add_tag_logic(&"buff.speed")
+	
+	assert_eq(_tag_container.active_tags[&"buff.speed"], 3, "Tag count should be 3 after 3 adds")
+	
+	_tag_container._remove_tag_logic(&"buff.speed")
+	assert_eq(_tag_container.active_tags[&"buff.speed"], 2, "Tag count should be 2 after 1 remove")
+	assert_true(_tag_container.has_tag(&"buff.speed"), "Tag should still be active")
+	
+	_tag_container._remove_tag_logic(&"buff.speed")
+	_tag_container._remove_tag_logic(&"buff.speed")
+	assert_false(_tag_container.has_tag(&"buff.speed"), "Tag should be gone after all removes")
+
+
+func test_has_tag() -> void:
+	# has_tag should return correct boolean
+	assert_false(_tag_container.has_tag(&"state.stunned"), "Should not have tag initially")
+	
+	_tag_container._add_tag_logic(&"state.stunned")
+	assert_true(_tag_container.has_tag(&"state.stunned"), "Should have tag after adding")
+	
+	_tag_container._remove_tag_logic(&"state.stunned")
+	assert_false(_tag_container.has_tag(&"state.stunned"), "Should not have tag after removing")
+
+
+func test_tag_signals() -> void:
+	# Signals should emit on first add and last remove
+	watch_signals(_tag_container)
+	
+	# First add should emit tag_added
+	_tag_container._add_tag_logic(&"effect.poison")
+	assert_signal_emitted(_tag_container, "tag_added", "tag_added should emit on first add")
+	
+	# Second add should NOT emit again (tag already exists, just increments count)
+	_tag_container._add_tag_logic(&"effect.poison")
+	assert_signal_emit_count(_tag_container, "tag_added", 1, "tag_added should only emit once for same tag")
+	
+	# First remove should NOT emit (tag still has count > 0)
+	_tag_container._remove_tag_logic(&"effect.poison")
+	assert_signal_not_emitted(_tag_container, "tag_removed", "tag_removed should NOT emit while count > 0")
+	
+	# Last remove should emit tag_removed
+	_tag_container._remove_tag_logic(&"effect.poison")
+	assert_signal_emitted(_tag_container, "tag_removed", "tag_removed should emit when count reaches 0")
 </file>
 
 <file path="godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd">
@@ -4617,6 +5381,165 @@ func _get_gp_motion_event_as_icon(event: InputEventJoypadMotion, icon_db: InputI
 	return icon
 </file>
 
+<file path="godot-coop/characters/common_components/gas/ability_manager.gd">
+class_name AbilityManager
+extends Node
+
+const INPUT_PRIMARY = "ability.primary"
+const INPUT_SECONDARY = "ability.secondary"
+const INPUT_RELOAD = "ability.reload"
+const INPUT_JUMP = "ability.jump"
+
+class AbilitySpec:
+	var handle: AbilitySpecHandle
+	var ability: GameplayAbility
+	var input_tag: String
+	var is_active: bool = false
+	var source_inventory: Inventory = null
+	var source_slot_index: int = -1
+	var active_effect_handles: Array[EffectSpecHandle] = []
+	
+	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String, p_inv: Inventory, p_slot: int):
+		handle = p_handle
+		ability = p_ability
+		input_tag = p_input
+		source_inventory = p_inv
+		source_slot_index = p_slot
+
+@export var default_abilities: Array[AbilityGrant]
+
+var _effect_manager: EffectManager
+var _tag_container: TagContainer
+var _cast_manager: CastManager
+var _actor: Node
+
+var granted_abilities: Dictionary = {}
+
+
+func _ready() -> void:
+	if multiplayer.is_server():
+		_ready_logic()
+
+
+## Testable ready logic - call directly in tests
+func _ready_logic() -> void:
+	for grant in default_abilities:
+		if grant and grant.ability:
+			_grant_ability_logic(grant.ability, grant.input_tag)
+
+
+func setup(actor: Node, effect_manager: EffectManager, tag_container: TagContainer, cast_manager: CastManager) -> void:
+	_actor = actor
+	_effect_manager = effect_manager
+	_tag_container = tag_container
+	_cast_manager = cast_manager
+
+
+func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
+	if not multiplayer.is_server(): return null
+	return _grant_ability_logic(ability_res, input_tag, source_inventory, source_slot_index)
+
+
+## Testable grant ability logic - call directly in tests
+func _grant_ability_logic(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
+	if ability_res == null: return null
+	
+	var handle = AbilitySpecHandle.new(ability_res.ability_name)
+	var spec = AbilitySpec.new(handle, ability_res, input_tag, source_inventory, source_slot_index)
+	granted_abilities[handle] = spec
+	
+	print("[AbilityManager] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
+	
+	return handle
+
+
+func clear_ability(handle: AbilitySpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	_clear_ability_logic(handle)
+
+
+## Testable clear ability logic - call directly in tests
+func _clear_ability_logic(handle: AbilitySpecHandle) -> void:
+	if not granted_abilities.has(handle):
+		print("[AbilityManager] Warning: Ability not found: ", handle)
+		return
+		
+	var spec = granted_abilities[handle]
+	
+	if spec.is_active:
+		spec.ability.end_ability(_actor, handle)
+	
+	granted_abilities.erase(handle)
+	print("[AbilityManager] Cleared Ability: ", handle)
+
+
+func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
+	if granted_abilities.has(handle):
+		var spec = granted_abilities[handle]
+		return {
+			"inventory": spec.source_inventory,
+			"slot": spec.source_slot_index
+		}
+	return {}
+
+
+func can_activate_ability(ability: GameplayAbility) -> bool:
+	for tag in ability.activation_required_tags:
+		if not _tag_container.has_tag(tag):
+			return false
+			
+	for tag in ability.activation_blocked_tags:
+		if _tag_container.has_tag(tag):
+			return false
+			
+	return true
+
+
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
+	if not multiplayer.is_server(): return
+	_ability_input_pressed_logic(input_tag, activation_data)
+
+
+## Testable ability input pressed logic - call directly in tests
+func _ability_input_pressed_logic(input_tag: String, activation_data: Dictionary = {}) -> void:
+	for handle in granted_abilities:
+		var spec = granted_abilities[handle]
+		if spec.input_tag == input_tag:
+			if can_activate_ability(spec.ability):
+				spec.ability.activate(_actor, handle, activation_data)
+				spec.is_active = true
+				if spec.ability.ongoing_effects.size() > 0:
+					var handles = _effect_manager._apply_effects_logic(spec.ability.ongoing_effects)
+					spec.active_effect_handles.append_array(handles)
+			else:
+				print("[AbilityManager] Ability blocked: ", spec.ability.ability_name)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_released(input_tag: String) -> void:
+	if not multiplayer.is_server(): return
+	_ability_input_released_logic(input_tag)
+
+
+## Testable ability input released logic - call directly in tests
+func _ability_input_released_logic(input_tag: String) -> void:
+	for handle in granted_abilities:
+		var spec: AbilitySpec = granted_abilities[handle]
+		
+		if spec.input_tag == input_tag:
+			spec.is_active = false
+			
+			for effect_handle in spec.active_effect_handles:
+				_effect_manager._remove_effect_logic(effect_handle)
+			spec.active_effect_handles.clear()
+			
+			if _cast_manager.has_active_cast(handle):
+				_cast_manager._cancel_cast_logic(handle)
+			
+			spec.ability.input_released(_actor, handle)
+</file>
+
 <file path="godot-coop/characters/common_components/gas/ability_system_component.gd">
 class_name AbilitySystemComponent
 extends Node
@@ -4722,6 +5645,179 @@ func server_ability_input_released(input_tag: String) -> void:
 	ability_manager.server_ability_input_released.rpc(input_tag)
 </file>
 
+<file path="godot-coop/characters/common_components/gas/attribute_set.gd">
+class_name GASAttributeSet
+extends Node
+
+signal health_changed(new_value: float, max_value: float)
+signal died()
+
+const VALID_ATTRIBUTES: PackedStringArray = ["health", "max_health", "speed", "stamina", "mana", "swap_time"]
+
+@export_group("Base Stats")
+@export var base_max_health: float = 100.0
+@export var base_speed: float = 5.0
+@export var base_stamina: float = 50.0
+@export var base_swap_time: float = 0.5  ## Time in seconds to swap items between hand and belt
+
+var is_strafing: bool = false
+
+var _health: float
+var health: float:
+	set(value):
+		var current_max = get_max_health()
+		var old_health = _health
+		_health = clamp(value, 0.0, current_max)
+		
+		if _health != old_health:
+			print("[GASAttributeSet] HEALTH UPDATE: ", _health, " / ", current_max)
+			health_changed.emit(_health, current_max)
+			if _health == 0.0:
+				print("[GASAttributeSet] CHARACTER DIED!")
+				died.emit()
+	get:
+		return _health
+
+var speed: float:
+	get:
+		return get_computed_stat("speed")
+
+var swap_time: float:
+	get:
+		return get_computed_stat("swap_time")
+
+var _effect_manager: EffectManager
+
+
+func _ready() -> void:
+	_health = base_max_health
+
+
+func set_effect_manager(effect_manager: EffectManager) -> void:
+	_effect_manager = effect_manager
+
+
+func get_max_health() -> float:
+	return get_computed_stat("max_health")
+
+
+func get_computed_stat(stat_name: String) -> float:
+	if stat_name == "health": 
+		return _health
+	
+	var base_val = get("base_" + stat_name)
+	if base_val == null: 
+		return 0.0
+	
+	if not _effect_manager:
+		return base_val
+	
+	return _effect_manager.compute_stat_with_modifiers(stat_name, base_val)
+
+
+func apply_instant_change(attribute: String, value: float, operation: int) -> void:
+	var final_value = value
+	if operation == GameplayEffect.ModifierOp.SUBTRACT:
+		final_value = -value
+	
+	if attribute == "health":
+		self.health += final_value
+	else:
+		printerr("[GASAttributeSet] WARNING: INSTANT effects are usually for 'health' or 'mana'. Check attribute: ", attribute)
+
+
+func on_max_health_changed() -> void:
+	self.health = self.health
+</file>
+
+<file path="godot-coop/characters/common_components/gas/cast_manager.gd">
+class_name CastManager
+extends Node
+
+class ActiveCast:
+	var handle: AbilitySpecHandle
+	var duration: float
+	var elapsed: float = 0.0
+	var on_complete: Callable
+	var on_cancel: Callable
+	
+	func _init(p_handle: AbilitySpecHandle, p_duration: float, p_on_complete: Callable, p_on_cancel: Callable = Callable()):
+		handle = p_handle
+		duration = p_duration
+		on_complete = p_on_complete
+		on_cancel = p_on_cancel
+
+var active_casts: Dictionary = {}
+
+
+func _process(delta: float) -> void:
+	if not multiplayer.is_server(): return
+	_process_logic(delta)
+
+
+## Testable process logic - call directly in tests
+func _process_logic(delta: float) -> void:
+	_process_active_casts(delta)
+
+
+func start_cast(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
+	if not multiplayer.is_server(): return
+	_start_cast_logic(handle, duration, on_complete, on_cancel)
+
+
+## Testable start cast logic - call directly in tests
+func _start_cast_logic(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
+	if active_casts.has(handle):
+		GlobalLogger.log("[CastManager] Warning: Cast already in progress for: ", handle)
+		return
+	
+	var cast = ActiveCast.new(handle, duration, on_complete, on_cancel)
+	active_casts[handle] = cast
+	GlobalLogger.log("[CastManager] Started cast for ", handle, " | Duration: ", duration, "s")
+
+
+func cancel_cast(handle: AbilitySpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	_cancel_cast_logic(handle)
+
+
+## Testable cancel cast logic - call directly in tests
+func _cancel_cast_logic(handle: AbilitySpecHandle) -> void:
+	if not active_casts.has(handle): return
+	
+	var cast: ActiveCast = active_casts[handle]
+	GlobalLogger.log("[CastManager] Cast CANCELLED for ", handle)
+	
+	if cast.on_cancel.is_valid():
+		cast.on_cancel.call()
+	
+	active_casts.erase(handle)
+
+
+func has_active_cast(handle: AbilitySpecHandle) -> bool:
+	return active_casts.has(handle)
+
+
+func _process_active_casts(delta: float) -> void:
+	var completed_casts: Array[AbilitySpecHandle] = []
+	
+	for handle in active_casts:
+		var cast: ActiveCast = active_casts[handle]
+		cast.elapsed += delta
+		
+		if cast.elapsed >= cast.duration:
+			completed_casts.append(handle)
+	
+	for handle in completed_casts:
+		var cast: ActiveCast = active_casts[handle]
+		GlobalLogger.log("[CastManager] Cast COMPLETED for ", handle)
+		
+		if cast.on_complete.is_valid():
+			cast.on_complete.call()
+		
+		active_casts.erase(handle)
+</file>
+
 <file path="godot-coop/characters/common_components/tag_reaction_component.gd">
 class_name TagReactionComponent
 extends Node
@@ -4791,155 +5887,6 @@ func deactivate_reaction() -> void:
 	var mat = mesh_instance_3d.get_active_material(0)
 	if mat is StandardMaterial3D:
 		mat.albedo_texture = texture_normal
-</file>
-
-<file path="godot-coop/interactables/harvest_nodes/harvestable.gd">
-class_name Harvestable
-extends InteractableBase
-
-@onready var loot_generator: LootGenerator = $LootGenerator
-
-# --- DATA ---
-@export var data: HarvestableData # Drag your .tres here!
-
-# --- STATE (Server Side) ---
-var current_harvester: Node = null # Who is harvesting me
-var harvest_timer: float = 0.0
-var is_harvesting: bool = false
-var is_looted: bool = false
-
-# Max distance configuration to cancel if they move away
-const MAX_HARVEST_DISTANCE_SQR = 3.0 * 3.0 
-
-func _ready():
-	# Initial configuration from Data
-	if data and data.loot_table_id != "":
-		loot_generator.loot_id = data.loot_table_id
-	
-	interaction_text = "Harvest"
-	set_process(false) # Disable process to save CPU
-
-func _on_interacted(character: Node):
-	# Initial validations
-	if is_looted or is_harvesting: return
-	if not data: 
-		printerr("Missing HarvestableData in ", name)
-		return
-
-	# START HARVESTING (Server)
-	current_harvester = character
-	is_harvesting = true
-	harvest_timer = 0.0
-	
-	# Connect to player's damage signal to cancel if they get hit
-	if current_harvester.has_signal("damaged"):
-		current_harvester.damaged.connect(_on_harvester_damaged)
-	
-	# Activate the check loop
-	set_process(true)
-	
-	# RPC: Notify client to show progress bar UI
-	_start_harvest_visuals_rpc.rpc(data.harvest_duration)
-
-func _process(delta: float):
-	if not multiplayer.is_server(): return
-	
-	# 1. CANCELLATION CHECK
-	if not is_instance_valid(current_harvester):
-		_cancel_harvest()
-		return
-		
-	# A. Have they moved? (Check velocity)
-	# We assume character has 'velocity' property (CharacterBase has it)
-	if current_harvester.velocity.length_squared() > 0.1:
-		_cancel_harvest()
-		return
-		
-	# B. Have they moved too far away? (In case they get pushed or teleport)
-	if global_position.distance_squared_to(current_harvester.global_position) > MAX_HARVEST_DISTANCE_SQR:
-		_cancel_harvest()
-		return
-
-	# 2. PROGRESS
-	harvest_timer += delta
-	
-	if harvest_timer >= data.harvest_duration:
-		_finish_harvest()
-
-# Callback if player receives damage
-func _on_harvester_damaged():
-	_cancel_harvest()
-
-func _cancel_harvest():
-	if not is_harvesting: return
-	
-	is_harvesting = false
-	set_process(false)
-	
-	# Disconnect damage signal
-	if is_instance_valid(current_harvester) and current_harvester.has_signal("damaged"):
-		current_harvester.damaged.disconnect(_on_harvester_damaged)
-	
-	current_harvester = null
-	
-	# RPC: Notify client to hide bar/cancel animation
-	_cancel_harvest_visuals_rpc.rpc()
-
-func _finish_harvest():
-	# Detener proceso
-	is_harvesting = false
-	is_looted = true # Marcar como looteado
-	set_process(false)
-	
-	if is_instance_valid(current_harvester) and current_harvester.has_signal("damaged"):
-		current_harvester.damaged.disconnect(_on_harvester_damaged)
-	
-	# --- GENERAR LOOT (Igual que antes) ---
-	var char_inv = current_harvester.get_node("CharacterInventorySystem")
-	if char_inv:
-		loot_generator.target_inventory_path = char_inv.main_inventory.get_path()
-		loot_generator.add_loot_to_inventory()
-	
-	# RPCs Finales
-	_success_harvest_visuals_rpc.rpc()
-	
-	current_harvester = null
-	
-	# Destruir/Respawn
-	if data.respawn_time > 0:
-		get_tree().create_timer(data.respawn_time).timeout.connect(_respawn)
-	elif data.destroy_on_harvest:
-		get_tree().create_timer(0.5).timeout.connect(queue_free)
-
-func _respawn():
-	is_looted = false
-	_respawn_visuals_rpc.rpc()
-
-# --- RPCs VISUALES (CLIENTE) ---
-
-@rpc("call_local")
-func _start_harvest_visuals_rpc(duration: float):
-	# THIS IS WHERE YOU WOULD CONNECT TO YOUR UI
-	# Example: GlobalUI.show_progress_bar(duration, "Harvesting...")
-	print("Client: Starting to harvest... (", duration, "s)")
-
-@rpc("call_local")
-func _cancel_harvest_visuals_rpc():
-	# GlobalUI.hide_progress_bar()
-	print("Client: Harvest cancelled.")
-
-@rpc("call_local")
-func _success_harvest_visuals_rpc():
-	# GlobalUI.hide_progress_bar()
-	# FX success sound
-	visible = false
-	$CollisionShape3D.disabled = true
-	print("Client: Harvest completed!")
-
-@rpc("call_local")
-func _respawn_visuals_rpc():
-	visible = true
-	$CollisionShape3D.disabled = false
 </file>
 
 <file path="godot-coop/interactables/items/item_base.gd">
@@ -5372,227 +6319,157 @@ func _physics_process(_delta : float):
 		interactor.try_interact()
 </file>
 
-<file path="godot-coop/characters/common_components/gas/effect_manager.gd">
-class_name EffectManager
-extends Node
+<file path="godot-coop/interactables/harvest_nodes/harvestable.gd">
+class_name Harvestable
+extends InteractableBase
 
-class ActiveEffect:
-	var handle: EffectSpecHandle
-	var source_effect: GameplayEffect
-	var time_left: float
-	var tick_timer: float
+@onready var loot_generator: LootGenerator = $LootGenerator
+
+# --- DATA ---
+@export var data: HarvestableData # Drag your .tres here!
+
+# --- STATE (Server Side) ---
+var current_harvester: Node = null # Who is harvesting me
+var harvest_timer: float = 0.0
+var is_harvesting: bool = false
+var is_looted: bool = false
+
+# Max distance configuration to cancel if they move away
+const MAX_HARVEST_DISTANCE_SQR = 3.0 * 3.0 
+
+func _ready():
+	# Initial configuration from Data
+	if data and data.loot_table_id != "":
+		loot_generator.loot_id = data.loot_table_id
 	
-	func _init(p_handle: EffectSpecHandle, effect: GameplayEffect):
-		handle = p_handle
-		source_effect = effect
-		time_left = effect.duration
-		tick_timer = 0.0
+	interaction_text = "Harvest"
+	set_process(false) # Disable process to save CPU
 
-var _attribute_set: GASAttributeSet
-var _tag_container: TagContainer
-
-var active_effect_registry: Dictionary = {}
-var active_modifiers: Dictionary = {}
-var active_periodic_effects: Array[ActiveEffect] = []
-## Duration effects that only apply tags (no attribute modification)
-var active_duration_tag_effects: Array[ActiveEffect] = []
-
-
-func _ready() -> void:
-	for attr in GASAttributeSet.VALID_ATTRIBUTES:
-		active_modifiers[attr] = []
-
-
-func setup(attribute_set: GASAttributeSet, tag_container: TagContainer) -> void:
-	_attribute_set = attribute_set
-	_tag_container = tag_container
-	_attribute_set.set_effect_manager(self)
-
-
-func _process(delta: float) -> void:
-	if not multiplayer.is_server(): return
-	
-	_process_periodic_effects(delta)
-	_process_duration_modifiers(delta)
-	_process_duration_tag_effects(delta)
-
-
-## Returns true if the effect has a valid target attribute (not "none" or empty)
-func _has_valid_attribute(effect: GameplayEffect) -> bool:
-	return effect.target_attribute != "" and effect.target_attribute != "none"
-
-
-func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
-	if not multiplayer.is_server(): return []
-	
-	var created_handles: Array[EffectSpecHandle] = []
-	
-	for effect in effects:
-		var has_attribute = _has_valid_attribute(effect)
-		
-		match effect.mode:
-			GameplayEffect.ApplicationMode.INSTANT:
-				GlobalLogger.log("[EffectManager] Applying INSTANT effect: '", effect.effect_name, "'")
-				if has_attribute:
-					_apply_instant_effect(effect)
-				# For INSTANT tag-only effects, just apply tags (they stay until manually removed)
-				for tag in effect.granted_tags:
-					_tag_container.add_tag(tag)
-				
-			GameplayEffect.ApplicationMode.PERIODIC:
-				var handle = _create_active_effect(effect)
-				GlobalLogger.log("[EffectManager] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
-				if has_attribute:
-					active_periodic_effects.append(active_effect_registry[handle])
-				created_handles.append(handle)
-				
-			GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE:
-				var handle = _create_active_effect(effect)
-				GlobalLogger.log("[EffectManager] Added DURATION effect: '", effect.effect_name, "' Handle: ", handle)
-				if has_attribute:
-					active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
-					_on_modifier_changed(effect.target_attribute)
-				else:
-					# Tag-only duration effect - track separately for expiration
-					active_duration_tag_effects.append(active_effect_registry[handle])
-				created_handles.append(handle)
-	
-	return created_handles
-
-
-func remove_effect(handle: EffectSpecHandle) -> void:
-	if not multiplayer.is_server(): return
-	
-	if not active_effect_registry.has(handle):
-		GlobalLogger.log("[EffectManager] Warning: Effect not found: ", handle)
+func _on_interacted(character: Node):
+	# Initial validations
+	if is_looted or is_harvesting: return
+	if not data: 
+		printerr("Missing HarvestableData in ", name)
 		return
+
+	# START HARVESTING (Server)
+	current_harvester = character
+	is_harvesting = true
+	harvest_timer = 0.0
 	
-	var active_effect = active_effect_registry[handle]
-	var source_data = active_effect.source_effect
+	# Connect to player's damage signal to cancel if they get hit
+	if current_harvester.has_signal("damaged"):
+		current_harvester.damaged.connect(_on_harvester_damaged)
 	
-	for tag in source_data.granted_tags:
-		_tag_container.remove_tag(tag)
+	# Activate the check loop
+	set_process(true)
 	
-	GlobalLogger.log("[EffectManager] Removing effect: ", handle)
-	
-	var has_attribute = _has_valid_attribute(source_data)
-	
-	match source_data.mode:
-		GameplayEffect.ApplicationMode.PERIODIC:
-			active_periodic_effects.erase(active_effect)
-			
-		GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE:
-			if has_attribute:
-				var attr_name = source_data.target_attribute
-				if active_modifiers.has(attr_name):
-					active_modifiers[attr_name].erase(active_effect)
-					_on_modifier_changed(attr_name)
-			else:
-				# Tag-only duration effect
-				active_duration_tag_effects.erase(active_effect)
-	
-	active_effect_registry.erase(handle)
+	# RPC: Notify client to show progress bar UI
+	_start_harvest_visuals_rpc.rpc(data.harvest_duration)
+
+func _process(delta: float):
+	if not multiplayer.is_server(): return
+	_process_logic(delta)
 
 
-func compute_stat_with_modifiers(stat_name: String, base_value: float) -> float:
-	var final_value = base_value
-	var multiplier = 1.0
-	
-	if not active_modifiers.has(stat_name):
-		return base_value
-	
-	for active in active_modifiers[stat_name]:
-		var eff = active.source_effect
-		match eff.operation:
-			GameplayEffect.ModifierOp.ADD: 
-				final_value += eff.value
-			GameplayEffect.ModifierOp.SUBTRACT: 
-				final_value -= eff.value
-			GameplayEffect.ModifierOp.MULTIPLY: 
-				multiplier *= eff.value
-			GameplayEffect.ModifierOp.DIVIDE: 
-				if eff.value != 0: 
-					multiplier /= eff.value
-			
-	return final_value * multiplier
-
-
-func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
-	var handle = EffectSpecHandle.new(effect.effect_name)
-	var active = ActiveEffect.new(handle, effect)
-	active_effect_registry[handle] = active
-	
-	for tag in effect.granted_tags:
-		_tag_container.add_tag(tag)
-
-	return handle
-
-
-func _apply_instant_effect(effect: GameplayEffect) -> void:
-	_attribute_set.apply_instant_change(effect.target_attribute, effect.value, effect.operation)
-
-
-func _on_modifier_changed(stat_name: String) -> void:
-	GlobalLogger.log("[EffectManager] Recalculating stat: ", stat_name, " | New Total: ", _attribute_set.get_computed_stat(stat_name))
-	if stat_name == "max_health":
-		_attribute_set.on_max_health_changed()
-
-
-func _process_periodic_effects(delta: float) -> void:
-	for i in range(active_periodic_effects.size() - 1, -1, -1):
-		var active = active_periodic_effects[i]
-		active.time_left -= delta
-		active.tick_timer += delta
+## Testable process logic - call directly in tests
+func _process_logic(delta: float) -> void:
+	# 1. CANCELLATION CHECK
+	if not is_instance_valid(current_harvester):
+		_cancel_harvest()
+		return
 		
-		if active.tick_timer >= active.source_effect.tick_rate:
-			active.tick_timer = 0.0
-			# Only apply attribute change if target_attribute is valid
-			if _has_valid_attribute(active.source_effect):
-				_apply_instant_effect(active.source_effect)
-			
-		if active.time_left <= 0:
-			active_effect_registry.erase(active.handle)
-			active_periodic_effects.remove_at(i)
-			for tag in active.source_effect.granted_tags:
-				_tag_container.remove_tag(tag)
-
-
-func _process_duration_modifiers(delta: float) -> void:
-	for attr in active_modifiers.keys():
-		var modifiers_list = active_modifiers[attr]
-		var changed = false
+	# A. Have they moved? (Check velocity)
+	# We assume character has 'velocity' property (CharacterBase has it)
+	if current_harvester.velocity.length_squared() > 0.1:
+		_cancel_harvest()
+		return
 		
-		for i in range(modifiers_list.size() - 1, -1, -1):
-			var active = modifiers_list[i]
-			if active.source_effect.mode == GameplayEffect.ApplicationMode.INFINITE:
-				continue
-			
-			active.time_left -= delta
-			if active.time_left <= 0:
-				for tag in active.source_effect.granted_tags:
-					_tag_container.remove_tag(tag)
-				active_effect_registry.erase(active.handle)
-				modifiers_list.remove_at(i)
-				changed = true
-		
-		if changed:
-			_on_modifier_changed(attr)
+	# B. Have they moved too far away? (In case they get pushed or teleport)
+	if global_position.distance_squared_to(current_harvester.global_position) > MAX_HARVEST_DISTANCE_SQR:
+		_cancel_harvest()
+		return
 
+	# 2. PROGRESS
+	harvest_timer += delta
+	
+	if harvest_timer >= data.harvest_duration:
+		_finish_harvest()
 
-## Process duration effects that only have tags (no attribute modification)
-func _process_duration_tag_effects(delta: float) -> void:
-	for i in range(active_duration_tag_effects.size() - 1, -1, -1):
-		var active = active_duration_tag_effects[i]
-		if active.source_effect.mode == GameplayEffect.ApplicationMode.INFINITE:
-			continue
-		
-		active.time_left -= delta
-		if active.time_left <= 0:
-			GlobalLogger.log("[EffectManager] Duration tag effect expired: '", active.source_effect.effect_name, "'")
-			for tag in active.source_effect.granted_tags:
-				_tag_container.remove_tag(tag)
-			active_effect_registry.erase(active.handle)
-			active_duration_tag_effects.remove_at(i)
+# Callback if player receives damage
+func _on_harvester_damaged():
+	_cancel_harvest()
+
+func _cancel_harvest():
+	if not is_harvesting: return
+	
+	is_harvesting = false
+	set_process(false)
+	
+	# Disconnect damage signal
+	if is_instance_valid(current_harvester) and current_harvester.has_signal("damaged"):
+		current_harvester.damaged.disconnect(_on_harvester_damaged)
+	
+	current_harvester = null
+	
+	# RPC: Notify client to hide bar/cancel animation
+	_cancel_harvest_visuals_rpc.rpc()
+
+func _finish_harvest():
+	# Detener proceso
+	is_harvesting = false
+	is_looted = true # Marcar como looteado
+	set_process(false)
+	
+	if is_instance_valid(current_harvester) and current_harvester.has_signal("damaged"):
+		current_harvester.damaged.disconnect(_on_harvester_damaged)
+	
+	# --- GENERAR LOOT (Igual que antes) ---
+	var char_inv = current_harvester.get_node("CharacterInventorySystem")
+	if char_inv:
+		loot_generator.target_inventory_path = char_inv.main_inventory.get_path()
+		loot_generator.add_loot_to_inventory()
+	
+	# RPCs Finales
+	_success_harvest_visuals_rpc.rpc()
+	
+	current_harvester = null
+	
+	# Destruir/Respawn
+	if data.respawn_time > 0:
+		get_tree().create_timer(data.respawn_time).timeout.connect(_respawn)
+	elif data.destroy_on_harvest:
+		get_tree().create_timer(0.5).timeout.connect(queue_free)
+
+func _respawn():
+	is_looted = false
+	_respawn_visuals_rpc.rpc()
+
+# --- RPCs VISUALES (CLIENTE) ---
+
+@rpc("call_local")
+func _start_harvest_visuals_rpc(duration: float):
+	# THIS IS WHERE YOU WOULD CONNECT TO YOUR UI
+	# Example: GlobalUI.show_progress_bar(duration, "Harvesting...")
+	print("Client: Starting to harvest... (", duration, "s)")
+
+@rpc("call_local")
+func _cancel_harvest_visuals_rpc():
+	# GlobalUI.hide_progress_bar()
+	print("Client: Harvest cancelled.")
+
+@rpc("call_local")
+func _success_harvest_visuals_rpc():
+	# GlobalUI.hide_progress_bar()
+	# FX success sound
+	visible = false
+	$CollisionShape3D.disabled = true
+	print("Client: Harvest completed!")
+
+@rpc("call_local")
+func _respawn_visuals_rpc():
+	visible = true
+	$CollisionShape3D.disabled = false
 </file>
 
 <file path="godot-coop/interactables/loot_container/search_constraint.gd">
@@ -6223,91 +7100,6 @@ func _setup_equipment_slot(inventory: Inventory):
 		printerr("InventorySystemUI: No UI found for equipment inventory: ", inventory.name)
 </file>
 
-<file path="godot-coop/interactables/interactable_base.gd">
-class_name InteractableBase
-extends StaticBody3D
-
-# --- CONFIGURATION ---
-@export_group("Interaction Settings")
-@export var object_name: String = "Interactable"
-@export var interaction_text: String = "Interact"
-
-
-@export var default_action: InteractAction
-var current_interactor: Node = null
-
-
-var is_being_used: bool = false 
-
-# --- INTERFAZ OBLIGATORIA (Contrato con InventoryInteractor) ---
-
-
-func get_interaction_position(interaction_point: Vector3) -> Vector3:
-	return global_position
-
-
-func get_interact_actions(interactor: Node) -> Array:
-	if not _can_interact(interactor):
-		return []
-	
-	if default_action:
-		default_action.description = interaction_text + " " + object_name
-		return [default_action]
-	
-	return []
-
-
-func interact(character: Node, action_index: int = 0) -> void:
-
-	if not _can_interact(character):
-		return
-	
-	
-	if multiplayer.is_server():
-		_server_interact(character)
-	else:
-		_request_interact_rpc.rpc_id(1, character.get_path())
-
-
-
-func _can_interact(_character: Node) -> bool:
-	return true # By default always allowed
-
-# This is the function that Chests and Bushes will override
-func _on_interacted(character: Node) -> void:
-	print("Interacted with ", object_name)
-
-# --- RED ---
-
-@rpc("any_peer", "call_local", "reliable")
-func _request_interact_rpc(character_path: NodePath) -> void:
-	# Solo el servidor ejecuta esto
-	if not multiplayer.is_server(): return
-	
-	var character = get_node(character_path)
-	if character:
-		_server_interact(character)
-
-func _server_interact(character: Node):
-	if current_interactor != null and current_interactor != character:
-		print("Objeto ocupado por otro jugador")
-		return
-
-	current_interactor = character
-	_on_interacted(character)
-
-
-func cancel_interaction():
-	if current_interactor == null: return
-	
-	print("Interacción cancelada con ", current_interactor.name)
-	_on_interaction_canceled() # Hook virtual para los hijos
-	current_interactor = null
-
-func _on_interaction_canceled():
-	pass
-</file>
-
 <file path="godot-coop/items/definitions/equipment_data.gd">
 class_name EquipmentData
 extends Resource
@@ -6579,6 +7371,331 @@ extends Node3D
 		#return
 	#if objects_per_id.has(last_item):
 		#objects_per_id[last_item].visible = false
+</file>
+
+<file path="godot-coop/characters/common_components/gas/effect_manager.gd">
+class_name EffectManager
+extends Node
+
+class ActiveEffect:
+	var handle: EffectSpecHandle
+	var source_effect: GameplayEffect
+	var time_left: float
+	var tick_timer: float
+	
+	func _init(p_handle: EffectSpecHandle, effect: GameplayEffect):
+		handle = p_handle
+		source_effect = effect
+		time_left = effect.duration
+		tick_timer = 0.0
+
+var _attribute_set: GASAttributeSet
+var _tag_container: TagContainer
+
+var active_effect_registry: Dictionary = {}
+var active_modifiers: Dictionary = {}
+var active_periodic_effects: Array[ActiveEffect] = []
+## Duration effects that only apply tags (no attribute modification)
+var active_duration_tag_effects: Array[ActiveEffect] = []
+
+
+func _ready() -> void:
+	for attr in GASAttributeSet.VALID_ATTRIBUTES:
+		active_modifiers[attr] = []
+
+
+func setup(attribute_set: GASAttributeSet, tag_container: TagContainer) -> void:
+	_attribute_set = attribute_set
+	_tag_container = tag_container
+	_attribute_set.set_effect_manager(self)
+
+
+func _process(delta: float) -> void:
+	if not multiplayer.is_server(): return
+	_process_logic(delta)
+
+
+## Testable process logic - call directly in tests
+func _process_logic(delta: float) -> void:
+	_process_periodic_effects(delta)
+	_process_duration_modifiers(delta)
+	_process_duration_tag_effects(delta)
+
+
+## Returns true if the effect has a valid target attribute (not "none" or empty)
+func _has_valid_attribute(effect: GameplayEffect) -> bool:
+	return effect.target_attribute != "" and effect.target_attribute != "none"
+
+
+func apply_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
+	if not multiplayer.is_server(): return []
+	return _apply_effects_logic(effects)
+
+
+## Testable apply effects logic - call directly in tests
+func _apply_effects_logic(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
+	var created_handles: Array[EffectSpecHandle] = []
+	
+	for effect in effects:
+		var has_attribute = _has_valid_attribute(effect)
+		
+		match effect.mode:
+			GameplayEffect.ApplicationMode.INSTANT:
+				GlobalLogger.log("[EffectManager] Applying INSTANT effect: '", effect.effect_name, "'")
+				if has_attribute:
+					_apply_instant_effect(effect)
+				# For INSTANT tag-only effects, just apply tags (they stay until manually removed)
+				for tag in effect.granted_tags:
+					_tag_container._add_tag_logic(tag)
+				
+			GameplayEffect.ApplicationMode.PERIODIC:
+				var handle = _create_active_effect(effect)
+				GlobalLogger.log("[EffectManager] Added PERIODIC effect: '", effect.effect_name, "' Handle: ", handle)
+				if has_attribute:
+					active_periodic_effects.append(active_effect_registry[handle])
+				created_handles.append(handle)
+				
+			GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE:
+				var handle = _create_active_effect(effect)
+				GlobalLogger.log("[EffectManager] Added DURATION effect: '", effect.effect_name, "' Handle: ", handle)
+				if has_attribute:
+					active_modifiers[effect.target_attribute].append(active_effect_registry[handle])
+					_on_modifier_changed(effect.target_attribute)
+				else:
+					# Tag-only duration effect - track separately for expiration
+					active_duration_tag_effects.append(active_effect_registry[handle])
+				created_handles.append(handle)
+	
+	return created_handles
+
+
+func remove_effect(handle: EffectSpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	_remove_effect_logic(handle)
+
+
+## Testable remove effect logic - call directly in tests
+func _remove_effect_logic(handle: EffectSpecHandle) -> void:
+	if not active_effect_registry.has(handle):
+		GlobalLogger.log("[EffectManager] Warning: Effect not found: ", handle)
+		return
+	
+	var active_effect = active_effect_registry[handle]
+	var source_data = active_effect.source_effect
+	
+	for tag in source_data.granted_tags:
+		_tag_container._remove_tag_logic(tag)
+	
+	GlobalLogger.log("[EffectManager] Removing effect: ", handle)
+	
+	var has_attribute = _has_valid_attribute(source_data)
+	
+	match source_data.mode:
+		GameplayEffect.ApplicationMode.PERIODIC:
+			active_periodic_effects.erase(active_effect)
+			
+		GameplayEffect.ApplicationMode.DURATION, GameplayEffect.ApplicationMode.INFINITE:
+			if has_attribute:
+				var attr_name = source_data.target_attribute
+				if active_modifiers.has(attr_name):
+					active_modifiers[attr_name].erase(active_effect)
+					_on_modifier_changed(attr_name)
+			else:
+				# Tag-only duration effect
+				active_duration_tag_effects.erase(active_effect)
+	
+	active_effect_registry.erase(handle)
+
+
+func compute_stat_with_modifiers(stat_name: String, base_value: float) -> float:
+	var final_value = base_value
+	var multiplier = 1.0
+	
+	if not active_modifiers.has(stat_name):
+		return base_value
+	
+	for active in active_modifiers[stat_name]:
+		var eff = active.source_effect
+		match eff.operation:
+			GameplayEffect.ModifierOp.ADD: 
+				final_value += eff.value
+			GameplayEffect.ModifierOp.SUBTRACT: 
+				final_value -= eff.value
+			GameplayEffect.ModifierOp.MULTIPLY: 
+				multiplier *= eff.value
+			GameplayEffect.ModifierOp.DIVIDE: 
+				if eff.value != 0: 
+					multiplier /= eff.value
+			
+	return final_value * multiplier
+
+
+func _create_active_effect(effect: GameplayEffect) -> EffectSpecHandle:
+	var handle = EffectSpecHandle.new(effect.effect_name)
+	var active = ActiveEffect.new(handle, effect)
+	active_effect_registry[handle] = active
+	
+	for tag in effect.granted_tags:
+		_tag_container._add_tag_logic(tag)
+
+	return handle
+
+
+func _apply_instant_effect(effect: GameplayEffect) -> void:
+	_attribute_set.apply_instant_change(effect.target_attribute, effect.value, effect.operation)
+
+
+func _on_modifier_changed(stat_name: String) -> void:
+	GlobalLogger.log("[EffectManager] Recalculating stat: ", stat_name, " | New Total: ", _attribute_set.get_computed_stat(stat_name))
+	if stat_name == "max_health":
+		_attribute_set.on_max_health_changed()
+
+
+func _process_periodic_effects(delta: float) -> void:
+	for i in range(active_periodic_effects.size() - 1, -1, -1):
+		var active = active_periodic_effects[i]
+		active.time_left -= delta
+		active.tick_timer += delta
+		
+		if active.tick_timer >= active.source_effect.tick_rate:
+			active.tick_timer = 0.0
+			# Only apply attribute change if target_attribute is valid
+			if _has_valid_attribute(active.source_effect):
+				_apply_instant_effect(active.source_effect)
+			
+		if active.time_left <= 0:
+			active_effect_registry.erase(active.handle)
+			active_periodic_effects.remove_at(i)
+			for tag in active.source_effect.granted_tags:
+				_tag_container._remove_tag_logic(tag)
+
+
+func _process_duration_modifiers(delta: float) -> void:
+	for attr in active_modifiers.keys():
+		var modifiers_list = active_modifiers[attr]
+		var changed = false
+		
+		for i in range(modifiers_list.size() - 1, -1, -1):
+			var active = modifiers_list[i]
+			if active.source_effect.mode == GameplayEffect.ApplicationMode.INFINITE:
+				continue
+			
+			active.time_left -= delta
+			if active.time_left <= 0:
+				for tag in active.source_effect.granted_tags:
+					_tag_container._remove_tag_logic(tag)
+				active_effect_registry.erase(active.handle)
+				modifiers_list.remove_at(i)
+				changed = true
+		
+		if changed:
+			_on_modifier_changed(attr)
+
+
+## Process duration effects that only have tags (no attribute modification)
+func _process_duration_tag_effects(delta: float) -> void:
+	for i in range(active_duration_tag_effects.size() - 1, -1, -1):
+		var active = active_duration_tag_effects[i]
+		if active.source_effect.mode == GameplayEffect.ApplicationMode.INFINITE:
+			continue
+		
+		active.time_left -= delta
+		if active.time_left <= 0:
+			GlobalLogger.log("[EffectManager] Duration tag effect expired: '", active.source_effect.effect_name, "'")
+			for tag in active.source_effect.granted_tags:
+				_tag_container._remove_tag_logic(tag)
+			active_effect_registry.erase(active.handle)
+			active_duration_tag_effects.remove_at(i)
+</file>
+
+<file path="godot-coop/interactables/interactable_base.gd">
+class_name InteractableBase
+extends StaticBody3D
+
+# --- CONFIGURATION ---
+@export_group("Interaction Settings")
+@export var object_name: String = "Interactable"
+@export var interaction_text: String = "Interact"
+
+
+@export var default_action: InteractAction
+var current_interactor: Node = null
+
+
+var is_being_used: bool = false 
+
+# --- INTERFAZ OBLIGATORIA (Contrato con InventoryInteractor) ---
+
+
+func get_interaction_position(interaction_point: Vector3) -> Vector3:
+	return global_position
+
+
+func get_interact_actions(interactor: Node) -> Array:
+	if not _can_interact(interactor):
+		return []
+	
+	if default_action:
+		default_action.description = interaction_text + " " + object_name
+		return [default_action]
+	
+	return []
+
+
+func interact(character: Node, action_index: int = 0) -> void:
+	if not _can_interact(character):
+		return
+	
+	if multiplayer.is_server():
+		_server_interact(character)
+	else:
+		_request_interact_rpc.rpc_id(1, character.get_path())
+
+
+## Testable interact logic - call directly in tests (bypasses network check)
+func _interact_logic(character: Node, _action_index: int = 0) -> void:
+	if not _can_interact(character):
+		return
+	_server_interact(character)
+
+
+
+func _can_interact(_character: Node) -> bool:
+	return true # By default always allowed
+
+# This is the function that Chests and Bushes will override
+func _on_interacted(character: Node) -> void:
+	print("Interacted with ", object_name)
+
+# --- RED ---
+
+@rpc("any_peer", "call_local", "reliable")
+func _request_interact_rpc(character_path: NodePath) -> void:
+	# Solo el servidor ejecuta esto
+	if not multiplayer.is_server(): return
+	
+	var character = get_node(character_path)
+	if character:
+		_server_interact(character)
+
+func _server_interact(character: Node):
+	if current_interactor != null and current_interactor != character:
+		print("Objeto ocupado por otro jugador")
+		return
+
+	current_interactor = character
+	_on_interacted(character)
+
+
+func cancel_interaction():
+	if current_interactor == null: return
+	
+	print("Interacción cancelada con ", current_interactor.name)
+	_on_interaction_canceled() # Hook virtual para los hijos
+	current_interactor = null
+
+func _on_interaction_canceled():
+	pass
 </file>
 
 <file path="godot-coop/interactables/loot_container/loot_container.gd">
@@ -7623,171 +8740,6 @@ func _set_openable_state(inventory: Inventory, is_open: bool):
 #endregion
 </file>
 
-<file path="godot-coop/characters/player/equipment_manager.gd">
-@tool
-@icon("res://addons/inventory-system/icons/interactor.svg")
-class_name EquipmentManager
-extends Node
-@export var ability_system_node: NodePath = "../../AbilitySystemComponent"
-@onready var ability_system: AbilitySystemComponent = get_node(ability_system_node)
-@onready var openable: Openable = $HeadSlot/Openable
-@onready var fake_skeleton: Node3D = $"../../MeshInstance3D/FakeSkeleton"
-
-@export var character_mesh_root: Node3D 
-
-## Maps slot_id (String) -> NodePath. The slot_id is the node name.
-## This separates the physical slot instance from the logical SlotType.
-@export var equipment_slots: Dictionary = {
-	"HeadSlot": NodePath("HeadSlot"),
-	"ChestSlot": NodePath("ChestSlot"),
-	"HandSlot": NodePath("HandSlot"),
-	"BeltSlot1": NodePath("BeltSlot1"),
-	"BeltSlot2": NodePath("BeltSlot2"),
-	"BeltSlot3": NodePath("BeltSlot3"),
-}
-
-## Tracks active equipment by slot_id (String) -> context Dictionary
-var active_equipment: Dictionary = {}
-
-## Storage-only slots: items here get visuals but NO abilities/effects.
-## These are for carrying items, not for "using" them.
-const STORAGE_SLOTS: Array[String] = ["BeltSlot1", "BeltSlot2", "BeltSlot3"]
-
-
-func open(character: Node):
-	openable.open(character)
-
-
-func close(character: Node):
-	openable.close(character)
-
-
-func _ready() -> void:
-	await get_tree().process_frame
-	_connect_slots()
-
-
-func _connect_slots() -> void:
-	for slot_id in equipment_slots:
-		var node_path = equipment_slots[slot_id]
-		var inventory = get_node_or_null(node_path)
-		
-		if inventory:
-			# Pass slot_id (String) to identify which physical slot triggered the event
-			inventory.stack_added.connect(_on_item_equipped.bind(inventory, slot_id))
-			inventory.stack_removed.connect(_on_item_unequipped.bind(inventory, slot_id))
-		else:
-			printerr("[EquipmentManager] Invalid inventory path for slot: ", slot_id)
-
-
-func _on_item_equipped(stack_index: int, inventory: Node, slot_id: String) -> void:
-	print(slot_id)
-	var stack = inventory.stacks[stack_index]
-	if stack == null: return
-	
-	var def = inventory.database.get_item(stack.item_id)
-	if not def.properties.has("equipment_data"): return
-	
-	var data_path = def.properties["equipment_data"]
-	var data = load(data_path) as EquipmentData
-	_apply_equipment_logic(data, slot_id)
-
-	print("[EquipmentManager] Equipped item in slot: ", slot_id)
-
-
-func _on_item_unequipped(_stack_index: int, _inventory: Node, slot_id: String) -> void:
-	print("[EquipmentManager] Unequipped item from slot: ", slot_id)
-	_remove_equipment_logic(slot_id)
-
-
-func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
-	if active_equipment.has(slot_id):
-		_remove_equipment_logic(slot_id)
-	
-	var context = {
-		"effect_handles": [],
-		"ability_handles": [],
-		"visual_node": null
-	}
-	
-	var is_storage_slot = STORAGE_SLOTS.has(slot_id)
-	
-	# Only apply abilities and effects for NON-storage slots (active equipment)
-	if not is_storage_slot and multiplayer.is_server():
-		if data.passive_effects.size() > 0:
-			var handles = ability_system.apply_gameplay_effects(data.passive_effects)
-			context["effect_handles"].append_array(handles)
-		
-		if data.granted_abilities.size() > 0:
-			var inventory_node = get_node(equipment_slots[slot_id])
-			for grant in data.granted_abilities:
-				var handle = ability_system.grant_ability(
-					grant.ability,
-					grant.input_tag,
-					inventory_node,
-					0
-				)
-				if handle:
-					context["ability_handles"].append(handle)
-	
-	# Visuals are applied for ALL slots (including storage)
-	if data.visual_scene and fake_skeleton:
-		context["visual_node"] = _spawn_visual_attachment(data, slot_id)
-	
-	active_equipment[slot_id] = context
-
-
-func _remove_equipment_logic(slot_id: String) -> void:
-	if not active_equipment.has(slot_id): return
-	
-	var context = active_equipment[slot_id]
-	
-	if multiplayer.is_server():
-		for handle in context["effect_handles"]:
-			ability_system.remove_effect(handle)
-			
-		for handle in context["ability_handles"]:
-			ability_system.clear_ability(handle)
-	
-	if is_instance_valid(context["visual_node"]):
-		context["visual_node"].queue_free()
-	
-	active_equipment.erase(slot_id)
-
-
-## Maps slot_id to the corresponding visual marker name in the skeleton.
-## This allows items with SlotType.BELT to be placed in the correct marker
-## based on which physical slot they were equipped to.
-const SLOT_TO_MARKER: Dictionary = {
-	"HeadSlot": "Head",
-	"ChestSlot": "Chest", 
-	"HandSlot": "RightHand",
-	"BeltSlot1": "BeltSlotMarker1",
-	"BeltSlot2": "BeltSlotMarker2",
-	"BeltSlot3": "BeltSlotMarker3",
-}
-
-
-func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
-	if not data.visual_scene: return null
-	
-	var visual_instance = data.visual_scene.instantiate()
-	
-	# Determine marker: use slot-specific marker, or fallback to data.bone_name
-	var marker_name = SLOT_TO_MARKER.get(slot_id, data.bone_name)
-	
-	if marker_name != "":
-		var marker = fake_skeleton.get_node_or_null(marker_name)
-		if marker:
-			marker.add_child(visual_instance)
-			return visual_instance
-		else:
-			printerr("[EquipmentManager] Marker not found: ", marker_name)
-	
-	fake_skeleton.add_child(visual_instance)
-	return visual_instance
-</file>
-
 <file path="godot-coop/items/abilities/ga_throw_projectile.gd">
 extends GameplayAbility
 class_name GA_ThrowProjectile
@@ -7850,6 +8802,327 @@ func _consume_source_item(asc: AbilitySystemComponent, handle: AbilitySpecHandle
 	
 	if inventory and slot_index != -1:
 		inventory.remove_at(slot_index, inventory.stacks[slot_index].item_id, 1)
+</file>
+
+<file path="godot-coop/characters/player/equipment_manager.gd">
+@tool
+@icon("res://addons/inventory-system/icons/interactor.svg")
+class_name EquipmentManager
+extends Node
+@export var ability_system_node: NodePath = "../../AbilitySystemComponent"
+@onready var ability_system: AbilitySystemComponent = get_node(ability_system_node)
+@onready var openable: Openable = $HeadSlot/Openable
+@onready var fake_skeleton: Node3D = $"../../MeshInstance3D/FakeSkeleton"
+
+@export var character_mesh_root: Node3D 
+
+## Maps slot_id (String) -> NodePath. The slot_id is the node name.
+## This separates the physical slot instance from the logical SlotType.
+@export var equipment_slots: Dictionary = {
+	"HeadSlot": NodePath("HeadSlot"),
+	"ChestSlot": NodePath("ChestSlot"),
+	"HandSlot": NodePath("HandSlot"),
+	"BeltSlot1": NodePath("BeltSlot1"),
+	"BeltSlot2": NodePath("BeltSlot2"),
+	"BeltSlot3": NodePath("BeltSlot3"),
+}
+
+## Tracks active equipment by slot_id (String) -> context Dictionary
+var active_equipment: Dictionary = {}
+
+## Storage-only slots: items here get visuals but NO abilities/effects.
+## These are for carrying items, not for "using" them.
+const STORAGE_SLOTS: Array[String] = ["BeltSlot1", "BeltSlot2", "BeltSlot3"]
+
+
+func open(character: Node):
+	openable.open(character)
+
+
+func close(character: Node):
+	openable.close(character)
+
+
+func _ready() -> void:
+	await get_tree().process_frame
+	_connect_slots()
+
+
+func _connect_slots() -> void:
+	for slot_id in equipment_slots:
+		var node_path = equipment_slots[slot_id]
+		var inventory = get_node_or_null(node_path)
+		
+		if inventory:
+			# Pass slot_id (String) to identify which physical slot triggered the event
+			inventory.stack_added.connect(_on_item_equipped.bind(inventory, slot_id))
+			inventory.stack_removed.connect(_on_item_unequipped.bind(inventory, slot_id))
+		else:
+			printerr("[EquipmentManager] Invalid inventory path for slot: ", slot_id)
+
+
+func _on_item_equipped(stack_index: int, inventory: Node, slot_id: String) -> void:
+	var stack = inventory.stacks[stack_index]
+	if stack == null: return
+	
+	var def = inventory.database.get_item(stack.item_id)
+	if not def.properties.has("equipment_data"): return
+	
+	var data_path = def.properties["equipment_data"]
+	var data = load(data_path) as EquipmentData
+	_apply_equipment_logic(data, slot_id)
+
+
+func _on_item_unequipped(_stack_index: int, _inventory: Node, slot_id: String) -> void:
+	_remove_equipment_logic(slot_id)
+
+
+func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
+	if active_equipment.has(slot_id):
+		_remove_equipment_logic(slot_id)
+	
+	var context = {
+		"effect_handles": [],
+		"ability_handles": [],
+		"visual_node": null
+	}
+	
+	var is_storage_slot = STORAGE_SLOTS.has(slot_id)
+	
+	# Only apply abilities and effects for NON-storage slots (active equipment)
+	if not is_storage_slot and multiplayer.is_server():
+		_apply_equipment_effects_logic(data, slot_id, context)
+	
+	# Visuals are applied for ALL slots (including storage)
+	if data.visual_scene and fake_skeleton:
+		context["visual_node"] = _spawn_visual_attachment(data, slot_id)
+	
+	active_equipment[slot_id] = context
+
+
+## Testable equipment effects logic - call directly in tests
+func _apply_equipment_effects_logic(data: EquipmentData, slot_id: String, context: Dictionary) -> void:
+	if data.passive_effects.size() > 0:
+		var handles = ability_system.effect_manager._apply_effects_logic(data.passive_effects)
+		context["effect_handles"].append_array(handles)
+	
+	if data.granted_abilities.size() > 0:
+		var inventory_node = get_node(equipment_slots[slot_id])
+		for grant in data.granted_abilities:
+			var handle = ability_system.ability_manager._grant_ability_logic(
+				grant.ability,
+				grant.input_tag,
+				inventory_node,
+				0
+			)
+			if handle:
+				context["ability_handles"].append(handle)
+
+
+func _remove_equipment_logic(slot_id: String) -> void:
+	if not active_equipment.has(slot_id): return
+	
+	var context = active_equipment[slot_id]
+	
+	if multiplayer.is_server():
+		_remove_equipment_effects_logic(context)
+	
+	if is_instance_valid(context["visual_node"]):
+		context["visual_node"].queue_free()
+	
+	active_equipment.erase(slot_id)
+
+
+## Testable remove equipment effects logic - call directly in tests
+func _remove_equipment_effects_logic(context: Dictionary) -> void:
+	for handle in context["effect_handles"]:
+		ability_system.effect_manager._remove_effect_logic(handle)
+		
+	for handle in context["ability_handles"]:
+		ability_system.ability_manager._clear_ability_logic(handle)
+
+
+## Maps slot_id to the corresponding visual marker name in the skeleton.
+## This allows items with SlotType.BELT to be placed in the correct marker
+## based on which physical slot they were equipped to.
+const SLOT_TO_MARKER: Dictionary = {
+	"HeadSlot": "Head",
+	"ChestSlot": "Chest", 
+	"HandSlot": "RightHand",
+	"BeltSlot1": "BeltSlotMarker1",
+	"BeltSlot2": "BeltSlotMarker2",
+	"BeltSlot3": "BeltSlotMarker3",
+}
+
+## Belt slot names for quick access by index (1, 2, 3)
+const BELT_SLOTS: Array[String] = ["BeltSlot1", "BeltSlot2", "BeltSlot3"]
+
+## Tracks if a swap is currently in progress (prevents spam)
+var _swap_in_progress: bool = false
+
+
+# ============================================
+# BELT SLOT SWAP SYSTEM
+# ============================================
+
+## Called by client to request a swap between HandSlot and a BeltSlot
+## belt_index: 0, 1, or 2 (corresponding to BeltSlot1, BeltSlot2, BeltSlot3)
+func request_swap_belt_slot(belt_index: int) -> void:
+	if belt_index < 0 or belt_index >= BELT_SLOTS.size():
+		return
+	
+	if multiplayer.is_server():
+		_start_swap(belt_index)
+	else:
+		_swap_belt_slot_rpc.rpc_id(1, belt_index)
+
+
+## Testable swap request logic - call directly in tests (bypasses network check)
+func _request_swap_belt_slot_logic(belt_index: int) -> void:
+	if belt_index < 0 or belt_index >= BELT_SLOTS.size():
+		return
+	_start_swap(belt_index)
+
+
+@rpc("any_peer", "reliable")
+func _swap_belt_slot_rpc(belt_index: int) -> void:
+	if not multiplayer.is_server():
+		return
+	_start_swap(belt_index)
+
+
+## Validates and starts the swap process with delay
+func _start_swap(belt_index: int) -> void:
+	# Prevent multiple swaps at once
+	if _swap_in_progress:
+		return
+	
+	var hand_slot: GridInventory = get_node_or_null(equipment_slots["HandSlot"])
+	var belt_slot: GridInventory = get_node_or_null(equipment_slots[BELT_SLOTS[belt_index]])
+	
+	if hand_slot == null or belt_slot == null:
+		return
+	
+	# Check if there's anything to swap
+	var hand_has_item = _slot_has_item(hand_slot)
+	var belt_has_item = _slot_has_item(belt_slot)
+	
+	# Only proceed if at least one slot has an item
+	if not hand_has_item and not belt_has_item:
+		return
+	
+	# Get swap time from ability system's attribute set
+	var swap_duration = 0.5  # Default fallback
+	if ability_system and ability_system.attribute_set:
+		swap_duration = ability_system.attribute_set.swap_time
+	
+	_swap_in_progress = true
+	print("[EquipmentManager] Starting swap... (%.2fs)" % swap_duration)
+	
+	# Wait for the swap duration, then perform the swap
+	await get_tree().create_timer(swap_duration).timeout
+	
+	# Re-validate after delay (items might have changed)
+	if _slot_has_item(hand_slot) or _slot_has_item(belt_slot):
+		_perform_atomic_swap(belt_index)
+	
+	_swap_in_progress = false
+
+
+## Checks if a slot contains any item
+func _slot_has_item(slot: GridInventory) -> bool:
+	if slot.stacks.size() == 0:
+		return false
+	return slot.stacks[0] != null
+
+
+## Performs an atomic swap between HandSlot and the specified BeltSlot
+## This runs ONLY on the server to prevent race conditions
+func _perform_atomic_swap(belt_index: int) -> void:
+	var hand_slot: GridInventory = get_node_or_null(equipment_slots["HandSlot"])
+	var belt_slot: GridInventory = get_node_or_null(equipment_slots[BELT_SLOTS[belt_index]])
+	
+	if hand_slot == null or belt_slot == null:
+		return
+	
+	# Extract data from both slots BEFORE modifying anything
+	var hand_data = _extract_slot_data(hand_slot)
+	var belt_data = _extract_slot_data(belt_slot)
+	
+	# Clear both slots (this triggers stack_removed signals)
+	_clear_slot(hand_slot)
+	_clear_slot(belt_slot)
+	
+	# Add items to swapped positions (this triggers stack_added signals)
+	# Belt item -> Hand
+	if not belt_data.is_empty():
+		_add_to_slot(hand_slot, belt_data)
+	
+	# Hand item -> Belt
+	if not hand_data.is_empty():
+		_add_to_slot(belt_slot, hand_data)
+	
+	print("[EquipmentManager] Swapped HandSlot <-> ", BELT_SLOTS[belt_index])
+
+
+## Extracts item data from a slot (returns null if empty)
+func _extract_slot_data(slot: GridInventory) -> Dictionary:
+	if slot.stacks.size() == 0:
+		return {}
+	
+	var stack = slot.stacks[0]
+	if stack == null:
+		return {}
+	
+	return {
+		"item_id": stack.item_id,
+		"amount": stack.amount,
+		"properties": stack.properties.duplicate(),
+		"position": slot.stack_positions[0] if slot.stack_positions.size() > 0 else Vector2i.ZERO,
+		"rotation": slot.stack_rotations[0] if slot.stack_rotations.size() > 0 else false
+	}
+
+
+## Clears all items from a slot
+func _clear_slot(slot: GridInventory) -> void:
+	# Remove from end to start to avoid index shifting issues
+	for i in range(slot.stacks.size() - 1, -1, -1):
+		var stack = slot.stacks[i]
+		if stack != null:
+			slot.remove_at(i, stack.item_id, stack.amount)
+
+
+## Adds an item to a slot using extracted data
+func _add_to_slot(slot: GridInventory, data: Dictionary) -> void:
+	if data.is_empty():
+		return
+	slot.add_at_position(
+		data.get("position", Vector2i.ZERO),
+		data["item_id"],
+		data["amount"],
+		data.get("properties", {}),
+		data.get("rotation", false)
+	)
+
+
+func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
+	if not data.visual_scene: return null
+	
+	var visual_instance = data.visual_scene.instantiate()
+	
+	# Determine marker: use slot-specific marker, or fallback to data.bone_name
+	var marker_name = SLOT_TO_MARKER.get(slot_id, data.bone_name)
+	
+	if marker_name != "":
+		var marker = fake_skeleton.get_node_or_null(marker_name)
+		if marker:
+			marker.add_child(visual_instance)
+			return visual_instance
+		else:
+			printerr("[EquipmentManager] Marker not found: ", marker_name)
+	
+	fake_skeleton.add_child(visual_instance)
+	return visual_instance
 </file>
 
 <file path="godot-coop/characters/player/player.gd">
@@ -7934,6 +9207,22 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_released("attack_secondary"):
 		ability_system.server_ability_input_released(AbilityManager.INPUT_SECONDARY)
+	
+	# Belt slot swap inputs (1, 2, 3 keys)
+	_handle_belt_slot_inputs(event)
+
+
+func _handle_belt_slot_inputs(event: InputEvent) -> void:
+	var equipment_manager = character_inventory_system.equipment_manager
+	if equipment_manager == null:
+		return
+	
+	if event.is_action_pressed("belt_slot_1"):
+		equipment_manager.request_swap_belt_slot(0)
+	elif event.is_action_pressed("belt_slot_2"):
+		equipment_manager.request_swap_belt_slot(1)
+	elif event.is_action_pressed("belt_slot_3"):
+		equipment_manager.request_swap_belt_slot(2)
 
 
 func _collect_activation_data() -> Dictionary:
