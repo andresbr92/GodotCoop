@@ -4,8 +4,12 @@ extends Node
 # The initial state when the machine starts
 @export var initial_state: NodePath
 
+@export var animation_tree: AnimationTree
+
 # The character this state machine controls
 @onready var character: CharacterBody3D = owner
+
+var playback: AnimationNodeStateMachinePlayback
 
 var current_state: State
 var states: Dictionary = {}
@@ -14,6 +18,11 @@ var states: Dictionary = {}
 func _ready() -> void:
 	# Wait for the owner to be ready
 	await owner.ready
+	# Get the playback object from the AnimationTree
+	if animation_tree:
+		playback = animation_tree.get("parameters/playback")
+	else:
+		push_warning("StateMachine: AnimationTree is missing!")
 	
 	# Populate the states dictionary and setup references
 	for child in get_children():

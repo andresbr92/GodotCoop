@@ -5,7 +5,7 @@ const JUMP_VELOCITY = 4.5
 const ROTATION_SPEED = 10.0
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var mesh_instance_3d: Node3D = $Visuals
 @onready var character_inventory_system: NetworkedCharacterInventorySystem = $CharacterInventorySystem
 @onready var label_3d: Label3D = $Label3D
 
