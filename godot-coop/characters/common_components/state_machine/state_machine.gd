@@ -20,7 +20,7 @@ func _ready() -> void:
 	await owner.ready
 	# Get the playback object from the AnimationTree
 	if animation_tree:
-		playback = animation_tree.get("parameters/playback")
+		playback = animation_tree.get("parameters/Locomotion/playback")
 	else:
 		push_warning("StateMachine: AnimationTree is missing!")
 	
@@ -84,3 +84,16 @@ func perform_action(anim_name: String) -> void:
 			current_state.exit()
 		action_state.enter()
 		current_state = action_state
+
+func play_upper_body_action(anim_name: String) -> void:
+	if not animation_tree: return
+	
+	# 1. Asignamos dinámicamente qué animación va a usar el nodo OneShot
+	# Nota: Para hacer esto dinámico en un BlendTree, hay un truco.
+	# Por ahora, para el MVP, asumiremos que el nodo "Throw" está conectado.
+	# En sistemas avanzados, cambiamos el nodo conectado por código.
+	
+	# 2. Disparamos el OneShot
+	animation_tree.set("parameters/UpperBodyAction/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	print("[Animation FSM] Upper Body Action Triggered")

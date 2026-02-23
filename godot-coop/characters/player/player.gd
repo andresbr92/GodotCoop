@@ -32,8 +32,19 @@ func _ready() -> void:
 	label_3d.text = str(name)
 	var state_machine = get_node_or_null("StateMachine")
 	if state_machine and ability_system:
-		ability_system.ability_animation_triggered.connect(state_machine.perform_action)
+		ability_system.ability_animation_triggered.connect(_on_ability_animation)
 	pass
+func _on_ability_animation(anim_name: String) -> void:
+	var sm = get_node_or_null("StateMachine")
+	if not sm: return
+
+	# Lógica de decisión: ¿Es una animación que permite moverse?
+	# Por ahora, digamos que "Throw" permite moverse.
+	if anim_name == "Throw":
+		sm.play_upper_body_action(anim_name)
+	else:
+		# Si es otra cosa, usamos la FSM completa que detiene o controla el flujo
+		sm.perform_action(anim_name)
 
 
 func _physics_process(delta: float) -> void:
