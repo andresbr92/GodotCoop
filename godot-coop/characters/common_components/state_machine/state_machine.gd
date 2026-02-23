@@ -69,3 +69,18 @@ func on_child_transition(state: State, new_state_name: String) -> void:
 		
 	new_state.enter()
 	current_state = new_state
+
+func perform_action(anim_name: String) -> void:
+	
+	if anim_name == "":
+		return
+		
+	var action_state = states.get("action")
+	if action_state:
+		printt("performing action", anim_name)
+		action_state.set_action(anim_name)
+		
+		if current_state:
+			current_state.exit()
+		action_state.enter()
+		current_state = action_state

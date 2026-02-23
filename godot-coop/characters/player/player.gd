@@ -2,7 +2,7 @@ extends CharacterBase
 
 
 const JUMP_VELOCITY = 4.5
-const ROTATION_SPEED = 10.0
+const ROTATION_SPEED = 3
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
 @onready var mesh_instance_3d: Node3D = $Visuals
@@ -30,6 +30,9 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	label_3d.text = str(name)
+	var state_machine = get_node_or_null("StateMachine")
+	if state_machine and ability_system:
+		ability_system.ability_animation_triggered.connect(state_machine.perform_action)
 	pass
 
 

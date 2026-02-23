@@ -5,6 +5,8 @@ extends State
 func enter() -> void:
 	# Todo: Here we will tell the AnimationTree to travel to "Idle"
 	print("[Animation FSM] Entered IDLE")
+	if state_machine.playback:
+		state_machine.playback.travel("idle")
 
 
 # Called during _physics_process

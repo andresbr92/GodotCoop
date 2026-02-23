@@ -10,6 +10,10 @@ extends Resource
 @export_group("Ongoing Effects")
 @export var ongoing_effects: Array[GameplayEffect]
 
+@export_group("Animation")
+## (ej: "Throw", "Drink")
+@export var animation_name: String = ""
+
 
 func can_activate(actor: Node) -> bool:
 	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")

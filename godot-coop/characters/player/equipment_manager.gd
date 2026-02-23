@@ -5,7 +5,7 @@ extends Node
 @export var ability_system_node: NodePath = "../../AbilitySystemComponent"
 @onready var ability_system: AbilitySystemComponent = get_node(ability_system_node)
 @onready var openable: Openable = $HeadSlot/Openable
-@onready var fake_skeleton: Node3D = $"../../MeshInstance3D/FakeSkeleton"
+@onready var skeleton_3d: Skeleton3D = $"../../Visuals/X_Bot/Mesh/Skeleton3D"
 
 @export var character_mesh_root: Node3D 
 
@@ -87,7 +87,7 @@ func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
 		_apply_equipment_effects_logic(data, slot_id, context)
 	
 	# Visuals are applied for ALL slots (including storage)
-	if data.visual_scene and fake_skeleton:
+	if data.visual_scene and skeleton_3d:
 		context["visual_node"] = _spawn_visual_attachment(data, slot_id)
 	
 	active_equipment[slot_id] = context
@@ -142,9 +142,9 @@ const SLOT_TO_MARKER: Dictionary = {
 	"HeadSlot": "Head",
 	"ChestSlot": "Chest", 
 	"HandSlot": "RightHand",
-	"BeltSlot1": "BeltSlotMarker1",
-	"BeltSlot2": "BeltSlotMarker2",
-	"BeltSlot3": "BeltSlotMarker3",
+	"BeltSlot1": "BeltSlot_1",
+	"BeltSlot2": "BeltSlot_2",
+	"BeltSlot3": "BeltSlot_3",
 }
 
 ## Belt slot names for quick access by index (1, 2, 3)
@@ -307,12 +307,12 @@ func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
 	var marker_name = SLOT_TO_MARKER.get(slot_id, data.bone_name)
 	
 	if marker_name != "":
-		var marker = fake_skeleton.get_node_or_null(marker_name)
+		var marker = skeleton_3d.get_node_or_null(marker_name)
 		if marker:
 			marker.add_child(visual_instance)
 			return visual_instance
 		else:
 			printerr("[EquipmentManager] Marker not found: ", marker_name)
 	
-	fake_skeleton.add_child(visual_instance)
+	skeleton_3d.add_child(visual_instance)
 	return visual_instance
