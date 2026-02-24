@@ -40,7 +40,7 @@ func _on_ability_animation(anim_name: String) -> void:
 
 	# Lógica de decisión: ¿Es una animación que permite moverse?
 	# Por ahora, digamos que "Throw" permite moverse.
-	if anim_name == "throw":
+	if anim_name == "Throw":
 		sm.play_upper_body_action(anim_name)
 	else:
 		# Si es otra cosa, usamos la FSM completa que detiene o controla el flujo

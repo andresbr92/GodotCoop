@@ -45,7 +45,6 @@ func _get_potion_data_from_source(asc: AbilitySystemComponent, handle: AbilitySp
 	
 	var item_def = inventory.database.get_item(stack.item_id)
 	if not item_def: return null
-	print(item_def.properties)
 	if item_def.properties.has("potion_data"):
 		return load(item_def.properties["potion_data"]) as PotionData
 	

@@ -19,4 +19,4 @@ func log(arg1 = "", arg2 = "", arg3 = "", arg4 = "", arg5 = "") -> void:
 		if str(p) != "":
 			mensaje_final += str(p) + " " # Espacio simple, o "\t" para estilo printt()
 			
-	print("%s %s" % [prefijo, mensaje_final.strip_edges()])
+	#print("%s %s" % [prefijo, mensaje_final.strip_edges()])
