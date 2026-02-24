@@ -1,12 +1,13 @@
 class_name MoveState
 extends State
+@onready var mesh: MeshInstance3D = $"../../Visuals/X_Bot/Mesh/Skeleton/Mesh"
 
 # Called when the state machine enters this state
 func enter() -> void:
 	# Todo: Here we will tell the AnimationTree to travel to "Move/Run"
 	print("[Animation FSM] Entered MOVE")
 	if state_machine.playback:
-		state_machine.playback.travel("move")
+		state_machine.playback.travel("Move")
 
 
 # Called during _physics_process
@@ -19,17 +20,21 @@ func physics_update(_delta: float) -> void:
 	
 	# Transition back to Idle if we stop moving
 	if horizontal_velocity.length_squared() <= 0.1:
-		transitioned.emit(self, "idle")
+		transitioned.emit(self, "Idle")
 		return
 		
 	# -- BLENDSPACE 2D LOGIC --
 	
 	# 1. Get the mesh node. We use the mesh rotation to determine "Forward"
-	var mesh = state_machine.character.get_node("Visuals/X_Bot")
+	#var mesh = state_machine.character.get_node("Visuals/X_Bot")
+
 	
 	if mesh and state_machine.animation_tree:
+
 		# 2. Transform global velocity to local velocity relative to the mesh's transform
 		var local_velocity: Vector3 = mesh.global_transform.basis.inverse() * global_velocity
+		
+
 		
 		# 3. Normalize the vector to fit the BlendSpace2D (-1 to 1)
 		# In Godot, -Z is Forward, and +X is Right
@@ -37,4 +42,4 @@ func physics_update(_delta: float) -> void:
 		
 		# 4. Inject the values into the AnimationTree parameter
 		# Note: The path depends on the exact name of your node. If you named it "Move", this is correct.
-		state_machine.animation_tree.set("parameters/Locomotion/move/blend_position", blend_position)
+		state_machine.animation_tree.set("parameters/Locomotion/Move/blend_position", blend_position)
