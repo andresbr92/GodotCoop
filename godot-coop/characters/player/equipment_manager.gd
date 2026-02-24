@@ -5,7 +5,7 @@ extends Node
 @export var ability_system_node: NodePath = "../../AbilitySystemComponent"
 @onready var ability_system: AbilitySystemComponent = get_node(ability_system_node)
 @onready var openable: Openable = $HeadSlot/Openable
-@onready var skeleton_3d: Skeleton3D = $"../../Visuals/X_Bot/Mesh/Skeleton3D"
+@onready var skeleton_3d: Skeleton3D = $"../../Visuals/X_Bot/Mesh/GeneralSkeleton"
 
 @export var character_mesh_root: Node3D 
 
