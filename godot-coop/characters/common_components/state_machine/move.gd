@@ -37,4 +37,4 @@ func physics_update(_delta: float) -> void:
 		
 		# 4. Inject the values into the AnimationTree parameter
 		# Note: The path depends on the exact name of your node. If you named it "Move", this is correct.
-		state_machine.animation_tree.set("parameters/move/blend_position", blend_position)
+		state_machine.animation_tree.set("parameters/Locomotion/move/blend_position", blend_position)

@@ -40,7 +40,7 @@ func _on_ability_animation(anim_name: String) -> void:
 
 	# Lógica de decisión: ¿Es una animación que permite moverse?
 	# Por ahora, digamos que "Throw" permite moverse.
-	if anim_name == "Throw":
+	if anim_name == "throw":
 		sm.play_upper_body_action(anim_name)
 	else:
 		# Si es otra cosa, usamos la FSM completa que detiene o controla el flujo
@@ -120,3 +120,12 @@ func _collect_activation_data() -> Dictionary:
 
 func set_strafing(state: bool) -> void:
 	ability_system.is_strafing = state
+
+func on_animation_event(event_id: String) -> void:
+	print(event_id)
+	if not is_multiplayer_authority():
+		return
+
+	# Reenviamos el evento al sistema de habilidades
+	if ability_system:
+		ability_system.handle_animation_event(event_id)
