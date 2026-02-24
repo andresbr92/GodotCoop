@@ -1,8 +1,0 @@
-[gd_resource type = "ShaderMaterial" load_steps=1 format=3 uid="uid://byn0e3h1nmpik"]
-
-[ext_resource type="Shader" uid="uid://dgibqvw845668" path="res://Shaders/M_AssetPlatform.tres" id="1_cqqqq"]
-
-[resource]
-resource_name = "M_AssetPlatform"
-render_priority = 0
-shader = ExtResource("1_cqqqq")

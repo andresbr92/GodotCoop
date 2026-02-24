@@ -1,9 +1,0 @@
-[gd_resource type = "ShaderMaterial" load_steps=1 format=3 uid="uid://dpxejegw5ux7d"]
-
-[ext_resource type="Shader" uid="uid://dki6ku5kj83qm" path="res://Shaders/Beta_Joints_MAT1.tres" id="1_drp1m"]
-
-[resource]
-resource_name = "Beta_Joints_MAT1"
-render_priority = 0
-shader = ExtResource("1_drp1m")
-shader_parameter/one = 1.000

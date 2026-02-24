@@ -1,9 +1,0 @@
-[gd_resource type = "ShaderMaterial" load_steps=1 format=3 uid="uid://bqfb6yigi25cj"]
-
-[ext_resource type="Shader" uid="uid://b40rwgdyitrcc" path="res://Shaders/Beta_HighLimbsGeoSG3.tres" id="1_cbe6d"]
-
-[resource]
-resource_name = "Beta_HighLimbsGeoSG3"
-render_priority = 0
-shader = ExtResource("1_cbe6d")
-shader_parameter/one = 1.000
