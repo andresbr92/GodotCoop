@@ -12,6 +12,7 @@ extends Node
 var playback: AnimationNodeStateMachinePlayback
 
 var current_state: State
+@export var replicated_blend_position: Vector2 = Vector2.ZERO
 var states: Dictionary = {}
 
 
@@ -40,6 +41,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if animation_tree:
+		animation_tree.set("parameters/Locomotion/Move/blend_position", replicated_blend_position)
 	if current_state:
 		current_state.update(delta)
 

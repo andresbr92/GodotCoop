@@ -21,6 +21,7 @@ func physics_update(_delta: float) -> void:
 	# Transition back to Idle if we stop moving
 	if horizontal_velocity.length_squared() <= 0.1:
 		transitioned.emit(self, "Idle")
+		state_machine.replicated_blend_position = Vector2.ZERO
 		return
 		
 	# -- BLENDSPACE 2D LOGIC --
@@ -34,12 +35,7 @@ func physics_update(_delta: float) -> void:
 		# 2. Transform global velocity to local velocity relative to the mesh's transform
 		var local_velocity: Vector3 = mesh.global_transform.basis.inverse() * global_velocity
 		
-
-		
-		# 3. Normalize the vector to fit the BlendSpace2D (-1 to 1)
-		# In Godot, -Z is Forward, and +X is Right
 		var blend_position := -Vector2(local_velocity.x, -local_velocity.z).normalized()
 		
-		# 4. Inject the values into the AnimationTree parameter
-		# Note: The path depends on the exact name of your node. If you named it "Move", this is correct.
-		state_machine.animation_tree.set("parameters/Locomotion/Move/blend_position", blend_position)
+
+		state_machine.replicated_blend_position = blend_position
