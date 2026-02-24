@@ -9,6 +9,7 @@ script = ExtResource("2_t2thf")
 ability_name = "Throw Potion"
 activation_required_tags = PackedStringArray("state.aiming")
 animation_name = "Throw"
+wait_for_animation_event = true
 metadata/_custom_type_script = "uid://dk3yov21gbuc7"
 
 [resource]
