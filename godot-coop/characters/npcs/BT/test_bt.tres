@@ -1,0 +1,30 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://cvjjmx613frke"]
+
+[ext_resource type="Script" uid="uid://b0n68e80u76si" path="res://ai/tasks/bt_bind_nearest_player.gd" id="1_sgsbd"]
+[ext_resource type="Script" uid="uid://yxc7digv2hrr" path="res://ai/tasks/bt_flee_from_target.gd" id="2_phv41"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_irv76"]
+var/target_player/name = &"target_player"
+var/target_player/type = 24
+var/target_player/hint = 0
+var/target_player/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_ilkq2"]
+script = ExtResource("1_sgsbd")
+
+[sub_resource type="BTAction" id="BTAction_3geb6"]
+script = ExtResource("2_phv41")
+flee_distance = null
+
+[sub_resource type="BTSequence" id="BTSequence_us38k"]
+children = [SubResource("BTAction_ilkq2"), SubResource("BTAction_3geb6")]
+
+[sub_resource type="BTWait" id="BTWait_ptr63"]
+duration = 2.0
+
+[sub_resource type="BTSelector" id="BTSelector_038ys"]
+children = [SubResource("BTSequence_us38k"), SubResource("BTWait_ptr63")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_irv76")
+root_task = SubResource("BTSelector_038ys")
