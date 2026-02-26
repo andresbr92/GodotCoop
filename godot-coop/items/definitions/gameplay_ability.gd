@@ -10,6 +10,12 @@ extends Resource
 @export_group("Ongoing Effects")
 @export var ongoing_effects: Array[GameplayEffect]
 
+@export_group("Animation")
+## (ej: "Throw", "Drink")
+@export var animation_name: String = ""
+@export var wait_for_animation_event: bool = false
+
+
 
 func can_activate(actor: Node) -> bool:
 	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
@@ -26,9 +32,29 @@ func can_activate(actor: Node) -> bool:
 			
 	return true
 
+func _execute_payload(_actor: Node, _data: Dictionary, _args: Dictionary = {}) -> void:
+	pass
 
 func activate(_actor: Node, _handle: AbilitySpecHandle, _args: Dictionary = {}) -> void:
-	print("Base activate")
+	# 1. Disparar visuales (esto ya lo hacíamos)
+	# (Aquí va tu código actual que inicia la animación, etc)
+	
+	# 2. Decidir cuándo ejecutar la lógica
+	if wait_for_animation_event:
+		var asc = _actor.get_node_or_null("AbilitySystemComponent")
+		if asc:
+			# Conectamos una sola vez a la señal para esperar el evento
+			# Usamos CONNECT_ONE_SHOT para que se desconecte sola tras dispararse
+			asc.gameplay_event_triggered.connect(
+				func(event_id): 
+					if event_id == "execute":
+						_execute_payload(_actor, {}, _args),
+				CONNECT_ONE_SHOT
+			)
+		else:
+			_execute_payload(_actor, {}, _args)
+	else:
+		_execute_payload(_actor, {}, _args)
 
 
 func input_released(_actor: Node, _handle: AbilitySpecHandle) -> void:

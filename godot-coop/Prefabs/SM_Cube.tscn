@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc551ncdhgfbk"]
+
+[ext_resource type="PackedScene" uid="uid://ci52lld6dg1rd" path="res://WitchHag/Demo/Architecture/SM_Cube.glb" id="1_b4gph"]
+[ext_resource type="Material" uid="uid://byn0e3h1nmpik" path="res://WitchHag/Demo/Materials/M_AssetPlatform.tres" id="2_d1hju"]
+
+[node name = "SM_Cube" instance = ExtResource("1_b4gph")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_d1hju")

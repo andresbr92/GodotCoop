@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://01fb3pgjy054"]
+
+[ext_resource type="PackedScene" uid="uid://cuxuxcmstcas3" path="res:///Engine/EngineSky/SM_SkySphere.glb" id="1_cbjco"]
+[ext_resource type="Material" uid="uid://dlllv6kh423da" path="res:///Engine/EngineSky/M_SimpleSkyDome.tres" id="2_bh1v6"]
+
+[node name = "SM_SkySphere" instance = ExtResource("1_cbjco")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_bh1v6")

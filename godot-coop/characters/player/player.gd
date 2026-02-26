@@ -2,10 +2,10 @@ extends CharacterBase
 
 
 const JUMP_VELOCITY = 4.5
-const ROTATION_SPEED = 10.0
+const ROTATION_SPEED = 3
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var mesh_instance_3d: Node3D = $Visuals
 @onready var character_inventory_system: NetworkedCharacterInventorySystem = $CharacterInventorySystem
 @onready var label_3d: Label3D = $Label3D
 
@@ -30,7 +30,21 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	label_3d.text = str(name)
+	var state_machine = get_node_or_null("StateMachine")
+	if state_machine and ability_system:
+		ability_system.ability_animation_triggered.connect(_on_ability_animation)
 	pass
+func _on_ability_animation(anim_name: String) -> void:
+	var sm = get_node_or_null("StateMachine")
+	if not sm: return
+
+	# Lógica de decisión: ¿Es una animación que permite moverse?
+	# Por ahora, digamos que "Throw" permite moverse.
+	if anim_name == "Throw":
+		sm.play_upper_body_action(anim_name)
+	else:
+		# Si es otra cosa, usamos la FSM completa que detiene o controla el flujo
+		sm.perform_action(anim_name)
 
 
 func _physics_process(delta: float) -> void:
@@ -106,3 +120,12 @@ func _collect_activation_data() -> Dictionary:
 
 func set_strafing(state: bool) -> void:
 	ability_system.is_strafing = state
+
+func on_animation_event(event_id: String) -> void:
+	print("añslkdfjñalksdjfñalkdjfñalkdjfñalkdjfñalkdjfñalkjdfñlakjdfñlkj")
+	if not is_multiplayer_authority():
+		return
+
+	# Reenviamos el evento al sistema de habilidades
+	if ability_system:
+		ability_system.handle_animation_event(event_id)

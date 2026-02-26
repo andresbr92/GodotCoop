@@ -124,6 +124,10 @@ func _ability_input_pressed_logic(input_tag: String, activation_data: Dictionary
 		if spec.input_tag == input_tag:
 			if can_activate_ability(spec.ability):
 				spec.ability.activate(_actor, handle, activation_data)
+				if spec.ability.animation_name != "":
+					var asc = _actor.get_node_or_null("AbilitySystemComponent")
+					if asc:
+						asc.ability_animation_triggered.emit(spec.ability.animation_name)
 				spec.is_active = true
 				if spec.ability.ongoing_effects.size() > 0:
 					var handles = _effect_manager._apply_effects_logic(spec.ability.ongoing_effects)

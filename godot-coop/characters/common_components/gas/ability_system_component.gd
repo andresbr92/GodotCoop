@@ -5,6 +5,8 @@ signal health_changed(new_value: float, max_value: float)
 signal died()
 signal tag_added(tag: StringName)
 signal tag_removed(tag: StringName)
+signal ability_animation_triggered(anim_name: String)
+signal gameplay_event_triggered(event_id: String)
 
 @onready var attribute_set: GASAttributeSet = $AttributeSet
 @onready var effect_manager: EffectManager = $EffectManager
@@ -100,3 +102,8 @@ func server_ability_input_pressed(input_tag: String, activation_data: Dictionary
 
 func server_ability_input_released(input_tag: String) -> void:
 	ability_manager.server_ability_input_released.rpc(input_tag)
+
+
+func handle_animation_event(event_id: String) -> void:
+	print("[ASC] Evento de animación recibido: ", event_id)
+	gameplay_event_triggered.emit(event_id)

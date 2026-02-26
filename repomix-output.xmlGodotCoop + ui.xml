@@ -32,7 +32,7 @@ The content is organized as follows:
 <notes>
 - Some files may have been excluded based on .gitignore rules and Repomix's configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Only files matching these patterns are included: godot-coop/characters/character_base.gd, godot-coop/characters/common_components/gas/ability_manager.gd, godot-coop/characters/common_components/gas/ability_system_component.gd, godot-coop/characters/common_components/gas/attribute_set.gd, godot-coop/characters/common_components/gas/cast_manager.gd, godot-coop/characters/common_components/gas/effect_manager.gd, godot-coop/characters/common_components/gas/tag_container.gd, godot-coop/characters/common_components/tag_reaction_component.gd, godot-coop/characters/npcs/human_dummy/human_npc.gd, godot-coop/characters/player/components/camera_follow.gd, godot-coop/characters/player/components/camera_spring_arm.gd, godot-coop/characters/player/components/coop_character_inventory_system.gd, godot-coop/characters/player/components/coop_character_inventory_system_ui.gd, godot-coop/characters/player/equipment_manager.gd, godot-coop/characters/player/player.gd, godot-coop/characters/test_tag_reaction_component.gd, godot-coop/interactables/harvest_nodes/harvestable.gd, godot-coop/interactables/harvest_nodes/harvestable_data.gd, godot-coop/interactables/interactable_base.gd, godot-coop/interactables/items/ingredients/ingredient_base.gd, godot-coop/interactables/items/item_base.gd, godot-coop/interactables/loot_container/loot_container.gd, godot-coop/interactables/loot_container/loot_container_data.gd, godot-coop/interactables/loot_container/search_constraint.gd, godot-coop/items/abilities/ga_aim.gd, godot-coop/items/abilities/ga_drink_potion.gd, godot-coop/items/abilities/ga_throw_projectile.gd, godot-coop/items/definitions/ability_grant.gd, godot-coop/items/definitions/ability_spec_handle.gd, godot-coop/items/definitions/effect_spec_handle.gd, godot-coop/items/definitions/equipment_data.gd, godot-coop/items/definitions/gameplay_ability.gd, godot-coop/items/definitions/gameplay_effect.gd, godot-coop/items/definitions/potion_data.gd, godot-coop/items/definitions/projectiles/fire_potion_projectile.gd, godot-coop/items/definitions/projectiles/projectile_base.gd, godot-coop/levels/maps/main.gd, godot-coop/systems/inventory/equipment_slot_constraint.gd, godot-coop/systems/inventory/inventory_system_manager.gd, godot-coop/systems/log_helper/Logger.gd, godot-coop/systems/multiplayer_spawner.gd, godot-coop/systems/network_manager.gd, godot-coop/systems/projectile_spawner.gd, godot-coop/test/unit-test/test_ability_manager.gd, godot-coop/test/unit-test/test_cast_manager.gd, godot-coop/test/unit-test/test_data_equipment.gd, godot-coop/test/unit-test/test_data_gameplay_ability.gd, godot-coop/test/unit-test/test_data_gameplay_effect.gd, godot-coop/test/unit-test/test_data_integrity.gd, godot-coop/test/unit-test/test_data_potion.gd, godot-coop/test/unit-test/test_effect_manager.gd, godot-coop/test/unit-test/test_tag_container.gd, godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd, godot-coop/addons/inventory-system-demos/interaction_system/interact_action.gd, godot-coop/addons/inventory-system-demos/fps/box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/campfire.gd, godot-coop/addons/inventory-system-demos/fps/constraints/category_grid_inventory_constraint.gd, godot-coop/addons/inventory-system-demos/fps/constraints/stack_size_constraint.gd, godot-coop/addons/inventory-system-demos/fps/dropper.gd, godot-coop/addons/inventory-system-demos/fps/fps_demo.gd, godot-coop/addons/inventory-system-demos/fps/loot_box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/modding_demo.gd, godot-coop/addons/inventory-system-demos/fps/player.gd, godot-coop/addons/inventory-system-demos/fps/props/shelf.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_inventory_3d.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_slot_3d.gd, godot-coop/addons/inventory-system-demos/fps/tool_hand_item_3d.gd, godot-coop/addons/inventory-system-demos/fps/use_items_example.gd, godot-coop/addons/inventory-system-demos/fps/workbench.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd, godot-coop/addons/inventory-system-demos/ui/drop_area.gd, godot-coop/addons/inventory-system-demos/ui/craft/recipe_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/ingredient_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craftings_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/crafting_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craft_station_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/interactor_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_icons.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_helper.gd, godot-coop/addons/inventory-system-demos/ui/interactor/action_message_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_selection_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_drop_zone_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_draggable_element_ui.gd, godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd, godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd, godot-coop/addons/inventory-system-demos/character/networked_openable.gd, godot-coop/addons/inventory-system-demos/character/openable.gd
+- Only files matching these patterns are included: godot-coop/Prefabs/notify_player.gd, godot-coop/characters/character_base.gd, godot-coop/characters/common_components/gas/ability_manager.gd, godot-coop/characters/common_components/gas/ability_system_component.gd, godot-coop/characters/common_components/gas/attribute_set.gd, godot-coop/characters/common_components/gas/cast_manager.gd, godot-coop/characters/common_components/gas/effect_manager.gd, godot-coop/characters/common_components/gas/tag_container.gd, godot-coop/characters/common_components/state_machine/action_state.gd, godot-coop/characters/common_components/state_machine/idle.gd, godot-coop/characters/common_components/state_machine/move.gd, godot-coop/characters/common_components/state_machine/state.gd, godot-coop/characters/common_components/state_machine/state_machine.gd, godot-coop/characters/common_components/tag_reaction_component.gd, godot-coop/characters/npcs/human_dummy/human_npc.gd, godot-coop/characters/player/components/camera_follow.gd, godot-coop/characters/player/components/camera_spring_arm.gd, godot-coop/characters/player/components/coop_character_inventory_system.gd, godot-coop/characters/player/components/coop_character_inventory_system_ui.gd, godot-coop/characters/player/equipment_manager.gd, godot-coop/characters/player/player.gd, godot-coop/characters/test_tag_reaction_component.gd, godot-coop/interactables/harvest_nodes/harvestable.gd, godot-coop/interactables/harvest_nodes/harvestable_data.gd, godot-coop/interactables/interactable_base.gd, godot-coop/interactables/items/ingredients/ingredient_base.gd, godot-coop/interactables/items/item_base.gd, godot-coop/interactables/loot_container/loot_container.gd, godot-coop/interactables/loot_container/loot_container_data.gd, godot-coop/interactables/loot_container/search_constraint.gd, godot-coop/items/abilities/ga_aim.gd, godot-coop/items/abilities/ga_drink_potion.gd, godot-coop/items/abilities/ga_throw_projectile.gd, godot-coop/items/definitions/ability_grant.gd, godot-coop/items/definitions/ability_spec_handle.gd, godot-coop/items/definitions/effect_spec_handle.gd, godot-coop/items/definitions/equipment_data.gd, godot-coop/items/definitions/gameplay_ability.gd, godot-coop/items/definitions/gameplay_effect.gd, godot-coop/items/definitions/potion_data.gd, godot-coop/items/definitions/projectiles/fire_potion_projectile.gd, godot-coop/items/definitions/projectiles/projectile_base.gd, godot-coop/levels/maps/main.gd, godot-coop/systems/inventory/equipment_slot_constraint.gd, godot-coop/systems/inventory/inventory_system_manager.gd, godot-coop/systems/log_helper/Logger.gd, godot-coop/systems/multiplayer_spawner.gd, godot-coop/systems/network_manager.gd, godot-coop/systems/projectile_spawner.gd, godot-coop/test/unit-test/test_ability_manager.gd, godot-coop/test/unit-test/test_cast_manager.gd, godot-coop/test/unit-test/test_data_equipment.gd, godot-coop/test/unit-test/test_data_gameplay_ability.gd, godot-coop/test/unit-test/test_data_gameplay_effect.gd, godot-coop/test/unit-test/test_data_integrity.gd, godot-coop/test/unit-test/test_data_potion.gd, godot-coop/test/unit-test/test_effect_manager.gd, godot-coop/test/unit-test/test_tag_container.gd, godot-coop/addons/inventory-system-demos/interaction_system/inventory_interactor.gd, godot-coop/addons/inventory-system-demos/interaction_system/interact_action.gd, godot-coop/addons/inventory-system-demos/fps/box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/campfire.gd, godot-coop/addons/inventory-system-demos/fps/constraints/category_grid_inventory_constraint.gd, godot-coop/addons/inventory-system-demos/fps/constraints/stack_size_constraint.gd, godot-coop/addons/inventory-system-demos/fps/dropper.gd, godot-coop/addons/inventory-system-demos/fps/fps_demo.gd, godot-coop/addons/inventory-system-demos/fps/loot_box_inventory.gd, godot-coop/addons/inventory-system-demos/fps/modding_demo.gd, godot-coop/addons/inventory-system-demos/fps/player.gd, godot-coop/addons/inventory-system-demos/fps/props/shelf.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_inventory_3d.gd, godot-coop/addons/inventory-system-demos/fps/props/visual_slot_3d.gd, godot-coop/addons/inventory-system-demos/fps/tool_hand_item_3d.gd, godot-coop/addons/inventory-system-demos/fps/use_items_example.gd, godot-coop/addons/inventory-system-demos/fps/workbench.gd, godot-coop/addons/inventory-system-demos/mp/sync_grid_inventory.gd, godot-coop/addons/inventory-system-demos/mp/sync_hotbar.gd, godot-coop/addons/inventory-system-demos/mp/sync_craft_station.gd, godot-coop/addons/inventory-system-demos/mp/placeable_item_spawner.gd, godot-coop/addons/inventory-system-demos/mp/networked_workbench.gd, godot-coop/addons/inventory-system-demos/mp/networked_use_items_example_3d.gd, godot-coop/addons/inventory-system-demos/mp/networked_shelf.gd, godot-coop/addons/inventory-system-demos/mp/networked_object_placer.gd, godot-coop/addons/inventory-system-demos/mp/networked_dropper.gd, godot-coop/addons/inventory-system-demos/mp/networked_character_inventory_system.gd, godot-coop/addons/inventory-system-demos/mp/networked_campfire.gd, godot-coop/addons/inventory-system-demos/mp/networked_box_inventory.gd, godot-coop/addons/inventory-system-demos/mp/mp_player.gd, godot-coop/addons/inventory-system-demos/mp/mp_demo.gd, godot-coop/addons/inventory-system-demos/mp/lag_test.gd, godot-coop/addons/inventory-system-demos/mp/dropped_item_spawner.gd, godot-coop/addons/inventory-system-demos/ui/inventory_system_ui.gd, godot-coop/addons/inventory-system-demos/ui/drop_area.gd, godot-coop/addons/inventory-system-demos/ui/craft/recipe_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/ingredient_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craftings_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/crafting_ui.gd, godot-coop/addons/inventory-system-demos/ui/craft/craft_station_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/interactor_ui.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_icons.gd, godot-coop/addons/inventory-system-demos/ui/interactor/input_helper.gd, godot-coop/addons/inventory-system-demos/ui/interactor/action_message_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_ui.gd, godot-coop/addons/inventory-system-demos/ui/hotbar/hotbar_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_slot_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_selection_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_inventory_panel.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_drop_zone_ui.gd, godot-coop/addons/inventory-system-demos/ui/grid/grid_draggable_element_ui.gd, godot-coop/addons/inventory-system-demos/character/character_inventory_system.gd, godot-coop/addons/inventory-system-demos/character/hand_item_holder_3d.gd, godot-coop/addons/inventory-system-demos/character/networked_openable.gd, godot-coop/addons/inventory-system-demos/character/openable.gd
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Files are sorted by Git change count (files with more changes are at the bottom)
@@ -105,6 +105,11 @@ godot-coop/characters/common_components/gas/attribute_set.gd
 godot-coop/characters/common_components/gas/cast_manager.gd
 godot-coop/characters/common_components/gas/effect_manager.gd
 godot-coop/characters/common_components/gas/tag_container.gd
+godot-coop/characters/common_components/state_machine/action_state.gd
+godot-coop/characters/common_components/state_machine/idle.gd
+godot-coop/characters/common_components/state_machine/move.gd
+godot-coop/characters/common_components/state_machine/state_machine.gd
+godot-coop/characters/common_components/state_machine/state.gd
 godot-coop/characters/common_components/tag_reaction_component.gd
 godot-coop/characters/npcs/human_dummy/human_npc.gd
 godot-coop/characters/player/components/camera_follow.gd
@@ -135,6 +140,7 @@ godot-coop/items/definitions/potion_data.gd
 godot-coop/items/definitions/projectiles/fire_potion_projectile.gd
 godot-coop/items/definitions/projectiles/projectile_base.gd
 godot-coop/levels/maps/main.gd
+godot-coop/Prefabs/notify_player.gd
 godot-coop/systems/inventory/equipment_slot_constraint.gd
 godot-coop/systems/inventory/inventory_system_manager.gd
 godot-coop/systems/log_helper/Logger.gd
@@ -3140,6 +3146,90 @@ func _remove_tag_rpc(tag: StringName) -> void:
 		_remove_tag_logic(tag)
 </file>
 
+<file path="godot-coop/characters/common_components/state_machine/action_state.gd">
+class_name ActionState
+extends State
+
+var current_action_name: String = ""
+var is_animating: bool = false
+
+func enter() -> void:
+	is_animating = true
+	if state_machine.playback and current_action_name != "":
+		state_machine.playback.travel(current_action_name)
+		print("[Animation FSM] Executing Action: ", current_action_name)
+	else:
+		_finish_action()
+
+func physics_update(_delta: float) -> void:
+	if not is_animating:
+		return
+		
+	# Comprobamos si el AnimationTree ha terminado de reproducir la animación actual
+	if state_machine.animation_tree:
+		var current_node = state_machine.playback.get_current_node()
+		
+		# Si el playback ya no está en nuestro nodo de acción (terminó y volvió a otro, o no lo encontró)
+		# Opcionalmente, podemos usar señales, pero consultar el playback es más seguro en el FSM
+		if current_node != current_action_name and current_node != "":
+			# Godot a veces tarda un frame en transicionar, así que verificamos que no estemos en proceso de viajar
+			if not state_machine.playback.is_playing():
+				pass # Está viajando
+			else:
+				_finish_action()
+
+func _finish_action() -> void:
+	is_animating = false
+	current_action_name = ""
+	
+	# Decidir a dónde volver basándonos en la velocidad actual
+	var horizontal_velocity := Vector2(state_machine.character.velocity.x, state_machine.character.velocity.z)
+	if horizontal_velocity.length_squared() > 0.1:
+		transitioned.emit(self, "move")
+	else:
+		transitioned.emit(self, "idle")
+
+# Método especial para inyectar la animación antes de entrar al estado
+func set_action(anim_name: String) -> void:
+	current_action_name = anim_name
+</file>
+
+<file path="godot-coop/characters/common_components/state_machine/state.gd">
+class_name State
+extends Node
+
+# Emitted when the state wants to transition to another state
+signal transitioned(state: State, new_state_name: String)
+
+# Reference to the state machine for accessing the character and animation tree
+var state_machine: StateMachine = null
+
+
+# Called when the state machine enters this state
+func enter() -> void:
+	pass
+
+
+# Called when the state machine exits this state
+func exit() -> void:
+	pass
+
+
+# Called during _process
+func update(_delta: float) -> void:
+	pass
+
+
+# Called during _physics_process
+func physics_update(_delta: float) -> void:
+	pass
+
+
+# Called during _input
+func handle_input(_event: InputEvent) -> void:
+	pass
+</file>
+
 <file path="godot-coop/characters/npcs/human_dummy/human_npc.gd">
 extends CharacterBase
 </file>
@@ -3512,29 +3602,14 @@ func on_effect_finished() -> void:
 	queue_free()
 </file>
 
-<file path="godot-coop/systems/log_helper/Logger.gd">
-extends Node
+<file path="godot-coop/Prefabs/notify_player.gd">
+extends AnimationPlayer
 
-# Al usar la anotación @vararg (en Godot 4) o simplemente 
-# pasando un Array si prefieres, pero la forma más limpia es esta:
-func log(arg1 = "", arg2 = "", arg3 = "", arg4 = "", arg5 = "") -> void:
-	var id = multiplayer.get_unique_id()
-	var prefijo = ""
-	
-	if id == 1:
-		prefijo = "[SERVER]"
-	else:
-		prefijo = "[CLIENT %s]" % id
-	
-	# Metemos todos los argumentos en un array para procesarlos
-	var parametros = [arg1, arg2, arg3, arg4, arg5]
-	var mensaje_final = ""
-	
-	for p in parametros:
-		if str(p) != "":
-			mensaje_final += str(p) + " " # Espacio simple, o "\t" para estilo printt()
-			
-	print("%s %s" % [prefijo, mensaje_final.strip_edges()])
+var notifier : String
+
+func notifies(anim :String, value : String = "") -> void:
+	notifier = value
+	print(value)
 </file>
 
 <file path="godot-coop/systems/network_manager.gd">
@@ -5381,270 +5456,6 @@ func _get_gp_motion_event_as_icon(event: InputEventJoypadMotion, icon_db: InputI
 	return icon
 </file>
 
-<file path="godot-coop/characters/common_components/gas/ability_manager.gd">
-class_name AbilityManager
-extends Node
-
-const INPUT_PRIMARY = "ability.primary"
-const INPUT_SECONDARY = "ability.secondary"
-const INPUT_RELOAD = "ability.reload"
-const INPUT_JUMP = "ability.jump"
-
-class AbilitySpec:
-	var handle: AbilitySpecHandle
-	var ability: GameplayAbility
-	var input_tag: String
-	var is_active: bool = false
-	var source_inventory: Inventory = null
-	var source_slot_index: int = -1
-	var active_effect_handles: Array[EffectSpecHandle] = []
-	
-	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String, p_inv: Inventory, p_slot: int):
-		handle = p_handle
-		ability = p_ability
-		input_tag = p_input
-		source_inventory = p_inv
-		source_slot_index = p_slot
-
-@export var default_abilities: Array[AbilityGrant]
-
-var _effect_manager: EffectManager
-var _tag_container: TagContainer
-var _cast_manager: CastManager
-var _actor: Node
-
-var granted_abilities: Dictionary = {}
-
-
-func _ready() -> void:
-	if multiplayer.is_server():
-		_ready_logic()
-
-
-## Testable ready logic - call directly in tests
-func _ready_logic() -> void:
-	for grant in default_abilities:
-		if grant and grant.ability:
-			_grant_ability_logic(grant.ability, grant.input_tag)
-
-
-func setup(actor: Node, effect_manager: EffectManager, tag_container: TagContainer, cast_manager: CastManager) -> void:
-	_actor = actor
-	_effect_manager = effect_manager
-	_tag_container = tag_container
-	_cast_manager = cast_manager
-
-
-func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
-	if not multiplayer.is_server(): return null
-	return _grant_ability_logic(ability_res, input_tag, source_inventory, source_slot_index)
-
-
-## Testable grant ability logic - call directly in tests
-func _grant_ability_logic(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
-	if ability_res == null: return null
-	
-	var handle = AbilitySpecHandle.new(ability_res.ability_name)
-	var spec = AbilitySpec.new(handle, ability_res, input_tag, source_inventory, source_slot_index)
-	granted_abilities[handle] = spec
-	
-	print("[AbilityManager] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
-	
-	return handle
-
-
-func clear_ability(handle: AbilitySpecHandle) -> void:
-	if not multiplayer.is_server(): return
-	_clear_ability_logic(handle)
-
-
-## Testable clear ability logic - call directly in tests
-func _clear_ability_logic(handle: AbilitySpecHandle) -> void:
-	if not granted_abilities.has(handle):
-		print("[AbilityManager] Warning: Ability not found: ", handle)
-		return
-		
-	var spec = granted_abilities[handle]
-	
-	if spec.is_active:
-		spec.ability.end_ability(_actor, handle)
-	
-	granted_abilities.erase(handle)
-	print("[AbilityManager] Cleared Ability: ", handle)
-
-
-func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
-	if granted_abilities.has(handle):
-		var spec = granted_abilities[handle]
-		return {
-			"inventory": spec.source_inventory,
-			"slot": spec.source_slot_index
-		}
-	return {}
-
-
-func can_activate_ability(ability: GameplayAbility) -> bool:
-	for tag in ability.activation_required_tags:
-		if not _tag_container.has_tag(tag):
-			return false
-			
-	for tag in ability.activation_blocked_tags:
-		if _tag_container.has_tag(tag):
-			return false
-			
-	return true
-
-
-@rpc("any_peer", "call_local", "reliable")
-func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
-	if not multiplayer.is_server(): return
-	_ability_input_pressed_logic(input_tag, activation_data)
-
-
-## Testable ability input pressed logic - call directly in tests
-func _ability_input_pressed_logic(input_tag: String, activation_data: Dictionary = {}) -> void:
-	for handle in granted_abilities:
-		var spec = granted_abilities[handle]
-		if spec.input_tag == input_tag:
-			if can_activate_ability(spec.ability):
-				spec.ability.activate(_actor, handle, activation_data)
-				spec.is_active = true
-				if spec.ability.ongoing_effects.size() > 0:
-					var handles = _effect_manager._apply_effects_logic(spec.ability.ongoing_effects)
-					spec.active_effect_handles.append_array(handles)
-			else:
-				print("[AbilityManager] Ability blocked: ", spec.ability.ability_name)
-
-
-@rpc("any_peer", "call_local", "reliable")
-func server_ability_input_released(input_tag: String) -> void:
-	if not multiplayer.is_server(): return
-	_ability_input_released_logic(input_tag)
-
-
-## Testable ability input released logic - call directly in tests
-func _ability_input_released_logic(input_tag: String) -> void:
-	for handle in granted_abilities:
-		var spec: AbilitySpec = granted_abilities[handle]
-		
-		if spec.input_tag == input_tag:
-			spec.is_active = false
-			
-			for effect_handle in spec.active_effect_handles:
-				_effect_manager._remove_effect_logic(effect_handle)
-			spec.active_effect_handles.clear()
-			
-			if _cast_manager.has_active_cast(handle):
-				_cast_manager._cancel_cast_logic(handle)
-			
-			spec.ability.input_released(_actor, handle)
-</file>
-
-<file path="godot-coop/characters/common_components/gas/ability_system_component.gd">
-class_name AbilitySystemComponent
-extends Node
-
-signal health_changed(new_value: float, max_value: float)
-signal died()
-signal tag_added(tag: StringName)
-signal tag_removed(tag: StringName)
-
-@onready var attribute_set: GASAttributeSet = $AttributeSet
-@onready var effect_manager: EffectManager = $EffectManager
-@onready var ability_manager: AbilityManager = $AbilityManager
-@onready var cast_manager: CastManager = $CastManager
-@onready var tag_container: TagContainer = $TagContainer
-
-@export var is_strafing: bool:
-	get:
-		return attribute_set.is_strafing if attribute_set else false
-	set(value):
-		if attribute_set:
-			attribute_set.is_strafing = value
-
-var health: float:
-	get:
-		return attribute_set.health if attribute_set else 0.0
-	set(value):
-		if attribute_set:
-			attribute_set.health = value
-
-var speed: float:
-	get:
-		return attribute_set.speed if attribute_set else 0.0
-
-
-func _ready() -> void:
-	_setup_components()
-	_connect_signals()
-
-
-func _setup_components() -> void:
-	var actor = get_parent()
-	
-	effect_manager.setup(attribute_set, tag_container)
-	ability_manager.setup(actor, effect_manager, tag_container, cast_manager)
-
-
-func _connect_signals() -> void:
-	attribute_set.health_changed.connect(func(new_val, max_val): health_changed.emit(new_val, max_val))
-	attribute_set.died.connect(func(): died.emit())
-	tag_container.tag_added.connect(func(tag): tag_added.emit(tag))
-	tag_container.tag_removed.connect(func(tag): tag_removed.emit(tag))
-
-
-func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
-	return effect_manager.apply_effects(effects)
-
-
-func remove_effect(handle: EffectSpecHandle) -> void:
-	effect_manager.remove_effect(handle)
-
-
-func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
-	return ability_manager.grant_ability(ability_res, input_tag, source_inventory, source_slot_index)
-
-
-func clear_ability(handle: AbilitySpecHandle) -> void:
-	ability_manager.clear_ability(handle)
-
-
-func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
-	return ability_manager.get_ability_source(handle)
-
-
-func start_cast(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
-	cast_manager.start_cast(handle, duration, on_complete, on_cancel)
-
-
-func cancel_cast(handle: AbilitySpecHandle) -> void:
-	cast_manager.cancel_cast(handle)
-
-
-func add_tag(tag: StringName) -> void:
-	tag_container.add_tag(tag)
-
-
-func remove_tag(tag: StringName) -> void:
-	tag_container.remove_tag(tag)
-
-
-func has_tag(tag: StringName) -> bool:
-	return tag_container.has_tag(tag)
-
-
-func get_total_stat(stat_name: String) -> float:
-	return attribute_set.get_computed_stat(stat_name)
-
-
-func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
-	ability_manager.server_ability_input_pressed.rpc(input_tag, activation_data)
-
-
-func server_ability_input_released(input_tag: String) -> void:
-	ability_manager.server_ability_input_released.rpc(input_tag)
-</file>
-
 <file path="godot-coop/characters/common_components/gas/attribute_set.gd">
 class_name GASAttributeSet
 extends Node
@@ -6319,6 +6130,189 @@ func _physics_process(_delta : float):
 		interactor.try_interact()
 </file>
 
+<file path="godot-coop/characters/common_components/gas/ability_manager.gd">
+class_name AbilityManager
+extends Node
+
+const INPUT_PRIMARY = "ability.primary"
+const INPUT_SECONDARY = "ability.secondary"
+const INPUT_RELOAD = "ability.reload"
+const INPUT_JUMP = "ability.jump"
+
+class AbilitySpec:
+	var handle: AbilitySpecHandle
+	var ability: GameplayAbility
+	var input_tag: String
+	var is_active: bool = false
+	var source_inventory: Inventory = null
+	var source_slot_index: int = -1
+	var active_effect_handles: Array[EffectSpecHandle] = []
+	
+	func _init(p_handle: AbilitySpecHandle, p_ability: GameplayAbility, p_input: String, p_inv: Inventory, p_slot: int):
+		handle = p_handle
+		ability = p_ability
+		input_tag = p_input
+		source_inventory = p_inv
+		source_slot_index = p_slot
+
+@export var default_abilities: Array[AbilityGrant]
+
+var _effect_manager: EffectManager
+var _tag_container: TagContainer
+var _cast_manager: CastManager
+var _actor: Node
+
+var granted_abilities: Dictionary = {}
+
+
+func _ready() -> void:
+	if multiplayer.is_server():
+		_ready_logic()
+
+
+## Testable ready logic - call directly in tests
+func _ready_logic() -> void:
+	for grant in default_abilities:
+		if grant and grant.ability:
+			_grant_ability_logic(grant.ability, grant.input_tag)
+
+
+func setup(actor: Node, effect_manager: EffectManager, tag_container: TagContainer, cast_manager: CastManager) -> void:
+	_actor = actor
+	_effect_manager = effect_manager
+	_tag_container = tag_container
+	_cast_manager = cast_manager
+
+
+func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
+	if not multiplayer.is_server(): return null
+	return _grant_ability_logic(ability_res, input_tag, source_inventory, source_slot_index)
+
+
+## Testable grant ability logic - call directly in tests
+func _grant_ability_logic(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
+	if ability_res == null: return null
+	
+	var handle = AbilitySpecHandle.new(ability_res.ability_name)
+	var spec = AbilitySpec.new(handle, ability_res, input_tag, source_inventory, source_slot_index)
+	granted_abilities[handle] = spec
+	
+	print("[AbilityManager] Granted Ability: '", ability_res.ability_name, "' | Handle: ", handle, " | Input: ", input_tag)
+	
+	return handle
+
+
+func clear_ability(handle: AbilitySpecHandle) -> void:
+	if not multiplayer.is_server(): return
+	_clear_ability_logic(handle)
+
+
+## Testable clear ability logic - call directly in tests
+func _clear_ability_logic(handle: AbilitySpecHandle) -> void:
+	if not granted_abilities.has(handle):
+		print("[AbilityManager] Warning: Ability not found: ", handle)
+		return
+		
+	var spec = granted_abilities[handle]
+	
+	if spec.is_active:
+		spec.ability.end_ability(_actor, handle)
+	
+	granted_abilities.erase(handle)
+	print("[AbilityManager] Cleared Ability: ", handle)
+
+
+func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
+	if granted_abilities.has(handle):
+		var spec = granted_abilities[handle]
+		return {
+			"inventory": spec.source_inventory,
+			"slot": spec.source_slot_index
+		}
+	return {}
+
+
+func can_activate_ability(ability: GameplayAbility) -> bool:
+	for tag in ability.activation_required_tags:
+		if not _tag_container.has_tag(tag):
+			return false
+			
+	for tag in ability.activation_blocked_tags:
+		if _tag_container.has_tag(tag):
+			return false
+			
+	return true
+
+
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
+	if not multiplayer.is_server(): return
+	_ability_input_pressed_logic(input_tag, activation_data)
+
+
+## Testable ability input pressed logic - call directly in tests
+func _ability_input_pressed_logic(input_tag: String, activation_data: Dictionary = {}) -> void:
+	for handle in granted_abilities:
+		var spec = granted_abilities[handle]
+		if spec.input_tag == input_tag:
+			if can_activate_ability(spec.ability):
+				spec.ability.activate(_actor, handle, activation_data)
+				if spec.ability.animation_name != "":
+					var asc = _actor.get_node_or_null("AbilitySystemComponent")
+					if asc:
+						asc.ability_animation_triggered.emit(spec.ability.animation_name)
+				spec.is_active = true
+				if spec.ability.ongoing_effects.size() > 0:
+					var handles = _effect_manager._apply_effects_logic(spec.ability.ongoing_effects)
+					spec.active_effect_handles.append_array(handles)
+			else:
+				print("[AbilityManager] Ability blocked: ", spec.ability.ability_name)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func server_ability_input_released(input_tag: String) -> void:
+	if not multiplayer.is_server(): return
+	_ability_input_released_logic(input_tag)
+
+
+## Testable ability input released logic - call directly in tests
+func _ability_input_released_logic(input_tag: String) -> void:
+	for handle in granted_abilities:
+		var spec: AbilitySpec = granted_abilities[handle]
+		
+		if spec.input_tag == input_tag:
+			spec.is_active = false
+			
+			for effect_handle in spec.active_effect_handles:
+				_effect_manager._remove_effect_logic(effect_handle)
+			spec.active_effect_handles.clear()
+			
+			if _cast_manager.has_active_cast(handle):
+				_cast_manager._cancel_cast_logic(handle)
+			
+			spec.ability.input_released(_actor, handle)
+</file>
+
+<file path="godot-coop/characters/common_components/state_machine/idle.gd">
+class_name IdleState
+extends State
+
+# Called when the state machine enters this state
+func enter() -> void:
+	# Todo: Here we will tell the AnimationTree to travel to "Idle"
+	print("[Animation FSM] Entered IDLE")
+	if state_machine.playback:
+		state_machine.playback.travel("Idle")
+
+
+# Called during _physics_process
+func physics_update(_delta: float) -> void:
+	# Only the multiplayer authority should dictate animation state changes based on local input/physics
+	# We read the velocity calculated by player.gd
+	if state_machine.character.velocity.length_squared() > 0.1:
+		transitioned.emit(self, "Move")
+</file>
+
 <file path="godot-coop/interactables/harvest_nodes/harvestable.gd">
 class_name Harvestable
 extends InteractableBase
@@ -6529,6 +6523,31 @@ func input_released(actor: Node, handle: AbilitySpecHandle) -> void:
 		print("[GA_Aim] Strafing Ended")
 	
 	end_ability(actor, handle)
+</file>
+
+<file path="godot-coop/systems/log_helper/Logger.gd">
+extends Node
+
+# Al usar la anotación @vararg (en Godot 4) o simplemente 
+# pasando un Array si prefieres, pero la forma más limpia es esta:
+func log(arg1 = "", arg2 = "", arg3 = "", arg4 = "", arg5 = "") -> void:
+	var id = multiplayer.get_unique_id()
+	var prefijo = ""
+	
+	if id == 1:
+		prefijo = "[SERVER]"
+	else:
+		prefijo = "[CLIENT %s]" % id
+	
+	# Metemos todos los argumentos en un array para procesarlos
+	var parametros = [arg1, arg2, arg3, arg4, arg5]
+	var mensaje_final = ""
+	
+	for p in parametros:
+		if str(p) != "":
+			mensaje_final += str(p) + " " # Espacio simple, o "\t" para estilo printt()
+			
+	print("%s %s" % [prefijo, mensaje_final.strip_edges()])
 </file>
 
 <file path="godot-coop/addons/inventory-system-demos/ui/grid/grid_item_stack_ui.gd">
@@ -7100,6 +7119,118 @@ func _setup_equipment_slot(inventory: Inventory):
 		printerr("InventorySystemUI: No UI found for equipment inventory: ", inventory.name)
 </file>
 
+<file path="godot-coop/characters/common_components/gas/ability_system_component.gd">
+class_name AbilitySystemComponent
+extends Node
+
+signal health_changed(new_value: float, max_value: float)
+signal died()
+signal tag_added(tag: StringName)
+signal tag_removed(tag: StringName)
+signal ability_animation_triggered(anim_name: String)
+signal gameplay_event_triggered(event_id: String)
+
+@onready var attribute_set: GASAttributeSet = $AttributeSet
+@onready var effect_manager: EffectManager = $EffectManager
+@onready var ability_manager: AbilityManager = $AbilityManager
+@onready var cast_manager: CastManager = $CastManager
+@onready var tag_container: TagContainer = $TagContainer
+
+@export var is_strafing: bool:
+	get:
+		return attribute_set.is_strafing if attribute_set else false
+	set(value):
+		if attribute_set:
+			attribute_set.is_strafing = value
+
+var health: float:
+	get:
+		return attribute_set.health if attribute_set else 0.0
+	set(value):
+		if attribute_set:
+			attribute_set.health = value
+
+var speed: float:
+	get:
+		return attribute_set.speed if attribute_set else 0.0
+
+
+func _ready() -> void:
+	_setup_components()
+	_connect_signals()
+
+
+func _setup_components() -> void:
+	var actor = get_parent()
+	
+	effect_manager.setup(attribute_set, tag_container)
+	ability_manager.setup(actor, effect_manager, tag_container, cast_manager)
+
+
+func _connect_signals() -> void:
+	attribute_set.health_changed.connect(func(new_val, max_val): health_changed.emit(new_val, max_val))
+	attribute_set.died.connect(func(): died.emit())
+	tag_container.tag_added.connect(func(tag): tag_added.emit(tag))
+	tag_container.tag_removed.connect(func(tag): tag_removed.emit(tag))
+
+
+func apply_gameplay_effects(effects: Array[GameplayEffect]) -> Array[EffectSpecHandle]:
+	return effect_manager.apply_effects(effects)
+
+
+func remove_effect(handle: EffectSpecHandle) -> void:
+	effect_manager.remove_effect(handle)
+
+
+func grant_ability(ability_res: GameplayAbility, input_tag: String = "", source_inventory: Inventory = null, source_slot_index: int = -1) -> AbilitySpecHandle:
+	return ability_manager.grant_ability(ability_res, input_tag, source_inventory, source_slot_index)
+
+
+func clear_ability(handle: AbilitySpecHandle) -> void:
+	ability_manager.clear_ability(handle)
+
+
+func get_ability_source(handle: AbilitySpecHandle) -> Dictionary:
+	return ability_manager.get_ability_source(handle)
+
+
+func start_cast(handle: AbilitySpecHandle, duration: float, on_complete: Callable, on_cancel: Callable = Callable()) -> void:
+	cast_manager.start_cast(handle, duration, on_complete, on_cancel)
+
+
+func cancel_cast(handle: AbilitySpecHandle) -> void:
+	cast_manager.cancel_cast(handle)
+
+
+func add_tag(tag: StringName) -> void:
+	tag_container.add_tag(tag)
+
+
+func remove_tag(tag: StringName) -> void:
+	tag_container.remove_tag(tag)
+
+
+func has_tag(tag: StringName) -> bool:
+	return tag_container.has_tag(tag)
+
+
+func get_total_stat(stat_name: String) -> float:
+	return attribute_set.get_computed_stat(stat_name)
+
+
+func server_ability_input_pressed(input_tag: String, activation_data: Dictionary = {}) -> void:
+	ability_manager.server_ability_input_pressed.rpc(input_tag, activation_data)
+
+
+func server_ability_input_released(input_tag: String) -> void:
+	ability_manager.server_ability_input_released.rpc(input_tag)
+
+
+func handle_animation_event(event_id: String) -> void:
+	print("[ASC] Evento de animación recibido: ", event_id)
+	gameplay_event_triggered.emit(event_id)
+</file>
+
 <file path="godot-coop/items/definitions/equipment_data.gd">
 class_name EquipmentData
 extends Resource
@@ -7124,48 +7255,6 @@ enum SlotType { HEAD, CHEST, HAND, BELT }
 
 # Abilities granted while equipped (e.g. Sword Slash)
 @export var granted_abilities: Array[AbilityGrant]
-</file>
-
-<file path="godot-coop/items/definitions/gameplay_ability.gd">
-class_name GameplayAbility
-extends Resource
-
-@export var ability_name: String = "Base Ability"
-
-@export_group("Activation Requirements")
-@export var activation_required_tags: PackedStringArray
-@export var activation_blocked_tags: PackedStringArray
-
-@export_group("Ongoing Effects")
-@export var ongoing_effects: Array[GameplayEffect]
-
-
-func can_activate(actor: Node) -> bool:
-	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
-	if not asc: 
-		return false
-		
-	for tag in activation_required_tags:
-		if not asc.has_tag(tag):
-			return false 
-			
-	for tag in activation_blocked_tags:
-		if asc.has_tag(tag):
-			return false 
-			
-	return true
-
-
-func activate(_actor: Node, _handle: AbilitySpecHandle, _args: Dictionary = {}) -> void:
-	print("Base activate")
-
-
-func input_released(_actor: Node, _handle: AbilitySpecHandle) -> void:
-	pass
-
-
-func end_ability(_actor: Node, _handle: AbilitySpecHandle) -> void:
-	pass
 </file>
 
 <file path="godot-coop/items/definitions/potion_data.gd">
@@ -7608,6 +7697,165 @@ func _process_duration_tag_effects(delta: float) -> void:
 			active_duration_tag_effects.remove_at(i)
 </file>
 
+<file path="godot-coop/characters/common_components/state_machine/move.gd">
+class_name MoveState
+extends State
+@onready var mesh: MeshInstance3D = $"../../Visuals/X_Bot/Mesh/Skeleton/Mesh"
+
+# Called when the state machine enters this state
+func enter() -> void:
+	# Todo: Here we will tell the AnimationTree to travel to "Move/Run"
+	print("[Animation FSM] Entered MOVE")
+	if state_machine.playback:
+		state_machine.playback.travel("Move")
+
+
+# Called during _physics_process
+func physics_update(_delta: float) -> void:
+	if not state_machine.character.is_multiplayer_authority():
+		return
+		
+	var global_velocity: Vector3 = state_machine.character.velocity
+	var horizontal_velocity := Vector2(global_velocity.x, global_velocity.z)
+	
+	# Transition back to Idle if we stop moving
+	if horizontal_velocity.length_squared() <= 0.1:
+		transitioned.emit(self, "Idle")
+		state_machine.replicated_blend_position = Vector2.ZERO
+		return
+		
+	# -- BLENDSPACE 2D LOGIC --
+	
+	# 1. Get the mesh node. We use the mesh rotation to determine "Forward"
+	#var mesh = state_machine.character.get_node("Visuals/X_Bot")
+
+	
+	if mesh and state_machine.animation_tree:
+
+		# 2. Transform global velocity to local velocity relative to the mesh's transform
+		var local_velocity: Vector3 = mesh.global_transform.basis.inverse() * global_velocity
+		
+		var blend_position := -Vector2(local_velocity.x, -local_velocity.z).normalized()
+		
+
+		state_machine.replicated_blend_position = blend_position
+</file>
+
+<file path="godot-coop/characters/common_components/state_machine/state_machine.gd">
+class_name StateMachine
+extends Node
+
+# The initial state when the machine starts
+@export var initial_state: NodePath
+
+@export var animation_tree: AnimationTree
+
+# The character this state machine controls
+@onready var character: CharacterBody3D = owner
+
+var playback: AnimationNodeStateMachinePlayback
+
+var current_state: State
+@export var replicated_blend_position: Vector2 = Vector2.ZERO
+@export var replicated_state_name: StringName = &"Idle"
+var states: Dictionary = {}
+
+
+func _ready() -> void:
+	# Wait for the owner to be ready
+	await owner.ready
+	# Get the playback object from the AnimationTree
+	if animation_tree:
+		playback = animation_tree.get("parameters/Locomotion/playback")
+	else:
+		push_warning("StateMachine: AnimationTree is missing!")
+	
+	# Populate the states dictionary and setup references
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			child.state_machine = self
+			child.transitioned.connect(on_child_transition)
+	
+	# Initialize the default state
+	if initial_state:
+		var start_node := get_node(initial_state) as State
+		if start_node:
+			start_node.enter()
+			current_state = start_node
+
+
+func _process(delta: float) -> void:
+	if animation_tree:
+		animation_tree.set("parameters/Locomotion/Move/blend_position", replicated_blend_position)
+
+
+func _apply_replicated_state() -> void:
+	if not playback: return
+	var current_anim = playback.get_current_node()
+	if current_anim != replicated_state_name:
+		playback.travel(replicated_state_name)
+
+
+func _physics_process(delta: float) -> void:
+	if current_state:
+		current_state.physics_update(delta)
+	if not character.is_multiplayer_authority():
+		_apply_replicated_state()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if current_state:
+		current_state.handle_input(event)
+
+
+# Handles transitions between states
+func on_child_transition(state: State, new_state_name: String) -> void:
+	if state != current_state:
+		return
+		
+	var new_state: State = states.get(new_state_name.to_lower())
+	if not new_state:
+		push_warning("StateMachine: Trying to transition to unknown state: " + new_state_name)
+		return
+		
+	if current_state:
+		current_state.exit()
+		
+	new_state.enter()
+	current_state = new_state
+	if character.is_multiplayer_authority():
+		replicated_state_name = StringName(new_state_name.capitalize())
+
+func perform_action(anim_name: String) -> void:
+	
+	if anim_name == "":
+		return
+		
+	var action_state = states.get("action")
+	if action_state:
+		printt("performing action", anim_name)
+		action_state.set_action(anim_name)
+		
+		if current_state:
+			current_state.exit()
+		action_state.enter()
+		current_state = action_state
+
+func play_upper_body_action(anim_name: String) -> void:
+	if not animation_tree: return
+	
+	# 1. Asignamos dinámicamente qué animación va a usar el nodo OneShot
+	# Nota: Para hacer esto dinámico en un BlendTree, hay un truco.
+	# Por ahora, para el MVP, asumiremos que el nodo "Throw" está conectado.
+	# En sistemas avanzados, cambiamos el nodo conectado por código.
+	
+	# 2. Disparamos el OneShot
+	animation_tree.set("parameters/UpperBodyAction/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	print("[Animation FSM] Upper Body Action Triggered")
+</file>
+
 <file path="godot-coop/interactables/interactable_base.gd">
 class_name InteractableBase
 extends StaticBody3D
@@ -7980,6 +8228,74 @@ func _validate_item(inventory: Node, item_id: String) -> bool:
 	# Optional feedback (debug only)
 	# print("Rejected: Item allows ", data.allowed_slots, " but slot requires ", allowed_slot)
 	return false
+</file>
+
+<file path="godot-coop/items/definitions/gameplay_ability.gd">
+class_name GameplayAbility
+extends Resource
+
+@export var ability_name: String = "Base Ability"
+
+@export_group("Activation Requirements")
+@export var activation_required_tags: PackedStringArray
+@export var activation_blocked_tags: PackedStringArray
+
+@export_group("Ongoing Effects")
+@export var ongoing_effects: Array[GameplayEffect]
+
+@export_group("Animation")
+## (ej: "Throw", "Drink")
+@export var animation_name: String = ""
+@export var wait_for_animation_event: bool = false
+
+
+
+func can_activate(actor: Node) -> bool:
+	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
+	if not asc: 
+		return false
+		
+	for tag in activation_required_tags:
+		if not asc.has_tag(tag):
+			return false 
+			
+	for tag in activation_blocked_tags:
+		if asc.has_tag(tag):
+			return false 
+			
+	return true
+
+func _execute_payload(_actor: Node, _data: Dictionary, _args: Dictionary = {}) -> void:
+	pass
+
+func activate(_actor: Node, _handle: AbilitySpecHandle, _args: Dictionary = {}) -> void:
+	# 1. Disparar visuales (esto ya lo hacíamos)
+	# (Aquí va tu código actual que inicia la animación, etc)
+	
+	# 2. Decidir cuándo ejecutar la lógica
+	if wait_for_animation_event:
+		var asc = _actor.get_node_or_null("AbilitySystemComponent")
+		if asc:
+			# Conectamos una sola vez a la señal para esperar el evento
+			# Usamos CONNECT_ONE_SHOT para que se desconecte sola tras dispararse
+			asc.gameplay_event_triggered.connect(
+				func(event_id): 
+					if event_id == "execute":
+						_execute_payload(_actor, {}, _args),
+				CONNECT_ONE_SHOT
+			)
+		else:
+			_execute_payload(_actor, {}, _args)
+	else:
+		_execute_payload(_actor, {}, _args)
+
+
+func input_released(_actor: Node, _handle: AbilitySpecHandle) -> void:
+	pass
+
+
+func end_ability(_actor: Node, _handle: AbilitySpecHandle) -> void:
+	pass
 </file>
 
 <file path="godot-coop/items/definitions/gameplay_effect.gd">
@@ -8744,21 +9060,29 @@ func _set_openable_state(inventory: Inventory, is_open: bool):
 extends GameplayAbility
 class_name GA_ThrowProjectile
 
+## Cached handle to access inventory source in _execute_payload
+var _cached_handle: AbilitySpecHandle
+
 
 func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> void:
+	_cached_handle = handle
+	super.activate(actor, handle, args)
+
+
+## Spawns the projectile. Called immediately or on animation event based on wait_for_animation_event
+func _execute_payload(actor: Node, _data: Dictionary, args: Dictionary = {}) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED: return
 	
 	var asc: AbilitySystemComponent = actor.get_node_or_null("AbilitySystemComponent")
 	if not asc: return
 	
-	var potion_data = _get_potion_data_from_source(asc, handle)
+	var potion_data = _get_potion_data_from_source(asc, _cached_handle)
 	if not potion_data:
 		GlobalLogger.log("[GA_ThrowProjectile] No potion_data found in item properties")
 		return
 	
-	var direction = Vector3.FORWARD
-	var spawn_pos = actor.global_position + Vector3(0, 1.5, 0)
-	
+	# Calculate throw direction
+	var direction: Vector3
 	if args.has("aim_direction"):
 		direction = args["aim_direction"]
 	else:
@@ -8766,14 +9090,18 @@ func activate(actor: Node, handle: AbilitySpecHandle, args: Dictionary = {}) -> 
 
 	var velocity = direction * potion_data.throw_force
 	
+	# Get spawn position from character's hand
 	var spawner = actor.get_tree().get_first_node_in_group("ProjectileSpawner")
-	if spawner:
-		var hand_node = actor.get_node_or_null("MeshInstance3D/FakeSkeleton/RightHand")
-		var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
-		
-		spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, potion_data.resource_path, actor.name.to_int()])
-		if potion_data.consume_on_use:
-			_consume_source_item(asc, handle)
+	if not spawner: return
+	
+	var spawn_pos = actor.global_position + Vector3(0, 1.5, 0)
+	var hand_node = actor.get_node_or_null("MeshInstance3D/FakeSkeleton/RightHand")
+	var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
+	
+	spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, potion_data.resource_path, actor.name.to_int()])
+	
+	if potion_data.consume_on_use:
+		_consume_source_item(asc, _cached_handle)
 
 
 func _get_potion_data_from_source(asc: AbilitySystemComponent, handle: AbilitySpecHandle) -> PotionData:
@@ -8788,7 +9116,6 @@ func _get_potion_data_from_source(asc: AbilitySystemComponent, handle: AbilitySp
 	
 	var item_def = inventory.database.get_item(stack.item_id)
 	if not item_def: return null
-	print(item_def.properties)
 	if item_def.properties.has("potion_data"):
 		return load(item_def.properties["potion_data"]) as PotionData
 	
@@ -8812,7 +9139,7 @@ extends Node
 @export var ability_system_node: NodePath = "../../AbilitySystemComponent"
 @onready var ability_system: AbilitySystemComponent = get_node(ability_system_node)
 @onready var openable: Openable = $HeadSlot/Openable
-@onready var fake_skeleton: Node3D = $"../../MeshInstance3D/FakeSkeleton"
+@onready var skeleton_3d: Skeleton3D = $"../../Visuals/X_Bot/Mesh/Skeleton"
 
 @export var character_mesh_root: Node3D 
 
@@ -8894,7 +9221,7 @@ func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
 		_apply_equipment_effects_logic(data, slot_id, context)
 	
 	# Visuals are applied for ALL slots (including storage)
-	if data.visual_scene and fake_skeleton:
+	if data.visual_scene and skeleton_3d:
 		context["visual_node"] = _spawn_visual_attachment(data, slot_id)
 	
 	active_equipment[slot_id] = context
@@ -8949,9 +9276,9 @@ const SLOT_TO_MARKER: Dictionary = {
 	"HeadSlot": "Head",
 	"ChestSlot": "Chest", 
 	"HandSlot": "RightHand",
-	"BeltSlot1": "BeltSlotMarker1",
-	"BeltSlot2": "BeltSlotMarker2",
-	"BeltSlot3": "BeltSlotMarker3",
+	"BeltSlot1": "BeltSlot_1",
+	"BeltSlot2": "BeltSlot_2",
+	"BeltSlot3": "BeltSlot_3",
 }
 
 ## Belt slot names for quick access by index (1, 2, 3)
@@ -9114,14 +9441,14 @@ func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
 	var marker_name = SLOT_TO_MARKER.get(slot_id, data.bone_name)
 	
 	if marker_name != "":
-		var marker = fake_skeleton.get_node_or_null(marker_name)
+		var marker = skeleton_3d.get_node_or_null(marker_name)
 		if marker:
 			marker.add_child(visual_instance)
 			return visual_instance
 		else:
 			printerr("[EquipmentManager] Marker not found: ", marker_name)
 	
-	fake_skeleton.add_child(visual_instance)
+	skeleton_3d.add_child(visual_instance)
 	return visual_instance
 </file>
 
@@ -9130,10 +9457,10 @@ extends CharacterBase
 
 
 const JUMP_VELOCITY = 4.5
-const ROTATION_SPEED = 10.0
+const ROTATION_SPEED = 3
 
 @onready var camera: Camera3D = $SpringArmPivot/Camera3D
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var mesh_instance_3d: Node3D = $Visuals
 @onready var character_inventory_system: NetworkedCharacterInventorySystem = $CharacterInventorySystem
 @onready var label_3d: Label3D = $Label3D
 
@@ -9158,7 +9485,21 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	label_3d.text = str(name)
+	var state_machine = get_node_or_null("StateMachine")
+	if state_machine and ability_system:
+		ability_system.ability_animation_triggered.connect(_on_ability_animation)
 	pass
+func _on_ability_animation(anim_name: String) -> void:
+	var sm = get_node_or_null("StateMachine")
+	if not sm: return
+
+	# Lógica de decisión: ¿Es una animación que permite moverse?
+	# Por ahora, digamos que "Throw" permite moverse.
+	if anim_name == "Throw":
+		sm.play_upper_body_action(anim_name)
+	else:
+		# Si es otra cosa, usamos la FSM completa que detiene o controla el flujo
+		sm.perform_action(anim_name)
 
 
 func _physics_process(delta: float) -> void:
@@ -9234,6 +9575,15 @@ func _collect_activation_data() -> Dictionary:
 
 func set_strafing(state: bool) -> void:
 	ability_system.is_strafing = state
+
+func on_animation_event(event_id: String) -> void:
+	print("añslkdfjñalksdjfñalkdjfñalkdjfñalkdjfñalkdjfñalkjdfñlakjdfñlkj")
+	if not is_multiplayer_authority():
+		return
+
+	# Reenviamos el evento al sistema de habilidades
+	if ability_system:
+		ability_system.handle_animation_event(event_id)
 </file>
 
 </files>

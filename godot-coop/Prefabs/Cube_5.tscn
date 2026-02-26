@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm1kv0cpd71yp"]
+
+[ext_resource type="PackedScene" uid="uid://dfxkigmp3csod" path="res:///Engine/BasicShapes/Cube.glb" id="1_ckqol"]
+[ext_resource type="Material" uid="uid://fk5rshorx2b5" path="res://WitchHag/Demo/Materials/M_Basic_Wall.tres" id="2_bclxs"]
+
+[sub_resource type="BoxShape3D" id="0_c31wo"]
+size = Vector3(1.000000, 1.000000, 1.000000)
+
+[node name = "Cube_5" instance = ExtResource("1_ckqol")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_bclxs")
+
+[node name="StaticBody" type="StaticBody3D" parent="." ]
+
+
+[node name="Box0" type="CollisionShape3D" parent="StaticBody" ]
+transform = Transform3D(1.000000, 0.000000, 0.000000, 0.000000, 0.000000, -1.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 0.000000)
+shape = SubResource("0_c31wo")
+debug_fill = false
+
