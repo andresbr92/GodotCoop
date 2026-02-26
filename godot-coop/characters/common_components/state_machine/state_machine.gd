@@ -13,6 +13,7 @@ var playback: AnimationNodeStateMachinePlayback
 
 var current_state: State
 @export var replicated_blend_position: Vector2 = Vector2.ZERO
+@export var replicated_state_name: StringName = &"Idle"
 var states: Dictionary = {}
 
 
@@ -43,13 +44,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if animation_tree:
 		animation_tree.set("parameters/Locomotion/Move/blend_position", replicated_blend_position)
-	if current_state:
-		current_state.update(delta)
+
+
+func _apply_replicated_state() -> void:
+	if not playback: return
+	var current_anim = playback.get_current_node()
+	if current_anim != replicated_state_name:
+		playback.travel(replicated_state_name)
 
 
 func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_update(delta)
+	if not character.is_multiplayer_authority():
+		_apply_replicated_state()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -72,6 +80,8 @@ func on_child_transition(state: State, new_state_name: String) -> void:
 		
 	new_state.enter()
 	current_state = new_state
+	if character.is_multiplayer_authority():
+		replicated_state_name = StringName(new_state_name.capitalize())
 
 func perform_action(anim_name: String) -> void:
 	
