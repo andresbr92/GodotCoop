@@ -35,8 +35,7 @@ func test_equipment_default_values() -> void:
 	
 	assert_true(equipment.allowed_slots is Array, "allowed_slots should be an Array")
 	assert_eq(equipment.allowed_slots.size(), 0, "Default allowed_slots should be empty")
-	assert_null(equipment.visual_scene, "Default visual_scene should be null")
-	assert_eq(equipment.bone_name, "", "Default bone_name should be empty string")
+	# NOTE: visual_scene and bone_name removed - visuals now come from ItemDefinition.properties["hand_item"]
 	assert_true(equipment.passive_effects is Array, "passive_effects should be an Array")
 	assert_eq(equipment.passive_effects.size(), 0, "Default passive_effects should be empty")
 	assert_true(equipment.granted_abilities is Array, "granted_abilities should be an Array")

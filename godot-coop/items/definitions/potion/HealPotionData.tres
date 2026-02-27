@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PotionData" format=3 uid="uid://blriqcen68jms"]
+
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_utlo4"]
+[ext_resource type="Resource" uid="uid://drdrqyt7kwaky" path="res://items/definitions/gameplay_effects/GE_HealOverTime.tres" id="2_frdu7"]
+[ext_resource type="PackedScene" uid="uid://h6vvsfkrplpl" path="res://items/definitions/projectiles/heal_potion_projectile.tscn" id="3_o8ryx"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="4_me7kl"]
+
+[resource]
+script = ExtResource("4_me7kl")
+projectile_scene = ExtResource("3_o8ryx")
+blast_radius = 5.0
+area_effect_duration = 10.0
+effects = Array[ExtResource("1_utlo4")]([ExtResource("2_frdu7")])
+metadata/_custom_type_script = "uid://wok753vjriib"

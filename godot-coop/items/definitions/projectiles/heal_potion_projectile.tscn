@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/definitions/projectiles/projectile_base.tscn" id="1_fho6u"]
 [ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/definitions/projectiles/fire_potion_projectile.gd" id="2_upcfd"]
-[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="3_0form"]
+[ext_resource type="PackedScene" uid="uid://plk1mlkqskyf" path="res://addons/assets/kenney_food_assets/GLB format/bottle-oil.glb" id="3_orswd"]
 [ext_resource type="AudioStream" uid="uid://cs7mypovngs1j" path="res://addons/assets/Sounds/Potions/potion_break.wav" id="4_j8q33"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dfkfh"]
@@ -13,22 +13,22 @@ height = 1.0002441
 continuous_cd = true
 script = ExtResource("2_upcfd")
 
-[node name="PhysicsShape" parent="." index="0" unique_id=283471477]
+[node name="PhysicsShape" parent="." index="1" unique_id=283471477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41687012, 0)
 shape = SubResource("CapsuleShape3D_dfkfh")
 
-[node name="bottle2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1161776949 instance=ExtResource("3_0form")]
-
-[node name="AreaEffect" parent="." index="2" unique_id=1918654380]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44488338, 0)
+[node name="bottle-oil2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1984496029 instance=ExtResource("3_orswd")]
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1507177601]
 wait_time = 0.217
 one_shot = true
 autostart = true
 
-[node name="ImpactSound" parent="." index="5" unique_id=90279983]
+[node name="AreaEffect" parent="." index="4" unique_id=1918654380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44488338, 0)
+
+[node name="ImpactSound" parent="." index="6" unique_id=90279983]
 stream = ExtResource("4_j8q33")
 
-[connection signal="area_entered" from="AreaEffect" to="." method="_on_area_effect_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="AreaEffect" to="." method="_on_area_effect_area_entered"]

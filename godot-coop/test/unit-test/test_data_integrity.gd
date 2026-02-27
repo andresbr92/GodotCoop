@@ -21,9 +21,7 @@ func test_load_all_gameplay_effects() -> void:
 func test_load_all_equipment_data() -> void:
 	# Verify all EquipmentData .tres files load without errors
 	var equipment_paths = [
-		"res://items/definitions/equipment/EqData_FirePotion.tres",
-		"res://items/definitions/equipment/EqData_HealPotion.tres",
-		"res://items/definitions/equipment/EqData_PoisonPotion.tres",
+		"res://items/definitions/equipment/EqData_Potion.tres"
 	]
 	
 	for path in equipment_paths:
@@ -37,8 +35,8 @@ func test_load_all_equipment_data() -> void:
 func test_load_all_potion_data() -> void:
 	# Verify all PotionData .tres files load without errors
 	var potion_paths = [
-		"res://items/definitions/potion/FirePotionStats.tres",
-		"res://items/definitions/potion/HealPotionStats.tres",
+		"res://items/definitions/potion/FirePotionData.tres",
+		"res://items/definitions/potion/HealPotionData.tres",
 	]
 	
 	for path in potion_paths:
@@ -52,9 +50,7 @@ func test_load_all_potion_data() -> void:
 func test_equipment_references_valid() -> void:
 	# Verify that EquipmentData references (abilities, effects) are valid
 	var equipment_paths = [
-		"res://items/definitions/equipment/EqData_FirePotion.tres",
-		"res://items/definitions/equipment/EqData_HealPotion.tres",
-		"res://items/definitions/equipment/EqData_PoisonPotion.tres",
+		"res://items/definitions/equipment/EqData_Potion.tres"
 	]
 	
 	for path in equipment_paths:
