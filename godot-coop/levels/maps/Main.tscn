@@ -47,12 +47,14 @@ glow_enabled = true
 script = ExtResource("27_f1ogc")
 loot_table_id = "ingredient_table"
 min_rolls = 5
+seconds_to_reveal_per_item = 0.2
 metadata/_custom_type_script = "uid://l04bcqtrsxi1"
 
 [sub_resource type="Resource" id="Resource_7wsxd"]
 script = ExtResource("27_f1ogc")
 loot_table_id = "ingredient_table"
 min_rolls = 5
+seconds_to_reveal_per_item = 0.2
 metadata/_custom_type_script = "uid://l04bcqtrsxi1"
 
 [node name="Main" type="Node" unique_id=1964116347]

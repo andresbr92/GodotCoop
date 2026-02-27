@@ -388,6 +388,7 @@ amount = 1
 
 [sub_resource type="Recipe" id="Recipe_rdusi"]
 products = Array[ItemStack]([SubResource("ItemStack_oca02")])
+time_to_craft = 2.0
 ingredients = Array[ItemStack]([SubResource("ItemStack_qeojb"), SubResource("ItemStack_jst4x")])
 
 [sub_resource type="CraftStationType" id="CraftStationType_fnhd3"]

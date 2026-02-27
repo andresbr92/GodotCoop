@@ -303,16 +303,21 @@ func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
 	
 	var visual_instance = data.visual_scene.instantiate()
 	
-	# Determine marker: use slot-specific marker, or fallback to data.bone_name
-	var marker_name = SLOT_TO_MARKER.get(slot_id, data.bone_name)
+	# Always use the slot_id to determine the marker - this ensures items
+	# spawn in the correct location based on WHERE they're equipped, not
+	# what type of item they are (e.g., potion in hand vs potion on belt)
+	var marker_name = SLOT_TO_MARKER.get(slot_id, "")
 	
-	if marker_name != "":
-		var marker = skeleton_3d.get_node_or_null(marker_name)
-		if marker:
-			marker.add_child(visual_instance)
-			return visual_instance
-		else:
-			printerr("[EquipmentManager] Marker not found: ", marker_name)
+	if marker_name == "":
+		printerr("[EquipmentManager] No marker mapping for slot: ", slot_id)
+		visual_instance.queue_free()
+		return null
 	
-	skeleton_3d.add_child(visual_instance)
-	return visual_instance
+	var marker = skeleton_3d.get_node_or_null(marker_name)
+	if marker:
+		marker.add_child(visual_instance)
+		return visual_instance
+	
+	printerr("[EquipmentManager] Marker not found in skeleton: ", marker_name)
+	visual_instance.queue_free()
+	return null
