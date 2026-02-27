@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PotionData" format=3 uid="uid://dk5klb2ton0po"]
+
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_cs4d3"]
+[ext_resource type="Resource" uid="uid://drdrqyt7kwaky" path="res://items/definitions/gameplay_effects/GE_HealOverTime.tres" id="2_y81cq"]
+[ext_resource type="PackedScene" uid="uid://ba67te76jhkxk" path="res://items/definitions/projectiles/sticky_savia_potion_projectile.tscn" id="3_cs4d3"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="4_n7nmp"]
+
+[resource]
+script = ExtResource("4_n7nmp")
+projectile_scene = ExtResource("3_cs4d3")
+throw_force = 10.0
+blast_radius = 15.0
+area_effect_duration = 20.0
+effects = Array[ExtResource("1_cs4d3")]([ExtResource("2_y81cq")])
+metadata/_custom_type_script = "uid://wok753vjriib"

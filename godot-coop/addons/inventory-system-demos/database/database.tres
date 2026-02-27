@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d0lrl1mvjsw5u" path="res://addons/inventory-system-demos/assets/icons/food-restaurant-svgrepo-com.svg" id="3_0nsfg"]
 [ext_resource type="Texture2D" uid="uid://t3olj7qicyss" path="res://addons/inventory-system-demos/assets/icons/hat-svgrepo-com.svg" id="4_7goi1"]
 [ext_resource type="Texture2D" uid="uid://bxej4lauv36dd" path="res://addons/inventory-system-demos/assets/icons/campfire.png" id="11_h04p3"]
+[ext_resource type="Texture2D" uid="uid://tslkauksmsrg" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-oil.png" id="12_7l2r8"]
 [ext_resource type="Texture2D" uid="uid://m42ga264uiky" path="res://addons/inventory-system-demos/assets/icons/workbench.png" id="12_ltu7p"]
 [ext_resource type="Texture2D" uid="uid://cqfq2artfnl08" path="res://addons/assets/bottle.png" id="17_4cjml"]
 [ext_resource type="Texture2D" uid="uid://14aaiq5lmdlx" path="res://addons/assets/kenney_food_assets/GLB format/Previews/glass.png" id="18_utrd5"]
@@ -13,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://c2fisofifykcs" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-ketchup.png" id="21_k7yi0"]
 [ext_resource type="Texture2D" uid="uid://sjtpt2a8b7ij" path="res://addons/assets/kenney_food_assets/GLB format/Previews/tomato.png" id="22_rdusi"]
 [ext_resource type="Texture2D" uid="uid://cjl5dih0lri05" path="res://addons/assets/kenney_survival_assets/Previews/bottle-large.png" id="23_oca02"]
-[ext_resource type="Texture2D" uid="uid://bvo0uao7deu0q" path="res://addons/gut/icon.png" id="24_qeojb"]
 
 [sub_resource type="ItemCategory" id="ItemCategory_w8bei"]
 id = "burnables"
@@ -109,7 +109,7 @@ description = "Sleep Potion"
 id = "heal_potion"
 max_stack = 1
 name = "Heal Potion"
-icon = ExtResource("24_qeojb")
+icon = ExtResource("12_7l2r8")
 properties = {
 "dropped_item": "res://items/inventory_items/potions/heal_potion.tscn",
 "equipment_data": "res://items/definitions/equipment/EqData_Potion.tres",
@@ -198,7 +198,7 @@ item_id = "ingredient_seta_sangrienta"
 amount = 2
 
 [sub_resource type="ItemStack" id="ItemStack_qeojb"]
-item_id = "potion_vitalidad"
+item_id = "heal_potion"
 amount = 1
 
 [sub_resource type="Recipe" id="Recipe_oca02"]

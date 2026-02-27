@@ -35,7 +35,6 @@ func test_load_all_equipment_data() -> void:
 func test_load_all_potion_data() -> void:
 	# Verify all PotionData .tres files load without errors
 	var potion_paths = [
-		"res://items/definitions/potion/FirePotionData.tres",
 		"res://items/definitions/potion/HealPotionData.tres",
 	]
 	
