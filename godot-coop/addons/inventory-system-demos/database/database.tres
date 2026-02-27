@@ -17,6 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://c6rpas6jwthqy" path="res://addons/inventory-system-demos/assets/icons/helmet_labor.png" id="15_fmqqk"]
 [ext_resource type="Texture2D" uid="uid://c6sat1og447xr" path="res://icon.svg" id="16_dqypk"]
 [ext_resource type="Texture2D" uid="uid://cqfq2artfnl08" path="res://addons/assets/bottle.png" id="17_4cjml"]
+[ext_resource type="Texture2D" uid="uid://14aaiq5lmdlx" path="res://addons/assets/kenney_food_assets/GLB format/Previews/glass.png" id="18_utrd5"]
+[ext_resource type="Texture2D" uid="uid://bxjtd8sds3yau" path="res://addons/assets/kenney_food_assets/GLB format/Previews/mushroom.png" id="19_he2jw"]
+[ext_resource type="Texture2D" uid="uid://ckfya5wiogslv" path="res://addons/assets/kenney_food_assets/GLB format/Previews/whipped-cream.png" id="20_he2jw"]
+[ext_resource type="Texture2D" uid="uid://c2fisofifykcs" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-ketchup.png" id="21_k7yi0"]
+[ext_resource type="Texture2D" uid="uid://sjtpt2a8b7ij" path="res://addons/assets/kenney_food_assets/GLB format/Previews/tomato.png" id="22_rdusi"]
+[ext_resource type="Texture2D" uid="uid://cjl5dih0lri05" path="res://addons/assets/kenney_survival_assets/Previews/bottle-large.png" id="23_oca02"]
 
 [sub_resource type="ItemCategory" id="ItemCategory_w8bei"]
 id = "burnables"
@@ -256,6 +262,54 @@ properties = {
 categories = Array[ItemCategory]([SubResource("ItemCategory_4cjml")])
 description = "This is a basic bottle of water"
 
+[sub_resource type="ItemDefinition" id="ItemDefinition_4fkxu"]
+id = "ingredient_herb_dormidera"
+max_stack = 1
+name = "Hierba Dormidera"
+icon = ExtResource("18_utrd5")
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_he2jw"]
+id = "ingredient_seta_sangrienta"
+max_stack = 1
+name = "Hongus"
+icon = ExtResource("19_he2jw")
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_k7yi0"]
+id = "ingredient_polvo_ambar"
+max_stack = 1
+name = "Ámbar Dust"
+icon = ExtResource("20_he2jw")
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_rdusi"]
+id = "ingredient_glandula_ignea"
+max_stack = 1
+name = "Igneous Gland"
+icon = ExtResource("21_k7yi0")
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_oca02"]
+id = "ingredient_corazon_humano"
+max_stack = 1
+name = "Human Heart"
+icon = ExtResource("22_rdusi")
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_qeojb"]
+id = "sleep_potion"
+max_stack = 1
+name = "Sleep Potion"
+icon = ExtResource("23_oca02")
+properties = {
+"dropped_item": "res://items/inventory_items/potions/sleep_potion.tscn",
+"equipment_data": "res://items/definitions/equipment/EqData_SleepPotion.tres"
+}
+description = "Sleep Potion"
+
+[sub_resource type="ItemDefinition" id="ItemDefinition_jst4x"]
+id = "potion_vitalidad"
+name = "Heal Potion"
+properties = {
+"dropped_item": "res://"
+}
+
 [sub_resource type="LootItem" id="LootItem_6ctep"]
 item_id = "stone_axe"
 weight = 0.4
@@ -297,131 +351,62 @@ name = "Bush"
 min_rolls = 3
 max_rolls = 3
 
-[sub_resource type="ItemStack" id="ItemStack_dbkim"]
-item_id = "wood"
-amount = 2
+[sub_resource type="LootItem" id="LootItem_rdusi"]
+item_id = "ingredient_herb_dormidera"
+weight = 0.8
 
-[sub_resource type="ItemStack" id="ItemStack_j0uhl"]
-item_id = "stone"
+[sub_resource type="LootItem" id="LootItem_oca02"]
+item_id = "ingredient_seta_sangrienta"
+weight = 0.8
+
+[sub_resource type="LootItem" id="LootItem_qeojb"]
+item_id = "ingredient_polvo_ambar"
+weight = 0.4
+
+[sub_resource type="LootItem" id="LootItem_jst4x"]
+item_id = "ingredient_glandula_ignea"
+weight = 0.1
+
+[sub_resource type="Loot" id="Loot_rdusi"]
+items = Array[LootItem]([SubResource("LootItem_rdusi"), SubResource("LootItem_oca02"), SubResource("LootItem_qeojb"), SubResource("LootItem_jst4x")])
+id = "ingredient_table"
+name = "Ingredient Loot"
+min_rolls = 2
+max_rolls = 5
+
+[sub_resource type="ItemStack" id="ItemStack_qeojb"]
+item_id = "ingredient_seta_sangrienta"
 amount = 1
 
-[sub_resource type="ItemStack" id="ItemStack_h7ygg"]
-item_id = "stone_axe"
+[sub_resource type="ItemStack" id="ItemStack_jst4x"]
+item_id = "ingredient_herb_dormidera"
 amount = 1
 
-[sub_resource type="CraftStationType" id="CraftStationType_voset"]
-id = "workbench"
-name = "Workbench"
-icon = ExtResource("12_ltu7p")
-
-[sub_resource type="Recipe" id="Recipe_fapod"]
-products = Array[ItemStack]([SubResource("ItemStack_h7ygg")])
-time_to_craft = 16.0
-station = SubResource("CraftStationType_voset")
-ingredients = Array[ItemStack]([SubResource("ItemStack_dbkim"), SubResource("ItemStack_j0uhl")])
-
-[sub_resource type="ItemStack" id="ItemStack_qxf53"]
-item_id = "wood"
-amount = 2
-
-[sub_resource type="ItemStack" id="ItemStack_4laa2"]
-item_id = "stone"
-amount = 2
-
-[sub_resource type="ItemStack" id="ItemStack_ibn2f"]
-item_id = "stone_pickaxe"
+[sub_resource type="ItemStack" id="ItemStack_oca02"]
+item_id = "sleep_potion"
 amount = 1
 
-[sub_resource type="Recipe" id="Recipe_0u4cu"]
-products = Array[ItemStack]([SubResource("ItemStack_ibn2f")])
-station = SubResource("CraftStationType_voset")
-ingredients = Array[ItemStack]([SubResource("ItemStack_qxf53"), SubResource("ItemStack_4laa2")])
-
-[sub_resource type="ItemStack" id="ItemStack_vmn0l"]
-item_id = "grass"
-amount = 2
-
-[sub_resource type="ItemStack" id="ItemStack_0ubii"]
-item_id = "lashing"
-amount = 1
-
-[sub_resource type="Recipe" id="Recipe_bl2yk"]
-products = Array[ItemStack]([SubResource("ItemStack_0ubii")])
-time_to_craft = 2.0
-ingredients = Array[ItemStack]([SubResource("ItemStack_vmn0l")])
-
-[sub_resource type="ItemStack" id="ItemStack_kgu7b"]
-item_id = "wood"
-amount = 4
-
-[sub_resource type="ItemStack" id="ItemStack_y3o70"]
-item_id = "stone"
-amount = 2
-
-[sub_resource type="ItemStack" id="ItemStack_ykgij"]
-item_id = "campfire"
-amount = 1
-
-[sub_resource type="Recipe" id="Recipe_e1irj"]
-products = Array[ItemStack]([SubResource("ItemStack_ykgij")])
-ingredients = Array[ItemStack]([SubResource("ItemStack_kgu7b"), SubResource("ItemStack_y3o70")])
-
-[sub_resource type="ItemStack" id="ItemStack_uks53"]
-item_id = "wood"
-amount = 4
-
-[sub_resource type="ItemStack" id="ItemStack_qcw8a"]
-item_id = "workbench"
-amount = 1
-
-[sub_resource type="Recipe" id="Recipe_bhgkx"]
-products = Array[ItemStack]([SubResource("ItemStack_qcw8a")])
-ingredients = Array[ItemStack]([SubResource("ItemStack_uks53")])
-
-[sub_resource type="ItemStack" id="ItemStack_76odw"]
-item_id = "raw_meat"
-amount = 1
-
-[sub_resource type="ItemStack" id="ItemStack_7hhdj"]
-item_id = "cooked_meat"
-amount = 1
+[sub_resource type="Recipe" id="Recipe_rdusi"]
+products = Array[ItemStack]([SubResource("ItemStack_oca02")])
+ingredients = Array[ItemStack]([SubResource("ItemStack_qeojb"), SubResource("ItemStack_jst4x")])
 
 [sub_resource type="CraftStationType" id="CraftStationType_fnhd3"]
 id = "campfire"
 name = "Campfire"
 icon = ExtResource("11_h04p3")
 
-[sub_resource type="Recipe" id="Recipe_7jg1y"]
-products = Array[ItemStack]([SubResource("ItemStack_7hhdj")])
-time_to_craft = 8.0
-station = SubResource("CraftStationType_fnhd3")
-ingredients = Array[ItemStack]([SubResource("ItemStack_76odw")])
-
-[sub_resource type="ItemStack" id="ItemStack_utrd5"]
-item_id = "wood"
-amount = 2
-
-[sub_resource type="ItemStack" id="ItemStack_4fkxu"]
-item_id = "cooked_meat"
-amount = 1
-
-[sub_resource type="ItemStack" id="ItemStack_4cjml"]
-item_id = "wood"
-amount = 1
+[sub_resource type="CraftStationType" id="CraftStationType_voset"]
+id = "workbench"
+name = "Workbench"
+icon = ExtResource("12_ltu7p")
 
 [sub_resource type="CraftStationType" id="CraftStationType_4cjml"]
 id = "cauldron"
 name = "Cauldron"
 
-[sub_resource type="Recipe" id="Recipe_4cjml"]
-products = Array[ItemStack]([SubResource("ItemStack_4cjml")])
-time_to_craft = 2.2
-station = SubResource("CraftStationType_4cjml")
-ingredients = Array[ItemStack]([SubResource("ItemStack_utrd5"), SubResource("ItemStack_4fkxu")])
-
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml"), SubResource("ItemDefinition_utrd5")])
-recipes = Array[Recipe]([SubResource("Recipe_fapod"), SubResource("Recipe_0u4cu"), SubResource("Recipe_bl2yk"), SubResource("Recipe_e1irj"), SubResource("Recipe_bhgkx"), SubResource("Recipe_7jg1y"), SubResource("Recipe_4cjml")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml"), SubResource("ItemDefinition_utrd5"), SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x")])
+recipes = Array[Recipe]([SubResource("Recipe_rdusi")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])
-loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml")])
+loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml"), SubResource("Loot_rdusi")])

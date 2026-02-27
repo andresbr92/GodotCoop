@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://csxwr22p1rwxn"]
+
+[ext_resource type="PackedScene" uid="uid://bu50ku0vxmpwt" path="res://addons/inventory-system-demos/fps/dropped_items/dropped_item.tscn" id="1_6fm6e"]
+[ext_resource type="PackedScene" uid="uid://crni22vjmpb4y" path="res://addons/assets/modified_glb/sleep_potion_prop.tscn" id="2_6fm6e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdkpx"]
+size = Vector3(0.37457275, 0.89123535, 0.36706543)
+
+[node name="SleepPotion" unique_id=309637969 instance=ExtResource("1_6fm6e")]
+item_id = "sleep_potion"
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=395884797]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0.00033569336, 0.21002603, -0.0040893555)
+shape = SubResource("BoxShape3D_fdkpx")
+
+[node name="bottle-large2" parent="Visual" parent_id_path=PackedInt32Array(680871595) index="0" unique_id=1660104304 instance=ExtResource("2_6fm6e")]
+transform = Transform3D(2.145, 0, 0, 0, 2.145, 0, 0, 0, 2.145, 0, 0, 0)

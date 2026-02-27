@@ -14,7 +14,6 @@ script = ExtResource("1_sgsbd")
 
 [sub_resource type="BTAction" id="BTAction_3geb6"]
 script = ExtResource("2_phv41")
-flee_distance = null
 
 [sub_resource type="BTSequence" id="BTSequence_us38k"]
 children = [SubResource("BTAction_ilkq2"), SubResource("BTAction_3geb6")]
