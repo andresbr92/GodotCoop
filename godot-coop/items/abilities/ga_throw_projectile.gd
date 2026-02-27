@@ -36,7 +36,7 @@ func _execute_payload(actor: Node, _data: Dictionary, args: Dictionary = {}) -> 
 	if not spawner: return
 	
 	var spawn_pos = actor.global_position + Vector3(0, 1.5, 0)
-	var hand_node = actor.get_node_or_null("Visuals/X_Bot/Mesh/Skeleton/RightHand/RightHandSlot")
+	var hand_node = actor.get_node_or_null("Visuals/X_Bot/Mesh/Skeleton/RightHand/RightHandPotionSpawn")
 	var real_spawn_pos = hand_node.global_position if hand_node else spawn_pos
 	
 	spawner.spawn([real_spawn_pos, Basis.looking_at(direction), velocity, potion_data.resource_path, actor.name.to_int()])
