@@ -290,7 +290,8 @@ icon = ExtResource("23_oca02")
 properties = {
 "dropped_item": "res://items/inventory_items/potions/sleep_potion.tscn",
 "equipment_data": "res://items/definitions/equipment/EqData_Potion.tres",
-"hand_item": "res://addons/assets/modified_glb/sleep_potion_prop.tscn"
+"hand_item": "res://addons/assets/modified_glb/sleep_potion_prop.tscn",
+"potion_data": "res://items/definitions/potion/SleepPotionData.tres"
 }
 description = "Sleep Potion"
 
