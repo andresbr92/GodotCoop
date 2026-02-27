@@ -11,11 +11,9 @@ enum SlotType { HEAD, CHEST, HAND, BELT }
 ## Ejemplo: una poción puede tener [BELT, HAND] para equiparse en cualquiera.
 @export var allowed_slots: Array[SlotType]
 
-@export_group("Visuals")
-## The visual scene to instantiate when this item is equipped.
-## The spawn location is determined by the slot where it's equipped,
-## NOT by the item itself (handled by EquipmentManager.SLOT_TO_MARKER).
-@export var visual_scene: PackedScene
+## NOTE: Visuals are NOT defined here. They come from ItemDefinition.properties["hand_item"].
+## This allows multiple items to share the same EquipmentData (same abilities/effects)
+## while each having their own unique visual representation.
 
 @export_group("Gameplay Specs")
 # Effects applied passively while equipped (e.g. +10 Strength)

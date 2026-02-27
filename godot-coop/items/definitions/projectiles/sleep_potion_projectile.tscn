@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bjlqe6sey2p6d"]
+
+[ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/definitions/projectiles/projectile_base.tscn" id="1_jreiq"]
+[ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/definitions/projectiles/fire_potion_projectile.gd" id="2_3fjq0"]
+[ext_resource type="PackedScene" uid="uid://crni22vjmpb4y" path="res://addons/assets/modified_glb/sleep_potion_prop.tscn" id="3_jreiq"]
+[ext_resource type="AudioStream" uid="uid://cs7mypovngs1j" path="res://addons/assets/Sounds/Potions/potion_break.wav" id="4_20xli"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dfkfh"]
+radius = 0.2109375
+height = 1.0002441
+
+[node name="PotionProjectile" unique_id=1392492332 instance=ExtResource("1_jreiq")]
+collision_layer = 40
+continuous_cd = true
+script = ExtResource("2_3fjq0")
+
+[node name="PhysicsShape" parent="." index="1" unique_id=283471477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41687012, 0)
+shape = SubResource("CapsuleShape3D_dfkfh")
+
+[node name="bottle-large2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1660104304 instance=ExtResource("3_jreiq")]
+
+[node name="Timer" type="Timer" parent="." index="3" unique_id=1507177601]
+wait_time = 0.217
+one_shot = true
+autostart = true
+
+[node name="AreaEffect" parent="." index="4" unique_id=1918654380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44488338, 0)
+
+[node name="ImpactSound" parent="." index="6" unique_id=90279983]
+stream = ExtResource("4_20xli")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="AreaEffect" to="." method="_on_area_effect_area_entered"]

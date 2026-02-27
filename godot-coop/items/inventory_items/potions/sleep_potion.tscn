@@ -14,4 +14,3 @@ transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0.00033569336, 0.210
 shape = SubResource("BoxShape3D_fdkpx")
 
 [node name="bottle-large2" parent="Visual" parent_id_path=PackedInt32Array(680871595) index="0" unique_id=1660104304 instance=ExtResource("2_6fm6e")]
-transform = Transform3D(2.145, 0, 0, 0, 2.145, 0, 0, 0, 2.145, 0, 0, 0)

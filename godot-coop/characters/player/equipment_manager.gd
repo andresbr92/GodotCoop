@@ -58,19 +58,19 @@ func _on_item_equipped(stack_index: int, inventory: Node, slot_id: String) -> vo
 	var stack = inventory.stacks[stack_index]
 	if stack == null: return
 	
-	var def = inventory.database.get_item(stack.item_id)
-	if not def.properties.has("equipment_data"): return
+	var item_def = inventory.database.get_item(stack.item_id)
+	if not item_def.properties.has("equipment_data"): return
 	
-	var data_path = def.properties["equipment_data"]
+	var data_path = item_def.properties["equipment_data"]
 	var data = load(data_path) as EquipmentData
-	_apply_equipment_logic(data, slot_id)
+	_apply_equipment_logic(data, item_def, slot_id)
 
 
 func _on_item_unequipped(_stack_index: int, _inventory: Node, slot_id: String) -> void:
 	_remove_equipment_logic(slot_id)
 
 
-func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
+func _apply_equipment_logic(data: EquipmentData, item_def: ItemDefinition, slot_id: String) -> void:
 	if active_equipment.has(slot_id):
 		_remove_equipment_logic(slot_id)
 	
@@ -87,8 +87,9 @@ func _apply_equipment_logic(data: EquipmentData, slot_id: String) -> void:
 		_apply_equipment_effects_logic(data, slot_id, context)
 	
 	# Visuals are applied for ALL slots (including storage)
-	if data.visual_scene and skeleton_3d:
-		context["visual_node"] = _spawn_visual_attachment(data, slot_id)
+	# Visual comes from ItemDefinition.properties["hand_item"], NOT from EquipmentData
+	if item_def.properties.has("hand_item") and skeleton_3d:
+		context["visual_node"] = _spawn_visual_attachment(item_def, slot_id)
 	
 	active_equipment[slot_id] = context
 
@@ -135,16 +136,16 @@ func _remove_equipment_effects_logic(context: Dictionary) -> void:
 		ability_system.ability_manager._clear_ability_logic(handle)
 
 
-## Maps slot_id to the corresponding visual marker name in the skeleton.
-## This allows items with SlotType.BELT to be placed in the correct marker
-## based on which physical slot they were equipped to.
+## Maps slot_id to the corresponding visual marker path in the skeleton.
+## Markers are nested inside BoneAttachments to allow transform adjustments.
+## Path is relative to skeleton_3d.
 const SLOT_TO_MARKER: Dictionary = {
-	"HeadSlot": "Head",
-	"ChestSlot": "Chest", 
-	"HandSlot": "RightHand",
-	"BeltSlot1": "BeltSlot_1",
-	"BeltSlot2": "BeltSlot_2",
-	"BeltSlot3": "BeltSlot_3",
+	"HeadSlot": "Head/HeadSlot",
+	"ChestSlot": "Chest/ChestSlot", 
+	"HandSlot": "RightHand/RightHandSlot",
+	"BeltSlot1": "BeltSlot/BeltSlot_1",
+	"BeltSlot2": "BeltSlot/BeltSlot_2",
+	"BeltSlot3": "BeltSlot/BeltSlot_3",
 }
 
 ## Belt slot names for quick access by index (1, 2, 3)
@@ -298,10 +299,19 @@ func _add_to_slot(slot: GridInventory, data: Dictionary) -> void:
 	)
 
 
-func _spawn_visual_attachment(data: EquipmentData, slot_id: String) -> Node3D:
-	if not data.visual_scene: return null
+## Spawns the visual for an equipped item based on the slot it's in.
+## Visual scene path comes from ItemDefinition.properties["hand_item"].
+func _spawn_visual_attachment(item_def: ItemDefinition, slot_id: String) -> Node3D:
+	var visual_path = item_def.properties.get("hand_item", "")
+	if visual_path == "":
+		return null
 	
-	var visual_instance = data.visual_scene.instantiate()
+	var visual_scene = load(visual_path)
+	if not visual_scene:
+		printerr("[EquipmentManager] Failed to load hand_item: ", visual_path)
+		return null
+	
+	var visual_instance = visual_scene.instantiate()
 	
 	# Always use the slot_id to determine the marker - this ensures items
 	# spawn in the correct location based on WHERE they're equipped, not

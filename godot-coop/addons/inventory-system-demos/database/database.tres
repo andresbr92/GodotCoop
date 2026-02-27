@@ -234,19 +234,9 @@ name = "Fire Potion"
 icon = ExtResource("17_4cjml")
 properties = {
 "dropped_item": "res://items/inventory_items/potions/fire_potion.tscn",
-"equipment_data": "res://items/definitions/equipment/EqData_FirePotion.tres",
+"equipment_data": "res://items/definitions/equipment/EqData_Potion.tres",
 "hand_item": "res://addons/assets/bottle.glb",
 "potion_data": "res://items/definitions/potion/FirePotionStats.tres"
-}
-
-[sub_resource type="ItemDefinition" id="ItemDefinition_4cjml"]
-id = "heal_potion"
-max_stack = 10
-name = "Heal Potion"
-icon = ExtResource("16_dqypk")
-properties = {
-"dropped_item": "res://items/inventory_items/potions/heal_potion.tscn",
-"throwable_data": "res://items/definitions/potion/HealPotionStats.tres"
 }
 
 [sub_resource type="ItemDefinition" id="ItemDefinition_utrd5"]
@@ -299,7 +289,8 @@ name = "Sleep Potion"
 icon = ExtResource("23_oca02")
 properties = {
 "dropped_item": "res://items/inventory_items/potions/sleep_potion.tscn",
-"equipment_data": "res://items/definitions/equipment/EqData_SleepPotion.tres"
+"equipment_data": "res://items/definitions/equipment/EqData_Potion.tres",
+"hand_item": "res://addons/assets/modified_glb/sleep_potion_prop.tscn"
 }
 description = "Sleep Potion"
 
@@ -406,7 +397,7 @@ id = "cauldron"
 name = "Cauldron"
 
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4cjml"), SubResource("ItemDefinition_utrd5"), SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_b5y1y"), SubResource("ItemDefinition_dxjj6"), SubResource("ItemDefinition_hpt3t"), SubResource("ItemDefinition_n86tn"), SubResource("ItemDefinition_uhr2s"), SubResource("ItemDefinition_eupl1"), SubResource("ItemDefinition_scf45"), SubResource("ItemDefinition_24066"), SubResource("ItemDefinition_84tg3"), SubResource("ItemDefinition_f2odo"), SubResource("ItemDefinition_6y8vb"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_utrd5"), SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x")])
 recipes = Array[Recipe]([SubResource("Recipe_rdusi")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])
