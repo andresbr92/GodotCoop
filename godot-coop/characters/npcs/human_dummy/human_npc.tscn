@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b8fid1m6avs0l" path="res://characters/test_tag_reaction_component.gd" id="5_iibp6"]
 [ext_resource type="Texture2D" uid="uid://b57s7asqg7nji" path="res://addons/assets/kenney_prototype-textures/PNG/Red/texture_01.png" id="6_0ojbv"]
 [ext_resource type="PackedScene" uid="uid://b1ea2xmhs0qmh" path="res://characters/common_components/gas/ability_system_component.tscn" id="7_omdre"]
+[ext_resource type="BehaviorTree" uid="uid://cvjjmx613frke" path="res://characters/npcs/BT/test_bt.tres" id="8_0ojbv"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rwpfh"]
 properties/0/path = NodePath(".:position")
@@ -21,6 +22,8 @@ albedo_texture = ExtResource("3_k1en1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1en1"]
 albedo_texture = ExtResource("3_jnq7d")
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_0ojbv"]
 
 [node name="HumanNPC" unique_id=385850437 instance=ExtResource("1_2v448")]
 script = ExtResource("2_rwpfh")
@@ -42,3 +45,9 @@ texture_normal = ExtResource("3_jnq7d")
 metadata/_custom_type_script = "uid://bs2nrqdxgn6rt"
 
 [node name="AbilitySystemComponent" parent="." index="5" unique_id=2030581002 instance=ExtResource("7_omdre")]
+
+[node name="BTPlayer" type="BTPlayer" parent="." index="6" unique_id=574069331]
+behavior_tree = ExtResource("8_0ojbv")
+blackboard_plan = SubResource("BlackboardPlan_0ojbv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="7" unique_id=596395431]
