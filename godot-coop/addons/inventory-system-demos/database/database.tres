@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tslkauksmsrg" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-oil.png" id="12_7l2r8"]
 [ext_resource type="Texture2D" uid="uid://m42ga264uiky" path="res://addons/inventory-system-demos/assets/icons/workbench.png" id="12_ltu7p"]
 [ext_resource type="Texture2D" uid="uid://6hiy3v072nbc" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-musterd.png" id="13_6ctep"]
+[ext_resource type="Texture2D" uid="uid://o4mo2w2ftx1v" path="res://addons/gut/images/yellow.png" id="13_dqypk"]
 [ext_resource type="Texture2D" uid="uid://14aaiq5lmdlx" path="res://addons/assets/kenney_food_assets/GLB format/Previews/glass.png" id="18_utrd5"]
 [ext_resource type="Texture2D" uid="uid://bxjtd8sds3yau" path="res://addons/assets/kenney_food_assets/GLB format/Previews/mushroom.png" id="19_he2jw"]
 [ext_resource type="Texture2D" uid="uid://ckfya5wiogslv" path="res://addons/assets/kenney_food_assets/GLB format/Previews/whipped-cream.png" id="20_he2jw"]
@@ -129,6 +130,19 @@ properties = {
 "potion_data": "res://items/definitions/potion/FirePotionData.tres"
 }
 
+[sub_resource type="ItemDefinition" id="ItemDefinition_dqypk"]
+id = "youth_potion"
+can_stack = false
+max_stack = 1
+name = "Epic Youth Potion"
+icon = ExtResource("13_dqypk")
+properties = {
+"dropped_item": "res://items/inventory_items/potions/youth_potion.tscn",
+"equipment_data": "res://items/definitions/equipment/EqData_Potion.tres",
+"hand_item": "res://addons/assets/modified_glb/youth_potion_prop.tscn",
+"potion_data": "res://items/definitions/potion/YouthPotionData.tres"
+}
+
 [sub_resource type="LootItem" id="LootItem_6ctep"]
 item_id = "stone_axe"
 weight = 0.4
@@ -217,6 +231,27 @@ amount = 1
 products = Array[ItemStack]([SubResource("ItemStack_qeojb")])
 ingredients = Array[ItemStack]([SubResource("ItemStack_65pqv")])
 
+[sub_resource type="ItemStack" id="ItemStack_dqypk"]
+item_id = "ingredient_corazon_humano"
+amount = 1
+
+[sub_resource type="ItemStack" id="ItemStack_4cjml"]
+item_id = "ingredient_herb_dormidera"
+amount = 2
+
+[sub_resource type="ItemStack" id="ItemStack_utrd5"]
+item_id = "ingredient_glandula_ignea"
+amount = 1
+
+[sub_resource type="ItemStack" id="ItemStack_6ctep"]
+item_id = "youth_potion"
+amount = 1
+
+[sub_resource type="Recipe" id="Recipe_6ctep"]
+products = Array[ItemStack]([SubResource("ItemStack_6ctep")])
+time_to_craft = 20.0
+ingredients = Array[ItemStack]([SubResource("ItemStack_dqypk"), SubResource("ItemStack_4cjml"), SubResource("ItemStack_utrd5")])
+
 [sub_resource type="CraftStationType" id="CraftStationType_fnhd3"]
 id = "campfire"
 name = "Campfire"
@@ -232,8 +267,8 @@ id = "cauldron"
 name = "Cauldron"
 
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x"), SubResource("ItemDefinition_7l2r8"), SubResource("ItemDefinition_6ctep")])
-recipes = Array[Recipe]([SubResource("Recipe_rdusi"), SubResource("Recipe_oca02")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x"), SubResource("ItemDefinition_7l2r8"), SubResource("ItemDefinition_6ctep"), SubResource("ItemDefinition_dqypk")])
+recipes = Array[Recipe]([SubResource("Recipe_rdusi"), SubResource("Recipe_oca02"), SubResource("Recipe_6ctep")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])
 loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml"), SubResource("Loot_rdusi")])

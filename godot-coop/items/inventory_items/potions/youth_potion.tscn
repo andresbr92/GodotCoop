@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://wxdiu8afbq7f"]
+
+[ext_resource type="PackedScene" uid="uid://bu50ku0vxmpwt" path="res://addons/inventory-system-demos/fps/dropped_items/dropped_item.tscn" id="1_y1oe3"]
+[ext_resource type="PackedScene" uid="uid://xbvhldwlmqy2" path="res://addons/assets/modified_glb/youth_potion_prop.tscn" id="2_y1oe3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdkpx"]
+size = Vector3(0.37457275, 0.89123535, 0.36706543)
+
+[node name="YouthPotion" unique_id=309637969 instance=ExtResource("1_y1oe3")]
+item_id = "youth_potion"
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=395884797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033569336, 0.4524213, -0.0040893555)
+shape = SubResource("BoxShape3D_fdkpx")
+
+[node name="YouthPotionProp" parent="Visual" parent_id_path=PackedInt32Array(680871595) index="0" unique_id=1720796092 instance=ExtResource("2_y1oe3")]

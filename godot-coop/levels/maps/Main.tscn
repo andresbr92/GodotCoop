@@ -5,6 +5,7 @@
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="3_bivqv"]
 [ext_resource type="PackedScene" uid="uid://bwd1nipdgx8sj" path="res://items/inventory_items/potions/sticky_savia_potion.tscn" id="6_r7gtk"]
 [ext_resource type="PackedScene" uid="uid://cih1fs3fh0lo5" path="res://items/inventory_items/potions/fire_potion.tscn" id="7_clxfl"]
+[ext_resource type="PackedScene" uid="uid://wxdiu8afbq7f" path="res://items/inventory_items/potions/youth_potion.tscn" id="8_au11x"]
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://addons/assets/Materials/grid_mat.tres" id="9_mg6k3"]
 [ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://systems/projectile_spawner.gd" id="9_r7gtk"]
 [ext_resource type="Script" uid="uid://owlc7hwlygbt" path="res://addons/inventory-system-demos/mp/dropped_item_spawner.gd" id="10_clxfl"]
@@ -72,34 +73,43 @@ environment = SubResource("Environment_5lc62")
 [node name="Items" type="Node3D" parent="Level" unique_id=1716750582]
 
 [node name="SleepPotion" parent="Level/Items" unique_id=309637969 instance=ExtResource("11_pj6ab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3896768, 0, 1.8625256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14436364, 0, 3.5367508)
 
 [node name="SleepPotion2" parent="Level/Items" unique_id=162525924 instance=ExtResource("11_pj6ab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7713635, 0, 1.8625256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3758655, 0, 3.5367508)
 
 [node name="SleepPotion3" parent="Level/Items" unique_id=19599708 instance=ExtResource("11_pj6ab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17221856, 0, 1.8625256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6625466, 0, 3.5367508)
 
 [node name="HealPotion" parent="Level/Items" unique_id=1544439209 instance=ExtResource("19_3w03t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3220105, -4.7683716e-07, 2.1436286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6007247, -4.7683716e-07, 4.2918873)
 
 [node name="HealPotion2" parent="Level/Items" unique_id=642312385 instance=ExtResource("19_3w03t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5343504, -4.7683716e-07, 2.1436286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3883848, -4.7683716e-07, 4.2918873)
 
 [node name="HealPotion3" parent="Level/Items" unique_id=1052942774 instance=ExtResource("19_3w03t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8215322, -4.7683716e-07, 2.1436286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101202965, -4.7683716e-07, 4.2918873)
 
 [node name="StickySaviaPotion" parent="Level/Items" unique_id=2062050406 instance=ExtResource("6_r7gtk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.633096, 0, 2.244979)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6091588, 0, 4.708163)
 
 [node name="StickySaviaPotion2" parent="Level/Items" unique_id=43995608 instance=ExtResource("6_r7gtk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6456347, 0, 2.2994776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3499124, 0, 4.7626615)
+
+[node name="StickySaviaPotion3" parent="Level/Items" unique_id=2054274049 instance=ExtResource("6_r7gtk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06127429, 0, 4.7626615)
 
 [node name="FirePotion" parent="Level/Items" unique_id=1485289237 instance=ExtResource("7_clxfl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.351875, -2.3841858e-07, 2.3446574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6314335, -2.3841858e-07, 2.6545565)
 
 [node name="FirePotion2" parent="Level/Items" unique_id=334383410 instance=ExtResource("7_clxfl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.288943, -2.3841858e-07, 2.3446574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3828561, -2.3841858e-07, 2.6545565)
+
+[node name="FirePotion3" parent="Level/Items" unique_id=1222021622 instance=ExtResource("7_clxfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18577635, -2.3841858e-07, 2.6545565)
+
+[node name="YouthPotion" parent="Level/Items" unique_id=976607939 instance=ExtResource("8_au11x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4698064, -2.3841858e-07, 1.8717233)
 
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1963443158 groups=["ProjectileSpawner"]]
 spawn_path = NodePath("..")

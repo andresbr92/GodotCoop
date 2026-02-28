@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="PotionData" format=3 uid="uid://cpnh27b5bi0s4"]
+
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_iygyc"]
+[ext_resource type="PackedScene" uid="uid://co1yribpxepmr" path="res://items/definitions/projectiles/youth_potion_projectile.tscn" id="2_51s8d"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="3_2u7d5"]
+
+[sub_resource type="Resource" id="Resource_51s8d"]
+script = ExtResource("1_iygyc")
+operation = 0
+mode = 3
+granted_tags = PackedStringArray("state.youth_restored")
+target_attribute = "speed"
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"
+
+[sub_resource type="Resource" id="Resource_iygyc"]
+script = ExtResource("1_iygyc")
+target_attribute = "none"
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"
+
+[resource]
+script = ExtResource("3_2u7d5")
+projectile_scene = ExtResource("2_51s8d")
+effects = Array[ExtResource("1_iygyc")]([SubResource("Resource_iygyc")])
+consumed_effects = Array[ExtResource("1_iygyc")]([SubResource("Resource_51s8d")])
+metadata/_custom_type_script = "uid://wok753vjriib"

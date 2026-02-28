@@ -9,7 +9,7 @@
 radius = 0.2109375
 height = 1.0002441
 
-[node name="PotionProjectile" unique_id=1392492332 instance=ExtResource("1_vh705")]
+[node name="FirePotionProjectile" unique_id=1392492332 instance=ExtResource("1_vh705")]
 collision_layer = 40
 continuous_cd = true
 script = ExtResource("2_p2s4p")
