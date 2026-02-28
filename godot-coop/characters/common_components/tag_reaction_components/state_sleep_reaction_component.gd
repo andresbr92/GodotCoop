@@ -1,6 +1,8 @@
 extends TagReactionComponent
 @onready var physical_bone_simulator_3d: PhysicalBoneSimulator3D = $"../../Visuals/Skeleton/PhysicalBoneSimulator3D"
-@onready var collision_shape_3d: CollisionShape3D = $"../../Visuals/Skeleton/HarvestAttachmentSocket/HarvestMarker/HumanHarvestable/CollisionShape3D"
+@onready var harvestable_collision_shape_3d: CollisionShape3D = $"../../Visuals/Skeleton/HarvestAttachmentSocket/HarvestMarker/HumanHarvestable/CollisionShape3D"
+@onready var human_collision_shape_3d: CollisionShape3D = $"../../CollisionShape3D"
+
 
 
 
@@ -13,13 +15,18 @@ func _on_tag_added(tag: StringName) -> void:
 func _on_tag_removed(tag: StringName) -> void:
 	if multiplayer.is_server():
 		wake_up_ragdoll.rpc()
+		deactivate_harvestable_node.rpc()
 	pass
 		
 
 #region Harvest
 func _activate_harvestable_logic() -> void:
 	await get_tree().create_timer(2.0).timeout
-	collision_shape_3d.set_deferred("disabled", false)
+	harvestable_collision_shape_3d.set_deferred("disabled", false)
+
+
+func _deactivate_harvestable_logic() -> void:
+	harvestable_collision_shape_3d.set_deferred("disabled", true)
 
 #endregion
 
@@ -27,15 +34,18 @@ func _activate_harvestable_logic() -> void:
 
 #region Ragdoll
 func _wake_up_ragdoll_logic() -> void:
+	var skeleton = %Skeleton
 	if has_node("AnimationTree"): 
 		$AnimationTree.active = true
 
-	if has_node("CollisionShape3D"):
-		$CollisionShape3D.set_deferred("disabled", false)
+	
+	human_collision_shape_3d.set_deferred("disabled", false)
 
 	set_physics_process(true)
 	
 	physical_bone_simulator_3d.physical_bones_stop_simulation()
+	if is_instance_valid(skeleton):
+		skeleton.clear_bones_global_pose_override()
 
 
 
@@ -43,8 +53,8 @@ func _ragdoll_logic() -> void:
 	if has_node("AnimationTree"): 
 		$AnimationTree.active = false
 
-	if has_node("CollisionShape3D"):
-		$CollisionShape3D.set_deferred("disabled", true)
+
+	human_collision_shape_3d.set_deferred("disabled", true)
 
 	set_physics_process(false)
 	
@@ -85,5 +95,8 @@ func activate_harvestable_node() -> void:
 func wake_up_ragdoll() -> void:
 	_wake_up_ragdoll_logic()
 
+@rpc("authority", "call_local", "reliable")
+func deactivate_harvestable_node() -> void:
+	_deactivate_harvestable_logic()
 	
 #endregion
