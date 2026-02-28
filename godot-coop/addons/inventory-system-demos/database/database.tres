@@ -207,6 +207,13 @@ name = "Ingredient Loot"
 min_rolls = 2
 max_rolls = 5
 
+[sub_resource type="LootItem" id="LootItem_k7yi0"]
+item_id = "ingredient_corazon_humano"
+
+[sub_resource type="Loot" id="Loot_dqypk"]
+items = Array[LootItem]([SubResource("LootItem_k7yi0")])
+id = "human_ingredient"
+
 [sub_resource type="ItemStack" id="ItemStack_jst4x"]
 item_id = "ingredient_herb_dormidera"
 amount = 2
@@ -271,4 +278,4 @@ items = Array[ItemDefinition]([SubResource("ItemDefinition_4fkxu"), SubResource(
 recipes = Array[Recipe]([SubResource("Recipe_rdusi"), SubResource("Recipe_oca02"), SubResource("Recipe_6ctep")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])
-loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml"), SubResource("Loot_rdusi")])
+loots = Array[Loot]([SubResource("Loot_6ctep"), SubResource("Loot_4cjml"), SubResource("Loot_rdusi"), SubResource("Loot_dqypk")])

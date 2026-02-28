@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_nb246")
 mode = 2
-duration = 20.0
+duration = 5.0
 effect_name = "Sleep Effect"
 granted_tags = PackedStringArray("state.sleeping")
 target_attribute = "none"
