@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PotionData" format=3 uid="uid://4hx7g0dm5rge"]
+
+[ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_sbv8n"]
+[ext_resource type="PackedScene" uid="uid://b5lajvpkqtskq" path="res://items/definitions/projectiles/fire_potion_projectile.tscn" id="2_qrbla"]
+[ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="2_wty2c"]
+
+[sub_resource type="Resource" id="Resource_sbv8n"]
+script = ExtResource("1_sbv8n")
+granted_tags = PackedStringArray("state.fire")
+target_attribute = "none"
+metadata/_custom_type_script = "uid://1k1vrnybbjdr"
+
+[resource]
+script = ExtResource("2_wty2c")
+projectile_scene = ExtResource("2_qrbla")
+effects = Array[ExtResource("1_sbv8n")]([SubResource("Resource_sbv8n")])
+metadata/_custom_type_script = "uid://wok753vjriib"

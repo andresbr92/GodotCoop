@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://caxny4ehonhre" path="res://items/definitions/projectiles/projectile_base.tscn" id="1_vh705"]
 [ext_resource type="Script" uid="uid://8kmicg7tj6un" path="res://items/definitions/projectiles/fire_potion_projectile.gd" id="2_p2s4p"]
-[ext_resource type="PackedScene" uid="uid://bpghhfd7exwem" path="res://addons/assets/bottle.glb" id="3_s7rcl"]
+[ext_resource type="PackedScene" uid="uid://d13irkvllpoce" path="res://addons/assets/modified_glb/fire_potion_prop.tscn" id="3_xoqox"]
 [ext_resource type="AudioStream" uid="uid://cs7mypovngs1j" path="res://addons/assets/Sounds/Potions/potion_break.wav" id="4_sbhfp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dfkfh"]
@@ -18,7 +18,7 @@ script = ExtResource("2_p2s4p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41687012, 0)
 shape = SubResource("CapsuleShape3D_dfkfh")
 
-[node name="bottle2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1161776949 instance=ExtResource("3_s7rcl")]
+[node name="bottle-large2" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=1660104304 instance=ExtResource("3_xoqox")]
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1507177601]
 wait_time = 0.217
