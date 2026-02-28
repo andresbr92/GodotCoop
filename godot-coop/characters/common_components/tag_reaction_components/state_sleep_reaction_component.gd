@@ -18,6 +18,7 @@ func _on_tag_removed(tag: StringName) -> void:
 
 #region Harvest
 func _activate_harvestable_logic() -> void:
+	await get_tree().create_timer(2.0).timeout
 	collision_shape_3d.set_deferred("disabled", false)
 
 #endregion

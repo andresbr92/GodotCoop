@@ -308,7 +308,7 @@ layout_mode = 2
 text = "CONNECT TO LOCALHOST"
 
 [node name="HumanNPC" parent="." unique_id=385850437 instance=ExtResource("18_bivqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.276583, 0.010114342, 0.7625284)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.792673, 0.913826, -2.5386078)
 
 [node name="Harvestable" parent="." unique_id=1634607651 instance=ExtResource("21_6xxi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7625704, 0.5000005, 4.388818)
