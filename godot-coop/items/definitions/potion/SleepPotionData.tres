@@ -3,20 +3,12 @@
 [ext_resource type="Script" uid="uid://1k1vrnybbjdr" path="res://items/definitions/gameplay_effect.gd" id="1_kyrl2"]
 [ext_resource type="Script" uid="uid://wok753vjriib" path="res://items/definitions/potion_data.gd" id="2_g6xeo"]
 [ext_resource type="PackedScene" uid="uid://bjlqe6sey2p6d" path="res://items/definitions/projectiles/sleep_potion_projectile.tscn" id="2_ge7sq"]
-
-[sub_resource type="Resource" id="Resource_v1hup"]
-script = ExtResource("1_kyrl2")
-mode = 2
-duration = 5.0
-effect_name = "Sleep Effect"
-granted_tags = PackedStringArray("state.sleep")
-target_attribute = "none"
-metadata/_custom_type_script = "uid://1k1vrnybbjdr"
+[ext_resource type="Resource" uid="uid://bg3u7wld7eh8m" path="res://items/definitions/gameplay_effects/GE_Sleep.tres" id="2_v1hup"]
 
 [resource]
 script = ExtResource("2_g6xeo")
 projectile_scene = ExtResource("2_ge7sq")
 throw_force = 10.0
 blast_radius = 10.0
-effects = Array[ExtResource("1_kyrl2")]([SubResource("Resource_v1hup")])
+effects = Array[ExtResource("1_kyrl2")]([ExtResource("2_v1hup")])
 metadata/_custom_type_script = "uid://wok753vjriib"
