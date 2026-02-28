@@ -1,32 +1,36 @@
 extends TagReactionComponent
-@onready var physical_bone_simulator_3d: PhysicalBoneSimulator3D = $"../../Visuals/Skeleton/PhysicalBoneSimulator3D"
-@onready var harvestable_collision_shape_3d: CollisionShape3D = $"../../Visuals/Skeleton/HarvestAttachmentSocket/HarvestMarker/HumanHarvestable/CollisionShape3D"
-@onready var human_collision_shape_3d: CollisionShape3D = $"../../CollisionShape3D"
+@export var physical_bone_simulator_3d: PhysicalBoneSimulator3D 
+@export var harvestable_collision_shape_3d: CollisionShape3D
+@export var human_collision_shape_3d: CollisionShape3D
 
 
 
 
 func _on_tag_added(tag: StringName) -> void:
-	GlobalLogger.log("tag added", tag)
-	if multiplayer.is_server():
-		activate_ragdoll.rpc()
-		activate_harvestable_node.rpc()
+	if tag == target_tag:
+		GlobalLogger.log("tag added", tag)
+		if multiplayer.is_server():
+			activate_ragdoll.rpc()
+			activate_harvestable_node.rpc()
 
 func _on_tag_removed(tag: StringName) -> void:
-	if multiplayer.is_server():
-		wake_up_ragdoll.rpc()
-		deactivate_harvestable_node.rpc()
+	if tag == target_tag:
+		if multiplayer.is_server():
+			wake_up_ragdoll.rpc()
+			deactivate_harvestable_node.rpc()
 	pass
 		
 
 #region Harvest
 func _activate_harvestable_logic() -> void:
-	await get_tree().create_timer(2.0).timeout
-	harvestable_collision_shape_3d.set_deferred("disabled", false)
+	if harvestable_collision_shape_3d:
+		await get_tree().create_timer(2.0).timeout
+		harvestable_collision_shape_3d.set_deferred("disabled", false)
 
 
 func _deactivate_harvestable_logic() -> void:
-	harvestable_collision_shape_3d.set_deferred("disabled", true)
+	if harvestable_collision_shape_3d:
+		harvestable_collision_shape_3d.set_deferred("disabled", true)
 
 #endregion
 
@@ -54,7 +58,7 @@ func _ragdoll_logic() -> void:
 		$AnimationTree.active = false
 
 
-	human_collision_shape_3d.set_deferred("disabled", true)
+	#human_collision_shape_3d.set_deferred("disabled", true)
 
 	set_physics_process(false)
 	

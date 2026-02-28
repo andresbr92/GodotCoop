@@ -237,6 +237,7 @@ belt_slot_3={
 3d_render/layer_4="Projectile"
 3d_render/layer_5="Hitbox"
 3d_render/layer_6="Interactable"
+3d_render/layer_7="Ragdoll"
 
 [physics]
 
