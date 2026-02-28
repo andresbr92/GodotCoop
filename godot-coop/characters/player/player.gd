@@ -14,8 +14,6 @@ func _enter_tree() -> void:
 	super._enter_tree()
 	set_multiplayer_authority(name.to_int())
 	$CharacterInventorySystem/Inventory/SyncInventory.set_multiplayer_authority(1)
-	#$CharacterInventorySystem/EquipmentInventory/SyncInventory.set_multiplayer_authority(1)
-	#%SyncHotbar.set_multiplayer_authority(1)
 	$CharacterInventorySystem/CraftStation/SyncCraftStation.set_multiplayer_authority(1)
 	$AbilitySystemComponent.set_multiplayer_authority(1)
 	for system in $AbilitySystemComponent.get_children():
@@ -41,7 +39,7 @@ func _on_ability_animation(anim_name: String) -> void:
 	# Lógica de decisión: ¿Es una animación que permite moverse?
 	# Por ahora, digamos que "Throw" permite moverse.
 	if anim_name == "Throw":
-		sm.play_upper_body_action(anim_name)
+		sm.play_upper_body_action.rpc(anim_name)
 	else:
 		# Si es otra cosa, usamos la FSM completa que detiene o controla el flujo
 		sm.perform_action(anim_name)

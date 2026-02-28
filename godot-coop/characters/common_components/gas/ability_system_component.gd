@@ -105,5 +105,14 @@ func server_ability_input_released(input_tag: String) -> void:
 
 
 func handle_animation_event(event_id: String) -> void:
-	print("[ASC] Evento de animación recibido: ", event_id)
+	GlobalLogger.log("[ASC] Animation Event Received: ", event_id)
 	gameplay_event_triggered.emit(event_id)
+	if not multiplayer.is_server():
+		send_gameplay_event_to_server.rpc_id(1, event_id)
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func send_gameplay_event_to_server(event_id: String) -> void:
+	GlobalLogger.log("[ASC] Animation Event Received: ", event_id)
+	gameplay_event_triggered.emit(event_id)
+	

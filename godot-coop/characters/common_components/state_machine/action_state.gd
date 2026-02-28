@@ -8,7 +8,6 @@ func enter() -> void:
 	is_animating = true
 	if state_machine.playback and current_action_name != "":
 		state_machine.playback.travel(current_action_name)
-		print("[Animation FSM] Executing Action: ", current_action_name)
 	else:
 		_finish_action()
 

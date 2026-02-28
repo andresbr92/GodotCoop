@@ -8,6 +8,6 @@
 [resource]
 script = ExtResource("4_me7kl")
 projectile_scene = ExtResource("3_o8ryx")
-throw_force = 5.0
+throw_force = 7.0
 effects = Array[ExtResource("1_utlo4")]([ExtResource("2_frdu7")])
 metadata/_custom_type_script = "uid://wok753vjriib"

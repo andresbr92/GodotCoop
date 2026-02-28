@@ -8,8 +8,6 @@
 [resource]
 script = ExtResource("4_n7nmp")
 projectile_scene = ExtResource("3_cs4d3")
-throw_force = 10.0
-blast_radius = 15.0
-area_effect_duration = 20.0
+area_effect_duration = 10.0
 effects = Array[ExtResource("1_cs4d3")]([ExtResource("2_y81cq")])
 metadata/_custom_type_script = "uid://wok753vjriib"

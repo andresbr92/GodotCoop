@@ -5,7 +5,6 @@ extends State
 # Called when the state machine enters this state
 func enter() -> void:
 	# Todo: Here we will tell the AnimationTree to travel to "Move/Run"
-	print("[Animation FSM] Entered MOVE")
 	if state_machine.playback:
 		state_machine.playback.travel("Move")
 

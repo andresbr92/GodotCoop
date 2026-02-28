@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://1k1vrnybbjdr"
 [resource]
 script = ExtResource("2_g6xeo")
 projectile_scene = ExtResource("2_ge7sq")
+throw_force = 10.0
 blast_radius = 10.0
 effects = Array[ExtResource("1_kyrl2")]([SubResource("Resource_v1hup")])
 metadata/_custom_type_script = "uid://wok753vjriib"

@@ -49,7 +49,7 @@ shadow_mesh = SubResource("ArrayMesh_x7nly")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qy7m"]
 albedo_color = Color(0.9635417, 0.888265, 0, 1)
 
-[node name="HealPotion" unique_id=309637969 instance=ExtResource("1_vthdx")]
+[node name="StickySaviaPotion" unique_id=309637969 instance=ExtResource("1_vthdx")]
 item_id = "sticky_savia_potion"
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=395884797]

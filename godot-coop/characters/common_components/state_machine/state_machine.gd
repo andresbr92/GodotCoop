@@ -98,6 +98,8 @@ func perform_action(anim_name: String) -> void:
 		action_state.enter()
 		current_state = action_state
 
+
+@rpc("any_peer", "call_local", "reliable")
 func play_upper_body_action(anim_name: String) -> void:
 	if not animation_tree: return
 	
@@ -109,4 +111,4 @@ func play_upper_body_action(anim_name: String) -> void:
 	# 2. Disparamos el OneShot
 	animation_tree.set("parameters/UpperBodyAction/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
-	print("[Animation FSM] Upper Body Action Triggered")
+	GlobalLogger.log("[Animation FSM] Upper Body Action Triggered")
