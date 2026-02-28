@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxej4lauv36dd" path="res://addons/inventory-system-demos/assets/icons/campfire.png" id="11_h04p3"]
 [ext_resource type="Texture2D" uid="uid://tslkauksmsrg" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-oil.png" id="12_7l2r8"]
 [ext_resource type="Texture2D" uid="uid://m42ga264uiky" path="res://addons/inventory-system-demos/assets/icons/workbench.png" id="12_ltu7p"]
+[ext_resource type="Texture2D" uid="uid://6hiy3v072nbc" path="res://addons/assets/kenney_food_assets/GLB format/Previews/bottle-musterd.png" id="13_6ctep"]
 [ext_resource type="Texture2D" uid="uid://cqfq2artfnl08" path="res://addons/assets/bottle.png" id="17_4cjml"]
 [ext_resource type="Texture2D" uid="uid://14aaiq5lmdlx" path="res://addons/assets/kenney_food_assets/GLB format/Previews/glass.png" id="18_utrd5"]
 [ext_resource type="Texture2D" uid="uid://bxjtd8sds3yau" path="res://addons/assets/kenney_food_assets/GLB format/Previews/mushroom.png" id="19_he2jw"]
@@ -117,6 +118,18 @@ properties = {
 "potion_data": "res://items/definitions/potion/HealPotionData.tres"
 }
 
+[sub_resource type="ItemDefinition" id="ItemDefinition_7l2r8"]
+id = "sticky_savia_potion"
+max_stack = 1
+name = "Sticky Savia Potion"
+icon = ExtResource("13_6ctep")
+properties = {
+"dropped_item": "res://items/inventory_items/potions/sticky_savia_potion.tscn",
+"equipment_data": "res://items/definitions/equipment/EqData_Potion.tres",
+"hand_item": "res://addons/assets/modified_glb/sticky_savia_potion_prop.tscn",
+"potion_data": "res://items/definitions/potion/StickySaviaPotionData.tres"
+}
+
 [sub_resource type="LootItem" id="LootItem_6ctep"]
 item_id = "stone_axe"
 weight = 0.4
@@ -220,7 +233,7 @@ id = "cauldron"
 name = "Cauldron"
 
 [resource]
-items = Array[ItemDefinition]([SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x")])
+items = Array[ItemDefinition]([SubResource("ItemDefinition_dqypk"), SubResource("ItemDefinition_4fkxu"), SubResource("ItemDefinition_he2jw"), SubResource("ItemDefinition_k7yi0"), SubResource("ItemDefinition_rdusi"), SubResource("ItemDefinition_oca02"), SubResource("ItemDefinition_qeojb"), SubResource("ItemDefinition_jst4x"), SubResource("ItemDefinition_7l2r8")])
 recipes = Array[Recipe]([SubResource("Recipe_rdusi"), SubResource("Recipe_oca02")])
 stations_type = Array[CraftStationType]([SubResource("CraftStationType_fnhd3"), SubResource("CraftStationType_voset"), SubResource("CraftStationType_4cjml")])
 item_categories = Array[ItemCategory]([SubResource("ItemCategory_w8bei"), SubResource("ItemCategory_ubgak"), SubResource("ItemCategory_mu46q"), SubResource("ItemCategory_epmnv"), SubResource("ItemCategory_4cjml")])

@@ -8,4 +8,5 @@ operation = 0
 value = 2.0
 mode = 1
 duration = 5.0
+target_attribute = ""
 metadata/_custom_type_script = "uid://1k1vrnybbjdr"

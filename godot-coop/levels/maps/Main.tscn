@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bdxm36g6tmkyd" path="res://levels/maps/main.gd" id="1_ypdrr"]
 [ext_resource type="PackedScene" uid="uid://b8nosybut0sfr" path="res://characters/player/player.tscn" id="2_mg6k3"]
 [ext_resource type="InventoryDatabase" uid="uid://de5qy8ycey7yn" path="res://addons/inventory-system-demos/database/database.tres" id="3_bivqv"]
+[ext_resource type="PackedScene" uid="uid://bwd1nipdgx8sj" path="res://items/inventory_items/potions/sticky_savia_potion.tscn" id="6_r7gtk"]
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://addons/assets/Materials/grid_mat.tres" id="9_mg6k3"]
 [ext_resource type="Script" uid="uid://dbmmhdgkw6fu0" path="res://systems/projectile_spawner.gd" id="9_r7gtk"]
 [ext_resource type="Script" uid="uid://owlc7hwlygbt" path="res://addons/inventory-system-demos/mp/dropped_item_spawner.gd" id="10_clxfl"]
@@ -86,6 +87,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5343504, -4.7683716e-07, 2.
 
 [node name="HealPotion3" parent="Level/Items" unique_id=1052942774 instance=ExtResource("19_3w03t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8215322, -4.7683716e-07, 2.1436286)
+
+[node name="HealPotion4" parent="Level/Items" unique_id=2069644700 instance=ExtResource("6_r7gtk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9161654, 4.7683716e-07, 2.16909)
+
+[node name="HealPotion5" parent="Level/Items" unique_id=767795555 instance=ExtResource("6_r7gtk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.146324, 4.7683716e-07, 2.16909)
 
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1963443158 groups=["ProjectileSpawner"]]
 spawn_path = NodePath("..")

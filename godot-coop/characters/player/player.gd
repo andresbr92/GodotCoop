@@ -122,7 +122,6 @@ func set_strafing(state: bool) -> void:
 	ability_system.is_strafing = state
 
 func on_animation_event(event_id: String) -> void:
-	print("añslkdfjñalksdjfñalkdjfñalkdjfñalkdjfñalkdjfñalkjdfñlakjdfñlkj")
 	if not is_multiplayer_authority():
 		return
 

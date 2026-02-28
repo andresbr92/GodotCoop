@@ -19,6 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41687012, 0)
 shape = SubResource("CapsuleShape3D_dfkfh")
 
 [node name="bottle-oil" parent="Visuals" parent_id_path=PackedInt32Array(579098310) index="0" unique_id=124213273 instance=ExtResource("3_yij11")]
+surface_material_override/0 = null
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1507177601]
 wait_time = 0.217
